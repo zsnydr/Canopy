@@ -1,0 +1,19 @@
+{
+  "name": "monkey",
+  "description": "",
+  "main": "server.js",
+  "authors": [
+    "Sean Enright",
+    "Victor Choi",
+    "Zack Snyder"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

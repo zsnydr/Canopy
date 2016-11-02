@@ -1,0 +1,10 @@
+## Mac OSX ##
+.DS_Store
+
+## NPM and BOWER ##
+node_modules/
+bower_components/
+
+## config files ##
+config.js
+.env
