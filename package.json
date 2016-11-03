@@ -41,5 +41,6 @@
     "redux": "^3.6.0",
     "redux-promise": "^0.5.3",
     "sequelize": "^3.24.6"
+
   }
 }
