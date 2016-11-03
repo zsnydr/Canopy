@@ -8,7 +8,7 @@ const app = express();
 app.set('port', process.env.PORT || 3000);
 
 app.use(express.static(path.join(__dirname, 'bundleSrc')));
-app.use(express.static(path.join(__dirname, 'node_modules')));
+// app.use(express.static(path.join(__dirname, 'node_modules')));
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
