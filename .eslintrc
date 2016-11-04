@@ -14,7 +14,8 @@
       "requireParamDescription": true,
       "requireReturnDescription": true
     }],
-    "func-names": ["error", "never"],     # added this line
+    "func-names": ["error", "never"],         # added this line
+    "arrow-body-style": ["error", "always"],  # added this line
     "require-jsdoc": ["error", {
       "require": {
         "FunctionDeclaration": true,
