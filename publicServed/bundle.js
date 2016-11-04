@@ -65,9 +65,7 @@
 
 	var _app2 = _interopRequireDefault(_app);
 
-	function _interopRequireDefault(obj) {
-	  return obj && obj.__esModule ? obj : { default: obj };
-	}
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	_reactDom2.default.render(_react2.default.createElement(_app2.default, null), document.querySelector('.container'));
 
@@ -19779,12 +19777,14 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	function _interopRequireDefault(obj) {
-	  return obj && obj.__esModule ? obj : { default: obj };
-	}
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var App = function App() {
-	  return _react2.default.createElement('div', null, 'Contents will go here');
+	  return _react2.default.createElement(
+	    'div',
+	    null,
+	    'Contents will go here'
+	  );
 	};
 
 	exports.default = App;
