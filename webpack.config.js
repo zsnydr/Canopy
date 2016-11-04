@@ -4,19 +4,21 @@ module.exports = {
   ],
   output: {
     path: __dirname,
-    publicPath: '/bundleSrc',
+    publicPath: '/',
     filename: 'bundle.js'
   },
   module: {
     loaders: [{
       exclude: /node_modules/,
       loader: 'babel'
-    },
-    {
-      test: /\.js$/,
-      exclude: /node_modules/,
-      loader: 'eslint-loader'
-    }]
+    }
+    // ,
+    // {
+    //   test: /\.js$/,
+    //   exclude: /node_modules/,
+    //   loader: 'eslint-loader'
+    // }]
+    ]
   },
   resolve: {
     extensions: ['', '.js', '.jsx']
