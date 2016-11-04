@@ -10,8 +10,7 @@ module.exports = {
     filename: 'bundle.js'
   },
   module: {
-    loaders: [
-    {
+    loaders: [{
       test: /\.jsx$/,
       exclude: /(node_modules)/,
       loader: 'babel', // 'babel-loader' is also a valid name to reference
