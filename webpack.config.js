@@ -1,14 +1,23 @@
-var path = require('path');
+
+const path = require('path');
+const webpack = require('webpack');
 
 module.exports = {
   entry: [
-    './public/index.jsx'
+    'webpack/hot/dev-server',
+    'webpack-hot-middleware/client',
+    './public/components/app.jsx'
   ],
   output: {
-    path: path.join(__dirname, '/publicServed'),
-    publicPath: '/',
+    path: path.resolve(__dirname, 'publicServed/'),
+    publicPath: 'http://localhost:3000',
     filename: 'bundle.js'
   },
+  plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoErrorsPlugin(),
+    new webpack.optimize.OccurenceOrderPlugin(),
+  ],
   module: {
     loaders: [{
       test: /\.jsx$/,
@@ -16,20 +25,10 @@ module.exports = {
       loader: 'babel', // 'babel-loader' is also a valid name to reference
       query: {
         presets: ['react', 'es2015'] //can add "es2015" to compile to es5
-      }
-    }
-    // ,
-    // {
-    //   test: /\.js$/,
-    //   exclude: /node_modules/,
-    //   loader: 'eslint-loader'
-    // }]
-    ]
+      },
+    }],
   },
   resolve: {
     extensions: ['', '.js', '.jsx']
-  },
-  devServer: {
-    contentBase: './'
   }
 };
