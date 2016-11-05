@@ -60,7 +60,7 @@ const Host = db.define('host', {
   },
   name: Sequelize.TEXT,
   email: Sequelize.TEXT,
-  phoneNumber: Sequelize.INTEGER
+  phone: Sequelize.INTEGER
 });
 
 const Renter = db.define('renter', {
@@ -71,7 +71,7 @@ const Renter = db.define('renter', {
   },
   name: Sequelize.TEXT,
   email: Sequelize.TEXT,
-  phoneNumber: Sequelize.INTEGER,
+  phone: Sequelize.INTEGER,
   password: Sequelize.TEXT,
   numApplied: {
     type: Sequelize.INTEGER,
