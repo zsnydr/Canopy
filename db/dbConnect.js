@@ -13,3 +13,5 @@ db
   .catch((err) => {
     console.log('Unable to connect...', err);
   });
+
+module.exports = db;
