@@ -1,6 +1,6 @@
-const Sequalize = require('sequalize');
+const Sequelize = require('sequelize');
 
-const db = new Sequalize(process.env.DATABASE_URL || 'mysql://localhost/monkey', {
+const db = new Sequelize(process.env.DATABASE_URL || 'mysql://localhost/monkey', {
   host: 'localhost',
   dialect: 'mysql'
 });
