@@ -16,6 +16,7 @@
     }],
     "func-names": ["error", "never"],         # added this line
     "arrow-body-style": ["error", "always"],  # added this line
+    "comma-dangle": ["error", "never"],      # added this line
     "require-jsdoc": ["error", {
       "require": {
         "FunctionDeclaration": false,
