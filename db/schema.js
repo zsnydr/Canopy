@@ -1,7 +1,23 @@
-import Sequelize from 'sequelize';
 
-import db from './dbConnect';
+const mysql = require('mysql');
+const Sequelize = require('sequelize');
 
+// open database connection
+const db = new Sequelize(process.env.DATABASE_URL || 'mysql://root@localhost/monkey', {
+  password: '',
+  dialect: 'mysql'
+});
+
+db
+  .authenticate()
+  .then(() => {
+    console.log('Connection established...');
+  })
+  .catch((err) => {
+    console.log('Unable to connect...', err);
+  });
+
+// define models
 const Listing = db.define('listing', {
   id: {
     type: Sequelize.INTEGER,
@@ -30,11 +46,11 @@ const Host = db.define('host', {
     primaryKey: true,
     autoIncrement: true
   },
-  numOfListings: {
+  numListings: {
     type: Sequelize.INTEGER,
     default: 0
   },
-  numOfratings: {
+  numRatings: {
     type: Sequelize.INTEGER,
     default: 0
   },
@@ -42,9 +58,9 @@ const Host = db.define('host', {
     type: Sequelize.DECIMAL(10, 1),
     default: 0
   },
-  hName: Sequelize.TEXT,
-  hEmail: Sequelize.TEXT,
-  hPhoneNumber: Sequelize.INTEGER
+  name: Sequelize.TEXT,
+  email: Sequelize.TEXT,
+  phoneNumber: Sequelize.INTEGER
 });
 
 const Renter = db.define('renter', {
@@ -53,7 +69,7 @@ const Renter = db.define('renter', {
     primaryKey: true,
     autoIncrement: true
   },
-  renterName: Sequelize.TEXT,
+  name: Sequelize.TEXT,
   email: Sequelize.TEXT,
   phoneNumber: Sequelize.INTEGER,
   password: Sequelize.TEXT,
@@ -63,26 +79,35 @@ const Renter = db.define('renter', {
   }
 });
 
-const Renter_Listing = db.define('renters_listing', {
+const RenterListing = db.define('renterlisting', {
+  id: {
+    type: Sequelize.INTEGER,
+    primaryKey: true,
+    autoIncrement: true
+  },
   status: Sequelize.TEXT
 });
 
+// define model relationships
 Host.hasMany(Listing, { foreignKey: 'host_id' });
 
-Renter.belongsToMany(Listing, { through: 'renters_listings' });
-Listing.belongsToMany(Renter, { through: 'renters_listings' });
+Renter.hasMany(RenterListing);
+Listing.hasMany(RenterListing);
 
-db.sync({
-  force: true,
-}).then(() => {
+RenterListing.belongsTo(Renter);
+RenterListing.belongsTo(Listing);
+
+// build tables
+db.sync({ force: true })
+.then(() => {
   console.log('Tables created');
 }).catch((err) => {
   console.log('Failed to create tables...', err);
 });
 
 module.exports = {
-  Listing: Listing,
-  Host: Host,
-  Renter: Renter,
-  Renter_Listing: Renter_Listing
+  Listing,
+  Host,
+  Renter,
+  RenterListing
 };
