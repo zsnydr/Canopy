@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+// import ReactDOM from 'react-dom';
 
 // const App = () => {
 //   return (
@@ -12,13 +12,13 @@ import ReactDOM from 'react-dom';
 export default class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { 'dan': 'abramov' };
+    this.state = {};
   }
 
   render() {
     return (
       <div>
-        Contents will go here to there or anywhere
+        Contents will go here to there or anywhereawfqw
       </div>
     );
   }
