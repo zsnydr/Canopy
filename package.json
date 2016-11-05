@@ -4,7 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jasmine",
     "start": "node server.js"
   },
   "author": "Sean Enright, Victor Choi, Zack Snyder",
@@ -21,7 +21,9 @@
     "eslint-plugin-import": "^1.16.0",
     "eslint-plugin-jsx-a11y": "^2.2.3",
     "eslint-plugin-react": "^6.5.0",
-    "nodemon": "^1.11.0"
+    "jasmine": "^2.5.2",
+    "nodemon": "^1.11.0",
+    "supertest": "^2.0.1"
   },
   "dependencies": {
     "babel-preset-stage-1": "^6.16.0",

@@ -1,8 +1,8 @@
 const helpers = require('./routeHelpers');
 
-export default (app) => {
-  app.get('/', (req, res) => {
-    res.statusCode(201).end();
+module.exports = (app) => {
+  app.get('/test', (req, res) => {
+    res.send('hello');
   });
 
   app.get('/listings', helpers.getListings);
