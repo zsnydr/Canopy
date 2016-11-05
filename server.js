@@ -8,14 +8,17 @@ const webpackHot = require('webpack-hot-middleware');
 
 const app = express();
 
+const compiler = webpack(webpackConfig);
 
 app.set('port', process.env.PORT || 3000);
 
 app.use(express.static(path.join(__dirname, '/publicServed')));
-app.use(webpackMiddleware(webpack(webpackConfig), {
+
+app.use(webpackMiddleware(compiler, {
   publicPath: webpackConfig.output.publicPath,
 }));
-app.use(webpackHot(webpack(webpackConfig), {
+
+app.use(webpackHot(compiler, {
   log: console.log,
   path: '/__webpack_hmr',
   heartbeat: 1 * 1000,

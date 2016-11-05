@@ -4,19 +4,19 @@ const webpack = require('webpack');
 
 module.exports = {
   entry: [
-    'webpack/hot/dev-server',
+    // 'webpack/hot/dev-server',
     'webpack-hot-middleware/client',
-    './public/components/app.jsx'
+    './public/index.jsx'
   ],
   output: {
     path: path.resolve(__dirname, 'publicServed/'),
-    publicPath: 'http://localhost:3000',
+    publicPath: 'http://localhost:3000/',
     filename: 'bundle.js'
   },
   plugins: [
+    new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
-    new webpack.optimize.OccurenceOrderPlugin(),
   ],
   module: {
     loaders: [{
