@@ -16,7 +16,7 @@ module.exports = {
   plugins: [
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin(),
+    new webpack.NoErrorsPlugin()
   ],
   module: {
     loaders: [{
@@ -24,9 +24,17 @@ module.exports = {
       exclude: /(node_modules)/,
       loader: 'babel', // 'babel-loader' is also a valid name to reference
       query: {
-        presets: ['react', 'es2015'] //can add "es2015" to compile to es5
-      },
-    }],
+        presets: ['react', 'es2015'] // can add "es2015" to compile to es5
+      }
+    },
+    {
+      test: /\.js$/,
+      exclude: /(node_modules)/,
+      loader: 'babel', // 'babel-loader' is also a valid name to reference
+      query: {
+        presets: ['es2015'] // can add "es2015" to compile to es5
+      }
+    }]
   },
   resolve: {
     extensions: ['', '.js', '.jsx']

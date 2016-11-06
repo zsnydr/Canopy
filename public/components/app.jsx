@@ -1,25 +1,16 @@
-import React from 'react';
-// import ReactDOM from 'react-dom';
+import React, { Component } from 'react';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
 
-// const App = () => {
-//   return (
-//     <div>
-//       Contents will go here or there or anywhere lol
-//     </div>
-//   );
-// };
+import RentList from '../containers/rent-list';
+import reducers from '../reducers/index';
 
-export default class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
-
+export default class App extends Component {
   render() {
     return (
-      <div>
-        Contents will go here to there or anywhereawfqw
-      </div>
+      <Provider store={createStore(reducers)}>
+        <RentList />
+      </Provider>
     );
   }
 }
