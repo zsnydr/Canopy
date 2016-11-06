@@ -1,4 +1,6 @@
 import React from 'react';
+import styles from '../stylesheets/main/splash.scss';
+
 
 export default class App extends React.Component {
   constructor(props) {
@@ -8,17 +10,11 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <div>
-        <div>
-          <form>
-            <input>
-              
-            </input>
-          </form>
-
-        </div>
-        <img class='backgroundImage' src='http://s7d4.scene7.com/is/image/roomandboard/hutton_706468_16e_g?$str_g$&size=1520,960&scl=1' alt='splash' />
-
+      <div className='main' >
+        <form>
+          Enter your city
+          <input></input>
+        </form>
       </div>
     );
   }
