@@ -4,7 +4,7 @@ import { synchHistoryWithStore, routerReducer } from 'react-router-redux';
 
 import App from './components/app';
 import RentList from './containers/rent-list';
-import SplashPage from './components/splashpage';
+import SplashPage from './containers/splashpage';
 
 
 export default (

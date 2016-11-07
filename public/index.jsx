@@ -4,12 +4,11 @@ import { Provider } from 'react-redux';
 import { Router, hashHistory } from 'react-router';
 import { createStore, applyMiddleware } from 'redux';
 
-import styles from './stylesheets/main/splash.scss';
 import routes from './routes';
 import reducers from './reducers';
 
 
-ReactDOM.render( 
+ReactDOM.render(
   <Provider store={createStore(reducers)}>
     <Router history={hashHistory} routes={routes} />
   </Provider>
