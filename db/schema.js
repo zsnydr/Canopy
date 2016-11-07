@@ -1,5 +1,3 @@
-
-const mysql = require('mysql');
 const Sequelize = require('sequelize');
 
 // open database connection
