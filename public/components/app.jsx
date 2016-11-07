@@ -1,21 +1,8 @@
-import React from 'react';
-import styles from '../stylesheets/main/splash.scss';
-
-export default class Home extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
+import React, { Component } from 'react';
 
 
+export default class App extends Component {
   render() {
-    return (
-      <div className='main' >
-        <form>
-          Enter your city
-          <input></input>
-        </form>
-      </div>
-    );
+    return (<div>{this.props.children}</div>)
   }
-}
+};
