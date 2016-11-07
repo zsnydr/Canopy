@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import selectCity from '../actions/select_city';
+import updateListings from '../actions/update_listings';
 
 class Splash extends Component {
   constructor(props) {
@@ -21,6 +22,7 @@ class Splash extends Component {
   onFormSubmit(event) {
     event.preventDefault();
     this.props.selectCity(this.state.term);
+    this.props.updateListings(this.state.term);
   }
 
   render() {
@@ -43,7 +45,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ selectCity }, dispatch);
+  return bindActionCreators({ selectCity, updateListings }, dispatch);
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Splash);
