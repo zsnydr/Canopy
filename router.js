@@ -5,5 +5,16 @@ module.exports = (app) => {
     res.send('hello');
   });
 
-  app.get('/listings', helpers.getListings);
+//   app.get('/listings', helpers.getListings);
+// };
+
+  app.get('/listings/:city', function(req, resp){
+    console.log(req.params.city)
+    const newListing = [
+      { apartment: 'quare' },
+      { apartment: 'awthorn' },
+      { apartment: 'EMA' }
+    ];
+    resp.send(200, newListing);
+  })
 };

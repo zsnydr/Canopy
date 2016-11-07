@@ -3,14 +3,15 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { Router, hashHistory } from 'react-router';
 import { createStore, applyMiddleware } from 'redux';
+import ReduxPromise from 'redux-promise';
 
-import styles from './stylesheets/main/splash.scss';
 import routes from './routes';
 import reducers from './reducers';
 
+const createStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore);
 
-ReactDOM.render( 
-  <Provider store={createStore(reducers)}>
+ReactDOM.render(
+  <Provider store={createStoreWithMiddleware(reducers)}>
     <Router history={hashHistory} routes={routes} />
   </Provider>
   ,
