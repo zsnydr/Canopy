@@ -12,5 +12,4 @@ export default (
     <IndexRoute component={SplashPage} />
     <Route path="listing" component={RentList} />
   </Route>
-
   );
