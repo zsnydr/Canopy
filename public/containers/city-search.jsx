@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-
+import { Button, FormControl } from 'react-bootstrap';
 import selectCity from '../actions/select_city';
 import updateListings from '../actions/update_listings';
 
@@ -27,10 +27,18 @@ class CitySearch extends Component {
   render() {
     return (
       <div className="main">
+        <h1>renter city</h1>
         <form onSubmit={this.onFormSubmit}>
-          Enter your city:
-          <input className='input' onChange={this.onInputChange.bind(this)} value={this.props.term} ></input>
-          <input className='submitbtn' type='submit'></input>
+
+            <FormControl
+              id="formControlsText"
+              type="text"
+              label="Text"
+              placeholder="apartment search by city eg. San Francisco, Ca"
+              onChange={this.onInputChange.bind(this)}
+              value={this.props.term}
+            />
+          <Button bsStyle="primary">submit</Button>
         </form>
       </div>
     );

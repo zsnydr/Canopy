@@ -31,7 +31,7 @@ class Splash extends Component {
         <form onSubmit={this.onFormSubmit.bind(this)}>
           Enter your city:
           <input className='input' onChange={this.onInputChange.bind(this)} value={this.props.term} ></input>
-          <input className='submitbtn' type='submit'></input>
+          <Button bsStyle="primary">Primary</Button>
         </form>
       </div>
     );
