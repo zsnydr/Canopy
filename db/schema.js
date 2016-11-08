@@ -28,6 +28,8 @@ const Listing = db.define('listing', {
   city: Sequelize.TEXT,
   state: Sequelize.CHAR(2),
   zip: Sequelize.INTEGER,
+  lat: Sequelize.DECIMAL(10, 7),
+  lon: Sequelize.DECIMAL(10, 7),
   unitNumber: Sequelize.INTEGER,
   rent: Sequelize.INTEGER,
   sqFoot: Sequelize.INTEGER,
