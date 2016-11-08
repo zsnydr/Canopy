@@ -14,4 +14,5 @@ export default (
       <Route path="listings" component={Listings} />
       <Route path="listing/:id" component={ListingPage} />
     </Route>
+  </Route>
 );

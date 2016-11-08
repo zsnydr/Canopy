@@ -11,7 +11,7 @@ const RentList = (props) => {
         </tr>
       );
     });
-  }
+  };
   return (
     <div className="rent-listings">
       <table>
@@ -20,7 +20,7 @@ const RentList = (props) => {
         </tbody>
       </table>
     </div>
-  )
-}
+  );
+};
 
 export default RentList;

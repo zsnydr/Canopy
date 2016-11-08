@@ -5,7 +5,7 @@ const Rent = (props) => {
     <td className="rent-listings">
       {props.rent.street}
     </td>
-  )
-}
+  );
+};
 
 export default Rent;

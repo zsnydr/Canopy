@@ -10,9 +10,9 @@ class Listings extends Component {
     return (
       <div>
         <div>asdfadsfdasfdsa</div>
-        <OptionBox submitOption={()=>{console.log('Submited'); }} />
+        <OptionBox submitOption={() => { console.log('Submited'); }} />
         <RentList rents={this.props.rents} />
-      </div> 
+      </div>
     );
   }
 }
