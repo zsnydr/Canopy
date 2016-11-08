@@ -1,7 +1,7 @@
 const dbHelpers = require('./dbHelpers');
 
 module.exports.getListings = (req, res) => {
-  dbHelpers.getListings()
+  dbHelpers.getListings(req.params.city)
   .then((listings) => {
     console.log('listings from route helpers', listings)
     res.json(listings);
