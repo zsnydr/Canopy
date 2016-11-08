@@ -58,7 +58,7 @@ const Host = db.define('host', {
   },
   name: Sequelize.TEXT,
   email: Sequelize.TEXT,
-  phone: Sequelize.INTEGER
+  phone: Sequelize.BIGINT
 });
 
 const Renter = db.define('renter', {
@@ -96,7 +96,7 @@ RenterListing.belongsTo(Renter);
 RenterListing.belongsTo(Listing);
 
 // build tables
-db.sync({ force: true })
+db.sync({ force: false })
 .then(() => {
   console.log('Tables created');
 }).catch((err) => {

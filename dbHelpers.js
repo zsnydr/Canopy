@@ -7,7 +7,7 @@ module.exports = {
   getListings: (req, res) => {
     return Listing.findAll({})
     .then((listings) => {
-      console.log('allListings: ', listings);
+      return listings;
     })
     .catch((err) => {
       res.statusCode(400).send('Error: ', err);
