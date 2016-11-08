@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Button, FormControl } from 'react-bootstrap';
-import { Link } from 'react-router';
 import selectCity from '../actions/select_city';
 import updateListings from '../actions/update_listings';
 
@@ -32,15 +31,15 @@ class CitySearch extends Component {
       <div className="main">
         <h1>renter city</h1>
         <form onSubmit={this.onFormSubmit}>
-            <FormControl
-              id="formControlsText"
-              type="text"
-              label="Text"
-              placeholder="apartment search by city eg. San Francisco, Ca"
-              onChange={this.onInputChange.bind(this)}
-              value={this.props.term}
-            />
-              <Button onClick={this.onFormSubmit} bsStyle="primary">submit</Button>
+          <FormControl
+            id="formControlsText"
+            type="text"
+            label="Text"
+            placeholder="apartment search by city eg. San Francisco, Ca"
+            onChange={this.onInputChange}
+            value={this.props.term}
+          />
+          <Button onClick={this.onFormSubmit} bsStyle="primary">submit</Button>
         </form>
       </div>
     );
