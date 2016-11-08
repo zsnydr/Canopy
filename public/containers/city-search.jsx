@@ -24,7 +24,7 @@ class CitySearch extends Component {
     event.preventDefault();
     this.props.selectCity(this.state.term);
     this.props.updateListings(this.state.term);
-    window.location = '/#/listing';
+    window.location = '/#/content/listings';
   }
 
   render() {
