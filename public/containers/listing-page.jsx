@@ -8,11 +8,8 @@ class ListingPage extends Component {
   render() {
     return (
       <div>
-        Current listing
-        // google map component
+        Google Map
         <ListingDetail activeListing={this.props.activeListing} />
-        // listing details component which will render listing description
-        // component and listing pics component
       </div>
     );
   }
