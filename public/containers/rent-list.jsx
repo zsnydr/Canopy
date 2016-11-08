@@ -4,8 +4,8 @@ import { connect } from 'react-redux';
 class RentList extends Component {
   renderRents(rent) {
     return (
-      <li key={rent.apartment}>
-        {rent.apartment}
+      <li key={rent.id}>
+        {rent.street}
       </li>
     );
   }

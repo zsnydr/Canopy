@@ -67,7 +67,7 @@ Listing.create({
   dogs: false,
   cats: false,
   term: 6,
-  availableDate: Sequelize.DATEONLY,
+  availableDate: '2016/11/07',
   images: 'image references go here',
   host_id: 1
 })
@@ -91,7 +91,7 @@ Listing.create({
   dogs: true,
   cats: false,
   term: 12,
-  availableDate: Sequelize.DATEONLY,
+  availableDate: '2016-11-07',
   images: 'image references go here',
   host_id: 2
 })
@@ -115,7 +115,7 @@ Listing.create({
   dogs: true,
   cats: true,
   term: 1,
-  availableDate: Sequelize.DATEONLY,
+  availableDate: '2016-11-07',
   images: 'image references go here',
   host_id: 3
 })
@@ -139,7 +139,7 @@ Listing.create({
   dogs: false,
   cats: true,
   term: 12,
-  availableDate: Sequelize.DATEONLY,
+  availableDate: '2016-11-07',
   images: 'image references go here',
   host_id: 2
 })
