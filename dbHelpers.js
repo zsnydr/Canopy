@@ -4,13 +4,18 @@ const Listing = require('./db/schema').Listing;
 // const RenterListing = require('./db/schema').RenterListing;
 
 module.exports = {
-  getListings: (req, res) => {
-    return Listing.findAll({})
+  getListings: (city) => {
+    return Listing.findAll({
+      where: {
+        city: city.slice(0, -4).toUpperCase(),
+        state: city.slice(-2).toUpperCase()
+      }
+    })
     .then((listings) => {
       return listings;
     })
     .catch((err) => {
-      res.statusCode(400).send('Error: ', err);
+      return `Error getting listings: ${err}`;
     });
   }
 };

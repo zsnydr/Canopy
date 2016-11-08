@@ -7,4 +7,4 @@ module.exports = (app) => {
 
 
   app.get('/listings/:city', helpers.getListings);
-}
+};
