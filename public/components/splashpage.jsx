@@ -1,7 +1,7 @@
 import React from 'react';
 
 import CitySearch from '../containers/city-search';
-import Nav from '../components/nav';
+import SplashNav from '../components/splashnav';
 
 const Splash = () => {
   return (
@@ -10,7 +10,7 @@ const Splash = () => {
         <CitySearch />
       </div>
       <div>
-        <Nav />
+        <SplashNav />
       </div>
     </div>
   );
