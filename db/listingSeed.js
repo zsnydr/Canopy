@@ -69,7 +69,9 @@ Listing.create({
   term: 6,
   availableDate: '2016-11-07',
   images: 'image references go here',
-  host_id: 1
+  host_id: 1,
+  lat: 37.77056,
+  long: -122.4541
 })
 .then((listing) => {
   console.log('Created listing at ', listing.get('street'));
@@ -93,7 +95,9 @@ Listing.create({
   term: 12,
   availableDate: '2016-11-07',
   images: 'image references go here',
-  host_id: 2
+  host_id: 2,
+  lat: 37.78413,
+  long: -122.39574
 })
 .then((listing) => {
   console.log('Created listing at ', listing.get('street'));
@@ -105,7 +109,7 @@ Listing.create({
 Listing.create({
   beds: 4,
   baths: 2.5,
-  street: '123 4th Ave',
+  street: '3022 W. Fletcher',
   city: 'CHICAGO',
   state: 'IL',
   zip: 94117,
@@ -117,7 +121,9 @@ Listing.create({
   term: 1,
   availableDate: '2016-11-07',
   images: 'image references go here',
-  host_id: 3
+  host_id: 3,
+  lat: 41.9387,
+  long: -87.7059
 })
 .then((listing) => {
   console.log('Created listing at ', listing.get('street'));
@@ -129,7 +135,7 @@ Listing.create({
 Listing.create({
   beds: 1,
   baths: 1,
-  street: '999 Folsom St',
+  street: '911 W. Madison',
   city: 'CHICAGO',
   state: 'IL',
   zip: 94117,
@@ -141,7 +147,9 @@ Listing.create({
   term: 12,
   availableDate: '2016-11-07',
   images: 'image references go here',
-  host_id: 2
+  host_id: 2,
+  lat: 41.8817,
+  long: -87.6528
 })
 .then((listing) => {
   console.log('Created listing at ', listing.get('street'));

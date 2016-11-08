@@ -1,13 +1,13 @@
 import { combineReducers } from 'redux';
 
-import rents from './reducer_rents';
+import listings from './reducer_listings';
 import activeCity from './reducer_active_city';
 import activeListing from './reducer_active_listing';
 
 const rootReducer = combineReducers({
   activeListing,
   activeCity,
-  rents
+  listings
 });
 
 export default rootReducer;
