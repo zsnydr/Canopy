@@ -1,18 +1,17 @@
 import React, { Component } from 'react';
-import styles from '../stylesheets/main/splash.scss';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import selectCity from '../actions/select_city';
 import updateListings from '../actions/update_listings';
 
-class Splash extends Component {
+class CitySearch extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      term: ''
+    this.state = { term: '' };
 
-    };
+    this.onFormSubmit = this.onFormSubmit.bind(this);
+    this.onInputChange = this.onInputChange.bind(this);
   }
 
   onInputChange(event) {
@@ -27,11 +26,11 @@ class Splash extends Component {
 
   render() {
     return (
-      <div className='main' >
-        <form onSubmit={this.onFormSubmit.bind(this)}>
+      <div className="main">
+        <form onSubmit={this.onFormSubmit}>
           Enter your city:
-          <input onChange={this.onInputChange.bind(this)} value={this.props.term} ></input>
-          <input type='submit'></input>
+          <input onChange={this.onInputChange} value={this.props.term} />
+          <input type="submit" />
         </form>
       </div>
     );
@@ -46,6 +45,6 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({ selectCity, updateListings }, dispatch);
-};
+}
 
-export default connect(mapStateToProps, mapDispatchToProps)(Splash);
+export default connect(mapStateToProps, mapDispatchToProps)(CitySearch);
