@@ -3,6 +3,7 @@ import ListingsList from '../containers/listings-list';
 import GoogleMaps from './google_maps';
 
 
+
 export default class ListingsPage extends Component {
   constructor(props) {
     super(props);
@@ -34,7 +35,7 @@ export default class ListingsPage extends Component {
       )
     }
     return (
-      <div>
+      <div className='listingsPage'>
         <GoogleMaps />
         <ListingsList updateListings={this.updateListings} />
       </div>
