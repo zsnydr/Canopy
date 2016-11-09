@@ -36,8 +36,13 @@ export default class ListingsPage extends Component {
     }
     return (
       <div className='listingsPage'>
-        <GoogleMaps />
-        <ListingsList updateListings={this.updateListings} />
+        <div className='listings_list'>
+          <ListingsList updateListings={this.updateListings} />
+        </div>
+        <div className='listing_map'>
+          <GoogleMaps />
+        </div>
+      
       </div>
     );
   }

@@ -25,25 +25,37 @@ class ListingsList extends Component {
     }
 
     return this.props.listingData.listings.map((listing) => {
-      return (
-        <li key={listing.id}>
-          <div
+      return (     
+          <div className='listing' key={listing.id}
             onClick={() => {
               this.props.selectListing(listing);
               this.goToListing(listing);
             }}
           >
-            {listing.street}
+            <h3>${listing.rent}</h3>
+            <h3>{listing.street}</h3>
+            <div className='listingDetails'>
+              <h4>beds</h4>
+              <h4>{listing.beds} </h4>
+            </div>           
+            <div className='listingDetails'>
+              <h4> baths </h4>
+              <h4> {listing.baths}</h4>
+            </div>
+            <div className='listingDetails'>
+              <h4> sq. foot </h4>
+              <h4> {listing.sqFoot}</h4>
+            </div>
+
           </div>
-        </li>
       );
     });
   }
 
-  render() {
 
+  render() {
     return (
-      <div className='rentList'>
+      <div>
         <OptionBox submitOption={() => { console.log('Submited'); }} />
         <ul>
           {this.renderListings()}
