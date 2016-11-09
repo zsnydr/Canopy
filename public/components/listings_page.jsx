@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ListingsList from '../containers/listings-list';
+import GoogleMaps from './google_maps';
 
 
 export default class ListingsPage extends Component {
@@ -15,7 +16,7 @@ export default class ListingsPage extends Component {
   render() {
     return (
       <div>
-        <div>Map will go here</div>
+        <GoogleMaps />
         <ListingsList updateListings={this.updateListings} />
       </div>
     );
