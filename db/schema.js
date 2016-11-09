@@ -16,6 +16,18 @@ db
   });
 
 // define models
+const City = db.define('city', {
+  id: {
+    type: Sequelize.INTEGER,
+    primaryKey: true,
+    autoIncrement: true
+  },
+  name: Sequelize.TEXT,
+  state: Sequelize.CHAR(2),
+  lat: Sequelize.DECIMAL(10, 7),
+  lon: Sequelize.DECIMAL(10, 7)
+});
+
 const Listing = db.define('listing', {
   id: {
     type: Sequelize.INTEGER,
@@ -25,8 +37,6 @@ const Listing = db.define('listing', {
   beds: Sequelize.INTEGER,
   baths: Sequelize.DECIMAL(10, 1),
   street: Sequelize.TEXT,
-  city: Sequelize.TEXT,
-  state: Sequelize.CHAR(2),
   zip: Sequelize.INTEGER,
   lat: Sequelize.DECIMAL(10, 7),
   lon: Sequelize.DECIMAL(10, 7),
@@ -90,6 +100,7 @@ const RenterListing = db.define('renterlisting', {
 
 // define model relationships
 Host.hasMany(Listing, { foreignKey: 'host_id' });
+City.hasMany(Listing, { foreignKey: 'city_id' });
 
 Renter.hasMany(RenterListing);
 Listing.hasMany(RenterListing);
@@ -106,6 +117,7 @@ db.sync({ force: false })
 });
 
 module.exports = {
+  City,
   Listing,
   Host,
   Renter,

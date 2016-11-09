@@ -1,6 +1,7 @@
 const Sequelize = require('sequelize');
 const Listing = require('./schema').Listing;
 const Host = require('./schema').Host;
+const City = require('./schema').City;
 
 const db = new Sequelize(process.env.DATABASE_URL || 'mysql://root@localhost/monkey', {
   password: '',
@@ -17,6 +18,32 @@ db
   });
 
 // mock hosts
+City.create({
+  name: 'SAN FRANCISCO',
+  state: 'CA',
+  lat: 37.7749,
+  lon: 122.4194
+})
+.then((city) => {
+  console.log('Created city ', city.get('name'), city.get('state'));
+})
+.catch((err) => {
+  console.log('Error creating city: ', err);
+});
+
+City.create({
+  name: 'CHICAGO',
+  state: 'IL',
+  lat: 41.8781,
+  lon: 87.6298
+})
+.then((city) => {
+  console.log('Created city ', city.get('name'), city.get('state'));
+})
+.catch((err) => {
+  console.log('Error creating city: ', err);
+});
+
 Host.create({
   name: 'Sean Enright',
   email: 'seanenright@property.com',
@@ -58,8 +85,7 @@ Listing.create({
   beds: 3,
   baths: 1.5,
   street: '1890 Page St',
-  city: 'SAN FRANCISCO',
-  state: 'CA',
+  city_id: 1,
   zip: 94117,
   unitNumber: 101,
   rent: 1200,
@@ -84,8 +110,7 @@ Listing.create({
   beds: 2,
   baths: 1,
   street: '800 Bush St',
-  city: 'SAN FRANCISCO',
-  state: 'CA',
+  city_id: 1,
   zip: 94108,
   unitNumber: 424,
   rent: 1650,
@@ -110,8 +135,7 @@ Listing.create({
   beds: 4,
   baths: 2.5,
   street: '3022 W. Fletcher',
-  city: 'CHICAGO',
-  state: 'IL',
+  city_id: 2,
   zip: 94117,
   unitNumber: 56,
   rent: 1650,
@@ -136,8 +160,7 @@ Listing.create({
   beds: 1,
   baths: 1,
   street: '911 W. Madison',
-  city: 'CHICAGO',
-  state: 'IL',
+  city_id: 2,
   zip: 94117,
   unitNumber: 3,
   rent: 2200,
