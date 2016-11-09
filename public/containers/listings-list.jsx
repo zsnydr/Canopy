@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import OptionBox from '../components/option_box';
-import { selectListing } from '../actions/select_listing'
+import selectListing from '../actions/select_listing'
 
 
 class ListingsList extends Component {
