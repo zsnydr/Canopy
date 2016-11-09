@@ -3,6 +3,7 @@ import ListingsList from '../containers/listings-list';
 import GoogleMaps from './google_maps';
 
 
+
 export default class ListingsPage extends Component {
   constructor(props) {
     super(props);
@@ -27,16 +28,21 @@ export default class ListingsPage extends Component {
   render() {
     if (!this.state.listings || !this.state.listings.length) {
       return (
-        <div>
+        <div className='listingsPage'>
         <div>Waiting for data...</div>
         <ListingsList updateListings={this.updateListings} />
         </div>
       )
     }
     return (
-      <div>
-        <GoogleMaps />
-        <ListingsList updateListings={this.updateListings} />
+      <div className='listingsPage'>
+        <div className='listings_list'>
+          <ListingsList updateListings={this.updateListings} />
+        </div>
+        <div className='listing_map'>
+          <GoogleMaps />
+        </div>
+      
       </div>
     );
   }

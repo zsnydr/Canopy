@@ -7,7 +7,7 @@ module.exports = {
     // 'webpack/hot/dev-server',
     'webpack-hot-middleware/client',
     './public/index.jsx',
-    './public/stylesheets/main/splash.scss'
+    './public/stylesheets/main.scss'
   ],
   output: {
     path: path.resolve(__dirname, 'publicServed/'),
