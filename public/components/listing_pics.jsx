@@ -3,8 +3,7 @@ import React from 'react';
 const ListingPics = (props) => {
   return (
     <div>
-      Listing Pics
-      // {props.activeListing.beds}
+      {props.images}
     </div>
   );
 };

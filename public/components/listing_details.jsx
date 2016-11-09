@@ -6,7 +6,7 @@ const ListingDetail = (props) => {
   return (
     <div>
       <ListingDesc activeListing={props.activeListing} />
-      <ListingPics activeListing={props.activeListing} />
+      <ListingPics images={props.activeListing.images} />
     </div>
   );
 };

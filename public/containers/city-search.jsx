@@ -46,9 +46,9 @@ class CitySearch extends Component {
   }
 }
 
-function mapStateToProps(state) {
+function mapStateToProps({ activeCity }) {
   return {
-    activeCity: state.activeCity
+    activeCity
   };
 }
 
