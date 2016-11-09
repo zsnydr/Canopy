@@ -114,7 +114,7 @@ RenterListing.belongsTo(Renter);
 RenterListing.belongsTo(Listing);
 
 // build tables
-db.sync({ force: true })
+db.sync({ force: false })
 .then(() => {
   console.log('Tables created');
 }).catch((err) => {
