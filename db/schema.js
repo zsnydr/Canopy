@@ -2,7 +2,7 @@ const Sequelize = require('sequelize');
 
 // open database connection
 const db = new Sequelize(process.env.DATABASE_URL || 'mysql://root@localhost/monkey', {
-  password: '',
+  // password: '',
   dialect: 'mysql'
 });
 
