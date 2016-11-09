@@ -2,25 +2,32 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import OptionBox from '../components/option_box';
+import selectListing from '../actions/select_listing'
 
 
 class ListingsList extends Component {
   constructor (props) {
-    super(props)
+    super(props);
   }
 
-  renderListing(listing) {
-    return (
-      <li key={listing.id}>
-        {listing.street}
-      </li>
-    );
-  }
 
   componentDidUpdate() {
     this.props.updateListings(this.props.listings);
   }
- 
+
+  updateCurrentListing(listing) {
+    console.log('listing clicked', listing);
+
+    // selectListing(listing);
+  }
+
+  renderListing(listing) {
+    return (
+      <li onClick={updateCurrentListing(listing)} key={listing.id}>
+        {listing.street}
+      </li>
+    );
+  }
 
   render() {
 
@@ -28,9 +35,7 @@ class ListingsList extends Component {
       <div className='rentList'>
         <OptionBox submitOption={() => { console.log('Submited'); }} />
         <ul>
-          <div onClick={console.log('clicked')}>
           {this.props.listings.map(this.renderListing)}
-          </div>
         </ul>
       </div>
     );
