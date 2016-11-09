@@ -16,7 +16,9 @@ class ListingPage extends Component {
 }
 
 function mapStateToProps({ activeListing }) {
-  return { activeListing };
+  return {
+    activeListing
+  };
 }
 
 export default connect(mapStateToProps)(ListingPage);

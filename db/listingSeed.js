@@ -71,7 +71,7 @@ Listing.create({
   images: 'image references go here',
   host_id: 1,
   lat: 37.77056,
-  long: -122.4541
+  lon: -122.4541
 })
 .then((listing) => {
   console.log('Created listing at ', listing.get('street'));
@@ -97,7 +97,7 @@ Listing.create({
   images: 'image references go here',
   host_id: 2,
   lat: 37.78413,
-  long: -122.39574
+  lon: -122.39574
 })
 .then((listing) => {
   console.log('Created listing at ', listing.get('street'));
@@ -123,7 +123,7 @@ Listing.create({
   images: 'image references go here',
   host_id: 3,
   lat: 41.9387,
-  long: -87.7059
+  lon: -87.7059
 })
 .then((listing) => {
   console.log('Created listing at ', listing.get('street'));
@@ -149,7 +149,7 @@ Listing.create({
   images: 'image references go here',
   host_id: 2,
   lat: 41.8817,
-  long: -87.6528
+  lon: -87.6528
 })
 .then((listing) => {
   console.log('Created listing at ', listing.get('street'));
