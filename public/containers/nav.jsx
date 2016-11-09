@@ -10,24 +10,23 @@ class NavBar extends Component {
   }
   render() {
     return (
-        <div>
+      <div className='navBar'>
         <Navbar inverse collapseOnSelect>
-          <Navbar.Header>
+          <Navbar.Header className='renterCity'>
             <Navbar.Brand>
               <a href="#">renter city</a>
             </Navbar.Brand>
             <Navbar.Toggle />
           </Navbar.Header>
           <Navbar.Collapse>
-            <Nav pullRight>
+            <Nav className='links' pullRight>
               <NavItem eventKey={1} href="#">SignIn</NavItem>
-              <NavItem eventKey={2} href="#">SignUp</NavItem>
+              <NavItem eventKey={2} href="#">SignUp   </NavItem>
             </Nav>
           </Navbar.Collapse>
         </Navbar>
-          {this.props.children}
-        </div>
-
+        {this.props.children}
+      </div>
     );
   }
 }
