@@ -3,9 +3,14 @@ const Listing = require('./schema').Listing;
 const Host = require('./schema').Host;
 const City = require('./schema').City;
 
-const db = new Sequelize(process.env.DATABASE_URL || 'mysql://root@localhost/monkey', {
-  password: '',
-  dialect: 'mysql'
+const db = new Sequelize('monkey', 'root', 'monkey', {
+  host: 'localhost',
+  dialect: 'mysql',
+  pool: {
+    max: 5,
+    min: 0,
+    idle: 10000
+  }
 });
 
 db
