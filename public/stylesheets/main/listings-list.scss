@@ -4,6 +4,7 @@
   height: 95%;
   left: 0;
   top: 5%;
+  font-family: 'Amaranth', sans-serif;
 
   .listing_map {
     position: relative;
@@ -19,12 +20,17 @@
     margin: 0;
     width: 50%;
     height: 100%;
+    padding: 0;
 
   }
 
   .listing{
     border: solid 1px;
     text-align: center;
+
+    h3 {
+      margin: 0;
+    }
 
     .listingDetails {
       position: relative;

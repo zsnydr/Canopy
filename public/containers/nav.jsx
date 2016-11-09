@@ -1,27 +1,36 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import {Nav, Navbar, NavItem, MenuItem, NavDropdown } from 'react-bootstrap';
 
-class Nav extends Component {
+
+class NavBar extends Component {
   constructor(props) {
     super(props);
     this.state = { loggedIn: false };
   }
-
   render() {
     return (
-      <div>
         <div>
-          <button>Explore</button>
-          <button>Sign In</button>
-          <button>Sign Up</button>
-          <button>Log Out</button>
-        </div>
-        <div>
+        <Navbar inverse collapseOnSelect>
+          <Navbar.Header>
+            <Navbar.Brand>
+              <a href="#">renter city</a>
+            </Navbar.Brand>
+            <Navbar.Toggle />
+          </Navbar.Header>
+          <Navbar.Collapse>
+            <Nav pullRight>
+              <NavItem eventKey={1} href="#">SignIn</NavItem>
+              <NavItem eventKey={2} href="#">SignUp</NavItem>
+            </Nav>
+          </Navbar.Collapse>
+        </Navbar>
           {this.props.children}
         </div>
-      </div>
+
     );
   }
 }
 
-export default connect()(Nav);
+export default NavBar;
+

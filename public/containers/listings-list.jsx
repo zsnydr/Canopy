@@ -34,6 +34,8 @@ class ListingsList extends Component {
           >
             <h3>${listing.rent}</h3>
             <h3>{listing.street}</h3>
+            <h3> {this.props.listingData.name}, {this.props.listingData.state} </h3>
+
             <div className='listingDetails'>
               <h4>beds</h4>
               <h4>{listing.beds} </h4>
@@ -57,9 +59,7 @@ class ListingsList extends Component {
     return (
       <div>
         <OptionBox submitOption={() => { console.log('Submited'); }} />
-        <ul>
-          {this.renderListings()}
-        </ul>
+        {this.renderListings()}
       </div>
     );
   }
