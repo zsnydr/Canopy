@@ -7,17 +7,25 @@ export default class ListingsPage extends Component {
   constructor(props) {
     super(props);
     console.log('constructor running');
-    this.state = { listings: [] };
+    this.state = { 
+      listings: [],
+      currentCityLat: 0,
+      currentCityLong: 0,
+
+     };
     this.updateListings = this.updateListings.bind(this);
   }
 
-  updateListings(listings) {
-    this.setState({ listings }, () => {
+  updateListings(listingData) {
+    this.setState({
+      listings: listingData.listings,
+      currentCityLat: listingData.lat,
+      currentCityLong: listingData.lon
     });
   }
 
   render() {
-    if (!this.state.listings.length) {
+    if (!this.state.listings || !this.state.listings.length) {
       return (
         <div>
         <div>Waiting for data...</div>

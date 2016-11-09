@@ -12,16 +12,25 @@ class ListingsList extends Component {
   }
 
   componentDidUpdate() {
-    this.props.updateListings(this.props.listings);
+    this.props.updateListings(this.props.listingData);
   }
 
-  renderListing(listing) {
-    return this.props.listings.map((listing) => {
+  goToListing(listing) {
+    window.location = `/#/content/listing/${listing.id}`
+  }
+
+  renderListings() {
+    if (!this.props.listingData.listings) {
+      return <div>No listings in this local..</div>;
+    }
+
+    return this.props.listingData.listings.map((listing) => {
       return (
         <li key={listing.id}>
           <div
             onClick={() => {
               this.props.selectListing(listing);
+              this.goToListing(listing);
             }}
           >
             {listing.street}
@@ -37,16 +46,16 @@ class ListingsList extends Component {
       <div className='rentList'>
         <OptionBox submitOption={() => { console.log('Submited'); }} />
         <ul>
-          {this.renderListing()}
+          {this.renderListings()}
         </ul>
       </div>
     );
   }
 }
 
-function mapStateToProps({ listings }) {
+function mapStateToProps({ listingData }) {
   return {
-    listings
+    listingData
   };
 }
 

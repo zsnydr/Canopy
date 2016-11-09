@@ -5,7 +5,7 @@ import ListingPics from './listing_pics';
 const ListingDetail = (props) => {
   return (
     <div>
-      <ListingDesc activeListing={props.activeListing} />
+      <ListingDesc activeListing={props.activeListing} listingData={props.listingData} />
       <ListingPics images={props.activeListing.images} />
     </div>
   );
