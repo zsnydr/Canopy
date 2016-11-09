@@ -1,32 +1,34 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 import OptionBox from '../components/option_box';
-import selectListing from '../actions/select_listing'
+import { selectListing } from '../actions/select_listing'
 
 
 class ListingsList extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props);
   }
-
 
   componentDidUpdate() {
     this.props.updateListings(this.props.listings);
   }
 
-  updateCurrentListing(listing) {
-    console.log('listing clicked', listing);
-
-    // selectListing(listing);
-  }
-
   renderListing(listing) {
-    return (
-      <li onClick={updateCurrentListing(listing)} key={listing.id}>
-        {listing.street}
-      </li>
-    );
+    return this.props.listings.map((listing) => {
+      return (
+        <li key={listing.id}>
+          <div
+            onClick={() => {
+              this.props.selectListing(listing);
+            }}
+          >
+            {listing.street}
+          </div>
+        </li>
+      );
+    });
   }
 
   render() {
@@ -35,7 +37,7 @@ class ListingsList extends Component {
       <div className='rentList'>
         <OptionBox submitOption={() => { console.log('Submited'); }} />
         <ul>
-          {this.props.listings.map(this.renderListing)}
+          {this.renderListing()}
         </ul>
       </div>
     );
@@ -48,4 +50,12 @@ function mapStateToProps({ listings }) {
   };
 }
 
-export default connect(mapStateToProps)(ListingsList);
+function mapDispatchToProps(dispatch) {
+  //Whenever SelectBook is called the result should be passed
+  //to all of our reducers
+  return bindActionCreators({ selectListing: selectListing }, dispatch);
+
+
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ListingsList);
