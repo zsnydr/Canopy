@@ -12,8 +12,6 @@ class ListingPics extends Component {
   }
 
   updateCurrentImage(event) {
-    console.log(event.target, event.target.path);
-    console.log('target src: ',event.target.src.slice(22));
     this.setState({
       currentImage: event.target.src.slice(22)
     });
