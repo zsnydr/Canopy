@@ -3,7 +3,7 @@ const Listing = require('./schema').Listing;
 const Host = require('./schema').Host;
 const City = require('./schema').City;
 
-const db = new Sequelize('monkey', 'root', 'monkey', {
+const db = new Sequelize('canopy', 'root', 'monkey', {
   host: 'localhost',
   dialect: 'mysql',
   pool: {

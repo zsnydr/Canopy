@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 
 // open database connection
-const db = new Sequelize('monkey', 'root', 'monkey', {
+const db = new Sequelize('canopy', 'root', 'monkey', {
   host: 'localhost',
   dialect: 'mysql',
   pool: {
