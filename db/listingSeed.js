@@ -26,8 +26,8 @@ db
 City.create({
   name: 'SAN FRANCISCO',
   state: 'CA',
-  lat: 37.7749,
-  lon: -122.4194
+  lat: 37.7749295,
+  lon: -122.4194155
 })
 .then((city) => {
   console.log('Created city ', city.get('name'), city.get('state'));
@@ -39,8 +39,8 @@ City.create({
 City.create({
   name: 'CHICAGO',
   state: 'IL',
-  lat: 41.8781,
-  lon: -87.6298
+  lat: 41.8781136,
+  lon: -87.6297982
 })
 .then((city) => {
   console.log('Created city ', city.get('name'), city.get('state'));
