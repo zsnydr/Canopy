@@ -1,5 +1,7 @@
 const Listing = require('./db/schema').Listing;
 const City = require('./db/schema').City;
+const Image = require('./db/schema').Image;
+const ListingImage = require('./db/schema').ListingImage;
 
 const geoCoder = require('./geoCoder');
 // const Host = require('./db/schema').Host;
@@ -17,7 +19,13 @@ module.exports = {
           lat: res[0].latitude,
           lon: res[0].longitude
         },
-        include: [Listing]
+        include: [{
+          model: Listing,
+          include: [{
+            model: ListingImage,
+            include: [Image]
+          }]
+        }]
       })
       .spread((cityData) => {
         return cityData;
