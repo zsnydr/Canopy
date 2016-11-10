@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+// const multer = require('multer');
 const path = require('path');
 const webpack = require('webpack');
 const webpackMiddleware = require('webpack-dev-middleware');
@@ -14,6 +15,7 @@ const compiler = webpack(webpackConfig);
 app.set('port', process.env.PORT || 3000);
 
 app.use(express.static(path.join(__dirname, '/publicServed')));
+app.use('/assets', express.static(path.join(__dirname, '/assets')));
 
 app.use(webpackMiddleware(compiler, {
   publicPath: webpackConfig.output.publicPath
