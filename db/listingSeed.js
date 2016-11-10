@@ -2,6 +2,8 @@ const Sequelize = require('sequelize');
 const Listing = require('./schema').Listing;
 const Host = require('./schema').Host;
 const City = require('./schema').City;
+const Image = require('./schema').Image;
+const ListingImage = require('./schema').ListingImage;
 
 const db = new Sequelize('canopy', 'root', 'monkey', {
   host: 'localhost',
@@ -184,4 +186,49 @@ Listing.create({
 })
 .catch((err) => {
   console.log('Error creating listing: ', err);
+});
+
+Image.create({
+  ref: 'http://res.cloudinary.com/canopydev/image/upload/v1478813811/ballRat_tsk4ut.jpg'
+}).then((image) => {
+  ListingImage.create({
+    listingId: 1,
+    imageId: image.get('id')
+  });
+});
+
+Image.create({
+  ref: 'http://res.cloudinary.com/canopydev/image/upload/v1478815237/tigar_emdap4.jpg'
+}).then((image) => {
+  ListingImage.create({
+    listingId: 1,
+    imageId: image.get('id')
+  });
+});
+
+Image.create({
+  ref: 'http://res.cloudinary.com/canopydev/image/upload/v1478815229/kawhi_wm1vki.jpg'
+}).then((image) => {
+  ListingImage.create({
+    listingId: 1,
+    imageId: image.get('id')
+  });
+});
+
+Image.create({
+  ref: 'http://res.cloudinary.com/canopydev/image/upload/v1478815224/fastRat_o8pmqh.jpg'
+}).then((image) => {
+  ListingImage.create({
+    listingId: 1,
+    imageId: image.get('id')
+  });
+});
+
+Image.create({
+  ref: 'http://res.cloudinary.com/canopydev/image/upload/v1478815234/panTuna_fep0v6.jpg'
+}).then((image) => {
+  ListingImage.create({
+    listingId: 1,
+    imageId: image.get('id')
+  });
 });
