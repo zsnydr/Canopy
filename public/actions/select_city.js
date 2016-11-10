@@ -4,3 +4,4 @@ export default function selectCity(city) {
     payload: city
   };
 }
+

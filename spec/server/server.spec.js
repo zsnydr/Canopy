@@ -1,7 +1,7 @@
 const request = require('supertest');
 // const expect = require('expect.js');
 
-describe('/test', function() {
+xdescribe('/test', function() {
   it('should echo the request', function (done) {
     request(this.app)
       .get('/test')
