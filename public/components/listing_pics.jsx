@@ -4,7 +4,7 @@ const ListingPics = (props) => {
   return (
     <div>
       {props.images.map((image) => (
-        <img src={__dirname+"assets/"+image} />
+        <img key={image} src={__dirname+"assets/"+image} />
       ))}
     </div>
   );

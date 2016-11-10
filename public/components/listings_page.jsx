@@ -32,6 +32,7 @@ export default class ListingsPage extends Component {
         </div>
       )
     }
+    console.log(this.state);
     return (
       <div className='listingsPage'>
         <div className='listings_list'>

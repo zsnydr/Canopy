@@ -15,7 +15,7 @@ const compiler = webpack(webpackConfig);
 app.set('port', process.env.PORT || 3000);
 
 app.use(express.static(path.join(__dirname, '/publicServed')));
-// app.use(express.static('/assets', path.join(__dirname, '/assets')));
+app.use('/assets', express.static(path.join(__dirname, '/assets')));
 
 app.use(webpackMiddleware(compiler, {
   publicPath: webpackConfig.output.publicPath
