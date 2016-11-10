@@ -7,13 +7,11 @@ import GoogleMaps from './google_maps';
 export default class ListingsPage extends Component {
   constructor(props) {
     super(props);
-    console.log('constructor running');
-    this.state = { 
+    this.state = {
       listings: [],
       currentCityLat: 0,
-      currentCityLong: 0,
-
-     };
+      currentCityLong: 0
+    };
     this.updateListings = this.updateListings.bind(this);
   }
 
@@ -40,7 +38,12 @@ export default class ListingsPage extends Component {
           <ListingsList updateListings={this.updateListings} />
         </div>
         <div className='listing_map'>
-          <GoogleMaps />
+          <GoogleMaps
+            listings={this.state.listings}
+            position={{
+              lat: this.state.currentCityLat,
+              long: this.state.currentCityLong
+            }} />
         </div>
       
       </div>
