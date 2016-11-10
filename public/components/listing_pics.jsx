@@ -6,26 +6,26 @@ class ListingPics extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentImage: this.props.images[0]
+      currentImage: this.props.listingimages[0].image.ref
     };
     this.updateCurrentImage = this.updateCurrentImage.bind(this);
   }
 
   updateCurrentImage(event) {
     this.setState({
-      currentImage: event.target.src.slice(33)
+      currentImage: event.target.src
     });
   }
 
   render() {
     return (
       <div>
-        <CurrentPicture picture={this.state.currentImage} />
-        {this.props.images.map((image) => (
+        <CurrentPicture img_ref={this.state.currentImage} />
+        {this.props.listingimages.map((listingimage) => (
           <img
             className="smallPics"
-            key={image}
-            src={`/api/images/${image}`}
+            key={listingimage.id}
+            src={listingimage.image.ref}
             onClick={this.updateCurrentImage}
           />
         ))}

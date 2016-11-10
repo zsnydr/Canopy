@@ -6,9 +6,9 @@ const ListingDetail = (props) => {
   return (
     <div>
       <ListingDesc activeListing={props.activeListing} listingData={props.listingData} />
-      {//<ListingPics images={props.activeListing.images} /> this will be our real thing
+      {//listingimages contain image property that has the image source stored in ref
       }
-      <ListingPics images={['ballRat.jpg', 'fastRat.jpg', 'kawhi.jpg', 'panTuna.jpg', 'tigar.jpg']} />
+      <ListingPics listingimages={props.activeListing.listingimages} />
     </div>
   );
 };
