@@ -37,7 +37,7 @@ export default class ListingsPage extends Component {
         <div className='listings_list'>
           <ListingsList updateListings={this.updateListings} />
         </div>
-        <div className='listing_map'>
+        <div className='listings_map'>
           <GoogleMaps
             listings={this.state.listings}
             position={{

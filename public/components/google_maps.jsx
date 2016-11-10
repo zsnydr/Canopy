@@ -3,7 +3,6 @@ import { GoogleMapLoader, GoogleMap, Marker } from 'react-google-maps';
 
 export default (props) => {
   const updateToMarkerInfo = () => {
-    console.log('updateTo Marker',props.listings);
     return props.listings.map((listing) => {
       return {
         position: {
@@ -19,10 +18,12 @@ export default (props) => {
     <GoogleMapLoader
       containerElement={<div style={{ height: '100%' }} />}
       googleMapElement={
-        <GoogleMap 
-          defaultZoom={12} 
-          defaultCenter={{ lat: props.position.lat, lng: props.position.long }}>
-          {updateToMarkerInfo().map((marker) => (
+        <GoogleMap
+          defaultZoom={12}
+          defaultCenter={(props.listings.length === 1) ?
+            { lat: props.listings[0].lat, lng: props.listings[0].lon } :
+            { lat: props.position.lat, lng: props.position.long }} >
+          {updateToMarkerInfo().map(marker => (
             <Marker
               {...marker}
             />
