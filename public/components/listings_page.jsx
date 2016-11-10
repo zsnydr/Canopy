@@ -27,8 +27,8 @@ export default class ListingsPage extends Component {
     if (!this.state.listings || !this.state.listings.length) {
       return (
         <div className='listingsPage'>
-        <div>Waiting for data...</div>
-        <ListingsList updateListings={this.updateListings} />
+          <div>Waiting for data...</div>
+          <ListingsList updateListings={this.updateListings} />
         </div>
       )
     }

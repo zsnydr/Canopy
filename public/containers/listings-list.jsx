@@ -3,23 +3,26 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import OptionBox from '../components/option_box';
-import selectListing from '../actions/select_listing'
+import selectListing from '../actions/select_listing';
 
 
 class ListingsList extends Component {
   constructor(props) {
+    console.log('listingsList constructing');
     super(props);
   }
 
   componentDidUpdate() {
+    console.log('component did update',this.props.listingData);
     this.props.updateListings(this.props.listingData);
   }
 
   goToListing(listing) {
-    window.location = `/#/content/listing/${listing.id}`
+    window.location = `/#/content/listing/${listing.id}`;
   }
 
   renderListings() {
+    console.log('listingsList rendering', this.props.listingData.listings);
     if (!this.props.listingData.listings) {
       return <div>No listings in this local..</div>;
     }
