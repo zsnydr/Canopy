@@ -103,6 +103,23 @@ const RenterListing = db.define('renterlisting', {
   status: Sequelize.TEXT
 });
 
+const Image = db.define('image', {
+  id: {
+    type: Sequelize.INTEGER,
+    primaryKey: true,
+    autoIncrement: true
+  },
+  ref: Sequelize.TEXT
+});
+
+const ListingImage = db.define('listingimage', {
+  id: {
+    type: Sequelize.INTEGER,
+    primaryKey: true,
+    autoIncrement: true
+  }
+});
+
 // define model relationships
 Host.hasMany(Listing, { foreignKey: 'host_id' });
 City.hasMany(Listing, { foreignKey: 'city_id' });
@@ -112,6 +129,12 @@ Listing.hasMany(RenterListing);
 
 RenterListing.belongsTo(Renter);
 RenterListing.belongsTo(Listing);
+
+Listing.hasMany(ListingImage);
+Image.hasMany(ListingImage);
+
+ListingImage.belongsTo(Listing);
+ListingImage.belongsTo(Image);
 
 // build tables
 db.sync({ force: false })
@@ -126,5 +149,7 @@ module.exports = {
   Listing,
   Host,
   Renter,
-  RenterListing
+  RenterListing,
+  Image,
+  ListingImage
 };

@@ -1,5 +1,5 @@
 {
-  "name": "monkey",
+  "name": "canopy",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
@@ -43,9 +43,11 @@
     "dotenv": "^2.0.0",
     "express": "^4.14.0",
     "express-session": "^1.14.2",
+    "file-system": "^2.2.1",
     "lodash": "^3.10.1",
     "mysql": "^2.12.0",
     "node-geocoder": "^3.15.1",
+    "path": "^0.12.7",
     "react": "^0.14.8",
     "react-bootstrap": "^0.30.6",
     "react-dom": "^0.14.8",
