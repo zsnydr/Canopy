@@ -5,6 +5,7 @@ module.exports = (app) => {
     res.send('hello');
   });
 
-
   app.get('/listings/:city', helpers.getListings);
+
+  app.post('/listings', helpers.postListing);
 };
