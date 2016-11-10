@@ -1,3 +1,6 @@
+const fs = require('file-system');
+const path = require('path');
+
 const dbHelpers = require('./dbHelpers');
 
 module.exports = {
@@ -21,6 +24,16 @@ module.exports = {
     .catch((err) => {
       console.log('Failed to post listing: ', err);
       res.json(err);
+    });
+  },
+
+  getImages: (req, res) => {
+    res.writeHead(201, { 'Content-Type': 'img/jpeg' });
+    fs.readFile(path.join(__dirname, '/assets/', req.params.image), (err, data) => {
+      if (err) {
+        console.log('Error reading image: ', err);
+      }
+      res.end(data);
     });
   }
 };

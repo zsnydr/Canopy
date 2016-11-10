@@ -2,12 +2,12 @@ import React from 'react';
 import ListingDesc from './listing_desc';
 import ListingPics from './listing_pics';
 
-const ListingDetail = (props) => {
+const CurrentPicture = (props) => {
   return (
     <div>
-      <img className="curPic" src={__dirname+props.picture} />
+      <img className="curPic" src={`/api/images/${props.picture}`} />
     </div>
   );
 };
 
-export default ListingDetail;
+export default CurrentPicture;

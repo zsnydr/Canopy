@@ -5,7 +5,9 @@ module.exports = (app) => {
     res.send('hello');
   });
 
-  app.get('/listings/:city', helpers.getListings);
+  app.get('/api/listings/:city', helpers.getListings);
 
-  app.post('/listings', helpers.postListing);
+  app.post('/api/listings', helpers.postListing);
+
+  app.get('/api/images/:image', helpers.getImages);
 };

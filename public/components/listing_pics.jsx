@@ -6,14 +6,14 @@ class ListingPics extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentImage: 'assets/'+this.props.images[0]
+      currentImage: this.props.images[0]
     };
     this.updateCurrentImage = this.updateCurrentImage.bind(this);
   }
 
   updateCurrentImage(event) {
     this.setState({
-      currentImage: event.target.src.slice(22)
+      currentImage: event.target.src.slice(33)
     });
   }
 
@@ -25,8 +25,9 @@ class ListingPics extends Component {
           <img
             className="smallPics"
             key={image}
-            src={__dirname+"assets/"+image}
-            onClick={this.updateCurrentImage} />
+            src={`/api/images/${image}`}
+            onClick={this.updateCurrentImage}
+          />
         ))}
       </div>
     );
@@ -34,4 +35,3 @@ class ListingPics extends Component {
 }
 
 export default ListingPics;
-
