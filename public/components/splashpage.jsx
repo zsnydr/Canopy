@@ -7,10 +7,10 @@ const Splash = () => {
   return (
     <div>
       <div>
-        <CitySearch />
+        <SplashNav />
       </div>
       <div>
-        <SplashNav />
+        <CitySearch />
       </div>
     </div>
   );
