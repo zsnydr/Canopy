@@ -10,7 +10,6 @@ export default class AddListing extends Component {
       city: '',
       state: '',
       zip: 0,
-
       beds: 0,
       baths: 0,
       rent: 0,
@@ -24,17 +23,12 @@ export default class AddListing extends Component {
     };
   }
 
-  handleChange(key, e) {
-
-    return function (key, e) {
-    console.log('key!!!!!!!!!', key);
-    console.log('event!++!+!+!', event);
+  handleChange(key) {
+    return function (e) {
       const state = {};
       state[key] = e.target.value;
       this.setState(state);
-      console.log(this.state);
     }.bind(this);
-
   }
 
   handleClick(key) {
@@ -42,8 +36,14 @@ export default class AddListing extends Component {
       const state = {};
       state[key] = !this.state[key];
       this.setState(state);
-      console.log(this.state)
-    }
+    };
+  }
+  handleSelect(key) {
+    return (e) => {
+      const state = {};
+      state[key] = e;
+      this.setState(state);
+    };
   }
 
 
@@ -76,13 +76,13 @@ export default class AddListing extends Component {
             componentClass={InputGroup.Button}
             id="input-dropdown-addon"
             title="beds"
-            
+            onSelect={this.handleSelect('beds')} 
           >
-            <MenuItem onSelect={this.handleChange()} key="1">1</MenuItem>
-            <MenuItem onSelect={this.handleChange()} key="2">2</MenuItem>
-            <MenuItem onSelect={this.handleChange()} key="3">3</MenuItem>
-            <MenuItem onSelect={this.handleChange()} key="4">4</MenuItem>
-            <MenuItem onSelect={this.handleChange()} key="5">5</MenuItem>
+            <MenuItem eventKey="1">1</MenuItem>
+            <MenuItem eventKey="2">2</MenuItem>
+            <MenuItem eventKey="3">3</MenuItem>
+            <MenuItem eventKey="4">4</MenuItem>
+            <MenuItem eventKey="5">5</MenuItem>
           </DropdownButton>
 
           <DropdownButton
@@ -92,11 +92,11 @@ export default class AddListing extends Component {
             key="baths"
             onSelect={this.handleChange()}
           >
-            <MenuItem key="1">1</MenuItem>
-            <MenuItem key="2">2</MenuItem>
-            <MenuItem key="3">3</MenuItem>
-            <MenuItem key="4">4</MenuItem>
-            <MenuItem key="5">5</MenuItem>
+            <MenuItem eventKey="1">1</MenuItem>
+            <MenuItem eventKey="2">2</MenuItem>
+            <MenuItem eventKey="3">3</MenuItem>
+            <MenuItem eventKey="4">4</MenuItem>
+            <MenuItem eventKey="5">5</MenuItem>
           </DropdownButton>
           <FormGroup controlId="square foot">
             <ControlLabel>sq. foot</ControlLabel>
@@ -111,10 +111,10 @@ export default class AddListing extends Component {
             <FormControl onChange={this.handleChange('term')} type="number" placeholder="12" />
           </FormGroup>
           <br />
-          <Checkbox key='dogs' onClick={this.handleClick('dogs')} inline>
+          <Checkbox key="dogs" onClick={this.handleClick('dogs')} inline>
             dogs
           </Checkbox>
-          <Checkbox key='cats' onClick={this.handleClick('cats')} inline>
+          <Checkbox key="cats" onClick={this.handleClick('cats')} inline>
             cats
           </Checkbox>
           <br />
@@ -122,7 +122,7 @@ export default class AddListing extends Component {
             <ControlLabel>Available Date</ControlLabel>
             <FormControl onChange={this.handleChange('availableDate')} type="date" placeholder="yyy-mm-dd" />
           </FormGroup>
-          <Button type="submit"  >
+          <Button type="submit">
             Submit
           </Button>
         </Form>
