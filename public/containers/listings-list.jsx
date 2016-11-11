@@ -15,6 +15,10 @@ class ListingsList extends Component {
     this.props.updateListings(this.props.listingData);
   }
 
+  componentDidMount() {
+    this.props.updateListings(this.props.listingData);
+  }
+
   goToListing(listing) {
     window.location = `/#/content/listing/${listing.id}`;
   }
