@@ -30,7 +30,7 @@ class CitySearch extends Component {
   render() {
     return (
       <div className="main">
-        <h1>renter city</h1>
+        <h1>canopy</h1>
         <form onSubmit={this.onFormSubmit}>
           <FormControl
             id="formControlsText"

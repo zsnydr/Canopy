@@ -21,7 +21,7 @@ class NavBar extends Component {
         <Navbar inverse collapseOnSelect>
           <Navbar.Header className='renterCity'>
             <Navbar.Brand>
-              <a href="#">renter city</a>
+              <a href="#">canopy</a>
             </Navbar.Brand>
             <Navbar.Toggle />
           </Navbar.Header>
