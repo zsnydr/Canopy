@@ -36,7 +36,14 @@ module.exports = {
     });
   },
 
-  postListing: (data) => {
+  postListing: (listingInfo) => {
+    // Listing.create(listingInfo)
+    // .then((listing) => {
+    //   console.log('Created listing at ', listing.get('street'));
+    // })
+    // .catch((err) => {
+    //   console.log('Error creating listing: ', err);
+    // });
     // get geocode for listing address
     // create new listing with req body data
     return data;

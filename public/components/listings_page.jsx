@@ -9,8 +9,8 @@ export default class ListingsPage extends Component {
     super(props);
     this.state = {
       listings: [],
-      currentCityLat: 0,
-      currentCityLong: 0
+      focalLat: 0,
+      focalLon: 0
     };
     this.updateListings = this.updateListings.bind(this);
   }
@@ -18,8 +18,8 @@ export default class ListingsPage extends Component {
   updateListings(listingData) {
     this.setState({
       listings: listingData.listings,
-      currentCityLat: listingData.lat,
-      currentCityLong: listingData.lon
+      focalLat: listingData.lat,
+      focalLon: listingData.lon
     });
   }
 
@@ -32,7 +32,6 @@ export default class ListingsPage extends Component {
         </div>
       )
     }
-    console.log(this.state);
     return (
       <div className='listingsPage'>
         <div className='listings_list'>
@@ -41,10 +40,8 @@ export default class ListingsPage extends Component {
         <div className='listings_map'>
           <GoogleMaps
             listings={this.state.listings}
-            position={{
-              lat: this.state.currentCityLat,
-              long: this.state.currentCityLong
-            }} />
+            focalLat={this.state.focalLat}
+            focalLon={this.state.focalLon} />
         </div>
       
       </div>

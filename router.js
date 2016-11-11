@@ -10,4 +10,5 @@ module.exports = (app) => {
   app.post('/api/listings', helpers.postListing);
 
   app.get('/api/images/:image', helpers.getImages);
+
 };
