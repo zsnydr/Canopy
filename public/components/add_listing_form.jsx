@@ -90,7 +90,7 @@ export default class AddListing extends Component {
             id="input-dropdown-addon"
             title="Baths"
             key="baths"
-            onSelect={this.handleChange()}
+            onSelect={this.handleSelect('baths')}
           >
             <MenuItem eventKey="1">1</MenuItem>
             <MenuItem eventKey="2">2</MenuItem>
