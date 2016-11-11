@@ -7,8 +7,8 @@ class AddListingPage extends Component {
 
   render() {
     return (
-      <div className="addListingPage">
-        <ListingForm userInfo={this.props} />
+     <div>
+        <ListingForm />
       </div>
 
     );

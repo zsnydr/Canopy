@@ -6,6 +6,7 @@ import Nav from './containers/nav';
 import Listings from './components/listings_page';
 import Splash from './components/splashpage';
 import ListingPage from './containers/listing-page';
+import AddListing from './containers/add-listing-page';
 
 export default (
   <Route path="/" component={App}>
@@ -13,6 +14,7 @@ export default (
     <Route path="content" component={Nav}>
       <Route path="listings" component={Listings} />
       <Route path="listing/:id" component={ListingPage} />
+      <Route path="addListing" component={AddListing} />
     </Route>
   </Route>
 );
