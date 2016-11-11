@@ -1,7 +1,11 @@
 import React, { Component} from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { Form, FormGroup, FormControl, ControlLabel, Checkbox, DropdownButton, MenuItem, InputGroup, Button}from 'react-bootstrap';
 
-export default class AddListing extends Component {
+import addListing from '../actions/add_listing';
+
+class AddListing extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -18,17 +22,18 @@ export default class AddListing extends Component {
       cats: false,
       term: 0,
       availableDate:  '',
-      host_id: 0,
+      host_id: 1,
       images: []
     };
+    this.onFormSubmit = this.onFormSubmit.bind(this)
   }
 
   handleChange(key) {
-    return function (e) {
+    return (e) => {
       const state = {};
       state[key] = e.target.value;
       this.setState(state);
-    }.bind(this);
+    };
   }
 
   handleClick(key) {
@@ -38,12 +43,18 @@ export default class AddListing extends Component {
       this.setState(state);
     };
   }
+
   handleSelect(key) {
     return (e) => {
       const state = {};
       state[key] = e;
       this.setState(state);
     };
+  }
+
+  onFormSubmit(event) {
+    event.preventDefault();
+    this.props.addListing(this.state);
   }
 
 
@@ -122,7 +133,7 @@ export default class AddListing extends Component {
             <ControlLabel>Available Date</ControlLabel>
             <FormControl onChange={this.handleChange('availableDate')} type="date" placeholder="yyy-mm-dd" />
           </FormGroup>
-          <Button type="submit">
+          <Button onClick={this.onFormSubmit} type="submit">
             Submit
           </Button>
         </Form>
@@ -130,3 +141,10 @@ export default class AddListing extends Component {
     );
   }
 }
+
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ addListing }, dispatch);
+}
+
+export default connect(mapDispatchToProps)(AddListing);
