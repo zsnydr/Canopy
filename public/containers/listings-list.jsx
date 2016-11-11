@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { browserHistory } from 'react-router';
 
 import OptionBox from '../components/option_box';
 import selectListing from '../actions/select_listing';
@@ -20,7 +21,7 @@ class ListingsList extends Component {
   }
 
   goToListing(listing) {
-    window.location = `/#/content/listing/${listing.id}`;
+    browserHistory.push(`/content/listing/${listing.id}`);
   }
 
   renderListings() {

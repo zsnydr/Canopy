@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 import { Button, FormControl } from 'react-bootstrap';
 import selectCity from '../actions/select_city';
 import updateListings from '../actions/update_listings';
+import { browserHistory } from 'react-router';
 
 
 class CitySearch extends Component {
@@ -23,13 +24,13 @@ class CitySearch extends Component {
     event.preventDefault();
     this.props.selectCity(this.state.term);
     this.props.updateListings(this.state.term);
-    window.location = '/#/content/listings';
+    browserHistory.push('/content/listings');
   }
 
   render() {
     return (
       <div className="main">
-        <h1>renter city</h1>
+        <h1>canopy</h1>
         <form onSubmit={this.onFormSubmit}>
           <FormControl
             id="formControlsText"
