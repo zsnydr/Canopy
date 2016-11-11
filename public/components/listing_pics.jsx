@@ -20,7 +20,7 @@ class ListingPics extends Component {
   render() {
     return (
       <div>
-        <CurrentPicture img_ref={this.state.currentImage} />
+        <CurrentPicture image={this.state.currentImage} />
         {this.props.listingimages.map((listingimage) => (
           <img
             className="smallPics"

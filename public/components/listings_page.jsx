@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import ListingsList from '../containers/listings-list';
 import GoogleMaps from './google_maps';
-
-
+import CitySearch from '../containers/city-search';
 
 export default class ListingsPage extends Component {
   constructor(props) {
@@ -35,6 +34,7 @@ export default class ListingsPage extends Component {
     return (
       <div className='listingsPage'>
         <div className='listings_list'>
+          //include citySearch here
           <ListingsList updateListings={this.updateListings} />
         </div>
         <div className='listings_map'>
@@ -43,7 +43,7 @@ export default class ListingsPage extends Component {
             focalLat={this.state.focalLat}
             focalLon={this.state.focalLon} />
         </div>
-      
+
       </div>
     );
   }

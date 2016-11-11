@@ -5,7 +5,7 @@ import ListingPics from './listing_pics';
 const CurrentPicture = (props) => {
   return (
     <div>
-      <img className="curPic" src={props.img_ref} />
+      <img className="curPic" src={props.image} />
     </div>
   );
 };
