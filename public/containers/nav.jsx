@@ -11,8 +11,12 @@ class NavBar extends Component {
     this.goToExplore = this.goToExplore.bind(this);
   }
 
+  goHome(){
+    browserHistory.push('/');
+  }
+
   goToExplore() {
-    browserHistory.push('/content/listings');
+    browserHistory.push('/content/addListing');
   }
 
   render() {
@@ -21,7 +25,7 @@ class NavBar extends Component {
         <Navbar inverse collapseOnSelect>
           <Navbar.Header className='renterCity'>
             <Navbar.Brand>
-              <a href="#">canopy</a>
+              <a onClick={this.goHome}>canopy</a>
             </Navbar.Brand>
             <Navbar.Toggle />
           </Navbar.Header>
@@ -29,7 +33,7 @@ class NavBar extends Component {
             <Nav className='links' pullRight>
               <NavItem eventKey={1} href="#">SignIn</NavItem>
               <NavItem eventKey={2} href="#">SignUp</NavItem>
-              <NavItem eventKey={3} href="#" onClick={this.goToExplore}>Explore</NavItem>
+              <NavItem eventKey={3} onClick={this.goToExplore}>Explore</NavItem>
             </Nav>
           </Navbar.Collapse>
         </Navbar>
