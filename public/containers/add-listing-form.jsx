@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 import { Form, FormGroup, FormControl, ControlLabel, Checkbox, DropdownButton, MenuItem, InputGroup, Button}from 'react-bootstrap';
 
 import addListing from '../actions/add_listing';
+import Dropzone from '../components/add_listing_image_drop';
 
 class AddListing extends Component {
   constructor(props) {
@@ -25,15 +26,21 @@ class AddListing extends Component {
       host_id: 1,
       images: []
     };
-    this.onFormSubmit = this.onFormSubmit.bind(this)
+    this.onFormSubmit = this.onFormSubmit.bind(this);
+    this.setImages = this.setImages.bind(this);
   }
 
-  handleChange(key) {
-    return (e) => {
-      const state = {};
-      state[key] = e.target.value;
-      this.setState(state);
-    };
+
+  onFormSubmit(event) {
+    event.preventDefault();
+    this.props.addListing(this.state);
+  }
+
+  setImages(files) {
+    this.setState({
+      images: [...this.state.images, files]
+    });
+    console.log('new state after image', this.state);
   }
 
   handleClick(key) {
@@ -41,6 +48,7 @@ class AddListing extends Component {
       const state = {};
       state[key] = !this.state[key];
       this.setState(state);
+      console.log(this.state);
     };
   }
 
@@ -52,9 +60,12 @@ class AddListing extends Component {
     };
   }
 
-  onFormSubmit(event) {
-    event.preventDefault();
-    this.props.addListing(this.state);
+  handleChange(key) {
+    return (e) => {
+      const state = {};
+      state[key] = e.target.value;
+      this.setState(state);
+    };
   }
 
 
@@ -133,6 +144,7 @@ class AddListing extends Component {
             <ControlLabel>Available Date</ControlLabel>
             <FormControl onChange={this.handleChange('availableDate')} type="date" placeholder="yyy-mm-dd" />
           </FormGroup>
+          <Dropzone setImages={this.setImages}/>
           <Button onClick={this.onFormSubmit} type="submit">
             Submit
           </Button>

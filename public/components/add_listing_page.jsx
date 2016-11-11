@@ -14,5 +14,3 @@ export default class AddListingPage extends Component {
     );
   }
 }
-
-
