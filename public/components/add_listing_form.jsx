@@ -24,98 +24,101 @@ export default class AddListing extends Component {
     };
   }
 
-    handleChange(key, e) {
-      console.log('key', key,'event', e);
-      return function (e) {
-        var state = {};
-        state[key] = e.target.value;
-        this.setState(state);
-        console.log(this.state);
-      }.bind(this);
+  handleChange(key, e) {
+    return function (e) {
+      const state = {};
+      state[key] = e.target.value;
+      this.setState(state);
+      console.log(this.state);
+    }.bind(this);
 
-    }
-
-
-    render() {
-      return (
-        <div className="listingForm">
-          <Form inline>
-            <FormGroup controlId="formInlineAddress">
-              <ControlLabel>address</ControlLabel>
-              <FormControl onChange={this.handleChange('street')} type="address" placeholder="eg. 1060 W. Addison" />
-            </FormGroup>
-            <FormGroup controlId="formInlineUnit">
-              <FormControl onChange={this.handleChange('unitNumber')} placeholder="unit" />
-            </FormGroup>
-            <FormGroup controlId="formInlineCity">
-              <ControlLabel>city</ControlLabel>
-              <FormControl onChange={this.handleChange('city')} type="city" placeholder=" eg.Chicago" />
-            </FormGroup>
-            <FormGroup controlId="formInlineState">
-              <ControlLabel>state</ControlLabel>
-              <FormControl onChange={this.handleChange('state')} type="state" placeholder=" eg. Illinois" />
-            </FormGroup>
-            <FormGroup controlId="formInlineZip">
-              <ControlLabel>zip</ControlLabel>
-              <FormControl onChange={this.handleChange('zip')} type="number" placeholder="60016" />
-            </FormGroup>
-            <br />
-
-            <DropdownButton
-              componentClass={InputGroup.Button}
-              id="input-dropdown-addon"
-              title="Beds"
-              onChange={this.handleChange('beds')}
-            >
-              <MenuItem key="1">1</MenuItem>
-              <MenuItem key="2">2</MenuItem>
-              <MenuItem key="3">3</MenuItem>
-              <MenuItem key="4">4</MenuItem>
-              <MenuItem key="5">5</MenuItem>
-            </DropdownButton>
-
-            <DropdownButton
-              componentClass={InputGroup.Button}
-              id="input-dropdown-addon"
-              title="Baths"
-              key="baths"
-              onSelect={this.handleChange}
-            >
-              <MenuItem key="1">1</MenuItem>
-              <MenuItem key="2">2</MenuItem>
-              <MenuItem key="3">3</MenuItem>
-              <MenuItem key="4">4</MenuItem>
-              <MenuItem key="5">5</MenuItem>
-            </DropdownButton>
-            <FormGroup controlId="square foot">
-              <ControlLabel>sq. foot</ControlLabel>
-              <FormControl onChange={this.handleChange('sqFoot')} type="number" placeholder="sq. foot" />
-            </FormGroup>
-            <FormGroup controlId="rent">
-              <ControlLabel>rent</ControlLabel>
-              <FormControl onChange={this.handleChange('rent')} type="number" placeholder="2100" />
-            </FormGroup>
-            <FormGroup controlId="term">
-              <ControlLabel>term</ControlLabel>
-              <FormControl onChange={this.handleChange('term')} type="number" placeholder="12" />
-            </FormGroup>
-            <br />
-            <Checkbox key='dogs'onSelect={this.handleChange('dogs')} inline>
-              Dogs
-            </Checkbox>
-            <Checkbox key='cats' onSelect={this.handleChange} inline>
-              cats
-            </Checkbox>
-            <br />
-            <FormGroup controlId="date">
-              <ControlLabel>Available Date</ControlLabel>
-              <FormControl onChange={this.handleChange('availableDate')} type="date" placeholder="yyy-mm-dd" />
-            </FormGroup>
-            <Button type="submit"  >
-              Submit
-            </Button>
-          </Form>
-        </div>
-      );
-    };
   }
+
+  handleClick(key, e) {
+    console.log('key', key);
+  }
+
+
+  render() {
+    return (
+      <div className="listingForm">
+        <Form inline>
+          <FormGroup controlId="formInlineAddress">
+            <ControlLabel>address</ControlLabel>
+            <FormControl onChange={this.handleChange('street')} type="address" placeholder="eg. 1060 W. Addison" />
+          </FormGroup>
+          <FormGroup controlId="formInlineUnit">
+            <FormControl onChange={this.handleChange('unitNumber')} placeholder="unit" />
+          </FormGroup>
+          <FormGroup controlId="formInlineCity">
+            <ControlLabel>city</ControlLabel>
+            <FormControl onChange={this.handleChange('city')} type="city" placeholder=" eg.Chicago" />
+          </FormGroup>
+          <FormGroup controlId="formInlineState">
+            <ControlLabel>state</ControlLabel>
+            <FormControl onChange={this.handleChange('state')} type="state" placeholder=" eg. Illinois" />
+          </FormGroup>
+          <FormGroup controlId="formInlineZip">
+            <ControlLabel>zip</ControlLabel>
+            <FormControl onChange={this.handleChange('zip')} type="number" placeholder="60016" />
+          </FormGroup>
+          <br />
+
+          <DropdownButton
+            componentClass={InputGroup.Button}
+            id="input-dropdown-addon"
+            title="Beds"
+            onSelect={this.handleChange}
+          >
+            <MenuItem key="1">1</MenuItem>
+            <MenuItem key="2">2</MenuItem>
+            <MenuItem key="3">3</MenuItem>
+            <MenuItem key="4">4</MenuItem>
+            <MenuItem key="5">5</MenuItem>
+          </DropdownButton>
+
+          <DropdownButton
+            componentClass={InputGroup.Button}
+            id="input-dropdown-addon"
+            title="Baths"
+            key="baths"
+            onSelect={this.handleChange}
+          >
+            <MenuItem key="1">1</MenuItem>
+            <MenuItem key="2">2</MenuItem>
+            <MenuItem key="3">3</MenuItem>
+            <MenuItem key="4">4</MenuItem>
+            <MenuItem key="5">5</MenuItem>
+          </DropdownButton>
+          <FormGroup controlId="square foot">
+            <ControlLabel>sq. foot</ControlLabel>
+            <FormControl onChange={this.handleChange('sqFoot')} type="number" placeholder="sq. foot" />
+          </FormGroup>
+          <FormGroup controlId="rent">
+            <ControlLabel>rent</ControlLabel>
+            <FormControl onChange={this.handleChange('rent')} type="number" placeholder="2100" />
+          </FormGroup>
+          <FormGroup controlId="term">
+            <ControlLabel>term</ControlLabel>
+            <FormControl onChange={this.handleChange('term')} type="number" placeholder="12" />
+          </FormGroup>
+          <br />
+          <Checkbox key='dogs' onClick={this.handleClick} inline>
+            dogs
+          </Checkbox>
+          <Checkbox key='cats' onClick={this.handleClick} inline>
+            cats
+          </Checkbox>
+          <br />
+          <FormGroup controlId="date">
+            <ControlLabel>Available Date</ControlLabel>
+            <FormControl onChange={this.handleChange('availableDate')} type="date" placeholder="yyy-mm-dd" />
+          </FormGroup>
+          <Button type="submit"  >
+            Submit
+          </Button>
+        </Form>
+      </div>
+    );
+  }
+}

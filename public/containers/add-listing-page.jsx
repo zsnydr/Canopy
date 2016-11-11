@@ -8,6 +8,7 @@ class AddListingPage extends Component {
   render() {
     return (
      <div>
+     
         <ListingForm />
       </div>
 
