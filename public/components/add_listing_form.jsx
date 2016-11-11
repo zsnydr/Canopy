@@ -25,7 +25,10 @@ export default class AddListing extends Component {
   }
 
   handleChange(key, e) {
-    return function (e) {
+
+    return function (key, e) {
+    console.log('key!!!!!!!!!', key);
+    console.log('event!++!+!+!', event);
       const state = {};
       state[key] = e.target.value;
       this.setState(state);
@@ -34,8 +37,13 @@ export default class AddListing extends Component {
 
   }
 
-  handleClick(key, e) {
-    console.log('key', key);
+  handleClick(key) {
+    return () => {
+      const state = {};
+      state[key] = !this.state[key];
+      this.setState(state);
+      console.log(this.state)
+    }
   }
 
 
@@ -67,14 +75,14 @@ export default class AddListing extends Component {
           <DropdownButton
             componentClass={InputGroup.Button}
             id="input-dropdown-addon"
-            title="Beds"
-            onSelect={this.handleChange}
+            title="beds"
+            
           >
-            <MenuItem key="1">1</MenuItem>
-            <MenuItem key="2">2</MenuItem>
-            <MenuItem key="3">3</MenuItem>
-            <MenuItem key="4">4</MenuItem>
-            <MenuItem key="5">5</MenuItem>
+            <MenuItem onSelect={this.handleChange()} key="1">1</MenuItem>
+            <MenuItem onSelect={this.handleChange()} key="2">2</MenuItem>
+            <MenuItem onSelect={this.handleChange()} key="3">3</MenuItem>
+            <MenuItem onSelect={this.handleChange()} key="4">4</MenuItem>
+            <MenuItem onSelect={this.handleChange()} key="5">5</MenuItem>
           </DropdownButton>
 
           <DropdownButton
@@ -82,7 +90,7 @@ export default class AddListing extends Component {
             id="input-dropdown-addon"
             title="Baths"
             key="baths"
-            onSelect={this.handleChange}
+            onSelect={this.handleChange()}
           >
             <MenuItem key="1">1</MenuItem>
             <MenuItem key="2">2</MenuItem>
@@ -103,10 +111,10 @@ export default class AddListing extends Component {
             <FormControl onChange={this.handleChange('term')} type="number" placeholder="12" />
           </FormGroup>
           <br />
-          <Checkbox key='dogs' onClick={this.handleClick} inline>
+          <Checkbox key='dogs' onClick={this.handleClick('dogs')} inline>
             dogs
           </Checkbox>
-          <Checkbox key='cats' onClick={this.handleClick} inline>
+          <Checkbox key='cats' onClick={this.handleClick('cats')} inline>
             cats
           </Checkbox>
           <br />
