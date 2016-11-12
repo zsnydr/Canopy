@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import GoogleMaps from '../components/google_maps';
 
 
+
 import ListingDetail from '../components/listing_details';
 
 class ListingPage extends Component {
