@@ -145,7 +145,7 @@ class AddListing extends Component {
             <ControlLabel>Available Date</ControlLabel>
             <FormControl onChange={this.handleChange('availableDate')} type="date" placeholder="yyy-mm-dd" />
           </FormGroup>
-          <Dropzone setImages={this.setImages} />
+          <Dropzone setImages={this.setImages} images={this.state.images} />
           <Button onClick={this.onFormSubmit} type="submit">
             Submit
           </Button>

@@ -9,8 +9,12 @@ const ImageDrop = (props) => {
   return (
     <div>
       <Dropzone onDrop={onDrop}>
-        <div>Try dropping some files here, or click to select files to upload.</div>
+        <div className='imageDrop'>Drop images here, or click to select files to upload.</div>
       </Dropzone>
+      <div>
+        images will go here
+      
+      </div>
     </div>
   );
 };
