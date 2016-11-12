@@ -75,6 +75,8 @@ class ListingsPage extends Component {
       );
     }
 
+    this.props.listingData.listings = this.props.listingData.listings || [];
+
     const filtered = this.props.listingData.listings.filter((listing) => {
       return listing.beds >= this.state.bedFilter &&
              listing.baths >= this.state.bathFilter &&
