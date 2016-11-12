@@ -98,7 +98,7 @@ class AddListing extends Component {
             componentClass={InputGroup.Button}
             id="input-dropdown-addon"
             title="beds"
-            onSelect={this.handleSelect('beds')} 
+            onSelect={this.handleSelect('beds')}
           >
             <MenuItem eventKey="1">1</MenuItem>
             <MenuItem eventKey="2">2</MenuItem>
@@ -144,7 +144,7 @@ class AddListing extends Component {
             <ControlLabel>Available Date</ControlLabel>
             <FormControl onChange={this.handleChange('availableDate')} type="date" placeholder="yyy-mm-dd" />
           </FormGroup>
-          <Dropzone setImages={this.setImages}/>
+          <Dropzone setImages={this.setImages} />
           <Button onClick={this.onFormSubmit} type="submit">
             Submit
           </Button>
@@ -159,4 +159,4 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators({ addListing }, dispatch);
 }
 
-export default connect(mapDispatchToProps)(AddListing);
+export default connect(null, mapDispatchToProps)(AddListing);

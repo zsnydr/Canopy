@@ -1,3 +1,4 @@
+import request from 'axios';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -27,6 +28,15 @@ class CitySearch extends Component {
     browserHistory.push('/content/listings');
   }
 
+  componentDidMount() {
+    navigator.geolocation.getCurrentPosition((pos) => {
+      request.get(`/api/position?lat=${pos.coords.latitude}&lon=${pos.coords.longitude}`)
+      .then((data) => {
+        this.setState({ term: data.data });
+      });
+    });
+  }
+
   render() {
     return (
       <div className="main">
@@ -38,7 +48,7 @@ class CitySearch extends Component {
             label="Text"
             placeholder="apartment search by city eg. San Francisco, Ca"
             onChange={this.onInputChange}
-            value={this.props.term}
+            value={this.state.term}
           />
           <Button onClick={this.onFormSubmit} bsStyle="primary">submit</Button>
         </form>
