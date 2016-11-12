@@ -1,6 +1,7 @@
 import React from 'react';
 import { browserHistory } from 'react-router';
 import OptionBox from './option_box';
+import CitySearch from '../containers/city-search';
 
 const ListingsList = (props) => {
   const goToListing = (listing) => {
@@ -50,6 +51,7 @@ const ListingsList = (props) => {
 
   return (
     <div>
+      <CitySearch />
       <OptionBox
         bedFilterHeader={props.bedFilterHeader}
         bathFilterHeader={props.bathFilterHeader}
