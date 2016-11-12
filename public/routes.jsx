@@ -3,7 +3,7 @@ import { IndexRoute, Route } from 'react-router';
 
 import App from './components/app';
 import Nav from './containers/nav';
-import Listings from './components/listings_page';
+import Listings from './containers/listings-page';
 import Splash from './components/splashpage';
 import ListingPage from './containers/listing-page';
 import AddListing from './components/add_listing_page';
