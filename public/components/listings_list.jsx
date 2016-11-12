@@ -1,6 +1,7 @@
 import React from 'react';
 import { browserHistory } from 'react-router';
 import OptionBox from './option_box';
+import CitySearch from '../containers/city-search';
 
 const ListingsList = (props) => {
   const goToListing = (listing) => {
@@ -22,21 +23,26 @@ const ListingsList = (props) => {
             goToListing(listing);
           }}
         >
-          <h3>${listing.rent}</h3>
-          <h3>{listing.street}</h3>
-          <h3>{props.city}, {props.state}</h3>
+          <div className="listingImg">
+            image goes here
+          </div>
+          <div className="listingListDetails">
+            <h3>${listing.rent}</h3>
+            <h3>{listing.street}</h3>
+            <h3>{props.city}, {props.state}</h3>
 
-          <div className="listingDetails">
-            <h4>beds</h4>
-            <h4>{listing.beds}</h4>
-          </div>
-          <div className="listingDetails">
-            <h4>baths</h4>
-            <h4>{listing.baths}</h4>
-          </div>
-          <div className="listingDetails">
-            <h4>sq. foot</h4>
-            <h4>{listing.sqFoot}</h4>
+            <div className="listingDetails">
+              <h4>beds</h4>
+              <h4>{listing.beds}</h4>
+            </div>
+            <div className="listingDetails">
+              <h4>baths</h4>
+              <h4>{listing.baths}</h4>
+            </div>
+            <div className="listingDetails">
+              <h4>sq. foot</h4>
+              <h4>{listing.sqFoot}</h4>
+            </div>
           </div>
         </div>
       );
@@ -45,6 +51,7 @@ const ListingsList = (props) => {
 
   return (
     <div>
+      <CitySearch />
       <OptionBox
         bedFilterHeader={props.bedFilterHeader}
         bathFilterHeader={props.bathFilterHeader}

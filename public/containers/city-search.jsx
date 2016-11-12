@@ -2,7 +2,7 @@ import request from 'axios';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Button, FormControl } from 'react-bootstrap';
+import { Button, FormControl, Form } from 'react-bootstrap';
 import selectCity from '../actions/select_city';
 import updateListings from '../actions/update_listings';
 import { browserHistory } from 'react-router';
@@ -40,9 +40,8 @@ class CitySearch extends Component {
 
   render() {
     return (
-      <div className="main">
-        <h1>canopy</h1>
-        <form onSubmit={this.onFormSubmit}>
+      <div>
+        <Form onSubmit={this.onFormSubmit} inline>
           <FormControl
             id="formControlsText"
             type="text"
@@ -51,8 +50,8 @@ class CitySearch extends Component {
             onChange={this.onInputChange}
             value={this.state.term}
           />
-          <Button onClick={this.onFormSubmit} bsStyle="primary">submit</Button>
-        </form>
+          <Button className="citySelect" onClick={this.onFormSubmit} bsStyle="primary">submit</Button>
+        </Form>
       </div>
     );
   }

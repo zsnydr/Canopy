@@ -1,7 +1,7 @@
-import React, { Component} from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Form, FormGroup, FormControl, ControlLabel, Checkbox, DropdownButton, MenuItem, InputGroup, Button}from 'react-bootstrap';
+import { Form, FormGroup, FormControl, ControlLabel, Checkbox, DropdownButton, MenuItem, InputGroup, Button } from 'react-bootstrap';
 
 import addListing from '../actions/add_listing';
 import Dropzone from '../components/add_listing_image_drop';
@@ -22,14 +22,17 @@ class AddListing extends Component {
       dogs: false,
       cats: false,
       term: 0,
-      availableDate:  '',
+      availableDate: '',
       host_id: 1,
       images: []
     };
+
     this.onFormSubmit = this.onFormSubmit.bind(this);
     this.setImages = this.setImages.bind(this);
+    this.handleClick = this.handleClick.bind(this);
+    this.handleSelect = this.handleSelect.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
-
 
   onFormSubmit(event) {
     event.preventDefault();
@@ -40,7 +43,6 @@ class AddListing extends Component {
     this.setState({
       images: [...this.state.images, files]
     });
-    console.log('new state after image', this.state);
   }
 
   handleClick(key) {
@@ -48,7 +50,6 @@ class AddListing extends Component {
       const state = {};
       state[key] = !this.state[key];
       this.setState(state);
-      console.log(this.state);
     };
   }
 
@@ -144,7 +145,7 @@ class AddListing extends Component {
             <ControlLabel>Available Date</ControlLabel>
             <FormControl onChange={this.handleChange('availableDate')} type="date" placeholder="yyy-mm-dd" />
           </FormGroup>
-          <Dropzone setImages={this.setImages} />
+          <Dropzone setImages={this.setImages} images={this.state.images} />
           <Button onClick={this.onFormSubmit} type="submit">
             Submit
           </Button>
