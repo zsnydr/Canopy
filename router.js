@@ -5,6 +5,8 @@ module.exports = (app) => {
     res.send('hello');
   });
 
+  app.get('/api/position/:lat/:lon', helpers.getCurrentPosition);
+
   app.get('/api/listings/:city', helpers.getListings);
 
   app.post('/api/listings', helpers.postListing);

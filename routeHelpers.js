@@ -1,9 +1,17 @@
 const fs = require('file-system');
 const path = require('path');
+const geoCoder = require('./geoCoder');
 
 const dbHelpers = require('./dbHelpers');
 
 module.exports = {
+  getCurrentPosition: (req, res) => {
+    geoCoder.reverse({ lat: req.params.lat, lon: req.params.lon }, (err, data) => {
+      console.log('ON SERVER')
+      res.send(`${data[0].city}, ${data[0].administrativeLevels.level1short}`);
+    });
+  },
+
   getListings: (req, res) => {
     dbHelpers.getListings(req.params.city)
     .then((listings) => {

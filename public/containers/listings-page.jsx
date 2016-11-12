@@ -16,7 +16,7 @@ class ListingsPage extends Component {
       bathFilter: 0,
       bedFilterHeader: 'Beds',
       bathFilterHeader: 'Baths',
-      selectListing: selectListing
+      selectListing
     };
 
     this.updateBedFilter = this.updateBedFilter.bind(this);
