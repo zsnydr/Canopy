@@ -48,8 +48,12 @@ const ListingsList = (props) => {
       <OptionBox
         bedFilterHeader={props.bedFilterHeader}
         bathFilterHeader={props.bathFilterHeader}
+        minRentFilterHeader={props.minRentFilterHeader}
+        maxRentFilterHeader={(props.maxRentFilterHeader === '$100000') ? '' : props.maxRentFilterHeader}
         updateBedFilter={props.updateBedFilter}
         updateBathFilter={props.updateBathFilter}
+        updateMinRentFilter={props.updateMinRentFilter}
+        updateMaxRentFilter={props.updateMaxRentFilter}
         submitOption={() => { console.log('Submitted'); }}
       />
       {renderListings()}
