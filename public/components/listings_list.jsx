@@ -61,6 +61,7 @@ const ListingsList = (props) => {
         updateBathFilter={props.updateBathFilter}
         updateMinRentFilter={props.updateMinRentFilter}
         updateMaxRentFilter={props.updateMaxRentFilter}
+        updateSorter={props.updateSorter}
         submitOption={() => { console.log('Submitted'); }}
       />
       {renderListings()}
