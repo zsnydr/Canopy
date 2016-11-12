@@ -20,6 +20,7 @@ class ListingsPage extends Component {
       bathFilterHeader: 'Baths',
       minRentFilterHeader: '',
       maxRentFilterHeader: '',
+      sorter: 'id',
       selectListing
     };
 
@@ -27,6 +28,7 @@ class ListingsPage extends Component {
     this.updateBathFilter = this.updateBathFilter.bind(this);
     this.updateMinRentFilter = this.updateMinRentFilter.bind(this);
     this.updateMaxRentFilter = this.updateMaxRentFilter.bind(this);
+    this.updateSorter = this.updateSorter.bind(this);
   }
 
   updateBedFilter(numBeds) {
@@ -57,6 +59,13 @@ class ListingsPage extends Component {
     });
   }
 
+  updateSorter(sorter) {
+    console.log('GOT HERE', sorter)
+    this.setState({
+      sorter
+    });
+  }
+
   render() {
     if (Array.isArray(this.props.listingData)) {
       return (
@@ -66,11 +75,15 @@ class ListingsPage extends Component {
       );
     }
 
+    this.props.listingData.listings = this.props.listingData.listings || [];
+
     const filtered = this.props.listingData.listings.filter((listing) => {
       return listing.beds >= this.state.bedFilter &&
              listing.baths >= this.state.bathFilter &&
              listing.rent >= this.state.minRentFilter &&
              listing.rent <= this.state.maxRentFilter;
+    }).sort((a, b) => {
+      return a[this.state.sorter] - b[this.state.sorter];
     });
 
     return (
@@ -86,6 +99,7 @@ class ListingsPage extends Component {
             updateBathFilter={this.updateBathFilter}
             updateMinRentFilter={this.updateMinRentFilter}
             updateMaxRentFilter={this.updateMaxRentFilter}
+            updateSorter={this.updateSorter}
             bedFilterHeader={this.state.bedFilterHeader}
             bathFilterHeader={this.state.bathFilterHeader}
             minRentFilterHeader={this.state.minRentFilterHeader}
