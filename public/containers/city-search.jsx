@@ -31,10 +31,10 @@ class CitySearch extends Component {
   componentWillMount() {
     // navigator.geolocation.getCurrentPosition((pos) => {
       // request.get(`/api/position?lat=${pos.coords.latitude}&lon=${pos.coords.longitude}`)
-      request.get('/api/position?lat=37.7749295&lon=-122.4194155')
-      .then((data) => {
-        this.setState({ term: data.data });
-      });
+      // request.get('/api/position?lat=37.7749295&lon=-122.4194155')
+      // .then((data) => {
+      //   this.setState({ term: data.data });
+      // });
     // });
   }
 

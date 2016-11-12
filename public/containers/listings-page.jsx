@@ -81,7 +81,7 @@ class ListingsPage extends Component {
              listing.rent >= this.state.minRentFilter &&
              listing.rent <= this.state.maxRentFilter;
     }).sort((a, b) => {
-      return this.state.sortAsc ? a[this.state.sorter] - b[this.state.sorter] : b[this.state.sorter] - a[this.state.sorter];
+      return a[this.state.sorter] - b[this.state.sorter];
     });
 
     return (
