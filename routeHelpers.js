@@ -6,8 +6,7 @@ const dbHelpers = require('./dbHelpers');
 
 module.exports = {
   getCurrentPosition: (req, res) => {
-    geoCoder.reverse({ lat: req.params.lat, lon: req.params.lon }, (err, data) => {
-      console.log('ON SERVER')
+    geoCoder.reverse({ lat: req.query.lat, lon: req.query.lon }, (err, data) => {
       res.send(`${data[0].city}, ${data[0].administrativeLevels.level1short}`);
     });
   },

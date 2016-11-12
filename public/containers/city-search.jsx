@@ -30,7 +30,7 @@ class CitySearch extends Component {
 
   componentDidMount() {
     navigator.geolocation.getCurrentPosition((pos) => {
-      request.get(`/api/position/${pos.coords.latitude}/${pos.coords.longitude}`)
+      request.get(`/api/position?lat=${pos.coords.latitude}&lon=${pos.coords.longitude}`)
       .then((data) => {
         this.setState({ term: data.data });
       });
