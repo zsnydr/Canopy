@@ -6,10 +6,10 @@ import activeCity from './reducer_active_city';
 import activeListing from './reducer_active_listing';
 
 const rootReducer = combineReducers({
+  routing: routerReducer,
   activeListing,
   activeCity,
-  listingData,
-  routing: routerReducer
+  listingData
 });
 
 export default rootReducer;
