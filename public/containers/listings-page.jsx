@@ -14,13 +14,19 @@ class ListingsPage extends Component {
     this.state = {
       bedFilter: 0,
       bathFilter: 0,
+      minRentFilter: 0,
+      maxRentFilter: 100000,
       bedFilterHeader: 'Beds',
       bathFilterHeader: 'Baths',
+      minRentFilterHeader: '',
+      maxRentFilterHeader: '',
       selectListing
     };
 
     this.updateBedFilter = this.updateBedFilter.bind(this);
     this.updateBathFilter = this.updateBathFilter.bind(this);
+    this.updateMinRentFilter = this.updateMinRentFilter.bind(this);
+    this.updateMaxRentFilter = this.updateMaxRentFilter.bind(this);
   }
 
   updateBedFilter(numBeds) {
@@ -37,6 +43,20 @@ class ListingsPage extends Component {
     });
   }
 
+  updateMinRentFilter(minRent) {
+    this.setState({
+      minRentFilter: minRent,
+      minRentFilterHeader: minRent ? `$${minRent}` : ''
+    });
+  }
+
+  updateMaxRentFilter(maxRent) {
+    this.setState({
+      maxRentFilter: maxRent,
+      maxRentFilterHeader: maxRent ? `$${maxRent}` : ''
+    });
+  }
+
   render() {
     if (Array.isArray(this.props.listingData)) {
       return (
@@ -47,7 +67,10 @@ class ListingsPage extends Component {
     }
 
     const filtered = this.props.listingData.listings.filter((listing) => {
-      return listing.beds >= this.state.bedFilter && listing.baths >= this.state.bathFilter;
+      return listing.beds >= this.state.bedFilter &&
+             listing.baths >= this.state.bathFilter &&
+             listing.rent >= this.state.minRentFilter &&
+             listing.rent <= this.state.maxRentFilter;
     });
 
     return (
@@ -61,8 +84,12 @@ class ListingsPage extends Component {
             state={this.props.listingData.state}
             updateBedFilter={this.updateBedFilter}
             updateBathFilter={this.updateBathFilter}
+            updateMinRentFilter={this.updateMinRentFilter}
+            updateMaxRentFilter={this.updateMaxRentFilter}
             bedFilterHeader={this.state.bedFilterHeader}
             bathFilterHeader={this.state.bathFilterHeader}
+            minRentFilterHeader={this.state.minRentFilterHeader}
+            maxRentFilterHeader={this.state.maxRentFilterHeader}
             selectListing={this.props.selectListing}
           />
         </div>
