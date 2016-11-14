@@ -10,11 +10,21 @@ module.exports = {
       res.send(`${data[0].city}, ${data[0].administrativeLevels.level1short}`);
     });
   },
+  
+  getCity: (req, res) => {
+    dbHelpers.getCity(req.params.city)
+    .then((city) => {
+      res.json(city);
+    })
+    .catch((err) => {
+      res.statusCode(400).send('Error: ', err);
+    });
+  },
 
   getListings: (req, res) => {
-    dbHelpers.getListings(req.params.city)
+    dbHelpers.getListings(req.params.cityId)
     .then((listings) => {
-      console.log('listings from route helpers', listings);
+      // console.log('listings from route helpers', listings);
       res.json(listings);
     })
     .catch((err) => {

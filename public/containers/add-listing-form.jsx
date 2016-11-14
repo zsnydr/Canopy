@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { browserHistory} from 'react-router';
 import { Form, FormGroup, FormControl, ControlLabel, Checkbox, DropdownButton, MenuItem, InputGroup, Button } from 'react-bootstrap';
+import request from 'axios';
 
-import addListing from '../actions/add_listing';
+import selectCity from '../actions/select_city';
 import Dropzone from '../components/add_listing_image_drop';
 
 class AddListing extends Component {
@@ -23,11 +25,14 @@ class AddListing extends Component {
       cats: false,
       term: 0,
       availableDate: '',
-      host_id: 1
+      host_id: 1,
+      images: [],
+      newListing: {}
     };
 
     this.onFormSubmit = this.onFormSubmit.bind(this);
     this.setImages = this.setImages.bind(this);
+    this.setActiveListing = this.setActiveListing.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.handleSelect = this.handleSelect.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -35,13 +40,22 @@ class AddListing extends Component {
 
   onFormSubmit(event) {
     event.preventDefault();
-    this.props.addListing(this.state);
+    request.post('/api/listings', listingData)
+    .then((listing) => {
+      this.setState({ newListing: listing.data});
+    })
+
   }
 
   setImages(files) {
     this.setState({
       images: [...this.state.images, files]
-    });
+    })
+  }
+  
+  setActiveListing() {
+    this.props.selectListing(this.state.newListing.extend({ images: this.state.images }));
+    browserHistory.push(`/content/listing/${this.state.newlisting.id}`);
   }
 
   handleClick(key) {
@@ -74,7 +88,7 @@ class AddListing extends Component {
 
 
   render() {
-    if (!this.props.activeListing || !this.props.activeListing.data.id) {
+    if (!this.state.newListing.id) {
       return (
         <div className="listingForm">
           <Form inline>
@@ -159,8 +173,7 @@ class AddListing extends Component {
     return (
       <div>
         <Form>
-          <Dropzone setImages={this.setImages} listingId={this.props.activeListing.data.id} />
-
+          <Dropzone setImages={this.setImages} setActiveListing={this.setActiveListing} listingId={this.state.newListing.id} />
         </Form>
       </div>
     );
@@ -174,7 +187,7 @@ function mapStateToProps({ activeListing }) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ addListing }, dispatch);
+  return bindActionCreators({ selectListing }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddListing);

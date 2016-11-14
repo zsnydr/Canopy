@@ -7,7 +7,9 @@ module.exports = (app) => {
 
   app.get('/api/position', helpers.getCurrentPosition);
 
-  app.get('/api/listings/:city', helpers.getListings);
+  app.get('/api/cities/:city', helpers.getCity);
+
+  app.get('/api/listings/:cityId', helpers.getListings);
 
   app.post('/api/listings', helpers.postListing);
 

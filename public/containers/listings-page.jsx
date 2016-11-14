@@ -20,8 +20,7 @@ class ListingsPage extends Component {
       bathFilterHeader: 'Baths',
       minRentFilterHeader: '',
       maxRentFilterHeader: '',
-      sorter: 'id',
-      selectListing
+      sorter: 'id'
     };
 
     this.updateBedFilter = this.updateBedFilter.bind(this);
@@ -67,17 +66,7 @@ class ListingsPage extends Component {
   }
 
   render() {
-    if (Array.isArray(this.props.listingData)) {
-      return (
-        <div className="listingsPage">
-          <div>Waiting for data...</div>
-        </div>
-      );
-    }
-
-    this.props.listingData.listings = this.props.listingData.listings || [];
-
-    const filtered = this.props.listingData.listings.filter((listing) => {
+    const filtered = this.props.listings.filter((listing) => {
       return listing.beds >= this.state.bedFilter &&
              listing.baths >= this.state.bathFilter &&
              listing.rent >= this.state.minRentFilter &&
@@ -89,12 +78,10 @@ class ListingsPage extends Component {
     return (
       <div className="listingsPage">
         <div className="listings_list">
-          {// include citySearch here
-          }
           <ListingsList
             listings={filtered}
-            city={this.props.listingData.name}
-            state={this.props.listingData.state}
+            city={this.props.activeCity.name}
+            state={this.props.activeCity.state}
             updateBedFilter={this.updateBedFilter}
             updateBathFilter={this.updateBathFilter}
             updateMinRentFilter={this.updateMinRentFilter}
@@ -110,8 +97,8 @@ class ListingsPage extends Component {
         <div className="listings_map">
           <GoogleMaps
             listings={filtered}
-            focalLat={this.props.listingData.lat}
-            focalLon={this.props.listingData.lon}
+            focalLat={this.props.activeCity.lat}
+            focalLon={this.props.activeCity.lon}
           />
         </div>
       </div>
@@ -119,9 +106,10 @@ class ListingsPage extends Component {
   }
 }
 
-function mapStateToProps({ listingData }) {
+function mapStateToProps({ activeCity, listings }) {
   return {
-    listingData
+    activeCity,
+    listings
   };
 }
 

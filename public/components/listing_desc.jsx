@@ -1,10 +1,10 @@
 import React from 'react';
 
-const ListingDesc = ({ activeListing, listingData }) => {
+const ListingDesc = ({ activeListing, activeCity }) => {
   return (
     <div className='listingInfo'>
       <h2>{activeListing.street}</h2>
-      <h3>{listingData.name}, {listingData.state} {activeListing.zip}</h3><br />
+      <h3>{activeCity.name}, {activeCity.state} {activeListing.zip}</h3><br />
       <div>
         <div className='details'>
           <h4> Unit: {activeListing.unit} </h4>
