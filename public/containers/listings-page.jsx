@@ -65,6 +65,11 @@ class ListingsPage extends Component {
     });
   }
 
+  componentDidUpdate() {
+    console.log('props.listings in page: ',this.props.listings);
+    this.render();
+  }
+
   render() {
     const filtered = this.props.listings.filter((listing) => {
       return listing.beds >= this.state.bedFilter &&
