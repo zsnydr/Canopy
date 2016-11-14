@@ -189,46 +189,36 @@ Listing.create({
 });
 
 Image.create({
+  listing_id: 1,
   ref: 'http://res.cloudinary.com/canopydev/image/upload/v1478813811/ballRat_tsk4ut.jpg'
 }).then((image) => {
-  ListingImage.create({
-    listingId: 1,
-    imageId: image.get('id')
-  });
+
 });
 
 Image.create({
+  listing_id: 1,
   ref: 'http://res.cloudinary.com/canopydev/image/upload/v1478815237/tigar_emdap4.jpg'
 }).then((image) => {
-  ListingImage.create({
-    listingId: 1,
-    imageId: image.get('id')
-  });
+
 });
 
 Image.create({
+  listing_id: 1,
   ref: 'http://res.cloudinary.com/canopydev/image/upload/v1478815229/kawhi_wm1vki.jpg'
 }).then((image) => {
-  ListingImage.create({
-    listingId: 1,
-    imageId: image.get('id')
-  });
+
 });
 
 Image.create({
+  listing_id: 1,
   ref: 'http://res.cloudinary.com/canopydev/image/upload/v1478815224/fastRat_o8pmqh.jpg'
 }).then((image) => {
-  ListingImage.create({
-    listingId: 1,
-    imageId: image.get('id')
-  });
+
 });
 
 Image.create({
+  listing_id: 1,
   ref: 'http://res.cloudinary.com/canopydev/image/upload/v1478815234/panTuna_fep0v6.jpg'
 }).then((image) => {
-  ListingImage.create({
-    listingId: 1,
-    imageId: image.get('id')
-  });
+
 });

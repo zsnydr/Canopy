@@ -22,11 +22,21 @@ module.exports = {
     });
   },
 
+  getListing: (req, res) => {
+    dbHelpers.getListing(req.params.listingId)
+    .then((listing) => {
+      res.json(listing);
+    })
+    .catch((err) => {
+      res.statusCode(400).send('Error: ', err);
+    });
+  },
+
   postListing: (req, res) => {
     dbHelpers.postListing(req.body)
     .then((listing) => {
       console.log('Posted listing: ', listing);
-      res.send('Success');
+      res.json(listing);
     })
     .catch((err) => {
       console.log('Failed to post listing: ', err);
@@ -41,6 +51,14 @@ module.exports = {
         console.log('Error reading image: ', err);
       }
       res.end(data);
+    });
+  },
+
+  postImages: (req, res) => {
+    dbHelpers.postImages(req.body)
+    .then(() => {
+      console.log('IN POST IMAGES THEN BLOCK')
+      res.end();
     });
   }
 };

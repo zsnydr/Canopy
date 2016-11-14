@@ -11,5 +11,7 @@ module.exports = (app) => {
 
   app.post('/api/listings', helpers.postListing);
 
-  app.get('/api/images/:image', helpers.getImages);
+  app.get('/api/listing/:listingId', helpers.getListing);
+
+  app.post('/api/images', helpers.postImages);
 };
