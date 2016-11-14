@@ -19,6 +19,7 @@ const ListingsList = (props) => {
           className="listing"
           key={listing.id}
           onClick={() => {
+            console.log('LISTING XXXX ', listing)
             props.selectListing(listing);
             goToListing(listing);
           }}

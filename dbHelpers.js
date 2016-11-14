@@ -1,7 +1,6 @@
 const Listing = require('./db/schema').Listing;
 const City = require('./db/schema').City;
 const Image = require('./db/schema').Image;
-const ListingImage = require('./db/schema').ListingImage;
 
 const geoCoder = require('./geoCoder');
 // const Host = require('./db/schema').Host;
@@ -10,6 +9,7 @@ const geoCoder = require('./geoCoder');
 
 module.exports = {
   getListings: (city) => {
+    console.log('IN GET LISTINGS')
     return geoCoder.geocode(city)
     .then((res) => {
       return City.findOrCreate({
@@ -21,10 +21,7 @@ module.exports = {
         },
         include: [{
           model: Listing,
-          include: [{
-            model: ListingImage,
-            include: [Image]
-          }]
+          include: [Image]
         }]
       })
       .spread((cityData) => {
@@ -36,16 +33,65 @@ module.exports = {
     });
   },
 
+  getListing: (listingId) => {
+    return Listing.find({
+      where: { id: listingId },
+      include: [Image]
+    })
+    .then((listing) => {
+      return listing;
+    })
+    .catch((err) => {
+      return `Error getting listing: ${err}`;
+    });
+  },
+
   postListing: (listingInfo) => {
-    // Listing.create(listingInfo)
-    // .then((listing) => {
-    //   console.log('Created listing at ', listing.get('street'));
-    // })
-    // .catch((err) => {
-    //   console.log('Error creating listing: ', err);
-    // });
-    // get geocode for listing address
-    // create new listing with req body data
-    return data;
+    return geoCoder.geocode(`${listingInfo.city}, ${listingInfo.state}`)
+    .then((res) => {
+      return City.findOrCreate({
+        where: {
+          name: listingInfo.city.toUpperCase(),
+          state: listingInfo.state.toUpperCase(),
+          lat: res[0].latitude,
+          lon: res[0].longitude
+        }
+      })
+      .spread((city) => {
+        return geoCoder.geocode(`${listingInfo.street} ${listingInfo.city}, ${listingInfo.state}`)
+        .then((res) => {
+          listingInfo.city_id = city.get('id');
+          listingInfo.lat = res[0].latitude;
+          listingInfo.lon = res[0].longitude;
+          return Listing.create(listingInfo)
+          .then((listing) => {
+            return listing;
+          })
+          .catch((err) => {
+            return `Error posting listing: ${err}`;
+          });
+        })
+      });
+    });
+  },
+
+  postImages: (imageData) => {
+    return new Promise((resolve, reject) => {
+      const { images, listing_id } = imageData;
+      images.forEach((image) => {
+        Image.create({
+          listing_id,
+          ref: image
+        })
+        .then((img) => {
+          console.log('Created image: ', img);
+        })
+        .catch((err) => {
+          console.log('Error creating image: ', err);
+          reject(err);
+        });
+      });
+      resolve();
+    });
   }
 };
