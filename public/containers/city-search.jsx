@@ -11,8 +11,10 @@ import { browserHistory } from 'react-router';
 class CitySearch extends Component {
   constructor(props) {
     super(props);
-    this.state = { term: '' };
-
+    this.state = { 
+      term: '',
+      isSubmitted: false
+    };
     this.onFormSubmit = this.onFormSubmit.bind(this);
     this.onInputChange = this.onInputChange.bind(this);
   }
@@ -24,12 +26,18 @@ class CitySearch extends Component {
   onFormSubmit(event) {
     event.preventDefault();
     this.props.selectCity(this.state.term);
+    this.setState({
+      isSubmitted: true
+    }) 
   }
 
   componentDidUpdate() {
-    if (this.props.activeCity) { 
+    if (this.props.activeCity && this.state.isSubmitted) { 
       this.props.updateListings(this.props.activeCity.id);
       browserHistory.push('/content/listings');
+      this.setState({
+        isSubmitted: false
+      });
     }
     // navigator.geolocation.getCurrentPosition((pos) => {
       // request.get(`/api/position?lat=${pos.coords.latitude}&lon=${pos.coords.longitude}`)
