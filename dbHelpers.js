@@ -8,8 +8,7 @@ const geoCoder = require('./geoCoder');
 // const RenterListing = require('./db/schema').RenterListing;
 
 module.exports = {
-  getListings: (city) => {
-    console.log('IN GET LISTINGS')
+  getCity: (city) => {
     return geoCoder.geocode(city)
     .then((res) => {
       return City.findOrCreate({
@@ -18,11 +17,7 @@ module.exports = {
           state: city.slice(-2).toUpperCase(),
           lat: res[0].latitude,
           lon: res[0].longitude
-        },
-        include: [{
-          model: Listing,
-          include: [Image]
-        }]
+        }
       })
       .spread((cityData) => {
         return cityData;
@@ -30,6 +25,22 @@ module.exports = {
       .catch((err) => {
         return `Error getting listings: ${err}`;
       });
+    });
+  },
+
+  getListings: (cityId) => {
+    console.log('IN GET LISTINGS')
+    return Listing.findAll({
+      where: {
+        city_id: cityId
+      },
+      include: [Image]
+    })
+    .then((listings) => {
+      return listings;
+    })
+    .catch((err) => {
+      return `Error getting listings: ${err}`;
     });
   },
 

@@ -10,10 +10,10 @@ class ListingPage extends Component {
   }
 
   render() {
-    if (!this.props.activeListing || !this.props.listingData) {
+    if (!this.props.activeListing) {
       return <div>Waiting for active listing..</div>;
     }
-    console.log('ACTIVELISTING IN LISTING PAGE ', this.props.activeListing)
+    console.log('ACTIVELISTING IN LISTING PAGE ', this.props.activeListing);
 
     return (
       <div className="listing_page">
@@ -22,17 +22,17 @@ class ListingPage extends Component {
         </div>
         <ListingDetail
           activeListing={this.props.activeListing}
-          listingData={this.props.listingData}
+          activeCity={this.props.activeCity}
         />
       </div>
     );
   }
 }
 
-function mapStateToProps({ activeListing, listingData }) {
+function mapStateToProps({ activeListing, activeCity }) {
   return {
     activeListing,
-    listingData
+    activeCity
   };
 }
 

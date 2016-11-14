@@ -5,7 +5,7 @@ import ListingPics from './listing_pics';
 const ListingDetail = (props) => {
   return (
     <div>
-      <ListingDesc activeListing={props.activeListing} listingData={props.listingData} />
+      <ListingDesc activeListing={props.activeListing} activeCity={props.activeCity} />
       {//listingimages contain image property that has the image source stored in ref
       }
       <ListingPics images={props.activeListing.images} />

@@ -4,8 +4,8 @@ import request from 'superagent';
 import Dropzone from 'react-dropzone';
 import { Button } from 'react-bootstrap';
 import browserHistory from 'react-router';
-import postImages from '../actions/post_images';
 import selectListing from '../actions/select_listing';
+// import postImages from '../actions/post_images';
 
 
 const CLOUDINARY_UPLOAD_PRESET = 'wdrjd71q';
@@ -47,17 +47,12 @@ class ImageDrop extends Component {
 
   onFormSubmit(event) {
     event.preventDefault();
-    postImages({
+    request.post('/api/images')
+    .send({
       listing_id: this.props.listingId,
       images: this.state.images
     });
-    // request.post('/api/images', imageData);
-
-    // request.get(`/api/listings/${this.props.listingId}`)
-    // .then((listing) => {
-    //   console.log('LISTING ', listing);
-    //   selectListing(listing.data);
-    // });
+    this.props.setActiveListing();
   }
 
   render() {

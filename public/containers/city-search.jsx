@@ -24,11 +24,13 @@ class CitySearch extends Component {
   onFormSubmit(event) {
     event.preventDefault();
     this.props.selectCity(this.state.term);
-    this.props.updateListings(this.state.term);
-    browserHistory.push('/content/listings');
   }
 
-  componentWillMount() {
+  componentDidUpdate() {
+    if (this.props.activeCity) { 
+      this.props.updateListings(this.props.activeCity.id);
+      browserHistory.push('/content/listings');
+    }
     // navigator.geolocation.getCurrentPosition((pos) => {
       // request.get(`/api/position?lat=${pos.coords.latitude}&lon=${pos.coords.longitude}`)
       // request.get('/api/position?lat=37.7749295&lon=-122.4194155')
