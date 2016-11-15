@@ -50,7 +50,12 @@ class CitySearch extends Component {
             onChange={this.onInputChange}
             value={this.state.term}
           />
-          <Button className="citySelect" onClick={this.onFormSubmit} bsStyle="primary">submit</Button>
+          <Button
+            className="citySelect"
+            onClick={this.onFormSubmit}
+            bsStyle="primary">
+            submit
+          </Button>
         </Form>
       </div>
     );

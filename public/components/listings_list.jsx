@@ -1,5 +1,6 @@
 import React from 'react';
 import { browserHistory } from 'react-router';
+
 import OptionBox from './option_box';
 
 const ListingsList = (props) => {
@@ -18,7 +19,6 @@ const ListingsList = (props) => {
           className="listing"
           key={listing.id}
           onClick={() => {
-            console.log('LISTING XXXX ', listing)
             props.selectListing(listing);
             goToListing(listing);
           }}

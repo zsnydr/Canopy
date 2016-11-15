@@ -1,20 +1,21 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { browserHistory} from 'react-router';
+import { browserHistory } from 'react-router';
 import { Form, FormGroup, FormControl, ControlLabel, Checkbox, DropdownButton, MenuItem, InputGroup, Button } from 'react-bootstrap';
 import request from 'axios';
 
+import Dropzone from '../components/add_listing_image_drop';
+
 import selectCity from '../actions/select_city';
 import selectListing from '../actions/select_listing';
-import Dropzone from '../components/add_listing_image_drop';
 
 class AddListing extends Component {
   constructor(props) {
     super(props);
     this.state = {
       street: '',
-      unitNumber: '',
+      unitNumber: 0,
       city: '',
       state: '',
       zip: 0,
@@ -28,33 +29,28 @@ class AddListing extends Component {
       availableDate: '',
       host_id: 1,
       images: [],
-      newListing: {}
+      newListing: []
     };
-    this.citySubmitted = false;
     this.onFormSubmit = this.onFormSubmit.bind(this);
     this.setImages = this.setImages.bind(this);
     this.setActiveListing = this.setActiveListing.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.handleSelect = this.handleSelect.bind(this);
     this.handleChange = this.handleChange.bind(this);
-    this.onCitySubmit = this.onCitySubmit.bind(this);
-  }
-
-  onCitySubmit(event) {
-    event.preventDefault();
-    console.log(`${this.state.city}, ${this.state.state}`);
-    this.props.selectCity(`${this.state.city}, ${this.state.state}`);
-    this.citySubmitted = true;
   }
 
   onFormSubmit(event) {
     event.preventDefault();
-    const newListing = Object.assign({
-      city_id: this.props.activeCity.id
-    }, this.state);
-    request.post('/api/listings', newListing)
+    request.get(`/api/cities/${this.state.city}, ${this.state.state}`)
+    .then((city) => {
+      const newListing = Object.assign({
+        city_id: city.data.id
+      }, this.state);
+      this.props.selectCity(city.data);
+      return request.post('/api/listings', newListing);
+    })
     .then((listing) => {
-      this.setState({ newListing: listing.data });
+      this.setState({ newListing:listing.data });
     });
   }
 
@@ -97,10 +93,9 @@ class AddListing extends Component {
   }
 
   render() {
-    if (!this.citySubmitted) {
-      console.log('city not submitted');
+    if (!this.state.newListing.id) {
       return (
-        <div>
+        <div className="listingForm">
           <Form inline>
             <FormGroup controlId="formInlineCity">
               <ControlLabel>city</ControlLabel>
@@ -110,23 +105,12 @@ class AddListing extends Component {
               <ControlLabel>state</ControlLabel>
               <FormControl onChange={this.handleChange('state')} type="state" placeholder=" eg. Illinois" />
             </FormGroup>
-            <Button onClick={this.onCitySubmit} type="submit">
-              Submit
-            </Button>
-          </Form>
-        </div>
-      );
-    }
-
-    if (!this.state.newListing.id) {
-      return (
-        <div className="listingForm">
-          <Form inline>
             <FormGroup controlId="formInlineAddress">
               <ControlLabel>address</ControlLabel>
               <FormControl onChange={this.handleChange('street')} type="address" placeholder="eg. 1060 W. Addison" />
             </FormGroup>
             <FormGroup controlId="formInlineUnit">
+              <ControlLabel>address 2</ControlLabel>
               <FormControl onChange={this.handleChange('unitNumber')} placeholder="unit" />
             </FormGroup>
             <FormGroup controlId="formInlineZip">
@@ -138,7 +122,7 @@ class AddListing extends Component {
             <DropdownButton
               componentClass={InputGroup.Button}
               id="input-dropdown-addon"
-              title="beds"
+              title={this.state.beds || 'Beds'}
               onSelect={this.handleSelect('beds')}
             >
               <MenuItem eventKey="1">1</MenuItem>
@@ -151,7 +135,7 @@ class AddListing extends Component {
             <DropdownButton
               componentClass={InputGroup.Button}
               id="input-dropdown-addon"
-              title="Baths"
+              title={this.state.baths || 'Baths'}
               key="baths"
               onSelect={this.handleSelect('baths')}
             >
@@ -207,15 +191,8 @@ class AddListing extends Component {
   }
 }
 
-function mapStateToProps({ activeListing, activeCity }) {
-  return {
-    activeListing,
-    activeCity
-  };
-}
-
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({ selectListing, selectCity }, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(AddListing);
+export default connect(null, mapDispatchToProps)(AddListing);

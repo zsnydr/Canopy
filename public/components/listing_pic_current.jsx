@@ -1,11 +1,9 @@
 import React from 'react';
-import ListingDesc from './listing_desc';
-import ListingPics from './listing_pics';
 
-const CurrentPicture = (props) => {
+const CurrentPicture = ({ image }) => {
   return (
     <div>
-      <img className="curPic" src={props.image} />
+      <img className="curPic" src={image} />
     </div>
   );
 };
