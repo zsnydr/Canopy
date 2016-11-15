@@ -1,8 +1,4 @@
-import request from 'axios';
-
-export default function updateListings(cityId) {
-  const listings = request.get(`/api/listings/${cityId}`);
-
+export default function updateListings(listings) {
   return {
     type: 'UPDATE_LISTINGS',
     payload: listings

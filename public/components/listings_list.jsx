@@ -1,7 +1,6 @@
 import React from 'react';
 import { browserHistory } from 'react-router';
 import OptionBox from './option_box';
-import CitySearch from '../containers/city-search';
 
 const ListingsList = (props) => {
   const goToListing = (listing) => {
@@ -52,7 +51,6 @@ const ListingsList = (props) => {
 
   return (
     <div>
-      <CitySearch />
       <OptionBox
         bedFilterHeader={props.bedFilterHeader}
         bathFilterHeader={props.bathFilterHeader}
@@ -63,7 +61,6 @@ const ListingsList = (props) => {
         updateMinRentFilter={props.updateMinRentFilter}
         updateMaxRentFilter={props.updateMaxRentFilter}
         updateSorter={props.updateSorter}
-        submitOption={() => { console.log('Submitted'); }}
       />
       {renderListings()}
     </div>

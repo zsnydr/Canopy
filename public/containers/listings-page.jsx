@@ -76,6 +76,9 @@ class ListingsPage extends Component {
 
     return (
       <div className="listingsPage">
+        <div>
+          <CitySearch />
+        </div>
         <div className="listings_list">
           <ListingsList
             listings={filtered}

@@ -1,16 +1,9 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React from 'react';
 
 import ListingForm from '../containers/add-listing-form';
 
-export default class AddListingPage extends Component {
+const AddListingPage = () => {
+  return <ListingForm />;
+};
 
-  render() {
-    return (
-      <div>
-        <ListingForm />
-      </div>
-
-    );
-  }
-}
+export default AddListingPage;

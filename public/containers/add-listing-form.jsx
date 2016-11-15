@@ -100,19 +100,21 @@ class AddListing extends Component {
     if (!this.citySubmitted) {
       console.log('city not submitted');
       return (
-        <Form inline>
-          <FormGroup controlId="formInlineCity">
-            <ControlLabel>city</ControlLabel>
-            <FormControl onChange={this.handleChange('city')} type="city" placeholder=" eg.Chicago" />
-          </FormGroup>
-          <FormGroup controlId="formInlineState">
-            <ControlLabel>state</ControlLabel>
-            <FormControl onChange={this.handleChange('state')} type="state" placeholder=" eg. Illinois" />
-          </FormGroup>
-          <Button onClick={this.onCitySubmit} type="submit">
-            Submit
-          </Button>
-        </Form>
+        <div>
+          <Form inline>
+            <FormGroup controlId="formInlineCity">
+              <ControlLabel>city</ControlLabel>
+              <FormControl onChange={this.handleChange('city')} type="city" placeholder=" eg.Chicago" />
+            </FormGroup>
+            <FormGroup controlId="formInlineState">
+              <ControlLabel>state</ControlLabel>
+              <FormControl onChange={this.handleChange('state')} type="state" placeholder=" eg. Illinois" />
+            </FormGroup>
+            <Button onClick={this.onCitySubmit} type="submit">
+              Submit
+            </Button>
+          </Form>
+        </div>
       );
     }
 
