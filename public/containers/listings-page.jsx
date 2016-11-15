@@ -59,7 +59,6 @@ class ListingsPage extends Component {
   }
 
   updateSorter(sorter) {
-    console.log('GOT HERE', sorter)
     this.setState({
       sorter
     });

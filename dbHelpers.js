@@ -58,32 +58,18 @@ module.exports = {
   },
 
   postListing: (listingInfo) => {
-    return geoCoder.geocode(`${listingInfo.city}, ${listingInfo.state}`)
+    return geoCoder.geocode(`${listingInfo.street} ${listingInfo.city}, ${listingInfo.state}`)
     .then((res) => {
-      return City.findOrCreate({
-        where: {
-          name: listingInfo.city.toUpperCase(),
-          state: listingInfo.state.toUpperCase(),
-          lat: res[0].latitude,
-          lon: res[0].longitude
-        }
+      listingInfo.lat = res[0].latitude;
+      listingInfo.lon = res[0].longitude;
+      return Listing.create(listingInfo)
+      .then((listing) => {
+        return listing;
       })
-      .spread((city) => {
-        return geoCoder.geocode(`${listingInfo.street} ${listingInfo.city}, ${listingInfo.state}`)
-        .then((res) => {
-          listingInfo.city_id = city.get('id');
-          listingInfo.lat = res[0].latitude;
-          listingInfo.lon = res[0].longitude;
-          return Listing.create(listingInfo)
-          .then((listing) => {
-            return listing;
-          })
-          .catch((err) => {
-            return `Error posting listing: ${err}`;
-          });
-        })
+      .catch((err) => {
+        return `Error posting listing: ${err}`;
       });
-    });
+    })
   },
 
   postImages: (imageData) => {

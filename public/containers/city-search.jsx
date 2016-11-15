@@ -12,9 +12,9 @@ class CitySearch extends Component {
   constructor(props) {
     super(props);
     this.state = { 
-      term: '',
-      isSubmitted: false
+      term: ''
     };
+    this.isSubmitted = false;
     this.onFormSubmit = this.onFormSubmit.bind(this);
     this.onInputChange = this.onInputChange.bind(this);
   }
@@ -26,26 +26,15 @@ class CitySearch extends Component {
   onFormSubmit(event) {
     event.preventDefault();
     this.props.selectCity(this.state.term);
-    this.setState({
-      isSubmitted: true
-    }) 
+    this.isSubmitted = true;
   }
 
   componentDidUpdate() {
-    if (this.props.activeCity && this.state.isSubmitted) { 
+    if (this.props.activeCity && this.isSubmitted) { 
       this.props.updateListings(this.props.activeCity.id);
       browserHistory.push('/content/listings');
-      this.setState({
-        isSubmitted: false
-      });
+      this.isSubmitted = false;
     }
-    // navigator.geolocation.getCurrentPosition((pos) => {
-      // request.get(`/api/position?lat=${pos.coords.latitude}&lon=${pos.coords.longitude}`)
-      // request.get('/api/position?lat=37.7749295&lon=-122.4194155')
-      // .then((data) => {
-      //   this.setState({ term: data.data });
-      // });
-    // });
   }
 
   render() {

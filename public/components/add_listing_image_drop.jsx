@@ -31,20 +31,6 @@ class ImageDrop extends Component {
     // props.setImages(acceptedFiles);
   }
 
-  handleImageUpload(files) {
-    const upload = request.post(CLOUDINARY_UPLOAD_URL)
-                          .field('upload_preset', CLOUDINARY_UPLOAD_PRESET)
-                          .field('file', files[0]);
-
-    upload.end((err, res) => {
-      if (err) { console.log('Cloudinary Error: ', err); }
-      console.log('CLOUDINARY URL ', res.body.secure_url);
-      this.setState({
-        images: [...this.state.images, res.body.secure_url]
-      });
-    });
-  }
-
   onFormSubmit(event) {
     event.preventDefault();
     request.post('/api/images')
@@ -54,6 +40,21 @@ class ImageDrop extends Component {
     });
     this.props.setActiveListing();
   }
+
+  handleImageUpload(files) {
+    const upload = request.post(CLOUDINARY_UPLOAD_URL)
+                          .field('upload_preset', CLOUDINARY_UPLOAD_PRESET)
+                          .field('file', files[0]);
+    upload.end((err, res) => {
+      if (err) { console.log('Cloudinary Error: ', err); }
+      console.log('CLOUDINARY URL ', res.body.secure_url);
+      this.setState({
+        images: [...this.state.images, res.body.secure_url]
+      });
+      this.props.setImages({ref: res.body.secure_url, id: res.body.secure_url});
+    });
+  }
+
 
   render() {
     return (
