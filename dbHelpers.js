@@ -4,12 +4,30 @@ const Image = require('./db/schema').Image;
 const User = require('./db/schema').User;
 
 const geoCoder = require('./geoCoder');
+const bcrypt = require('bcrypt');
 // const Host = require('./db/schema').Host;
 // const Renter = require('./db/schema').Renter;
 // const RenterListing = require('./db/schema').RenterListing;
 
 module.exports = {
   signUp: (userData) => {
+    User.find({ where: { username: userData.username } })
+    .then((user) => {
+      if (user) {
+        return 'User already exists';
+      }
+      bcrypt.genSalt(10, (err, salt) => {
+        if (err) { return err; }
+        bcrypt.has(userData.password, salt, null, (err, hash) => {
+          if (err) { return err; }
+          User.create({ username: userData.username, password: hash })
+          .then((user) => {
+            return user;
+          })
+        })
+      })
+      User.create({})
+    })
     // make sure user doesn't alreay exist
     // encrypt password and create new user
     // send back to route helpers
@@ -23,6 +41,9 @@ module.exports = {
       }
 
     })
+    .catch((err) => {
+      return `Error signing up: ${err}`;
+    });
     // find user
     // validate password
     // send back to roure helpers
