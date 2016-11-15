@@ -193,26 +193,40 @@ const RentalHistory = db.define('rentalhistory', {
 });
 
 // define model relationships
-// Listing.belongsTo(Host, { foreignKey: 'host_id' });
-// Host.hasMany(Listing, { foreignKey: 'host_id' });
-
+// Relationships for listings to detailed info
 Listing.belongsTo(City, { foreignKey: 'city_id' });
 City.hasMany(Listing, { foreignKey: 'city_id' });
+Image.belongsTo(Listing, { foreignKey: 'listing_id' });
+Listing.hasMany(Image, { foreignKey: 'listing_id' });
+
+/* Relationships for listings to users
+   1. listing to host
+   2. listing to renters
+*/
+Listing.belongsTo(User, { foreignKey: 'host_id' });
+User.hasMany(Listing, { foreignKey: 'host_id' });
+
+RenterListing.belongsTo(Listing, { foreignKey: 'listing_id' });
+Listing.hasMany(RenterListing, { foreignKey: 'listing_id' });
+RenterListing.belongsTo(User, { foreignKey: 'renter_id' });
+User.hasMany(RenterListing, { foreignKey: 'renter_id' });
+
+/* Relationships for renter details
+   1. renter to verification
+   2. renter to application
+      - application to rental history
+*/
+User.belongsTo(Verification, { foreignKey: 'verification_id' });
+
+User.belongsTo(Application, { foreignKey: 'Application_id' });
+RentalHistory.belongsTo(Application, { foreignKey: 'application_id' });
+Application.hasMany(RentalHistory, { foreignKey: 'application_id' });
 
 // Rating.belongsTo(Renter, { foreignKey: 'renter_id' });
 // Renter.hasMany(Rating, { foreignKey: 'renter_id' });
 
 // Rating.belongsTo(Host, { foreignKey: 'host_id' });
 // Host.hasMany(Rating, { foreignKey: 'host_id' });
-
-Image.belongsTo(Listing, { foreignKey: 'listing_id' });
-Listing.hasMany(Image, { foreignKey: 'listing_id' });
-
-// RenterListing.belongsTo(Renter, { foreignKey: 'renter_id' });
-// Renter.hasMany(RenterListing, { foreignKey: 'renter_id' });
-
-RenterListing.belongsTo(Listing, { foreignKey: 'listing_id' });
-Listing.hasMany(RenterListing, { foreignKey: 'listing_id' });
 
 // Renter.hasOne(Verification, { foreignKey: 'renter_id' });
 // Renter.hasOne(Verification, { foreignKey: 'renter_id' });
