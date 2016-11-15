@@ -26,7 +26,7 @@ class ListingPics extends Component {
     }
     return (
       <div>
-        <div><img className="curPic" src={this.state.currentImage} /></div>
+        <div><img className="curPic" key={this.state.currentImage} src={this.state.currentImage} /></div>
         {this.props.images.map((image) => (
           <img
             className="smallPics"

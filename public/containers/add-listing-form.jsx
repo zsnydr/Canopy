@@ -6,6 +6,7 @@ import { Form, FormGroup, FormControl, ControlLabel, Checkbox, DropdownButton, M
 import request from 'axios';
 
 import selectCity from '../actions/select_city';
+import selectListing from '../actions/select_listing';
 import Dropzone from '../components/add_listing_image_drop';
 
 class AddListing extends Component {
@@ -29,33 +30,46 @@ class AddListing extends Component {
       images: [],
       newListing: {}
     };
-
+    this.citySubmitted = false;
     this.onFormSubmit = this.onFormSubmit.bind(this);
     this.setImages = this.setImages.bind(this);
     this.setActiveListing = this.setActiveListing.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.handleSelect = this.handleSelect.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.onCitySubmit = this.onCitySubmit.bind(this);
+  }
+
+  onCitySubmit(event) {
+    event.preventDefault();
+    console.log(`${this.state.city}, ${this.state.state}`);
+    this.props.selectCity(`${this.state.city}, ${this.state.state}`);
+    this.citySubmitted = true;
   }
 
   onFormSubmit(event) {
     event.preventDefault();
-    request.post('/api/listings', listingData)
+    const newListing = Object.assign({
+      city_id: this.props.activeCity.id
+    }, this.state);
+    request.post('/api/listings', newListing)
     .then((listing) => {
-      this.setState({ newListing: listing.data});
-    })
-
+      this.setState({ newListing: listing.data });
+    });
   }
 
   setImages(files) {
     this.setState({
       images: [...this.state.images, files]
-    })
+    });
   }
-  
+
   setActiveListing() {
-    this.props.selectListing(this.state.newListing.extend({ images: this.state.images }));
-    browserHistory.push(`/content/listing/${this.state.newlisting.id}`);
+    const newActiveListing = Object.assign({
+      images: this.state.images },
+      this.state.newListing);
+    this.props.selectListing(newActiveListing);
+    browserHistory.push(`/content/listing/${this.state.newListing.id}`);
   }
 
   handleClick(key) {
@@ -82,12 +96,26 @@ class AddListing extends Component {
     };
   }
 
-  componentDidUpdate() {
-    this.render();
-  }
-
-
   render() {
+    if (!this.citySubmitted) {
+      console.log('city not submitted');
+      return (
+        <Form inline>
+          <FormGroup controlId="formInlineCity">
+            <ControlLabel>city</ControlLabel>
+            <FormControl onChange={this.handleChange('city')} type="city" placeholder=" eg.Chicago" />
+          </FormGroup>
+          <FormGroup controlId="formInlineState">
+            <ControlLabel>state</ControlLabel>
+            <FormControl onChange={this.handleChange('state')} type="state" placeholder=" eg. Illinois" />
+          </FormGroup>
+          <Button onClick={this.onCitySubmit} type="submit">
+            Submit
+          </Button>
+        </Form>
+      );
+    }
+
     if (!this.state.newListing.id) {
       return (
         <div className="listingForm">
@@ -98,14 +126,6 @@ class AddListing extends Component {
             </FormGroup>
             <FormGroup controlId="formInlineUnit">
               <FormControl onChange={this.handleChange('unitNumber')} placeholder="unit" />
-            </FormGroup>
-            <FormGroup controlId="formInlineCity">
-              <ControlLabel>city</ControlLabel>
-              <FormControl onChange={this.handleChange('city')} type="city" placeholder=" eg.Chicago" />
-            </FormGroup>
-            <FormGroup controlId="formInlineState">
-              <ControlLabel>state</ControlLabel>
-              <FormControl onChange={this.handleChange('state')} type="state" placeholder=" eg. Illinois" />
             </FormGroup>
             <FormGroup controlId="formInlineZip">
               <ControlLabel>zip</ControlLabel>
@@ -170,24 +190,30 @@ class AddListing extends Component {
         </div>
       );
     }
+
     return (
       <div>
         <Form>
-          <Dropzone setImages={this.setImages} setActiveListing={this.setActiveListing} listingId={this.state.newListing.id} />
+          <Dropzone
+            setImages={this.setImages}
+            setActiveListing={this.setActiveListing}
+            listingId={this.state.newListing.id}
+          />
         </Form>
       </div>
     );
   }
 }
 
-function mapStateToProps({ activeListing }) {
+function mapStateToProps({ activeListing, activeCity }) {
   return {
-    activeListing
+    activeListing,
+    activeCity
   };
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ selectListing }, dispatch);
+  return bindActionCreators({ selectListing, selectCity }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddListing);

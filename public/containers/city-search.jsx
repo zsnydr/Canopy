@@ -30,12 +30,10 @@ class CitySearch extends Component {
   }
 
   componentDidUpdate() {
-    console.log('Component did update');
     if (this.props.activeCity && this.isSubmitted) { 
       this.props.updateListings(this.props.activeCity.id);
       browserHistory.push('/content/listings');
       this.isSubmitted = false;
-      this.render();
     }
   }
 

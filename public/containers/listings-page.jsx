@@ -59,15 +59,9 @@ class ListingsPage extends Component {
   }
 
   updateSorter(sorter) {
-    console.log('GOT HERE', sorter)
     this.setState({
       sorter
     });
-  }
-
-  componentDidUpdate() {
-    console.log('props.listings in page: ',this.props.listings);
-    this.render();
   }
 
   render() {
