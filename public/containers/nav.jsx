@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import {Nav, Navbar, NavItem, MenuItem, NavDropdown } from 'react-bootstrap';
+import { Nav, Navbar, NavItem } from 'react-bootstrap';
 import { browserHistory } from 'react-router';
 
 class NavBar extends Component {
@@ -11,7 +10,7 @@ class NavBar extends Component {
     this.goToExplore = this.goToExplore.bind(this);
   }
 
-  goHome(){
+  goHome() {
     browserHistory.push('/');
   }
 
@@ -21,16 +20,16 @@ class NavBar extends Component {
 
   render() {
     return (
-      <div className='navBar'>
+      <div className="navBar">
         <Navbar inverse collapseOnSelect>
-          <Navbar.Header className='renterCity'>
+          <Navbar.Header className="renterCity">
             <Navbar.Brand>
               <a onClick={this.goHome}>canopy</a>
             </Navbar.Brand>
             <Navbar.Toggle />
           </Navbar.Header>
           <Navbar.Collapse>
-            <Nav className='links' pullRight>
+            <Nav className="links" pullRight>
               <NavItem eventKey={1} href="#">SignIn</NavItem>
               <NavItem eventKey={2} href="#">SignUp</NavItem>
               <NavItem eventKey={3} onClick={this.goToExplore}>Explore</NavItem>

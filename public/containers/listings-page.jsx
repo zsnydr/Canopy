@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+
 import ListingsList from '../components/listings_list';
 import GoogleMaps from '../components/google_maps';
 import CitySearch from './city-search';
-import selectListing from '../actions/select_listing';
 
+import selectListing from '../actions/select_listing';
 
 class ListingsPage extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
       bedFilter: 0,
       bathFilter: 0,
@@ -76,6 +76,9 @@ class ListingsPage extends Component {
 
     return (
       <div className="listingsPage">
+        <div>
+          <CitySearch />
+        </div>
         <div className="listings_list">
           <ListingsList
             listings={filtered}

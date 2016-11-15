@@ -1,12 +1,7 @@
 import React, { Component } from 'react';
 import request from 'superagent';
-// import request from 'axios';
 import Dropzone from 'react-dropzone';
 import { Button } from 'react-bootstrap';
-import browserHistory from 'react-router';
-import selectListing from '../actions/select_listing';
-// import postImages from '../actions/post_images';
-
 
 const CLOUDINARY_UPLOAD_PRESET = 'wdrjd71q';
 const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/canopydev/image/upload';
@@ -24,11 +19,9 @@ class ImageDrop extends Component {
     this.onFormSubmit = this.onFormSubmit.bind(this);
   }
 
-
   onDrop(acceptedFiles, rejectedFiles) {
-    console.log('ACC ', acceptedFiles)
+    console.log('ACC ', acceptedFiles);
     this.handleImageUpload(acceptedFiles);
-    // props.setImages(acceptedFiles);
   }
 
   onFormSubmit(event) {
@@ -51,10 +44,9 @@ class ImageDrop extends Component {
       this.setState({
         images: [...this.state.images, res.body.secure_url]
       });
-      this.props.setImages({ref: res.body.secure_url, id: res.body.secure_url});
+      this.props.setImages({ ref: res.body.secure_url, id: res.body.secure_url });
     });
   }
-
 
   render() {
     return (
@@ -63,7 +55,7 @@ class ImageDrop extends Component {
           <div className="imageDrop">Drop images here, or click to select files to upload.</div>
           <div>
             {this.state.images.map((img) => {
-              return <img key={img} src={img} />
+              return <img key={img} src={img} alt="" />;
             })}
           </div>
         </Dropzone>
