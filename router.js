@@ -5,6 +5,10 @@ module.exports = (app) => {
     res.send('hello');
   });
 
+  app.post('/api/signup', helpers.signUp);
+
+  app.post('/api/signin', helpers.signIn);
+
   app.get('/api/position', helpers.getCurrentPosition);
 
   app.get('/api/cities/:city', helpers.getCity);
