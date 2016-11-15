@@ -1,6 +1,7 @@
 const Listing = require('./db/schema').Listing;
 const City = require('./db/schema').City;
 const Image = require('./db/schema').Image;
+const User = require('./db/schema').User;
 
 const geoCoder = require('./geoCoder');
 // const Host = require('./db/schema').Host;
@@ -8,6 +9,25 @@ const geoCoder = require('./geoCoder');
 // const RenterListing = require('./db/schema').RenterListing;
 
 module.exports = {
+  signUp: (userData) => {
+    // make sure user doesn't alreay exist
+    // encrypt password and create new user
+    // send back to route helpers
+  },
+
+  signIn: (userData) => {
+    User.find({ where: { username: userData.username } })
+    .then((user) => {
+      if (!user) {
+        return 'User does not exist';
+      }
+
+    })
+    // find user
+    // validate password
+    // send back to roure helpers
+  },
+
   getCity: (city) => {
     return geoCoder.geocode(city)
     .then((res) => {

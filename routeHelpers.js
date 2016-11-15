@@ -5,12 +5,28 @@ const geoCoder = require('./geoCoder');
 const dbHelpers = require('./dbHelpers');
 
 module.exports = {
+  signUp: (req, res) => {
+    dbHelpers.signUp(req.body)
+    .then((user) => {
+      // JWT
+      // send token back to client, along with user type flag
+    })
+  },
+
+  signIn: (req, res) => {
+    dbHelpers.signIn(req.body)
+    .then((user) => {
+      // JWT
+      // send token back to client, along with user type flag
+    })
+  },
+
   getCurrentPosition: (req, res) => {
     geoCoder.reverse({ lat: req.query.lat, lon: req.query.lon }, (err, data) => {
       res.send(`${data[0].city}, ${data[0].administrativeLevels.level1short}`);
     });
   },
-  
+
   getCity: (req, res) => {
     dbHelpers.getCity(req.params.city)
     .then((city) => {

@@ -93,6 +93,23 @@ const Renter = db.define('renter', {
   }
 });
 
+const User = db.define('user', {
+  id: {
+    type: Sequelize.INTEGER,
+    primaryKey: true,
+    autoIncrement: true
+  },
+  name: Sequelize.TEXT,
+  email: Sequelize.TEXT,
+  password: Sequelize.TEXT,
+  phone: Sequelize.INTEGER,
+  userType: Sequelize.TEXT,
+  numListings: Sequelize.INTEGER,
+  numRatings: Sequelize.INTEGER,
+  avgRating: Sequelize.DECIMAL(10, 1),
+  numApplied: Sequelize.INTEGER
+});
+
 const RenterListing = db.define('renterlisting', {
   id: {
     type: Sequelize.INTEGER,
@@ -110,6 +127,7 @@ const Image = db.define('image', {
   },
   ref: Sequelize.TEXT
 });
+
 const Rating = db.define('rating', {
   id: {
     type: Sequelize.INTEGER,
@@ -163,6 +181,7 @@ db.sync({ force: false })
 });
 
 module.exports = {
+  User,
   City,
   Listing,
   Host,

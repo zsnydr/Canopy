@@ -7,10 +7,12 @@ import Listings from './containers/listings-page';
 import Splash from './components/splashpage';
 import ListingPage from './containers/listing-page';
 import AddListing from './components/add_listing_page';
+import SignIn from './components/sign_in';
 
 export default (
   <Route path="/" component={App}>
     <IndexRoute component={Splash} />
+    <Route path="signin" component={SignIn} />
     <Route path="content" component={Nav}>
       <Route path="listings" component={Listings} />
       <Route path="listing/:id" component={ListingPage} />
