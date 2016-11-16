@@ -11,3 +11,5 @@ config.js
 
 ## webpack bundle ##
 publicServed/bundle.js
+
+.config

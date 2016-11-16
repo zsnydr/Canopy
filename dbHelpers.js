@@ -8,6 +8,7 @@ const geoCoder = require('./geoCoder');
 const bcrypt = require('bcrypt');
 const request = require('axios');
 const parser = require('xml2json');
+const config = require('./config')
 
 module.exports = {
 
@@ -97,9 +98,11 @@ module.exports = {
       const options = {
         lat: res[0].latitude,
         lon: res[0].longitude,
-        wsapikey: '6097c708f6567e7055fc6fb0c8d281f6'
+        wsapikey: config.wsAPIkey
       };
-      let params = Object.assign({ address: `${listingInfo.street}&${listingInfo.city}&${listingInfo.state}&${listingInfo.zip}` }, options);
+      let params = Object.assign({
+        address: `${listingInfo.street}&${listingInfo.city}&${listingInfo.state}&${listingInfo.zip}`
+      }, options);
       return request.get('http://api.walkscore.com/score', { params })
     })
     .then((walkscoreXML) => {
