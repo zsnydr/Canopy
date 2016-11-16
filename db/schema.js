@@ -42,7 +42,7 @@ const Listing = db.define('listing', {
   baths: Sequelize.DECIMAL(10, 1),
   street: Sequelize.TEXT,
   zip: Sequelize.INTEGER,
-  unitNumber: Sequelize.INTEGER,
+  unitNumber: Sequelize.TEXT,
   rent: Sequelize.INTEGER,
   sqFoot: Sequelize.INTEGER,
   dogs: Sequelize.BOOLEAN,
@@ -65,11 +65,11 @@ const User = db.define('user', {
   name: Sequelize.TEXT,
   email: Sequelize.TEXT,
   password: Sequelize.TEXT,
-  phone: Sequelize.INTEGER,
+  phone: Sequelize.BIGINT,
   userType: Sequelize.TEXT, // renter or host
-  numApplied: Sequelize.INTEGER // null for host
-  // numRatings: Sequelize.INTEGER, // null for renter
-  // avgRating: Sequelize.DECIMAL(10, 1), // null for renter
+  numApplied: Sequelize.INTEGER, // null for host
+  numRatings: Sequelize.INTEGER, // null for renter
+  avgRating: Sequelize.DECIMAL(10, 1), // null for renter
   // fk application id
   // fk verification id
 });
@@ -185,14 +185,11 @@ Application.belongsTo(User, { foreignKey: 'renter_id' });
 RentalHistory.belongsTo(Application, { foreignKey: 'application_id' });
 Application.hasMany(RentalHistory, { foreignKey: 'application_id' });
 
-// Rating.belongsTo(Renter, { foreignKey: 'renter_id' });
-// Renter.hasMany(Rating, { foreignKey: 'renter_id' });
-
-// Rating.belongsTo(Host, { foreignKey: 'host_id' });
-// Host.hasMany(Rating, { foreignKey: 'host_id' });
-
-// Renter.hasOne(Verification, { foreignKey: 'renter_id' });
-// Renter.hasOne(Verification, { foreignKey: 'renter_id' });
+/* Relationship for renters rating */
+Rating.belongsTo(User, { foreignKey: 'renter_id' });
+User.hasMany(Rating, { foreignKey: 'renter_id' });
+Rating.belongsTo(User, { foreignKey: 'host_id' });
+User.hasMany(Rating, { foreignKey: 'host_id' });
 
 // build tables
 db.sync({ force: false })

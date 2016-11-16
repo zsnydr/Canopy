@@ -41,17 +41,17 @@ const hostData = [
   {
     name: 'Sean Enright',
     email: 'seanenright@property.com',
-    phone: 1413856987,
+    phone: 5413856987,
     userType: 'host'
   }, {
     name: 'Victor Choi',
     email: 'victorchoi@nest.com',
-    phone: 1413762384,
+    phone: 5413762384,
     userType: 'host'
   }, {
     name: 'Zack Snyder',
     email: 'zacksnyder@mgmt.com',
-    phone: 1035869374,
+    phone: 5035869374,
     userType: 'host'
   }];
 
@@ -63,7 +63,7 @@ const listingData = [
     street: '1890 Page St',
     city_id: 1,
     zip: 94117,
-    unitNumber: 101,
+    unitNumber: '#101',
     rent: 1200,
     sqFoot: 60,
     dogs: false,
@@ -80,7 +80,7 @@ const listingData = [
     street: '800 Bush St',
     city_id: 1,
     zip: 94108,
-    unitNumber: 424,
+    unitNumber: "424G",
     rent: 1650,
     sqFoot: 700,
     dogs: true,
@@ -134,6 +134,22 @@ const imageData = [
   }, { listing_id: 3,
     ref: 'http://res.cloudinary.com/canopydev/image/upload/v1478815224/fastRat_o8pmqh.jpg'
   }, { listing_id: 4,
+    ref: 'http://res.cloudinary.com/canopydev/image/upload/v1478815234/panTuna_fep0v6.jpg'
+  },{ listing_id: 2,
+    ref: 'http://res.cloudinary.com/canopydev/image/upload/v1478815237/tigar_emdap4.jpg'
+  }, { listing_id: 3,
+    ref: 'http://res.cloudinary.com/canopydev/image/upload/v1478815229/kawhi_wm1vki.jpg'
+  }, { listing_id: 4,
+    ref: 'http://res.cloudinary.com/canopydev/image/upload/v1478815224/fastRat_o8pmqh.jpg'
+  }, { listing_id: 1,
+    ref: 'http://res.cloudinary.com/canopydev/image/upload/v1478815234/panTuna_fep0v6.jpg'
+  }, { listing_id: 3,
+    ref: 'http://res.cloudinary.com/canopydev/image/upload/v1478815237/tigar_emdap4.jpg'
+  }, { listing_id: 4,
+    ref: 'http://res.cloudinary.com/canopydev/image/upload/v1478815229/kawhi_wm1vki.jpg'
+  }, { listing_id: 1,
+    ref: 'http://res.cloudinary.com/canopydev/image/upload/v1478815224/fastRat_o8pmqh.jpg'
+  }, { listing_id: 2,
     ref: 'http://res.cloudinary.com/canopydev/image/upload/v1478815234/panTuna_fep0v6.jpg'
   }];
 /* c for Create
