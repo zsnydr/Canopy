@@ -2,15 +2,19 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { browserHistory } from 'react-router';
-import { Form, FormGroup, FormControl, ControlLabel, Checkbox, DropdownButton, MenuItem, InputGroup, Button } from 'react-bootstrap';
+import { Form, Checkbox, Button } from 'react-bootstrap';
 import request from 'axios';
 
+import FormText from '../components/form/form_text';
+import FormNumber from '../components/form/form_num';
+import FormDropdown from '../components/form/form_dropdown';
+import FormDate from '../components/form/form_date';
 import Dropzone from '../components/add_listing_image_drop';
 
 import selectCity from '../actions/select_city';
 import selectListing from '../actions/select_listing';
 
-class AddListing extends Component {
+class ApplyForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -97,66 +101,18 @@ class AddListing extends Component {
       return (
         <div className="listingForm">
           <Form inline>
-            <FormGroup controlId="formInlineCity">
-              <ControlLabel>city</ControlLabel>
-              <FormControl onChange={this.handleChange('city')} type="city" placeholder=" eg.Chicago" />
-            </FormGroup>
-            <FormGroup controlId="formInlineState">
-              <ControlLabel>state</ControlLabel>
-              <FormControl onChange={this.handleChange('state')} type="state" placeholder=" eg. Illinois" />
-            </FormGroup>
-            <FormGroup controlId="formInlineAddress">
-              <ControlLabel>address</ControlLabel>
-              <FormControl onChange={this.handleChange('street')} type="address" placeholder="eg. 1060 W. Addison" />
-            </FormGroup>
-            <FormGroup controlId="formInlineUnit">
-              <ControlLabel>address 2</ControlLabel>
-              <FormControl onChange={this.handleChange('unitNumber')} placeholder="unit" />
-            </FormGroup>
-            <FormGroup controlId="formInlineZip">
-              <ControlLabel>zip</ControlLabel>
-              <FormControl onChange={this.handleChange('zip')} type="number" placeholder="60016" />
-            </FormGroup>
+            <FormText type="city" handleChange={this.handleChange} placeholder=" eg.Chicago" />
+            <FormText type="state" handleChange={this.handleChange} placeholder=" eg.Illinois" />
+            <FormText type="address" handleChange={this.handleChange} placeholder=" eg.1060 W. Addison" />
+            <FormText type="unit" handleChange={this.handleChange} placeholder=" eg.#1244" />
+            <FormText type="zip" handleChange={this.handleChange} placeholder=" eg.88888" />
             <br />
-
-            <DropdownButton
-              componentClass={InputGroup.Button}
-              id="input-dropdown-addon"
-              title={this.state.beds || 'Beds'}
-              onSelect={this.handleSelect('beds')}
-            >
-              <MenuItem eventKey="1">1</MenuItem>
-              <MenuItem eventKey="2">2</MenuItem>
-              <MenuItem eventKey="3">3</MenuItem>
-              <MenuItem eventKey="4">4</MenuItem>
-              <MenuItem eventKey="5">5</MenuItem>
-            </DropdownButton>
-
-            <DropdownButton
-              componentClass={InputGroup.Button}
-              id="input-dropdown-addon"
-              title={this.state.baths || 'Baths'}
-              key="baths"
-              onSelect={this.handleSelect('baths')}
-            >
-              <MenuItem eventKey="1">1</MenuItem>
-              <MenuItem eventKey="2">2</MenuItem>
-              <MenuItem eventKey="3">3</MenuItem>
-              <MenuItem eventKey="4">4</MenuItem>
-              <MenuItem eventKey="5">5</MenuItem>
-            </DropdownButton>
-            <FormGroup controlId="square foot">
-              <ControlLabel>sq. foot</ControlLabel>
-              <FormControl onChange={this.handleChange('sqFoot')} type="number" placeholder="sq. foot" />
-            </FormGroup>
-            <FormGroup controlId="rent">
-              <ControlLabel>rent</ControlLabel>
-              <FormControl onChange={this.handleChange('rent')} type="number" placeholder="2100" />
-            </FormGroup>
-            <FormGroup controlId="term">
-              <ControlLabel>term</ControlLabel>
-              <FormControl onChange={this.handleChange('term')} type="number" placeholder="12" />
-            </FormGroup>
+            <FormDropdown type="beds" items={[1, 2, 3, 4, 5]} handleSelect={this.handleSelect} />
+            <FormDropdown type="baths" items={[1, 2, 3, 4, 5]} handleSelect={this.handleSelect} />
+            <br />
+            <FormNumber type="sqFoot" handleChange={this.handleChange} placeholder="sq. foot" />
+            <FormNumber type="rent" handleChange={this.handleChange} placeholder="2100" />
+            <FormNumber type="term" handleChange={this.handleChange} placeholder="12" />
             <br />
             <Checkbox key="dogs" onClick={this.handleClick('dogs')} inline>
               dogs
@@ -165,10 +121,7 @@ class AddListing extends Component {
               cats
             </Checkbox>
             <br />
-            <FormGroup controlId="date">
-              <ControlLabel>Available Date</ControlLabel>
-              <FormControl onChange={this.handleChange('availableDate')} type="date" placeholder="yyy-mm-dd" />
-            </FormGroup>
+            <FormDate label="availableDate" handleChange={this.handleChange} />
             <Button onClick={this.onFormSubmit} type="submit">
               Submit
             </Button>
@@ -195,4 +148,4 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators({ selectListing, selectCity }, dispatch);
 }
 
-export default connect(null, mapDispatchToProps)(AddListing);
+export default connect(null, mapDispatchToProps)(ApplyForm);
