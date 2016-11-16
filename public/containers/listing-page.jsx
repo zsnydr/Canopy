@@ -13,7 +13,6 @@ class ListingPage extends Component {
     if (!this.props.activeListing) {
       return <div>Waiting for active listing..</div>;
     }
-    console.log('ACTIVELISTING IN LISTING PAGE ', this.props.activeListing);
 
     return (
       <div className="listing_page">
