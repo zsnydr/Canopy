@@ -119,6 +119,7 @@ module.exports = {
   },
 
   postImages: (imageData) => {
+    console.log(imageData);
     return new Promise((resolve, reject) => {
       const { images, listing_id } = imageData;
       images.forEach((image) => {

@@ -78,6 +78,7 @@ module.exports = {
   },
 
   postImages: (req, res) => {
+    console.log("got to postImages")
     dbHelpers.postImages(req.body)
     .then(() => {
       res.end();
