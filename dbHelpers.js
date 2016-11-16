@@ -115,7 +115,6 @@ module.exports = {
       .catch((err) => {
         return `Error posting listing: ${err}`;
       })
-    .catch(err=>{console.err(err)});
   },
 
   postImages: (imageData) => {
