@@ -53,7 +53,9 @@ const Listing = db.define('listing', {
   laundry: Sequelize.TEXT,
   availableDate: Sequelize.DATEONLY,
   lat: Sequelize.DECIMAL(10, 7),
-  lon: Sequelize.DECIMAL(10, 7)
+  lon: Sequelize.DECIMAL(10, 7),
+  walkScore: Sequelize.TEXT,
+  transitScore: Sequelize.TEXT
 });
 
 const User = db.define('user', {
@@ -92,14 +94,14 @@ const Image = db.define('image', {
   ref: Sequelize.TEXT
 });
 
-const Rating = db.define('rating', {
-  id: {
-    type: Sequelize.INTEGER,
-    primaryKey: true,
-    autoIncrement: true
-  },
-  stars: Sequelize.INTEGER
-});
+// const Rating = db.define('rating', {
+//   id: {
+//     type: Sequelize.INTEGER,
+//     primaryKey: true,
+//     autoIncrement: true
+//   },
+//   stars: Sequelize.INTEGER
+// });
 
 const Verification = db.define('verification', {
   id: {
@@ -186,10 +188,10 @@ RentalHistory.belongsTo(Application, { foreignKey: 'application_id' });
 Application.hasMany(RentalHistory, { foreignKey: 'application_id' });
 
 /* Relationship for renters rating */
-Rating.belongsTo(User, { foreignKey: 'renter_id' });
-User.hasMany(Rating, { foreignKey: 'renter_id' });
-Rating.belongsTo(User, { foreignKey: 'host_id' });
-User.hasMany(Rating, { foreignKey: 'host_id' });
+// Rating.belongsTo(User, { foreignKey: 'renter_id' });
+// User.hasMany(Rating, { foreignKey: 'renter_id' });
+// Rating.belongsTo(User, { foreignKey: 'host_id' });
+// User.hasMany(Rating, { foreignKey: 'host_id' });
 
 // build tables
 db.sync({ force: false })
@@ -207,6 +209,6 @@ module.exports = {
   Verification,
   Application,
   RentalHistory,
-  Image,
-  Rating
+  Image
+  // Rating
 };

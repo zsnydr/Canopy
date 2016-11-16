@@ -104,6 +104,7 @@ module.exports = {
       .then((walkscoreXML) => {
         const walkScoreJSON = parser.toJson(walkscoreXML.data);
         console.log("+++++response from walk score+++++++++", walkScoreJSON);
+        listingInfo.walkScore = walkScoreJSON;
        //   //update listingInfo with walkscore
       // params = Object.assign({ city: listingInfo.city, state: listingInfo.state }, options);
       // request.get('http://transit.walkscore.com/transit/score/?lat=47.6101359&lon=-122.3420567&city=Seattle&state=WA&wsapikey=6097c708f6567e7055fc6fb0c8d281f6')
@@ -111,9 +112,11 @@ module.exports = {
       // console.log('++++++++++Transit Score++++++++', transitscoreXML);
     })
       .catch(err=>{console.log(err)});
+
       return Listing.create(listingInfo);
     })
       .then((listing) => {
+        console.log("listing created", listing)
         return listing;
       })
       .catch((err) => {
