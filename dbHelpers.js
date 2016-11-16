@@ -1,49 +1,41 @@
+const { saltPromise, hashPromise, comparePromise } = require('./authHelpers');
 const Listing = require('./db/schema').Listing;
 const City = require('./db/schema').City;
 const Image = require('./db/schema').Image;
 const User = require('./db/schema').User;
 
 const geoCoder = require('./geoCoder');
-// const bcrypt = require('bcrypt');
+
 
 module.exports = {
+
   signUp: (userData) => {
-    User.find({ where: { username: userData.username } })
-    .then((user) => {
-      if (user) {
-        return 'User already exists';
-      }
-      bcrypt.genSalt(10, (err, salt) => {
-        if (err) { return err; }
-        bcrypt.has(userData.password, salt, null, (err, hash) => {
-          if (err) { return err; }
-          User.create({ username: userData.username, password: hash })
-          .then((user) => {
-            return user;
-          })
-        })
-      })
-      User.create({})
+    return User.find({ where: { email: userData.email } })
+    .then((found) => {
+      if (found) { throw new Error('User exists'); }
+      return saltPromise(12);
     })
-    // make sure user doesn't alreay exist
-    // encrypt password and create new user
-    // send back to route helpers
+    .then((salt) => {
+      return hashPromise(userData.password, salt);
+    })
+    .then((hash) => {
+      return User.create({ email: userData.email, password: hash });
+    })
+    .then((user) => {
+      return user;
+    });
   },
 
   signIn: (userData) => {
-    User.find({ where: { username: userData.username } })
+    return User.find({ where: { email: userData.email } })
     .then((user) => {
-      if (!user) {
-        return 'User does not exist';
-      }
-
+      if (!user) { throw new Error('User does not exist'); }
+      return comparePromise(userData.password, user);
     })
-    .catch((err) => {
-      return `Error signing up: ${err}`;
+    .then(({ user, match }) => {
+      if (!match) { throw new Error('Password invalid'); }
+      return user;
     });
-    // find user
-    // validate password
-    // send back to roure helpers
   },
 
   getCity: (city) => {

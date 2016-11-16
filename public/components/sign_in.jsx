@@ -1,38 +1,42 @@
 import React, { Component } from 'react';
 import request from 'axios';
-// import browserHistory from 'react-router';
+import { browserHistory } from 'react-router';
+
+import selectUser from '../actions/select_user';
+
 
 class SignInPage extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      username: '',
+      email: '',
       password: ''
     };
 
-    this.onUsernameChange = this.onUsernameChange.bind(this);
+    this.onEmailChange = this.onEmailChange.bind(this);
     this.onPasswordChange = this.onPasswordChange.bind(this);
     this.signIn = this.signIn.bind(this);
   }
 
-  onUsernameChange(event) {
-    this.setState({ username: event.target.value });
+  onEmailChange(event) {
+    this.setState({ email: event.target.value });
   }
 
   onPasswordChange(event) {
     this.setState({ password: event.target.value });
   }
 
-  signIn(event) {
+  signIn() {
     request.post('/api/signin', this.state)
     .then((res) => {
-      console.log('SIGNIN RES: ', res);
       window.localStorage.setItem('canopy', res.data.token);
-      // browserHistory.push('/content/profile');
+      selectUser(res.data.user);
+      browserHistory.push('/');
     })
     .catch((err) => {
       console.log('Error signing in: ', err);
+      browserHistory.push('/signin');
     });
   }
 
@@ -41,7 +45,7 @@ class SignInPage extends Component {
       <div>
         <h3>Sign In</h3>
         <form onSubmit={this.signIn} action="javascript:void(0)">
-          <input type="text" onChange={this.onUsernameChange} value={this.state.username}>Username</input>
+          <input type="text" onChange={this.onEmailChange} value={this.state.email}>Email</input>
           <input type="text" onChange={this.onPasswordChange} value={this.state.password}>Password</input>
           <input type="submit" />
         </form>

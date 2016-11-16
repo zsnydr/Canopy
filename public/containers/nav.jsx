@@ -18,6 +18,11 @@ class NavBar extends Component {
     browserHistory.push('/content/addListing');
   }
 
+  logOut() {
+    window.localStorage.removeItem('canopy');
+    browserHistory.push('/');
+  }
+
   render() {
     return (
       <div className="navBar">
@@ -33,6 +38,7 @@ class NavBar extends Component {
               <NavItem eventKey={1} href="#">SignIn</NavItem>
               <NavItem eventKey={2} href="#">SignUp</NavItem>
               <NavItem eventKey={3} onClick={this.goToExplore}>Explore</NavItem>
+              <NavItem eventKey={4} onClick={ths.logOut}>Log Out</NavItem>
             </Nav>
           </Navbar.Collapse>
         </Navbar>

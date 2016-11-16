@@ -1,24 +1,31 @@
-const fs = require('file-system');
-const path = require('path');
+// const fs = require('file-system');
+// const path = require('path');
 const geoCoder = require('./geoCoder');
 
 const dbHelpers = require('./dbHelpers');
+const { encodeJwt } = require('./authHelpers');
+
 
 module.exports = {
+
   signUp: (req, res) => {
     dbHelpers.signUp(req.body)
     .then((user) => {
-      // JWT
-      // send token back to client, along with user type flag
+      res.json(encodeJwt(user));
     })
+    .catch((err) => {
+      res.status(400).send(err);
+    });
   },
 
   signIn: (req, res) => {
     dbHelpers.signIn(req.body)
     .then((user) => {
-      // JWT
-      // send token back to client, along with user type flag
+      res.json(encodeJwt(user));
     })
+    .catch((err) => {
+      res.status(400).send(err);
+    });
   },
 
   getCurrentPosition: (req, res) => {
@@ -70,21 +77,11 @@ module.exports = {
     });
   },
 
-  getImages: (req, res) => {
-    res.writeHead(201, { 'Content-Type': 'img/jpeg' });
-    fs.readFile(path.join(__dirname, '/assets/', req.params.image), (err, data) => {
-      if (err) {
-        console.log('Error reading image: ', err);
-      }
-      res.end(data);
-    });
-  },
-
   postImages: (req, res) => {
     dbHelpers.postImages(req.body)
     .then(() => {
-      console.log('IN POST IMAGES THEN BLOCK')
       res.end();
     });
   }
+
 };
