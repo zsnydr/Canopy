@@ -1,23 +1,24 @@
-const helpers = require('./routeHelpers');
+const routeHelpers = require('./routeHelpers');
+// const authHelpers = require('./authHelpers');
 
 module.exports = (app) => {
   app.get('/test', (req, res) => {
     res.send('hello');
   });
 
-  app.post('/api/signup', helpers.signUp);
+  app.post('/api/signup', routeHelpers.signUp);
 
-  app.post('/api/signin', helpers.signIn);
+  app.post('/api/signin', routeHelpers.signIn);
 
-  app.get('/api/position', helpers.getCurrentPosition);
+  app.get('/api/position', routeHelpers.getCurrentPosition);
 
-  app.get('/api/cities/:city', helpers.getCity);
+  app.get('/api/cities/:city', routeHelpers.getCity);
 
-  app.get('/api/listings/:cityId', helpers.getListings);
+  app.get('/api/listings/:cityId', routeHelpers.getListings);
 
-  app.post('/api/listings', helpers.postListing);
+  app.post('/api/listings', routeHelpers.postListing);
 
-  app.get('/api/listing/:listingId', helpers.getListing);
+  app.get('/api/listing/:listingId', routeHelpers.getListing);
 
-  app.post('/api/images', helpers.postImages);
+  app.post('/api/images', routeHelpers.postImages);
 };

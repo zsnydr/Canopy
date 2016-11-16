@@ -1,46 +1,41 @@
+const { saltPromise, hashPromise, comparePromise } = require('./authHelpers');
 const Listing = require('./db/schema').Listing;
 const City = require('./db/schema').City;
 const Image = require('./db/schema').Image;
 const User = require('./db/schema').User;
 
 const geoCoder = require('./geoCoder');
-// const bcrypt = require('bcrypt');
+
 
 module.exports = {
+
   signUp: (userData) => {
-    User.find({ where: { username: userData.username } })
+    return User.find({ where: { email: userData.email } })
+    .then((found) => {
+      if (found) { throw new Error('User exists'); }
+      return saltPromise(12);
+    })
+    .then((salt) => {
+      return hashPromise(userData.password, salt);
+    })
+    .then((hash) => {
+      return User.create({ email: userData.email, password: hash });
+    })
     .then((user) => {
-      if (user) { return 'User already exists'; }
-      bcrypt.genSalt(10, (saltErr, salt) => {
-        if (saltErr) { return saltErr; }
-        bcrypt.hash(userData.password, salt, null, (hashErr, hash) => {
-          if (hashErr) { return hashErr; }
-          User.create({ username: userData.username, password: hash })
-          .then((newUser) => {
-            return newUser;
-          })
-          .catch((err) => {
-            return `Error signing up: ${err}`;
-          });
-        });
-      });
+      return user;
     });
   },
 
   signIn: (userData) => {
-    User.find({ where: { username: userData.username } })
+    return User.find({ where: { email: userData.email } })
     .then((user) => {
-      if (!user) {
-        return 'User does not exist';
-      }
-
+      if (!user) { throw new Error('User does not exist'); }
+      return comparePromise(userData.password, user);
     })
-    .catch((err) => {
-      return `Error signing up: ${err}`;
+    .then(({ user, match }) => {
+      if (!match) { throw new Error('Password invalid'); }
+      return user;
     });
-    // find user
-    // validate password
-    // send back to roure helpers
   },
 
   getCity: (city) => {
