@@ -38,7 +38,7 @@ class NavBar extends Component {
               <NavItem eventKey={1} href="#">SignIn</NavItem>
               <NavItem eventKey={2} href="#">SignUp</NavItem>
               <NavItem eventKey={3} onClick={this.goToExplore}>Explore</NavItem>
-              <NavItem eventKey={4} onClick={ths.logOut}>Log Out</NavItem>
+              <NavItem eventKey={4} onClick={this.logOut}>Log Out</NavItem>
             </Nav>
           </Navbar.Collapse>
         </Navbar>
