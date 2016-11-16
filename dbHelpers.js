@@ -4,10 +4,7 @@ const Image = require('./db/schema').Image;
 const User = require('./db/schema').User;
 
 const geoCoder = require('./geoCoder');
-const bcrypt = require('bcrypt');
-// const Host = require('./db/schema').Host;
-// const Renter = require('./db/schema').Renter;
-// const RenterListing = require('./db/schema').RenterListing;
+// const bcrypt = require('bcrypt');
 
 module.exports = {
   signUp: (userData) => {

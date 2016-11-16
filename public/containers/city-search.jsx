@@ -26,6 +26,7 @@ class CitySearch extends Component {
     event.preventDefault();
     request.get(`/api/cities/${this.state.term}`)
     .then((city) => {
+      // console.log('city got it');
       this.props.selectCity(city.data);
       return request.get(`/api/listings/${city.data.id}`);
     })

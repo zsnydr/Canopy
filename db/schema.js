@@ -42,7 +42,7 @@ const Listing = db.define('listing', {
   baths: Sequelize.DECIMAL(10, 1),
   street: Sequelize.TEXT,
   zip: Sequelize.INTEGER,
-  unitNumber: Sequelize.INTEGER,
+  unitNumber: Sequelize.TEXT,
   rent: Sequelize.INTEGER,
   sqFoot: Sequelize.INTEGER,
   dogs: Sequelize.BOOLEAN,
@@ -56,46 +56,6 @@ const Listing = db.define('listing', {
   lon: Sequelize.DECIMAL(10, 7)
 });
 
-// const Host = db.define('host', {
-//   id: {
-//     type: Sequelize.INTEGER,
-//     primaryKey: true,
-//     autoIncrement: true
-//   },
-//   numListings: {
-//     type: Sequelize.INTEGER,
-//     default: 0
-//   },
-//   numRatings: {
-//     type: Sequelize.INTEGER,
-//     default: 0
-//   },
-//   avgRating: {
-//     type: Sequelize.DECIMAL(10, 1),
-//     default: 0
-//   },
-//   name: Sequelize.TEXT,
-//   email: Sequelize.TEXT,
-//   phone: Sequelize.BIGINT,
-//   password: Sequelize.TEXT
-// });
-
-// const Renter = db.define('renter', {
-//   id: {
-//     type: Sequelize.INTEGER,
-//     primaryKey: true,
-//     autoIncrement: true
-//   },
-//   name: Sequelize.TEXT,
-//   email: Sequelize.TEXT,
-//   phone: Sequelize.INTEGER,
-//   password: Sequelize.TEXT,
-//   numApplied: {
-//     type: Sequelize.INTEGER,
-//     default: 0
-//   }
-// });
-
 const User = db.define('user', {
   id: {
     type: Sequelize.INTEGER,
@@ -105,12 +65,11 @@ const User = db.define('user', {
   name: Sequelize.TEXT,
   email: Sequelize.TEXT,
   password: Sequelize.TEXT,
-  phone: Sequelize.INTEGER,
+  phone: Sequelize.BIGINT,
   userType: Sequelize.TEXT, // renter or host
-  numListings: Sequelize.INTEGER, // null for renter
+  numApplied: Sequelize.INTEGER, // null for host
   numRatings: Sequelize.INTEGER, // null for renter
   avgRating: Sequelize.DECIMAL(10, 1), // null for renter
-  numApplied: Sequelize.INTEGER // null for host
   // fk application id
   // fk verification id
 });
@@ -158,7 +117,9 @@ const Application = db.define('application', {
     primaryKey: true,
     autoIncrement: true
   },
-  address: Sequelize.TEXT,
+  city: Sequelize.TEXT,
+  street: Sequelize.TEXT,
+  zip: Sequelize.INTEGER,
   numAdultOccupants: {
     type: Sequelize.INTEGER,
     default: 1
@@ -184,7 +145,9 @@ const RentalHistory = db.define('rentalhistory', {
     primaryKey: true,
     autoIncrement: true
   },
-  address: Sequelize.TEXT,
+  city: Sequelize.TEXT,
+  street: Sequelize.TEXT,
+  zip: Sequelize.INTEGER,
   landlordName: Sequelize.TEXT,
   landlordPhone: Sequelize.INTEGER,
   rentPayment: Sequelize.INTEGER,
@@ -193,29 +156,40 @@ const RentalHistory = db.define('rentalhistory', {
 });
 
 // define model relationships
-// Listing.belongsTo(Host, { foreignKey: 'host_id' });
-// Host.hasMany(Listing, { foreignKey: 'host_id' });
-
+// Relationships for listings to detailed info
 Listing.belongsTo(City, { foreignKey: 'city_id' });
 City.hasMany(Listing, { foreignKey: 'city_id' });
-
-// Rating.belongsTo(Renter, { foreignKey: 'renter_id' });
-// Renter.hasMany(Rating, { foreignKey: 'renter_id' });
-
-// Rating.belongsTo(Host, { foreignKey: 'host_id' });
-// Host.hasMany(Rating, { foreignKey: 'host_id' });
-
 Image.belongsTo(Listing, { foreignKey: 'listing_id' });
 Listing.hasMany(Image, { foreignKey: 'listing_id' });
 
-// RenterListing.belongsTo(Renter, { foreignKey: 'renter_id' });
-// Renter.hasMany(RenterListing, { foreignKey: 'renter_id' });
+/* Relationships for listings to users
+   1. listing to host
+   2. listing to renters
+*/
+Listing.belongsTo(User, { foreignKey: 'host_id' });
+User.hasMany(Listing, { foreignKey: 'host_id' });
 
 RenterListing.belongsTo(Listing, { foreignKey: 'listing_id' });
 Listing.hasMany(RenterListing, { foreignKey: 'listing_id' });
+RenterListing.belongsTo(User, { foreignKey: 'renter_id' });
+User.hasMany(RenterListing, { foreignKey: 'renter_id' });
 
-// Renter.hasOne(Verification, { foreignKey: 'renter_id' });
-// Renter.hasOne(Verification, { foreignKey: 'renter_id' });
+/* Relationships for renter details
+   1. renter to verification
+   2. renter to application
+      - application to rental history
+*/
+Verification.belongsTo(User, { foreignKey: 'renter_id' });
+
+Application.belongsTo(User, { foreignKey: 'renter_id' });
+RentalHistory.belongsTo(Application, { foreignKey: 'application_id' });
+Application.hasMany(RentalHistory, { foreignKey: 'application_id' });
+
+/* Relationship for renters rating */
+Rating.belongsTo(User, { foreignKey: 'renter_id' });
+User.hasMany(Rating, { foreignKey: 'renter_id' });
+Rating.belongsTo(User, { foreignKey: 'host_id' });
+User.hasMany(Rating, { foreignKey: 'host_id' });
 
 // build tables
 db.sync({ force: false })
@@ -229,8 +203,6 @@ module.exports = {
   User,
   City,
   Listing,
-  // Host,
-  // Renter,
   RenterListing,
   Verification,
   Application,
