@@ -98,22 +98,15 @@ module.exports = {
         lat: res[0].latitude,
         lon: res[0].longitude,
         wsapikey: '6097c708f6567e7055fc6fb0c8d281f6'
-     };
-    let params = Object.assign({ address: `${listingInfo.street}&${listingInfo.city}&${listingInfo.state}&${listingInfo.zip}` }, options);
-      request.get('http://api.walkscore.com/score', { params })
-      .then((walkscoreXML) => {
-        const walkScoreJSON = parser.toJson(walkscoreXML.data);
-        console.log("+++++response from walk score+++++++++", walkScoreJSON);
-        listingInfo.walkScore = walkScoreJSON;
-       //   //update listingInfo with walkscore
-      // params = Object.assign({ city: listingInfo.city, state: listingInfo.state }, options);
-      // request.get('http://transit.walkscore.com/transit/score/?lat=47.6101359&lon=-122.3420567&city=Seattle&state=WA&wsapikey=6097c708f6567e7055fc6fb0c8d281f6')
-      //   .then(function(transitscoreXML) {
-      // console.log('++++++++++Transit Score++++++++', transitscoreXML);
+      };
+      let params = Object.assign({ address: `${listingInfo.street}&${listingInfo.city}&${listingInfo.state}&${listingInfo.zip}` }, options);
+      return request.get('http://api.walkscore.com/score', { params })
     })
-      .catch(err=>{console.log(err)});
+    .then((walkscoreXML) => {
+      const walkScoreJSON = parser.toJson(walkscoreXML.data);
+      listingInfo.walkScore = walkScoreJSON;
 
-      return Listing.create(listingInfo);
+      return Listing.create(listingInfo); 
     })
       .then((listing) => {
         console.log("listing created", listing)
@@ -145,3 +138,11 @@ module.exports = {
     });
   }
 };
+
+//ghost code lives down here!!
+
+    //   //update listingInfo with walkscore
+      // params = Object.assign({ city: listingInfo.city, state: listingInfo.state }, options);
+      // request.get('http://transit.walkscore.com/transit/score/?lat=47.6101359&lon=-122.3420567&city=Seattle&state=WA&wsapikey=6097c708f6567e7055fc6fb0c8d281f6')
+      //   .then(function(transitscoreXML) {
+      // console.log('++++++++++Transit Score++++++++', transitscoreXML);
