@@ -6,19 +6,19 @@ const dbHelpers = require('./dbHelpers');
 
 module.exports = {
   signUp: (req, res) => {
-    // dbHelpers.signUp(req.body)
-    // .then((user) => {
-    //   // JWT
-    //   // send token back to client, along with user type flag
-    // })
+    dbHelpers.signUp(req.body)
+    .then((user) => {
+      // JWT
+      // send token back to client, along with user type flag
+    })
   },
 
   signIn: (req, res) => {
-    // dbHelpers.signIn(req.body)
-    // .then((user) => {
-    //   // JWT
-    //   // send token back to client, along with user type flag
-    // })
+    dbHelpers.signIn(req.body)
+    .then((user) => {
+      // JWT
+      // send token back to client, along with user type flag
+    })
   },
 
   getCurrentPosition: (req, res) => {

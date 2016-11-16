@@ -5,9 +5,10 @@ import { browserHistory } from 'react-router';
 import { Form, FormGroup, FormControl, ControlLabel, Checkbox, DropdownButton, MenuItem, InputGroup, Button } from 'react-bootstrap';
 import request from 'axios';
 
+import Form_text from '../components/form_text.jsx';
+
 import selectCity from '../actions/select_city';
 import selectListing from '../actions/select_listing';
-
 class ApplyForm extends Component {
   constructor(props) {
     super(props);
@@ -89,14 +90,8 @@ class ApplyForm extends Component {
       return (
         <div className="listingForm">
           <Form inline>
-            <FormGroup controlId="formInlineCity">
-              <ControlLabel>city</ControlLabel>
-              <FormControl onChange={this.handleChange('city')} type="city" placeholder=" eg.Chicago" />
-            </FormGroup>
-            <FormGroup controlId="formInlineState">
-              <ControlLabel>state</ControlLabel>
-              <FormControl onChange={this.handleChange('state')} type="state" placeholder=" eg. Illinois" />
-            </FormGroup>
+            <Form_text type="city" handleChange={this.handleChange} placeholder=" eg.Chicago" />
+            <Form_text type="state" handleChange={this.handleChange} placeholder=" eg.Illinois" />
             <FormGroup controlId="formInlineAddress">
               <ControlLabel>address</ControlLabel>
               <FormControl onChange={this.handleChange('street')} type="address" placeholder="eg. 1060 W. Addison" />
