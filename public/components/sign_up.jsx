@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import request from 'axios';
-// import browserHistory from 'react-router';
+import browserHistory from 'react-router';
 
 class SignInPage extends Component {
   constructor(props) {
@@ -24,12 +24,12 @@ class SignInPage extends Component {
     this.setState({ password: event.target.value });
   }
 
-  signUp(event) {
+  signUp() {
     request.post('/api/signup', this.state)
     .then((res) => {
       console.log('SIGNUP RES: ', res);
       window.localStorage.setItem('canopy', res.data.token);
-      // browserHistory.push('/content/profile');
+      browserHistory.push('/content/profile');
     })
     .catch((err) => {
       console.log('Error signing up: ', err);

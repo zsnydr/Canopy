@@ -1,21 +1,23 @@
 const fs = require('file-system');
 const path = require('path');
 const geoCoder = require('./geoCoder');
+const jwt = require('jwt-simple');
 
 const dbHelpers = require('./dbHelpers');
 
 module.exports = {
   signUp: (req, res) => {
     dbHelpers.signUp(req.body)
-    .then((user) => {
-      // JWT
-      // send token back to client, along with user type flag
-    })
+    .then((userData) => {
+      const token = jwt.encode(userData.username, 'monkey');
+      res.json({ token });
+    });
   },
 
   signIn: (req, res) => {
     dbHelpers.signIn(req.body)
-    .then((user) => {
+    .then((userData) => {
+      var token = jwt.endoce(user.username)
       // JWT
       // send token back to client, along with user type flag
     })

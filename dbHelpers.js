@@ -10,24 +10,21 @@ module.exports = {
   signUp: (userData) => {
     User.find({ where: { username: userData.username } })
     .then((user) => {
-      if (user) {
-        return 'User already exists';
-      }
-      bcrypt.genSalt(10, (err, salt) => {
-        if (err) { return err; }
-        bcrypt.has(userData.password, salt, null, (err, hash) => {
-          if (err) { return err; }
+      if (user) { return 'User already exists'; }
+      bcrypt.genSalt(10, (saltErr, salt) => {
+        if (saltErr) { return saltErr; }
+        bcrypt.hash(userData.password, salt, null, (hashErr, hash) => {
+          if (hashErr) { return hashErr; }
           User.create({ username: userData.username, password: hash })
-          .then((user) => {
-            return user;
+          .then((newUser) => {
+            return newUser;
           })
-        })
-      })
-      User.create({})
-    })
-    // make sure user doesn't alreay exist
-    // encrypt password and create new user
-    // send back to route helpers
+          .catch((err) => {
+            return `Error signing up: ${err}`;
+          });
+        });
+      });
+    });
   },
 
   signIn: (userData) => {
