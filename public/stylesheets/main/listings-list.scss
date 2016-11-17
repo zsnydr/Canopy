@@ -15,14 +15,13 @@
     right:0;
   }
 
-  .listings_list {
-
-   
-    position: fixed;
+  .listings_list {   
+   position: fixed;
     display: inline-block;
     width: 50vw;
     height: 100vh;
     left:0;
+    overflow: auto;
 
     .listing{
       border: solid 1px;

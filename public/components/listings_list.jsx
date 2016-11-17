@@ -16,6 +16,7 @@ const ListingsList = (props) => {
 
     return props.listings.map((listing) => {
       return (
+        <div className="listing">
         <ListingsListItem
           key={listing.id}
           listing={listing}
@@ -24,6 +25,8 @@ const ListingsList = (props) => {
           selectListing={props.selectListing}
           goToListing={goToListing}
         />
+        Compare: <input type="checkbox" />
+        </div>
       );
     });
   };

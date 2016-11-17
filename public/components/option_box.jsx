@@ -3,7 +3,7 @@ import { Nav, Navbar, MenuItem, NavDropdown, SplitButton } from 'react-bootstrap
 
 const OptionBox = (props) => {
   return (
-    <Navbar inverse collapseOnSelect>
+    <Navbar className="listingOptions" inverse collapseOnSelect>
       <Navbar.Header>
         <Navbar.Toggle />
       </Navbar.Header>

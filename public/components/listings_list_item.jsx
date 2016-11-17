@@ -3,7 +3,6 @@ import React from 'react';
 const ListingsListItem = (props) => {
   return (
     <div
-      className="listing"
       key={props.listing.id}
       onClick={() => {
         props.selectListing(props.listing);
