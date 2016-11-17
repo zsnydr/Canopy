@@ -26,11 +26,12 @@ class ImageDrop extends Component {
 
   onFormSubmit(event) {
     event.preventDefault();
-    request.post('/api/images')
-    .send({
-      listing_id: this.props.listingId,
-      images: this.state.images
-    });
+    const sendImage = request.post('/api/images')
+      .send({
+        listing_id: this.props.listingId,
+        images: this.state.images
+      });
+    sendImage.end();
     this.props.setActiveListing();
   }
 

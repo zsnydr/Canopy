@@ -18,13 +18,13 @@ class ApplyForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      street: '',
+      street: 0,
       unitNumber: 0,
       city: '',
       state: '',
       zip: 0,
-      beds: 0,
-      baths: 0,
+      beds: 'beds',
+      baths: 'baths',
       rent: 0,
       sqFoot: 0,
       dogs: false,
@@ -103,12 +103,12 @@ class ApplyForm extends Component {
           <Form inline>
             <FormText type="city" handleChange={this.handleChange} placeholder=" eg.Chicago" />
             <FormText type="state" handleChange={this.handleChange} placeholder=" eg.Illinois" />
-            <FormText type="address" handleChange={this.handleChange} placeholder=" eg.1060 W. Addison" />
+            <FormText type="street" handleChange={this.handleChange} placeholder=" eg.1060 W. Addison" />
             <FormText type="unit" handleChange={this.handleChange} placeholder=" eg.#1244" />
             <FormText type="zip" handleChange={this.handleChange} placeholder=" eg.88888" />
             <br />
-            <FormDropdown type="beds" items={[1, 2, 3, 4, 5]} handleSelect={this.handleSelect} />
-            <FormDropdown type="baths" items={[1, 2, 3, 4, 5]} handleSelect={this.handleSelect} />
+            <FormDropdown type={this.state.beds} items={[1, 2, 3, 4, 5]} handleSelect={this.handleSelect} />
+            <FormDropdown type={this.state.baths} items={[1, 2, 3, 4, 5]} handleSelect={this.handleSelect} />
             <br />
             <FormNumber type="sqFoot" handleChange={this.handleChange} placeholder="sq. foot" />
             <FormNumber type="rent" handleChange={this.handleChange} placeholder="2100" />

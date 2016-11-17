@@ -5,7 +5,10 @@ const Image = require('./db/schema').Image;
 const User = require('./db/schema').User;
 
 const geoCoder = require('./geoCoder');
-
+const bcrypt = require('bcrypt');
+const request = require('axios');
+const parser = require('xml2json');
+const config = require('./config')
 
 module.exports = {
 
@@ -92,17 +95,33 @@ module.exports = {
     .then((res) => {
       listingInfo.lat = res[0].latitude;
       listingInfo.lon = res[0].longitude;
-      return Listing.create(listingInfo)
+      const options = {
+        lat: res[0].latitude,
+        lon: res[0].longitude,
+        wsapikey: config.wsAPIkey
+      };
+      let params = Object.assign({
+        address: `${listingInfo.street}&${listingInfo.city}&${listingInfo.state}&${listingInfo.zip}`
+      }, options);
+      return request.get('http://api.walkscore.com/score', { params })
+    })
+    .then((walkscoreXML) => {
+      const walkScoreJSON = parser.toJson(walkscoreXML.data);
+      listingInfo.walkScore = walkScoreJSON;
+
+      return Listing.create(listingInfo); 
+    })
       .then((listing) => {
+        console.log("listing created", listing)
         return listing;
       })
       .catch((err) => {
         return `Error posting listing: ${err}`;
-      });
-    })
+      })
   },
 
   postImages: (imageData) => {
+    console.log(imageData);
     return new Promise((resolve, reject) => {
       const { images, listing_id } = imageData;
       images.forEach((image) => {
@@ -122,3 +141,11 @@ module.exports = {
     });
   }
 };
+
+//ghost code lives down here!!
+
+    //   //update listingInfo with walkscore
+      // params = Object.assign({ city: listingInfo.city, state: listingInfo.state }, options);
+      // request.get('http://transit.walkscore.com/transit/score/?lat=47.6101359&lon=-122.3420567&city=Seattle&state=WA&wsapikey=6097c708f6567e7055fc6fb0c8d281f6')
+      //   .then(function(transitscoreXML) {
+      // console.log('++++++++++Transit Score++++++++', transitscoreXML);
