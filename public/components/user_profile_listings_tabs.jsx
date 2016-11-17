@@ -5,13 +5,13 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 // import ListingsListItem from './listings_list_item';
 
 const UserProfileListingsTabs = (props) => {
+  console.log('USER ', typeof props.activeUser.userType)
   return (
     <div>
       <Tabs>
         <TabList style={{ textAlign: 'center' }}>
-          { (props.activeUser.userType === '"renter"') && <Tab className="profile-renter-tab">Renter</Tab> }
-          { (props.activeUser.userType === '"host"') && <Tab className="profile-host-tab">Host</Tab> }
-          <Tab>Host</Tab>
+          {props.activeUser.userType % 2 === 0 ? <Tab className="profile-renter-tab">Renter</Tab> : null}
+          {props.activeUser.userType === 1 ? <Tab className="profile-host-tab">Host</Tab> : null}
         </TabList>
         <TabPanel>
           <Tabs>

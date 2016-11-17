@@ -14,7 +14,7 @@ class SignUpPage extends Component {
       name: '',
       email: '',
       password: '',
-      userType: ''
+      userType: 0
     };
 
     this.onNameChange = this.onNameChange.bind(this);
