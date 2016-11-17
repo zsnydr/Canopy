@@ -42,17 +42,17 @@ const hostData = [
     name: 'Sean Enright',
     email: 'seanenright@property.com',
     phone: 5413856987,
-    userType: 'host'
+    userType: 2
   }, {
     name: 'Victor Choi',
     email: 'victorchoi@nest.com',
     phone: 5413762384,
-    userType: 'host'
+    userType: 0
   }, {
     name: 'Zack Snyder',
     email: 'zacksnyder@mgmt.com',
     phone: 5035869374,
-    userType: 'host'
+    userType: 1
   }];
 
 // mock listings
@@ -182,4 +182,3 @@ Promise.all([
 .catch((err) => {
   console.log('Error creating listing: ', err);
 });
-

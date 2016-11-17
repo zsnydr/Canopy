@@ -68,10 +68,10 @@ const User = db.define('user', {
   email: Sequelize.TEXT,
   password: Sequelize.TEXT,
   phone: Sequelize.BIGINT,
-  userType: Sequelize.TEXT, // renter or host
-  numApplied: Sequelize.INTEGER, // null for host
-  numRatings: Sequelize.INTEGER, // null for renter
-  avgRating: Sequelize.DECIMAL(10, 1), // null for renter
+  userType: Sequelize.INTEGER // 0 for renter, 1 for host, 2 for both
+  // numApplied: Sequelize.INTEGER, // null for host
+  // numRatings: Sequelize.INTEGER, // null for renter
+  // avgRating: Sequelize.DECIMAL(10, 1), // null for renter
   // fk application id
   // fk verification id
 });

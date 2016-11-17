@@ -17,6 +17,7 @@ const ListingsList = (props) => {
     return props.listings.map((listing) => {
       return (
         <ListingsListItem
+          key={listing.id}
           listing={listing}
           city={props.city}
           state={props.state}
