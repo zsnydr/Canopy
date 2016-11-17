@@ -22,7 +22,12 @@ module.exports = {
       return hashPromise(userData.password, salt);
     })
     .then((hash) => {
-      return User.create({ email: userData.email, password: hash });
+      return User.create({
+        name: userData.name,
+        email: userData.email,
+        password: hash,
+        userType: userData.userType
+      });
     })
     .then((user) => {
       return user;

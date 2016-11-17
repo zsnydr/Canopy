@@ -18,6 +18,10 @@ class NavBar extends Component {
     browserHistory.push('/content/addListing');
   }
 
+  goToProfile() {
+    browserHistory.push('/content/profile/1');
+  }
+
   logOut() {
     window.localStorage.removeItem('canopy');
     browserHistory.push('/');
@@ -35,6 +39,7 @@ class NavBar extends Component {
           </Navbar.Header>
           <Navbar.Collapse>
             <Nav className="links" pullRight>
+              <NavItem eventKey={0} onClick={this.goToProfile}>Profile</NavItem>
               <NavItem eventKey={1} href="#">SignIn</NavItem>
               <NavItem eventKey={2} href="#">SignUp</NavItem>
               <NavItem eventKey={3} onClick={this.goToExplore}>Explore</NavItem>

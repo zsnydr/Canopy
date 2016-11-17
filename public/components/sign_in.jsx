@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import request from 'axios';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { browserHistory } from 'react-router';
 
 import selectUser from '../actions/select_user';
@@ -31,7 +33,7 @@ class SignInPage extends Component {
     request.post('/api/signin', this.state)
     .then((res) => {
       window.localStorage.setItem('canopy', res.data.token);
-      selectUser(res.data.user);
+      this.props.selectUser(res.data.user);
       browserHistory.push('/');
     })
     .catch((err) => {
@@ -54,4 +56,8 @@ class SignInPage extends Component {
   }
 }
 
-export default SignInPage;
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ selectUser }, dispatch);
+}
+
+export default connect(null, mapDispatchToProps)(SignInPage);
