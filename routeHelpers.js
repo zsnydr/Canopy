@@ -83,6 +83,12 @@ module.exports = {
     .then(() => {
       res.end();
     });
+  },
+  
+  postApplication: (req, res) => {
+    dbHelpers.postApplication(req.body)
+    .then(() => {
+      res.end();
+    })
   }
-
 };

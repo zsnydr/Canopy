@@ -144,7 +144,9 @@ module.exports = {
       });
       resolve();
     });
-  }
+  },
+
+  postApplication
 };
 
 //ghost code lives down here!!

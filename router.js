@@ -21,4 +21,6 @@ module.exports = (app) => {
   app.get('/api/listing/:listingId', routeHelpers.getListing);
 
   app.post('/api/images', routeHelpers.postImages);
+
+  app.post('/api/application', routeHelpers.postApplication);
 };
