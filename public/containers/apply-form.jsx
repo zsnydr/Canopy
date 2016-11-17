@@ -128,18 +128,6 @@ class ApplyForm extends Component {
         </div>
       );
     }
-
-    return (
-      <div>
-        <Form>
-          <Dropzone
-            setImages={this.setImages}
-            setActiveListing={this.setActiveListing}
-            listingId={this.state.newListing.id}
-          />
-        </Form>
-      </div>
-    );
   }
 }
 
