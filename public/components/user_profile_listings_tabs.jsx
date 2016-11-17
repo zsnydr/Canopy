@@ -10,8 +10,8 @@ const UserProfileListingsTabs = (props) => {
     <div>
       <Tabs>
         <TabList style={{ textAlign: 'center' }}>
-          {props.activeUser.userType % 2 === 0 ? <Tab className="profile-renter-tab">Renter</Tab> : null}
-          {props.activeUser.userType === 1 ? <Tab className="profile-host-tab">Host</Tab> : null}
+          {props.activeUser.userType % 2 === 0 && <Tab className="profile-renter-tab">Renter</Tab>}
+          {props.activeUser.userType > 0 && <Tab className="profile-host-tab">Host</Tab>}
         </TabList>
         <TabPanel>
           <Tabs>
