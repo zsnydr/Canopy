@@ -42,17 +42,17 @@ const hostData = [
     name: 'Sean Enright',
     email: 'seanenright@property.com',
     phone: 5413856987,
-    userType: 'host'
+    userType: 2
   }, {
     name: 'Victor Choi',
     email: 'victorchoi@nest.com',
     phone: 5413762384,
-    userType: 'both'
+    userType: 0
   }, {
     name: 'Zack Snyder',
     email: 'zacksnyder@mgmt.com',
     phone: 5035869374,
-    userType: 'renter'
+    userType: 1
   }];
 
 // mock listings
