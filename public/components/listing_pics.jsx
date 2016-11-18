@@ -1,18 +1,20 @@
 import React, { Component } from 'react';
+import { Carousel } from 'react-bootstrap';
 
 class ListingPics extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentImage: (this.props.images.length) ? this.props.images[0].ref : ''
+      index: 0,
+      direction: null
     };
-
-    this.updateCurrentImage = this.updateCurrentImage.bind(this);
+    this.handleSelect = this.handleSelect.bind(this);
   }
 
-  updateCurrentImage(event) {
+  handleSelect(selectedIndex, e) {
     this.setState({
-      currentImage: event.target.src
+      index: selectedIndex,
+      direction: e.direction
     });
   }
 
@@ -23,17 +25,19 @@ class ListingPics extends Component {
       </div>);
     }
     return (
-      <div>
-        <div><img className="curPic" key={this.state.currentImage} src={this.state.currentImage} /></div>
-        {this.props.images.map((image) => (
+     <Carousel className="listingPics" activeIndex={this.state.index} direction={this.state.direction} onSelect={this.handleSelect}>
+       {this.props.images.map((image) => (
+        <Carousel.Item>
           <img
-            className="smallPics"
+            alt="900x500"
             key={image.id}
             src={image.ref}
-            onClick={this.updateCurrentImage}
           />
+           <Carousel.Caption>
+          </Carousel.Caption>
+        </Carousel.Item>
         ))}
-      </div>
+      </Carousel>
     );
   }
 }

@@ -10,6 +10,7 @@ import AddListing from './components/add_listing_page';
 import SignIn from './components/sign_in';
 import SignUp from './components/sign_up';
 import UserProfile from './containers/user-profile';
+import CompareListings from './containers/compare-listings-page.jsx'
 
 export default (
   <Route path="/" component={App}>
@@ -21,6 +22,7 @@ export default (
       <Route path="listings" component={Listings} />
       <Route path="listing/:id" component={ListingPage} />
       <Route path="addListing" component={AddListing} />
+      <Route path="compareListings" component={CompareListings} />
     </Route>
   </Route>
 );

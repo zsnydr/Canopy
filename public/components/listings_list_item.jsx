@@ -3,7 +3,6 @@ import React from 'react';
 const ListingsListItem = (props) => {
   return (
     <div
-      className="listing"
       key={props.listing.id}
       onClick={() => {
         props.selectListing(props.listing);
@@ -11,7 +10,7 @@ const ListingsListItem = (props) => {
       }}
     >
       <div className="listingImg">
-        image goes here
+       ..images will go here
       </div>
       <div className="listingListDetails">
         <h3>${props.listing.rent}</h3>

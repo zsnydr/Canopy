@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { Button } from 'react-bootstrap';
+import { browserHistory } from 'react-router';
 
 import ListingsList from '../components/listings_list';
 import GoogleMaps from '../components/google_maps';
 import CitySearch from './city-search';
 
 import selectListing from '../actions/select_listing';
+import compareListings from '../actions/compare_listings';
 
 class ListingsPage extends Component {
   constructor(props) {
@@ -22,12 +25,14 @@ class ListingsPage extends Component {
       maxRentFilterHeader: '',
       sorter: 'id'
     };
-
+    this.listingsCompared = [];
     this.updateBedFilter = this.updateBedFilter.bind(this);
     this.updateBathFilter = this.updateBathFilter.bind(this);
     this.updateMinRentFilter = this.updateMinRentFilter.bind(this);
     this.updateMaxRentFilter = this.updateMaxRentFilter.bind(this);
     this.updateSorter = this.updateSorter.bind(this);
+    this.compareListings = this.compareListings.bind(this);
+    this.updateCompareListings = this.updateCompareListings.bind(this);
   }
 
   updateBedFilter(numBeds) {
@@ -64,6 +69,20 @@ class ListingsPage extends Component {
     });
   }
 
+  compareListings(event) {
+    event.preventDefault();
+    console.log("listings to compare", this.listingsCompared);
+    this.props.compareListings(this.listingsCompared);
+    browserHistory.push('/content/compareListings');
+  }
+
+  updateCompareListings(listing, key) {
+    event.preventDefault();
+    console.log('listingselected', listing, key);
+    this.listingsCompared = [...this.listingsCompared, listing]    
+  }
+
+
   render() {
     const filtered = this.props.listings.filter((listing) => {
       return listing.beds >= this.state.bedFilter &&
@@ -78,6 +97,11 @@ class ListingsPage extends Component {
       <div className="listingsPage">
         <div>
           <CitySearch />
+        </div>
+        <div>
+          <Button bsStyle="primary" onClick={this.compareListings}>
+            Compare Listings
+          </Button>
         </div>
         <div className="listings_list">
           <ListingsList
@@ -94,6 +118,7 @@ class ListingsPage extends Component {
             minRentFilterHeader={this.state.minRentFilterHeader}
             maxRentFilterHeader={this.state.maxRentFilterHeader}
             selectListing={this.props.selectListing}
+            updateCompareListings={this.updateCompareListings}
           />
         </div>
         <div className="listings_map">
@@ -116,7 +141,7 @@ function mapStateToProps({ activeCity, listings }) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ selectListing }, dispatch);
+  return bindActionCreators({ selectListing, compareListings }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ListingsPage);

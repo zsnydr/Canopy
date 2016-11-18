@@ -220,9 +220,3 @@ module.exports = {
 };
 
 //ghost code lives down here!!
-
-    //   //update listingInfo with walkscore
-      // params = Object.assign({ city: listingInfo.city, state: listingInfo.state }, options);
-      // request.get('http://transit.walkscore.com/transit/score/?lat=47.6101359&lon=-122.3420567&city=Seattle&state=WA&wsapikey=6097c708f6567e7055fc6fb0c8d281f6')
-      //   .then(function(transitscoreXML) {
-      // console.log('++++++++++Transit Score++++++++', transitscoreXML);

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import request from 'superagent';
 import Dropzone from 'react-dropzone';
-import { Button } from 'react-bootstrap';
+import { Button, ProgressBar } from 'react-bootstrap';
 
 const CLOUDINARY_UPLOAD_PRESET = 'wdrjd71q';
 const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/canopydev/image/upload';
@@ -11,7 +11,8 @@ class ImageDrop extends Component {
     super(props);
 
     this.state = {
-      images: []
+      images: [],
+      button: true
     };
 
     this.handleImageUpload = this.handleImageUpload.bind(this);
@@ -21,6 +22,7 @@ class ImageDrop extends Component {
 
   onDrop(acceptedFiles, rejectedFiles) {
     console.log('ACC ', acceptedFiles);
+    this.setState({button: true});
     this.handleImageUpload(acceptedFiles);
   }
 
@@ -43,7 +45,8 @@ class ImageDrop extends Component {
       if (err) { console.log('Cloudinary Error: ', err); }
       console.log('CLOUDINARY URL ', res.body.secure_url);
       this.setState({
-        images: [...this.state.images, res.body.secure_url]
+        images: [...this.state.images, res.body.secure_url],
+        button: false
       });
       this.props.setImages({ ref: res.body.secure_url, id: res.body.secure_url });
     });
@@ -53,14 +56,15 @@ class ImageDrop extends Component {
     return (
       <div>
         <Dropzone onDrop={this.onDrop}>
-          <div className="imageDrop">Drop images here, or click to select files to upload.</div>
-          <div>
-            {this.state.images.map((img) => {
-              return <img key={img} src={img} alt="" />;
-            })}
-          </div>
+          <div>Drop images here, or click to select files to upload.</div>
         </Dropzone>
-        <Button onClick={this.onFormSubmit} type="submit">
+        <h1> Dropped Images:</h1>
+        <div>
+          {this.state.images.map((img) => {
+            return <img className="droppedPics" key={img} src={img} alt="" />;
+          })}
+        </div>
+        <Button onClick={this.onFormSubmit} type="submit" disabled={this.state.button}>
           Submit
         </Button>
       </div>

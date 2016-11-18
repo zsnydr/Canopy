@@ -8,32 +8,31 @@
 
 .listingMap {
   margin:0;
-  width: 100vh;
-  height: 20vh;
-  right:0;
+  margin-left: 1vw;
+  width: 98vw;
+  height: 20%;
+  position: center;
 }
-
 
 .listingInfo {
   display: inline-block;
   margin-left: 2vw;
-
     .walkScore div{
       display: inline-block;
+
     }
   
   .details {
+    margin: 0;
     margin-right: 2vw;
     display: inline-block;
   }
 }
 
-.smallPics {
-  border-radius: 50%;
-  height: 20vh;
-}
-
-.curPic {
-  border-radius: 15%;
-  height: 35vh;
+.listingPics {
+  height: 100%;
+  img{
+    height: 100%;
+    width: 100%
+  }
 }

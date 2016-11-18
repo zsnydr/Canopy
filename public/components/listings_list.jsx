@@ -1,8 +1,10 @@
 import React from 'react';
 import { browserHistory } from 'react-router';
+import { Button, Glyphicon } from 'react-bootstrap';
 
 import OptionBox from './option_box';
 import ListingsListItem from './listings_list_item';
+
 
 const ListingsList = (props) => {
   const goToListing = (listing) => {
@@ -16,6 +18,7 @@ const ListingsList = (props) => {
 
     return props.listings.map((listing) => {
       return (
+        <div className="listing">
         <ListingsListItem
           key={listing.id}
           listing={listing}
@@ -24,6 +27,15 @@ const ListingsList = (props) => {
           selectListing={props.selectListing}
           goToListing={goToListing}
         />
+        Compare:
+        <Button bsSize="xsmall"
+          onClick={() => {
+           props.updateCompareListings(listing);
+          }}
+        >
+          <Glyphicon glyph="star" />
+        </Button>
+        </div>
       );
     });
   };

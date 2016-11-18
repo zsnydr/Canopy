@@ -11,9 +11,6 @@ const ListingDetail = ({ activeListing, activeCity }) => {
         <div className="listingDesc">
           <ListingDesc activeListing={activeListing} activeCity={activeCity} />
         </div>
-        <div className="listingScores">
-         <ListingScores activeListing={activeListing} />
-        </div>
       </div>
       <ListingPics images={activeListing.images} />
     </div>
