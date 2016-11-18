@@ -29,4 +29,8 @@ module.exports = (app) => {
   app.get('/api/rentalHistory/:applicationId', routeHelpers.getRentalHistory);
 
   app.post('/api/applyToListing', routeHelpers.applyToListing);
+
+  app.get('/api/userRenterListings/:userId', routeHelpers.getUserListings);
+
+  app.get('/api/userHostListings/:userId', routeHelpers.getUserListings);
 };

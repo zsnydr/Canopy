@@ -169,10 +169,10 @@ const imageData = [
     ref: 'http://res.cloudinary.com/canopydev/image/upload/v1478815234/panTuna_fep0v6.jpg'
   }];
 const renterListingData = [
-  { hostSeen: false, hasApplied: false, renter_id: 3, listing_id: 1 },
-  { hostSeen: true, hasApplied: true, renter_id: 3, listing_id: 2 },
-  { hostSeen: false, hasApplied: false, renter_id: 2, listing_id: 3 },
-  { hostSeen: false, hasApplied: true, renter_id: 2, listing_id: 4 }
+  { hostSeen: false, creditChecked: false, backgroundChecked: true, hasRentalHistory: false, hasApplied: false, renter_id: 3, listing_id: 1 },
+  { hostSeen: true, creditChecked: true, backgroundChecked: true, hasRentalHistory: true, hasApplied: true, renter_id: 3, listing_id: 2 },
+  { hostSeen: false, creditChecked: true, backgroundChecked: false, hasRentalHistory: true, hasApplied: false, renter_id: 2, listing_id: 3 },
+  { hostSeen: true, creditChecked: false, backgroundChecked: false, hasRentalHistory: true, hasApplied: true, renter_id: 2, listing_id: 4 }
 ];
 /* c for Create
    p for Promise
