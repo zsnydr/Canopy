@@ -78,17 +78,17 @@ module.exports = {
   },
 
   postImages: (req, res) => {
-    console.log("got to postImages")
+    console.log("got to postImages");
     dbHelpers.postImages(req.body)
     .then(() => {
       res.end();
     });
   },
-  
+
   postApplication: (req, res) => {
     dbHelpers.postApplication(req.body)
-    .then(() => {
-      res.end();
-    })
+    .then((application) => {
+      res.end(application);
+    });
   }
 };

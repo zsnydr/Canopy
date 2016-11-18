@@ -82,7 +82,14 @@ const RenterListing = db.define('renterlisting', {
     primaryKey: true,
     autoIncrement: true
   },
-  status: Sequelize.TEXT
+  hasApplied: {
+    type: Sequelize.BOOLEAN,
+    default: false
+  },
+  hostSeen: {
+    type: Sequelize.BOOLEAN,
+    default: false
+  }
 });
 
 const Image = db.define('image', {
@@ -136,7 +143,7 @@ const Application = db.define('application', {
   duration: Sequelize.TEXT,
   annualIncome: Sequelize.INTEGER,
   supervisorName: Sequelize.TEXT,
-  supervisorPhone: Sequelize.INTEGER,
+  supervisorPhone: Sequelize.BIGINT,
   eSign: Sequelize.TEXT
   // 3 foreign keys for rental history
 });
@@ -194,7 +201,7 @@ Application.hasMany(RentalHistory, { foreignKey: 'application_id' });
 // User.hasMany(Rating, { foreignKey: 'host_id' });
 
 // build tables
-db.sync({ force: false })
+db.sync({ force: true })
 .then(() => {
   console.log('Tables created');
 }).catch((err) => {
