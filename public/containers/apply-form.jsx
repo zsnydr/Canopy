@@ -17,26 +17,22 @@ class ApplyForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      street: '',
-      unitNumber: 0,
-      city: '',
-      state: '',
-      zip: 0,
-      beds: 0,
-      baths: 0,
-      rent: 0,
-      sqFoot: 0,
-      dogs: false,
-      cats: false,
-      term: 0,
-      availableDate: '',
-      host_id: 1,
-      images: [],
-      newListing: []
+      street: '611 Mission street',
+      unitNumber: 2,
+      city: 'San Francisco',
+      numAdultOccupants: 2,
+      numChildOccupants: 0,
+      pets: 0,
+      currentEmployer: 'Hack Reactor',
+      currentPosition: 'Student',
+      duration: 6,
+      annualIncome: 0,
+      supervisorName: 'Josh',
+      supervisorPhone: 5073015775,
+      eSign: 'Victor Choi',
+      renter_id: 1
     };
     this.onFormSubmit = this.onFormSubmit.bind(this);
-    this.setImages = this.setImages.bind(this);
-    this.setActiveListing = this.setActiveListing.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.handleSelect = this.handleSelect.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -44,31 +40,11 @@ class ApplyForm extends Component {
 
   onFormSubmit(event) {
     event.preventDefault();
-    request.get(`/api/cities/${this.state.city}, ${this.state.state}`)
-    .then((city) => {
-      const newListing = Object.assign({
-        city_id: city.data.id
-      }, this.state);
-      this.props.selectCity(city.data);
-      return request.post('/api/listings', newListing);
-    })
-    .then((listing) => {
-      this.setState({ newListing:listing.data });
+    request.post('/api/application', this.state)
+    .then((application) => {
+      console.log('Successfullly stored this application data to DB: ', application);
+      //reDirect to rental history page
     });
-  }
-
-  setImages(files) {
-    this.setState({
-      images: [...this.state.images, files]
-    });
-  }
-
-  setActiveListing() {
-    const newActiveListing = Object.assign({
-      images: this.state.images },
-      this.state.newListing);
-    this.props.selectListing(newActiveListing);
-    browserHistory.push(`/content/listing/${this.state.newListing.id}`);
   }
 
   handleClick(key) {
@@ -96,47 +72,33 @@ class ApplyForm extends Component {
   }
 
   render() {
-    if (!this.state.newListing.id) {
-      return (
-        <div className="listingForm">
-          <Form inline>
-            <FormText type="city" handleChange={this.handleChange} placeholder=" eg.Chicago" />
-            <FormText type="state" handleChange={this.handleChange} placeholder=" eg.Illinois" />
-            <FormText type="address" handleChange={this.handleChange} placeholder=" eg.1060 W. Addison" />
-            <FormText type="unit" handleChange={this.handleChange} placeholder=" eg.#1244" />
-            <FormText type="zip" handleChange={this.handleChange} placeholder=" eg.88888" />
-            <br />
-            <FormDropdown type="beds" items={[1, 2, 3, 4, 5]} handleSelect={this.handleSelect} />
-            <FormDropdown type="baths" items={[1, 2, 3, 4, 5]} handleSelect={this.handleSelect} />
-            <br />
-            <FormNumber type="sqFoot" handleChange={this.handleChange} placeholder="sq. foot" />
-            <FormNumber type="rent" handleChange={this.handleChange} placeholder="2100" />
-            <FormNumber type="term" handleChange={this.handleChange} placeholder="12" />
-            <br />
-            <Checkbox key="dogs" onClick={this.handleClick('dogs')} inline>
-              dogs
-            </Checkbox>
-            <Checkbox key="cats" onClick={this.handleClick('cats')} inline>
-              cats
-            </Checkbox>
-            <br />
-            <FormDate label="availableDate" handleChange={this.handleChange} />
-            <Button onClick={this.onFormSubmit} type="submit">
-              Submit
-            </Button>
-          </Form>
-        </div>
-      );
-    }
-
     return (
-      <div>
-        <Form>
-          <Dropzone
-            setImages={this.setImages}
-            setActiveListing={this.setActiveListing}
-            listingId={this.state.newListing.id}
-          />
+      <div className="listingForm">
+        <Form inline>
+          <FormText type="city" handleChange={this.handleChange} placeholder=" eg.Chicago" />
+          <FormText type="state" handleChange={this.handleChange} placeholder=" eg.Illinois" />
+          <FormText type="address" handleChange={this.handleChange} placeholder=" eg.1060 W. Addison" />
+          <FormText type="unit" handleChange={this.handleChange} placeholder=" eg.#1244" />
+          <FormText type="zip" handleChange={this.handleChange} placeholder=" eg.88888" />
+          <br />
+          <FormDropdown type="beds" items={[1, 2, 3, 4, 5]} handleSelect={this.handleSelect} />
+          <FormDropdown type="baths" items={[1, 2, 3, 4, 5]} handleSelect={this.handleSelect} />
+          <br />
+          <FormNumber type="sqFoot" handleChange={this.handleChange} placeholder="sq. foot" />
+          <FormNumber type="rent" handleChange={this.handleChange} placeholder="2100" />
+          <FormNumber type="term" handleChange={this.handleChange} placeholder="12" />
+          <br />
+          <Checkbox key="dogs" onClick={this.handleClick('dogs')} inline>
+            dogs
+          </Checkbox>
+          <Checkbox key="cats" onClick={this.handleClick('cats')} inline>
+            cats
+          </Checkbox>
+          <br />
+          <FormDate label="availableDate" handleChange={this.handleChange} />
+          <Button onClick={this.onFormSubmit} type="submit">
+            Submit
+          </Button>
         </Form>
       </div>
     );

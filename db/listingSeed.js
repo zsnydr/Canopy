@@ -3,6 +3,7 @@ const Listing = require('./schema').Listing;
 const User = require('./schema').User;
 const City = require('./schema').City;
 const Image = require('./schema').Image;
+const RenterListing = require('./schema').RenterListing;
 
 const db = new Sequelize('canopy', 'root', 'monkey', {
   host: 'localhost',
@@ -42,17 +43,20 @@ const hostData = [
     name: 'Sean Enright',
     email: 'seanenright@property.com',
     phone: 5413856987,
-    userType: 2
+    userType: 0,
+    password: '$2a$12$aZpDFAPJh9Ql04O40fJoyODmcsn8qq06KFnhK3ZTBsYRkAvF2d9jW'
   }, {
     name: 'Victor Choi',
     email: 'victorchoi@nest.com',
     phone: 5413762384,
-    userType: 0
+    userType: 1,
+    password: '$2a$12$aZpDFAPJh9Ql04O40fJoyODmcsn8qq06KFnhK3ZTBsYRkAvF2d9jW'
   }, {
     name: 'Zack Snyder',
     email: 'zacksnyder@mgmt.com',
     phone: 5035869374,
-    userType: 1
+    userType: 2,
+    password: '$2a$12$aZpDFAPJh9Ql04O40fJoyODmcsn8qq06KFnhK3ZTBsYRkAvF2d9jW'
   }];
 
 // mock listings
@@ -69,11 +73,14 @@ const listingData = [
     dogs: false,
     cats: false,
     term: 6,
+    smoking: true,
+    parking: '2',
+    laundry: 'In Unit',
     availableDate: '2016-11-07',
-    images: 'image references go here',
     host_id: 1,
     lat: 37.77056,
-    lon: -122.4541
+    lon: -122.4541,
+    walkScore: `{"result":{"xmlns":"http://walkscore.com/2008/results","status":"1","walkscore":"97","description":"Walker's Paradise","updated":"2016-09-14 14:24:41.797460","logo_url":"https://cdn.walk.sc/images/api-logo.png","more_info_icon":"https://cdn.walk.sc/images/api-more-info.gif","more_info_link":"https://www.redfin.com/how-walk-score-works","ws_link":"https://www.walkscore.com/score/18-10th-street.and.San-Francisco.and.CA.and.94103/lat=37.7756087/lng=-122.4169099/?utm_source=138.68.11.13:3000&utm_medium=ws_api&utm_campaign=ws_api","help_link":"https://www.redfin.com/how-walk-score-works","snapped_lat":"37.7760","snapped_lon":"-122.4165"}}`
   }, {
     beds: 2,
     baths: 1,
@@ -86,11 +93,14 @@ const listingData = [
     dogs: true,
     cats: false,
     term: 12,
+    smoking: true,
+    parking: '2',
+    laundry: 'In Unit',
     availableDate: '2016-11-07',
-    images: 'image references go here',
-    host_id: 2,
+    host_id: 1,
     lat: 37.78413,
-    lon: -122.39574
+    lon: -122.39574,
+    walkScore: `{"result":{"xmlns":"http://walkscore.com/2008/results","status":"1","walkscore":"97","description":"Walker's Paradise","updated":"2016-09-14 14:24:41.797460","logo_url":"https://cdn.walk.sc/images/api-logo.png","more_info_icon":"https://cdn.walk.sc/images/api-more-info.gif","more_info_link":"https://www.redfin.com/how-walk-score-works","ws_link":"https://www.walkscore.com/score/18-10th-street.and.San-Francisco.and.CA.and.94103/lat=37.7756087/lng=-122.4169099/?utm_source=138.68.11.13:3000&utm_medium=ws_api&utm_campaign=ws_api","help_link":"https://www.redfin.com/how-walk-score-works","snapped_lat":"37.7760","snapped_lon":"-122.4165"}}`
   }, {
     beds: 4,
     baths: 2.5,
@@ -103,11 +113,14 @@ const listingData = [
     dogs: true,
     cats: true,
     term: 1,
+    smoking: true,
+    parking: '2',
+    laundry: 'In Unit',
     availableDate: '2016-11-07',
-    images: 'image references go here',
     host_id: 3,
     lat: 41.9387,
-    lon: -87.7059
+    lon: -87.7059,
+    walkScore: `{"result":{"xmlns":"http://walkscore.com/2008/results","status":"1","walkscore":"97","description":"Walker's Paradise","updated":"2016-09-14 14:24:41.797460","logo_url":"https://cdn.walk.sc/images/api-logo.png","more_info_icon":"https://cdn.walk.sc/images/api-more-info.gif","more_info_link":"https://www.redfin.com/how-walk-score-works","ws_link":"https://www.walkscore.com/score/18-10th-street.and.San-Francisco.and.CA.and.94103/lat=37.7756087/lng=-122.4169099/?utm_source=138.68.11.13:3000&utm_medium=ws_api&utm_campaign=ws_api","help_link":"https://www.redfin.com/how-walk-score-works","snapped_lat":"37.7760","snapped_lon":"-122.4165"}}`
   }, {
     beds: 1,
     baths: 1,
@@ -120,11 +133,14 @@ const listingData = [
     dogs: false,
     cats: true,
     term: 12,
+    smoking: true,
+    parking: '2',
+    laundry: 'In Unit',
     availableDate: '2016-11-07',
-    images: 'image references go here',
-    host_id: 2,
+    host_id: 3,
     lat: 41.8817,
-    lon: -87.6528
+    lon: -87.6528,
+    walkScore: `{"result":{"xmlns":"http://walkscore.com/2008/results","status":"1","walkscore":"97","description":"Walker's Paradise","updated":"2016-09-14 14:24:41.797460","logo_url":"https://cdn.walk.sc/images/api-logo.png","more_info_icon":"https://cdn.walk.sc/images/api-more-info.gif","more_info_link":"https://www.redfin.com/how-walk-score-works","ws_link":"https://www.walkscore.com/score/18-10th-street.and.San-Francisco.and.CA.and.94103/lat=37.7756087/lng=-122.4169099/?utm_source=138.68.11.13:3000&utm_medium=ws_api&utm_campaign=ws_api","help_link":"https://www.redfin.com/how-walk-score-works","snapped_lat":"37.7760","snapped_lon":"-122.4165"}}`
   }];
 const imageData = [
   { listing_id: 1,
@@ -152,6 +168,12 @@ const imageData = [
   }, { listing_id: 2,
     ref: 'http://res.cloudinary.com/canopydev/image/upload/v1478815234/panTuna_fep0v6.jpg'
   }];
+const renterListingData = [
+  { hostSeen: false, hasApplied: false, renter_id: 3, listing_id: 1 },
+  { hostSeen: true, hasApplied: true, renter_id: 3, listing_id: 2 },
+  { hostSeen: false, hasApplied: false, renter_id: 2, listing_id: 3 },
+  { hostSeen: false, hasApplied: true, renter_id: 2, listing_id: 4 }
+];
 /* c for Create
    p for Promise
    a for Array
@@ -168,13 +190,16 @@ const cListingpa = (listingArray) => {
 const cImagepa = (imageArray) => {
   return imageArray.map(image => Image.create(image));
 };
-
+const cRenterListingpa = (renterListingArray) => {
+  return renterListingArray.map(renterListing => RenterListing.create(renterListing));
+};
 // Actually calling all, with promise
 Promise.all([
   ...cCitypa(cityData),
   ...cHostpa(hostData),
   ...cListingpa(listingData),
-  ...cImagepa(imageData)
+  ...cImagepa(imageData),
+  ...cRenterListingpa(renterListingData)
 ])
 .then((all) => {
   console.log('Created image for ', all.length);
