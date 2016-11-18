@@ -1,4 +1,5 @@
 import React from 'react';
+import ListingScores from './listing_scores';
 
 const ListingDesc = ({ activeListing, activeCity }) => {
   return (
@@ -15,6 +16,9 @@ const ListingDesc = ({ activeListing, activeCity }) => {
           <h4>Rent: ${activeListing.rent}</h4>
           <h4>SqFoot: {activeListing.sqFoot}</h4>
           <h4>Available: {activeListing.availableDate.slice(0, 10)}</h4>
+        </div>
+        <div className="listingScores">
+          <ListingScores activeListing={activeListing} />
         </div>
         <br />
         <button>Apply</button>
