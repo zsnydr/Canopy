@@ -10,7 +10,7 @@ const ListingsListItem = (props) => {
       }}
     >
       <div className="listingImg">
-        image goes here
+       ..images will go here
       </div>
       <div className="listingListDetails">
         <h3>${props.listing.rent}</h3>

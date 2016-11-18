@@ -1,8 +1,10 @@
 import React from 'react';
 import { browserHistory } from 'react-router';
+import { Button, Glyphicon } from 'react-bootstrap';
 
 import OptionBox from './option_box';
 import ListingsListItem from './listings_list_item';
+
 
 const ListingsList = (props) => {
   const goToListing = (listing) => {
@@ -25,7 +27,14 @@ const ListingsList = (props) => {
           selectListing={props.selectListing}
           goToListing={goToListing}
         />
-        Compare: <input type="checkbox" />
+        Compare:
+        <Button bsSize="xsmall"
+          onClick={() => {
+           props.updateCompareListings(listing);
+          }}
+        >
+          <Glyphicon glyph="star" />
+        </Button>
         </div>
       );
     });

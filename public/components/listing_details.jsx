@@ -15,7 +15,7 @@ const ListingDetail = ({ activeListing, activeCity }) => {
          <ListingScores activeListing={activeListing} />
         </div>
       </div>
-      <ListingPics images={activeListing.images} />
+       <ListingPics images={activeListing.images} />
     </div>
   );
 };
