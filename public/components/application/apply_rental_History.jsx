@@ -19,6 +19,7 @@ class ApplyForm extends Component {
       application_id: 1
     };
     this.onFormSubmit = this.onFormSubmit.bind(this);
+    this.onAddMore = this.onAddMore.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.handleSelect = this.handleSelect.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -30,6 +31,15 @@ class ApplyForm extends Component {
     .then((rentalHistory) => {
       console.log('Successfullly stored this rental history data to DB: ', rentalHistory);
       // redirect to listings page
+    });
+  }
+
+  onAddMore(event) {
+    event.preventDefault();
+    request.post('/api/rentalHistory', this.state)
+    .then((rentalHistory) => {
+      console.log('Successfullly stored this rental history data to DB: ', rentalHistory);
+      // redirect to top of the page with cleared information
     });
   }
 
@@ -71,6 +81,9 @@ class ApplyForm extends Component {
           <br />
           <FormText type="reasonLeft" handleChange={this.handleChange} placeholder="big fight" />
           <br />
+          <Button onClick={this.onAddMore} type="submit">
+            Add More
+          </Button>
           <Button onClick={this.onFormSubmit} type="submit">
             Submit
           </Button>

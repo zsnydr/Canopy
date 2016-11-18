@@ -14,7 +14,7 @@ import Dropzone from '../components/add_listing_image_drop';
 import selectCity from '../actions/select_city';
 import selectListing from '../actions/select_listing';
 
-class ApplyForm extends Component {
+class ListingForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -152,4 +152,4 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators({ selectListing, selectCity }, dispatch);
 }
 
-export default connect(null, mapDispatchToProps)(ApplyForm);
+export default connect(null, mapDispatchToProps)(ListingForm);

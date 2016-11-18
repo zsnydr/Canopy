@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import request from 'axios';
+import { browserHistory } from 'react-router';
 
 import FormText from '../form/form_text';
 import FormNumber from '../form/form_num';
@@ -35,7 +36,8 @@ class ApplyForm extends Component {
     request.post('/api/application', this.state)
     .then((application) => {
       console.log('Successfullly stored this application data to DB: ', application);
-      // redirect to rental history page
+      browserHistory.push()
+      // redirect to rental hstory page
     });
   }
 

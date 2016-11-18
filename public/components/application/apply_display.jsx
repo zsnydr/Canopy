@@ -6,5 +6,6 @@ const ApplicationDisplay = (props) => {
       {props.application.name}
     </div>
   )
-export default ApplicationDisplay;
+}
 
+export default ApplicationDisplay;

@@ -11,7 +11,9 @@ import AddListing from './components/add_listing_page';
 import SignIn from './components/profile/sign_in';
 import SignUp from './components/profile/sign_up';
 import UserProfile from './containers/user-profile';
-import CompareListings from './containers/compare-listings-page';
+import CompareListings from './containers/compare-listings-page.jsx'
+import AppView from './components/apply_display';
+import AppForm from './components/apply_form';
 
 export default (
   <Route path="/" component={App}>
@@ -25,6 +27,9 @@ export default (
       <Route path="editListing/:id" component={ListingPageEdit} />
       <Route path="addListing" component={AddListing} />
       <Route path="compareListings" component={CompareListings} />
+      <Route path="application/view/:id" component={AppView} />
+      <Route path="application/form" component={AppForm} />
+      <Route path="application/view/:id/history" component={}
     </Route>
   </Route>
 );
