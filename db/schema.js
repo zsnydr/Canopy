@@ -201,7 +201,7 @@ Application.hasMany(RentalHistory, { foreignKey: 'application_id' });
 // User.hasMany(Rating, { foreignKey: 'host_id' });
 
 // build tables
-db.sync({ force: true })
+db.sync({ force: false })
 .then(() => {
   console.log('Tables created');
 }).catch((err) => {

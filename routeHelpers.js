@@ -78,10 +78,13 @@ module.exports = {
   },
 
   postImages: (req, res) => {
-    console.log("got to postImages");
     dbHelpers.postImages(req.body)
     .then(() => {
       res.end();
+    })
+    .catch((err) => {
+      console.log('Failed to post images: ', err);
+      res.json(err);
     });
   },
 
@@ -89,6 +92,21 @@ module.exports = {
     dbHelpers.postApplication(req.body)
     .then((application) => {
       res.end(application);
+    })
+    .catch((err) => {
+      console.log('Failed to post application: ', err);
+      res.json(err);
+    });
+  },
+
+  postRentalHistory: (req, res) => {
+    dbHelpers.postRentalHistory(req.body)
+    .then((rentalHistory) => {
+      res.end(rentalHistory);
+    })
+    .catch((err) => {
+      console.log('Failed to post rentalHistory: ', err);
+      res.json(err);
     });
   }
 };

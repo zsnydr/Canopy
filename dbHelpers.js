@@ -4,6 +4,7 @@ const City = require('./db/schema').City;
 const Image = require('./db/schema').Image;
 const User = require('./db/schema').User;
 const Application = require('./db/schema').Application;
+const RentalHistory = require('./db/schema').RentalHistory;
 
 const geoCoder = require('./geoCoder');
 const bcrypt = require('bcrypt');
@@ -148,10 +149,22 @@ module.exports = {
   },
 
   postApplication: (applicationObj) => {
-    console.log('+++++++++++++++App Obj in DBhelper: ', typeof applicationObj);
     Application.create(applicationObj)
     .then((application) => {
       return application;
+    })
+    .catch((err) => {
+      console.log('Error creating application: ', err);
+    });
+  },
+
+  postRentalHistory: (rentalHistoryObj) => {
+    RentalHistory.create(rentalHistoryObj)
+    .then((rentalHistory) => {
+      return rentalHistory;
+    })
+    .catch((err) => {
+      console.log('Error creating rental history: ', err);
     });
   }
 };
