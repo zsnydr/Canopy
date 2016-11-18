@@ -150,7 +150,7 @@ module.exports = {
   },
 
   postApplication: (applicationObj) => {
-    Application.create(applicationObj)
+    return Application.create(applicationObj)
     .then((application) => {
       return application;
     })
@@ -159,8 +159,22 @@ module.exports = {
     });
   },
 
+  getApplication: (renterId) => {
+    return Application.find({
+      where: {
+        renter_id: renterId
+      }
+    })
+    .then((application) => {
+      return application;
+    })
+    .catch((err) => {
+      console.log('Error fetching application: ', err);
+    });
+  },
+
   postRentalHistory: (rentalHistoryObj) => {
-    RentalHistory.create(rentalHistoryObj)
+    return RentalHistory.create(rentalHistoryObj)
     .then((rentalHistory) => {
       return rentalHistory;
     })
@@ -170,7 +184,7 @@ module.exports = {
   },
 
   applyToListing: (renterIdListingId) => {
-    RenterListing.create(renterIdListingId)
+    return RenterListing.create(renterIdListingId)
     .then((renterListing) => {
       console.log('this is what i get', renterListing);
       return renterListing;

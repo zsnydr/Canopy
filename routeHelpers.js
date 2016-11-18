@@ -99,6 +99,19 @@ module.exports = {
     });
   },
 
+  getApplication: (req, res) => {
+    const renterId = parseInt(req.params.renterId);
+    dbHelpers.getApplication(renterId)
+    .then((application) => {
+      console.log('it is getting here', application);
+      res.end(application);
+    })
+    .catch((err) => {
+      console.log('Failed to get application: ', err);
+      res.json(err);
+    });
+  },
+
   postRentalHistory: (req, res) => {
     dbHelpers.postRentalHistory(req.body)
     .then((rentalHistory) => {
