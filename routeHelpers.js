@@ -108,5 +108,16 @@ module.exports = {
       console.log('Failed to post rentalHistory: ', err);
       res.json(err);
     });
+  },
+
+  applyToListing: (req, res) => {
+    dbHelpers.applyToListing(res.body)
+    .then((renterListing) => {
+      res.end(renterListing);
+    })
+    .catch((err) => {
+      console.log('Failed to post renterListing');
+      res.json(err);
+    });
   }
 };

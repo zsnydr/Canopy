@@ -25,4 +25,7 @@ module.exports = (app) => {
   app.post('/api/application', routeHelpers.postApplication);
 
   app.post('/api/rentalHistory', routeHelpers.postRentalHistory);
+
+  app.post('/api/applyToListing', routeHelpers.applyToListing);
+
 };

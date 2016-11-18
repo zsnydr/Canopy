@@ -5,6 +5,7 @@ const Image = require('./db/schema').Image;
 const User = require('./db/schema').User;
 const Application = require('./db/schema').Application;
 const RentalHistory = require('./db/schema').RentalHistory;
+const RenterListing = require('./db/schema').RenterListing;
 
 const geoCoder = require('./geoCoder');
 const bcrypt = require('bcrypt');
@@ -165,6 +166,17 @@ module.exports = {
     })
     .catch((err) => {
       console.log('Error creating rental history: ', err);
+    });
+  },
+
+  applyToListing: (renterIdListingId) => {
+    RenterListing.create(renterIdListingId)
+    .then((renterListing) => {
+      console.log('this is what i get', renterListing);
+      return renterListing;
+    })
+    .catch((err) => {
+      console.log('Error creating renter listing: ', err);
     });
   }
 };
