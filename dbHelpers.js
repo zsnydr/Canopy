@@ -160,11 +160,7 @@ module.exports = {
   },
 
   getApplication: (renterId) => {
-    return Application.find({
-      where: {
-        renter_id: renterId
-      }
-    })
+    return Application.find({ where: { renter_id: renterId } })
     .then((application) => {
       return application;
     })
@@ -180,6 +176,16 @@ module.exports = {
     })
     .catch((err) => {
       console.log('Error creating rental history: ', err);
+    });
+  },
+
+  getRentalHistory: (applicationId) => {
+    return RentalHistory.findAll({ where: { application_id: applicationId } })
+    .then((rentalHistories) => {
+      return rentalHistories;
+    })
+    .catch((err) => {
+      console.log('Error fetching rental histories: ', err);
     });
   },
 

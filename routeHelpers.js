@@ -47,7 +47,7 @@ module.exports = {
   getListings: (req, res) => {
     dbHelpers.getListings(req.params.cityId)
     .then((listings) => {
-      // console.log('listings from route helpers', listings);
+      console.log('listings from route helpers', listings);
       res.json(listings);
     })
     .catch((err) => {
@@ -87,7 +87,7 @@ module.exports = {
       res.json(err);
     });
   },
-
+  // Expects all information for application schema in an JSON
   postApplication: (req, res) => {
     dbHelpers.postApplication(req.body)
     .then((application) => {
@@ -99,6 +99,7 @@ module.exports = {
     });
   },
 
+  // Takes renter_Id and returns application
   getApplication: (req, res) => {
     const renterId = parseInt(req.params.renterId);
     dbHelpers.getApplication(renterId)
@@ -111,6 +112,7 @@ module.exports = {
     });
   },
 
+  // Expects all information for rental history schema in an JSON
   postRentalHistory: (req, res) => {
     dbHelpers.postRentalHistory(req.body)
     .then((rentalHistory) => {
@@ -122,6 +124,20 @@ module.exports = {
     });
   },
 
+  // Takes application_id and returns rental histories of it
+  getRentalHistory: (req, res) => {
+    const applicationId = parseInt(req.params.applicationId);
+    dbHelpers.getRentalHistory(applicationId)
+    .then((rentalHistories) => {
+      res.json(rentalHistories);
+    })
+    .catch((err) => {
+      console.log('Failed to get rental histories: ', err);
+      res.json(err);
+    });
+  },
+
+  // Takes renter_id and listing_id and returns renterListing
   applyToListing: (req, res) => {
     dbHelpers.applyToListing(res.body)
     .then((renterListing) => {
