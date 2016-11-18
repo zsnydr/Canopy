@@ -40,7 +40,7 @@ module.exports = {
       res.json(city);
     })
     .catch((err) => {
-      res.statusCode(400).send('Error: ', err);
+      res.status(400).send(err);
     });
   },
 
@@ -51,7 +51,7 @@ module.exports = {
       res.json(listings);
     })
     .catch((err) => {
-      res.statusCode(400).send('Error: ', err);
+      res.status(400).send(err);
     });
   },
 
@@ -61,7 +61,7 @@ module.exports = {
       res.json(listing);
     })
     .catch((err) => {
-      res.statusCode(400).send('Error: ', err);
+      res.status(400).send(err);
     });
   },
 
@@ -74,6 +74,16 @@ module.exports = {
     .catch((err) => {
       console.log('Failed to post listing: ', err);
       res.json(err);
+    });
+  },
+
+  getUserListings: (req, res) => {
+    dbHelpers.getUserListings(req.params.userId)
+    .then((userListings) => {
+      res.json(userListings);
+    })
+    .catch((err) => {
+      res.status(400).send(err);
     });
   },
 

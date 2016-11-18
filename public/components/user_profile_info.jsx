@@ -1,9 +1,9 @@
 import React from 'react';
 
-const UserProfileInfo = (props) => {
+const UserProfileInfo = ({ activeUser }) => {
   return (
     <div>
-      <h3>Welcome, {props.activeUser.name.split(' ')[0]}</h3>
+      <h3>Welcome, {activeUser.name.split(' ')[0]}</h3>
     </div>
   );
 };

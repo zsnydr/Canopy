@@ -1,4 +1,5 @@
 const { saltPromise, hashPromise, comparePromise } = require('./authHelpers');
+const RenterListing = require('./db/schema').RenterListing;
 const Listing = require('./db/schema').Listing;
 const City = require('./db/schema').City;
 const Image = require('./db/schema').Image;
@@ -117,15 +118,28 @@ module.exports = {
       const walkScoreJSON = parser.toJson(walkscoreXML.data);
       listingInfo.walkScore = walkScoreJSON;
 
-      return Listing.create(listingInfo); 
+      return Listing.create(listingInfo);
     })
       .then((listing) => {
-        console.log("listing created", listing)
+        console.log('listing created', listing);
         return listing;
       })
       .catch((err) => {
         return `Error posting listing: ${err}`;
-      })
+      });
+  },
+
+  getUserListings: (userId) => {
+    RenterListing.findAll({
+      where: { renter_id: userId },
+      include: {
+        model: Listing,
+        include: [Image]
+      }
+    })
+    .then((userListings) => {
+      return userListings;
+    });
   },
 
   postImages: (imageData) => {
