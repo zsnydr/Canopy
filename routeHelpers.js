@@ -47,7 +47,7 @@ module.exports = {
   getListings: (req, res) => {
     dbHelpers.getListings(req.params.cityId)
     .then((listings) => {
-      // console.log('listings from route helpers', listings);
+      console.log('listings from route helpers', listings);
       res.json(listings);
     })
     .catch((err) => {
@@ -78,17 +78,74 @@ module.exports = {
   },
 
   postImages: (req, res) => {
-    console.log("got to postImages");
     dbHelpers.postImages(req.body)
     .then(() => {
       res.end();
+    })
+    .catch((err) => {
+      console.log('Failed to post images: ', err);
+      res.json(err);
     });
   },
-
+  // Expects all information for application schema in an JSON
   postApplication: (req, res) => {
     dbHelpers.postApplication(req.body)
     .then((application) => {
-      res.end(application);
+      res.json(application);
+    })
+    .catch((err) => {
+      console.log('Failed to post application: ', err);
+      res.json(err);
+    });
+  },
+
+  // Takes renter_Id and returns application
+  getApplication: (req, res) => {
+    const renterId = parseInt(req.params.renterId);
+    dbHelpers.getApplication(renterId)
+    .then((application) => {
+      res.json(application);
+    })
+    .catch((err) => {
+      console.log('Failed to get application: ', err);
+      res.json(err);
+    });
+  },
+
+  // Expects all information for rental history schema in an JSON
+  postRentalHistory: (req, res) => {
+    dbHelpers.postRentalHistory(req.body)
+    .then((rentalHistory) => {
+      res.json(rentalHistory);
+    })
+    .catch((err) => {
+      console.log('Failed to post rentalHistory: ', err);
+      res.json(err);
+    });
+  },
+
+  // Takes application_id and returns rental histories of it
+  getRentalHistory: (req, res) => {
+    const applicationId = parseInt(req.params.applicationId);
+    dbHelpers.getRentalHistory(applicationId)
+    .then((rentalHistories) => {
+      res.json(rentalHistories);
+    })
+    .catch((err) => {
+      console.log('Failed to get rental histories: ', err);
+      res.json(err);
+    });
+  },
+
+  // Takes renter_id and listing_id and returns renterListing
+  applyToListing: (req, res) => {
+    dbHelpers.applyToListing(res.body)
+    .then((renterListing) => {
+      res.json(renterListing);
+    })
+    .catch((err) => {
+      console.log('Failed to post renterListing');
+      res.json(err);
     });
   }
 };

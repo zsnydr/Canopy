@@ -4,6 +4,8 @@ const City = require('./db/schema').City;
 const Image = require('./db/schema').Image;
 const User = require('./db/schema').User;
 const Application = require('./db/schema').Application;
+const RentalHistory = require('./db/schema').RentalHistory;
+const RenterListing = require('./db/schema').RenterListing;
 
 const geoCoder = require('./geoCoder');
 const bcrypt = require('bcrypt');
@@ -148,10 +150,53 @@ module.exports = {
   },
 
   postApplication: (applicationObj) => {
-    console.log('+++++++++++++++App Obj in DBhelper: ', typeof applicationObj);
-    Application.create(applicationObj)
+    return Application.create(applicationObj)
     .then((application) => {
       return application;
+    })
+    .catch((err) => {
+      console.log('Error creating application: ', err);
+    });
+  },
+
+  getApplication: (renterId) => {
+    return Application.find({ where: { renter_id: renterId } })
+    .then((application) => {
+      return application;
+    })
+    .catch((err) => {
+      console.log('Error fetching application: ', err);
+    });
+  },
+
+  postRentalHistory: (rentalHistoryObj) => {
+    return RentalHistory.create(rentalHistoryObj)
+    .then((rentalHistory) => {
+      return rentalHistory;
+    })
+    .catch((err) => {
+      console.log('Error creating rental history: ', err);
+    });
+  },
+
+  getRentalHistory: (applicationId) => {
+    return RentalHistory.findAll({ where: { application_id: applicationId } })
+    .then((rentalHistories) => {
+      return rentalHistories;
+    })
+    .catch((err) => {
+      console.log('Error fetching rental histories: ', err);
+    });
+  },
+
+  applyToListing: (renterIdListingId) => {
+    return RenterListing.create(renterIdListingId)
+    .then((renterListing) => {
+      console.log('this is what i get', renterListing);
+      return renterListing;
+    })
+    .catch((err) => {
+      console.log('Error creating renter listing: ', err);
     });
   }
 };

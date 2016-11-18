@@ -23,4 +23,10 @@ module.exports = (app) => {
   app.post('/api/images', routeHelpers.postImages);
 
   app.post('/api/application', routeHelpers.postApplication);
+  app.get('/api/application/:renterId', routeHelpers.getApplication);
+
+  app.post('/api/rentalHistory', routeHelpers.postRentalHistory);
+  app.get('/api/rentalHistory/:applicationId', routeHelpers.getRentalHistory);
+
+  app.post('/api/applyToListing', routeHelpers.applyToListing);
 };

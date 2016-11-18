@@ -1,24 +1,16 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { browserHistory } from 'react-router';
-import { Form, Checkbox, Button } from 'react-bootstrap';
+import { Form, Button } from 'react-bootstrap';
 import request from 'axios';
 
-import FormText from '../components/form/form_text';
-import FormNumber from '../components/form/form_num';
-import FormDropdown from '../components/form/form_dropdown';
-import FormDate from '../components/form/form_date';
-
-import selectCity from '../actions/select_city';
-import selectListing from '../actions/select_listing';
+import FormText from './form/form_text';
+import FormNumber from './form/form_num';
 
 class ApplyForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
       street: '611 Mission street',
-      unitNumber: 2,
+      zip: 21233,
       city: 'San Francisco',
       numAdultOccupants: 2,
       numChildOccupants: 0,
@@ -43,7 +35,7 @@ class ApplyForm extends Component {
     request.post('/api/application', this.state)
     .then((application) => {
       console.log('Successfullly stored this application data to DB: ', application);
-      //reDirect to rental history page
+      // redirect to rental history page
     });
   }
 
@@ -76,26 +68,23 @@ class ApplyForm extends Component {
       <div className="listingForm">
         <Form inline>
           <FormText type="city" handleChange={this.handleChange} placeholder=" eg.Chicago" />
-          <FormText type="state" handleChange={this.handleChange} placeholder=" eg.Illinois" />
-          <FormText type="address" handleChange={this.handleChange} placeholder=" eg.1060 W. Addison" />
-          <FormText type="unit" handleChange={this.handleChange} placeholder=" eg.#1244" />
+          <FormText type="street" handleChange={this.handleChange} placeholder=" eg.1060 W. Addison" />
           <FormText type="zip" handleChange={this.handleChange} placeholder=" eg.88888" />
           <br />
-          <FormDropdown type="beds" items={[1, 2, 3, 4, 5]} handleSelect={this.handleSelect} />
-          <FormDropdown type="baths" items={[1, 2, 3, 4, 5]} handleSelect={this.handleSelect} />
+          <FormNumber type="numAdultOccupants" handleChange={this.handleChange} placeholder="sq. foot" />
+          <FormNumber type="numChildOccupants" handleChange={this.handleChange} placeholder="2100" />
+          <FormText type="pets" handleChange={this.handleChange} placeholder=" eg.88888" />
           <br />
-          <FormNumber type="sqFoot" handleChange={this.handleChange} placeholder="sq. foot" />
-          <FormNumber type="rent" handleChange={this.handleChange} placeholder="2100" />
-          <FormNumber type="term" handleChange={this.handleChange} placeholder="12" />
+          <FormText type="currentEmployer" handleChange={this.handleChange} placeholder=" eg.88888" />
+          <FormText type="currentPosition" handleChange={this.handleChange} placeholder=" eg.88888" />
+          <FormNumber type="duration" handleChange={this.handleChange} placeholder="12" />
           <br />
-          <Checkbox key="dogs" onClick={this.handleClick('dogs')} inline>
-            dogs
-          </Checkbox>
-          <Checkbox key="cats" onClick={this.handleClick('cats')} inline>
-            cats
-          </Checkbox>
+          <FormNumber type="annualIncome" handleChange={this.handleChange} placeholder=" eg.88888" />
+          <FormText type="supervisorName" handleChange={this.handleChange} placeholder=" eg.88888" />
+          <FormNumber type="supervisorPhone" handleChange={this.handleChange} placeholder="12" />
           <br />
-          <FormDate label="availableDate" handleChange={this.handleChange} />
+          <FormText type="eSign" handleChange={this.handleChange} placeholder=" eg.88888" />
+          <br />
           <Button onClick={this.onFormSubmit} type="submit">
             Submit
           </Button>
@@ -105,8 +94,4 @@ class ApplyForm extends Component {
   }
 }
 
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ selectListing, selectCity }, dispatch);
-}
-
-export default connect(null, mapDispatchToProps)(ApplyForm);
+export default ApplyForm;
