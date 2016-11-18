@@ -1,31 +1,145 @@
 import request from 'superagent';
 import React, { Component } from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-// import ToggleDisplay from 'react-toggle-display';
+import { browserHistory } from 'react-router';
 
 import ListingsListItem from './listings_list_item';
 
-class UserProfileListingsTabs extends Component {
-  constructor({ activeUser }) {
-    super({ activeUser });
+class UserProfileListings extends Component {
+  constructor(props) {
+    super(props);
 
     this.state = {
-      userListings: []
+      renterListings: [],
+      hostListings: [],
+      newApps: [],
+      data: false
     };
+
+    this.goToListing = this.goToListing.bind(this);
+
+    this.renderAllRenterListings = this.renderAllRenterListings.bind(this);
+    this.renderFavoriteRenterListings = this.renderFavoriteRenterListings.bind(this);
+    this.renderAppliedRenterListings = this.renderAppliedRenterListings.bind(this);
+
+    this.renderAllHostListings = this.renderAllHostListings.bind(this);
+    this.renderNewApplications = this.renderNewApplications.bind(this);
+  }
+
+  goToListing(listing) {
+    browserHistory.push(`/content/listing/${listing.id}`);
+  };
+
+  renderAllRenterListings() {
+    return this.state.renterListings.map(({ listing }) => {
+      return (
+        <ListingsListItem
+          listing={listing}
+          city={listing.city.name}
+          state={listing.city.state}
+          selectListing={this.props.selectListing}
+          goToListing={this.goToListing}
+        />
+      );
+    });
+  }
+
+  renderFavoriteRenterListings() {
+    return this.state.renterListings.filter((renterListing) => {
+      return !renterListing.hasApplied;
+    }).map(({ listing }) => {
+      return (
+        <ListingsListItem
+          listing={listing}
+          city={listing.city.name}
+          state={listing.city.state}
+          selectListing={this.props.selectListing}
+          goToListing={this.goToListing}
+        />
+      );
+    });
+  }
+
+  renderAppliedRenterListings() {
+    return this.state.renterListings.filter((renterListing) => {
+      return renterListing.hasApplied;
+    }).map(({ listing }) => {
+      return (
+        <ListingsListItem
+          listing={listing}
+          city={listing.city.name}
+          state={listing.city.state}
+          selectListing={this.props.selectListing}
+          goToListing={this.goToListing}
+        />
+      );
+    });
+  }
+
+  renderAllHostListings() {
+    return this.state.hostListings.map((hostListing) => {
+      return (
+        <ListingsListItem
+          listing={hostListing}
+          city={hostListing.city.name}
+          state={hostListing.city.state}
+          selectListing={this.props.selectListing}
+          goToListing={this.goToListing}
+        />
+      );
+    });
+  }
+
+  renderNewApplications() {
+    return this.state.newApps.map((newApp) => {
+      return (
+        <div>
+          <div>Credit Checked: {newApp[1].creditChecked ? 'YES' : 'NO'}</div>
+          <div>Background Checked: {newApp[1].backgroundChecked ? 'YES' : 'NO'}</div>
+          <div>Rental History: {newApp[1].hasRentalHistory ? 'YES' : 'NO'}</div>
+          <ListingsListItem
+            listing={newApp[0]}
+            city={newApp[0].city.name}
+            state={newApp[0].city.state}
+            selectListing={this.props.selectListing}
+            goToListing={this.goToListing}
+          />
+        </div>
+      );
+    });
   }
 
   componentDidMount() {
-    // api call to get user Listings for this.activeUser.id
-    const getUserListings = request.get(`/api/userListings/${this.activeUser.id}`);
+    // api call to get user host and renter Listings for this.activeUser.id
+    const getUserRenterListings = request.get(`/api/userRenterListings/${this.props.activeUser.id}`);
+    const getUserHostListings = request.get(`/api/userHostListings/${this.props.activeUser.id}`);
 
-    getUserListings.end((err, res) => {
-      console.log('GOT USER LISTINGS: ', res.body.data);
-      this.setState({ userListings: res.body.data.userListings });
+    getUserRenterListings.end((err, res) => {
+      this.setState({
+        renterListings: res.body,
+        data: true
+      });
+    });
+
+    getUserHostListings.end((err, res) => {
+      const newApps = [];
+      res.body.forEach((listing) => {
+        listing.renterlistings.forEach((rl) => {
+          if (!rl.hostSeen) {
+            newApps.push([listing, rl]);
+          }
+        });
+      });
+      this.setState({
+        hostListings: res.body,
+        data: true,
+        newApps
+      });
     });
   }
 
   render() {
-    if (!this.state.userListings.length) {
+    if (!this.state.data) {
       return (
         <div>Waiting for user listings</div>
       );
@@ -35,9 +149,10 @@ class UserProfileListingsTabs extends Component {
       <div>
         <Tabs>
           <TabList style={{ textAlign: 'center' }}>
-            {this.activeUser.userType % 2 === 0 && <Tab className="profile-renter-tab">Renter</Tab>}
-            {this.activeUser.userType > 0 && <Tab className="profile-host-tab">Host</Tab>}
+            {this.props.activeUser.userType % 2 === 0 && <Tab className="profile-renter-tab">Renter</Tab>}
+            {this.props.activeUser.userType > 0 && <Tab className="profile-host-tab">Host</Tab>}
           </TabList>
+          {this.props.activeUser.userType % 2 === 0 &&
           <TabPanel>
             <Tabs>
               <TabList style={{ textAlign: 'center' }}>
@@ -45,42 +160,46 @@ class UserProfileListingsTabs extends Component {
                 <Tab>Favorited</Tab>
                 <Tab>Applied</Tab>
               </TabList>
-              <TabPanel>
-                {this.state.userListings
-                  .map(({ listing }) => { return <ListingsListItem listing={listing} />; })}
+              <TabPanel className="listingsPage">
+                <div className="listings_list">
+                  {this.renderAllRenterListings()}
+                </div>
               </TabPanel>
-              <TabPanel>
-                {this.state.userListings
-                  .filter((userListing) => { return !userListing.hasApplied; })
-                  .map(({ listing }) => { return <ListingsListItem listing={listing} />; })}
+              <TabPanel className="listingsPage">
+                <div className="listings_list">
+                  {this.renderFavoriteRenterListings()}
+                </div>
               </TabPanel>
-              <TabPanel>
-                {this.state.userListings
-                  .filter((userListing) => { return userListing.hasApplied; })
-                  .map(({ listing }) => { return <ListingsListItem listing={listing} />; })}
+              <TabPanel className="listingsPage">
+                <div className="listings_list">
+                  {this.renderAppliedRenterListings()}
+                </div>
               </TabPanel>
             </Tabs>
-          </TabPanel>
+          </TabPanel>}
+          {this.props.activeUser.userType > 0 &&
           <TabPanel>
             <Tabs>
               <TabList style={{ textAlign: 'center' }}>
                 <Tab>All Listings</Tab>
                 <Tab>New Applications</Tab>
               </TabList>
-              <TabPanel>
-                {/*activeUser.hostListings.map((listing) => <ListingsListItem listing={listing} />)*/}
+              <TabPanel className="listingsPage">
+                <div className="listings_list">
+                  {this.renderAllHostListings()}
+                </div>
               </TabPanel>
-              <TabPanel>
-                {/*activeUser.hostListings
-                  .filter((listing) => { return listing.newApp; })
-                  .map((listing) => { return <ListingsListItem listing={listing} />; })*/}
+              <TabPanel className="listingsPage">
+                <div className="listings_list">
+                  {this.renderNewApplications()}
+                </div>
               </TabPanel>
             </Tabs>
-          </TabPanel>
+          </TabPanel>}
         </Tabs>
       </div>
     );
   }
 }
 
-export default UserProfileListingsTabs;
+export default UserProfileListings;

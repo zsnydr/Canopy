@@ -129,16 +129,20 @@ module.exports = {
       });
   },
 
-  getUserListings: (userId) => {
-    RenterListing.findAll({
+  getUserRenterListings: (userId) => {
+    return RenterListing.findAll({
       where: { renter_id: userId },
-      include: {
+      include: [{
         model: Listing,
-        include: [Image]
-      }
-    })
-    .then((userListings) => {
-      return userListings;
+        include: [Image, City]
+      }]
+    });
+  },
+
+  getUserHostListings: (userId) => {
+    return Listing.findAll({
+      where: { host_id: userId },
+      include: [Image, City, RenterListing]
     });
   },
 

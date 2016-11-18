@@ -33,6 +33,7 @@ class SignInPage extends Component {
     request.post('/api/signin', this.state)
     .then((res) => {
       window.localStorage.setItem('canopy', res.data.token);
+      console.log('USER ', res.data.user)
       this.props.selectUser(res.data.user);
       browserHistory.push('/');
     })

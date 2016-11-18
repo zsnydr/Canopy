@@ -86,6 +86,18 @@ const RenterListing = db.define('renterlisting', {
     type: Sequelize.BOOLEAN,
     default: false
   },
+  creditChecked: {
+    type: Sequelize.BOOLEAN,
+    default: false
+  },
+  backgroundChecked: {
+    type: Sequelize.BOOLEAN,
+    default: false
+  },
+  hasRentalHistory: {
+    type: Sequelize.BOOLEAN,
+    default: false
+  },
   hostSeen: {
     type: Sequelize.BOOLEAN,
     default: false
