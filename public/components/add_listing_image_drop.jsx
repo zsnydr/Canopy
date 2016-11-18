@@ -53,13 +53,14 @@ class ImageDrop extends Component {
     return (
       <div>
         <Dropzone onDrop={this.onDrop}>
-          <div className="imageDrop">Drop images here, or click to select files to upload.</div>
-          <div>
-            {this.state.images.map((img) => {
-              return <img key={img} src={img} alt="" />;
-            })}
-          </div>
+          <div>Drop images here, or click to select files to upload.</div>
         </Dropzone>
+        <h1> Dropped Images:</h1> 
+        <div>
+          {this.state.images.map((img) => {
+            return <img className="droppedPics" key={img} src={img} alt="" />;
+          })}
+        </div>
         <Button onClick={this.onFormSubmit} type="submit">
           Submit
         </Button>
