@@ -91,7 +91,7 @@ module.exports = {
   postApplication: (req, res) => {
     dbHelpers.postApplication(req.body)
     .then((application) => {
-      res.end(application);
+      res.json(application);
     })
     .catch((err) => {
       console.log('Failed to post application: ', err);
@@ -103,8 +103,7 @@ module.exports = {
     const renterId = parseInt(req.params.renterId);
     dbHelpers.getApplication(renterId)
     .then((application) => {
-      console.log('it is getting here', application);
-      res.end(application);
+      res.json(application);
     })
     .catch((err) => {
       console.log('Failed to get application: ', err);
@@ -115,7 +114,7 @@ module.exports = {
   postRentalHistory: (req, res) => {
     dbHelpers.postRentalHistory(req.body)
     .then((rentalHistory) => {
-      res.end(rentalHistory);
+      res.json(rentalHistory);
     })
     .catch((err) => {
       console.log('Failed to post rentalHistory: ', err);
@@ -126,7 +125,7 @@ module.exports = {
   applyToListing: (req, res) => {
     dbHelpers.applyToListing(res.body)
     .then((renterListing) => {
-      res.end(renterListing);
+      res.json(renterListing);
     })
     .catch((err) => {
       console.log('Failed to post renterListing');
