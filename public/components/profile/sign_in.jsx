@@ -3,6 +3,7 @@ import request from 'axios';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { browserHistory } from 'react-router';
+import { Alert } from 'react-bootstrap';
 
 import selectUser from '../../actions/select_user';
 
@@ -13,7 +14,9 @@ class SignInPage extends Component {
 
     this.state = {
       email: '',
-      password: ''
+      password: '',
+      passwordflag: false
+
     };
 
     this.onEmailChange = this.onEmailChange.bind(this);
@@ -26,7 +29,7 @@ class SignInPage extends Component {
   }
 
   onPasswordChange(event) {
-    this.setState({ password: event.target.value });
+    this.setState({ password: event.target.value,passwordflag: false});
   }
 
   signIn() {
@@ -39,6 +42,7 @@ class SignInPage extends Component {
     })
     .catch((err) => {
       console.log('Error signing in: ', err);
+      this.setState({ passwordflag: true, password: '' });
       browserHistory.push('/signin');
     });
   }
@@ -56,8 +60,13 @@ class SignInPage extends Component {
           </p>
           <input type="submit" />
         </form>
+        {this.state.passwordflag &&
+          <Alert bsStyle="warning">
+            <strong>Holy guacamole!</strong> Best check yo self, you're not looking too good.
+          </Alert>
+        }
       </div>
-    );
+   );
   }
 }
 
