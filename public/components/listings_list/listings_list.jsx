@@ -7,6 +7,7 @@ import ListingsListItem from './listings_list_item';
 
 
 const ListingsList = (props) => {
+  let glyphStyle = 'star-empty';
   const goToListing = (listing) => {
     browserHistory.push(`/content/listing/${listing.id}`);
   };
@@ -28,12 +29,14 @@ const ListingsList = (props) => {
           goToListing={goToListing}
         />
         Compare:
-        <Button bsSize="xsmall"
+        <Button 
+          bsSize="xsmall"
+          bsStyle="info"
           onClick={() => {
-           props.updateCompareListings(listing);
+            props.updateCompareListings(listing);
           }}
         >
-          <Glyphicon glyph="star" />
+          <Glyphicon glyph={glyphStyle} />
         </Button>
         </div>
       );
