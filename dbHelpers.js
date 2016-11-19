@@ -69,12 +69,9 @@ module.exports = {
   },
 
   getListings: (cityId) => {
-    console.log('IN GET LISTINGS')
     return Listing.findAll({
-      where: {
-        city_id: cityId
-      },
-      include: [Image]
+      where: { city_id: cityId },
+      include: [Image, City]
     })
     .then((listings) => {
       return listings;
@@ -87,7 +84,7 @@ module.exports = {
   getListing: (listingId) => {
     return Listing.find({
       where: { id: listingId },
-      include: [Image]
+      include: [Image, City]
     })
     .then((listing) => {
       return listing;

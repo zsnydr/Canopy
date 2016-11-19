@@ -1,11 +1,12 @@
 import React from 'react';
 import ListingScores from './listing_scores';
 
-const ListingDesc = ({ activeListing, activeCity }) => {
+const ListingDesc = ({ activeListing }) => {
+  console.log('ACTIVE LISTING ', activeListing)
   return (
     <div className="listingInfo">
       <h2>{activeListing.street}</h2>
-      <h3>{activeCity.name}, {activeCity.state} {activeListing.zip}</h3><br />
+      <h3>{activeListing.city.name}, {activeListing.city.state} {activeListing.zip}</h3><br />
       <div>
         <div className="details">
           <h4> Unit: {activeListing.unit} </h4>
@@ -28,4 +29,3 @@ const ListingDesc = ({ activeListing, activeCity }) => {
 };
 
 export default ListingDesc;
-

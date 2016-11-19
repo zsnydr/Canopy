@@ -54,7 +54,7 @@ class ApplyForm extends Component {
       return request.post('/api/listings', newListing);
     })
     .then((listing) => {
-      this.setState({ newListing:listing.data });
+      this.setState({ newListing: listing.data });
     });
   }
 
@@ -68,7 +68,11 @@ class ApplyForm extends Component {
     const newActiveListing = Object.assign({
       images: this.state.images },
       this.state.newListing);
-    this.props.selectListing(newActiveListing);
+    this.props.selectListing(Object.assign({
+      city: {
+        name: this.state.city,
+        state: this.state.state
+      } }, newActiveListing));
     browserHistory.push(`/content/listing/${this.state.newListing.id}`);
   }
 
