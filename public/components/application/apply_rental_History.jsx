@@ -5,7 +5,7 @@ import request from 'axios';
 import FormText from '../form/form_text';
 import FormNumber from '../form/form_num';
 
-class ApplyForm extends Component {
+class RentalHistoryForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -93,4 +93,4 @@ class ApplyForm extends Component {
   }
 }
 
-export default ApplyForm;
+export default RentalHistoryForm;
