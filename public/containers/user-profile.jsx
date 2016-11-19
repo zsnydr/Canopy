@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import selectListing from '../actions/select_listing';
-import UserProfileInfo from '../components/user_profile_info';
-import UserProfileListings from '../components/user_profile_listings';
+import UserProfileInfo from '../components/profile/user_profile_info';
+import UserProfileListings from '../components/profile/user_profile_listings';
 
 class UserProfile extends Component {
 

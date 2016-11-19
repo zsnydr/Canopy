@@ -46,7 +46,7 @@ class SignUpPage extends Component {
       window.localStorage.setItem('canopy', res.data.token);
       console.log('RES SIGNUP ', res.data.user)
       this.props.selectUser(res.data.user);
-      browserHistory.push('/');
+      browserHistory.push(`/content/profile/${res.data.user.id}`);
     })
     .catch((err) => {
       console.log('Error signing up: ', err);

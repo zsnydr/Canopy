@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { Button } from 'react-bootstrap';
 import { browserHistory } from 'react-router';
 
-import ListingsList from '../components/listings_list';
+import ListingsList from '../components/listings_list/listings_list';
 import GoogleMaps from '../components/google_maps';
 import CitySearch from './city-search';
 
@@ -79,7 +79,7 @@ class ListingsPage extends Component {
   updateCompareListings(listing, key) {
     event.preventDefault();
     console.log('listingselected', listing, key);
-    this.listingsCompared = [...this.listingsCompared, listing]    
+    this.listingsCompared = [...this.listingsCompared, listing]
   }
 
 
