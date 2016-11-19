@@ -6,6 +6,7 @@ import Nav from './containers/nav';
 import Listings from './containers/listings-page';
 import Splash from './components/splashpage';
 import ListingPage from './containers/listing-page';
+import ListingPageEdit from './components/listing/edit/listing_page_edit';
 import AddListing from './components/add_listing_page';
 import SignIn from './components/profile/sign_in';
 import SignUp from './components/profile/sign_up';
@@ -21,6 +22,7 @@ export default (
       <Route path="profile/:id" component={UserProfile} />
       <Route path="listings" component={Listings} />
       <Route path="listing/:id" component={ListingPage} />
+      <Route path="editListing/:id" component={ListingPageEdit} />
       <Route path="addListing" component={AddListing} />
       <Route path="compareListings" component={CompareListings} />
     </Route>
