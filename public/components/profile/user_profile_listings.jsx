@@ -1,8 +1,12 @@
 import request from 'superagent';
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { Button } from 'react-bootstrap';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import { browserHistory } from 'react-router';
 
+import selectListing from '../../actions/select_listing';
 import ListingsListItem from '../listings_list/listings_list_item';
 
 class UserProfileListings extends Component {
@@ -17,6 +21,7 @@ class UserProfileListings extends Component {
     };
 
     this.goToListing = this.goToListing.bind(this);
+    this.editListing = this.editListing.bind(this);
 
     this.renderAllRenterListings = this.renderAllRenterListings.bind(this);
     this.renderFavoriteRenterListings = this.renderFavoriteRenterListings.bind(this);
@@ -24,6 +29,12 @@ class UserProfileListings extends Component {
 
     this.renderAllHostListings = this.renderAllHostListings.bind(this);
     this.renderNewApplications = this.renderNewApplications.bind(this);
+  }
+
+  editListing(hostListing) {
+    console.log("HOST LISTING ", hostListing)
+    this.props.selectListing(hostListing);
+    browserHistory.push(`/content/editListing/${hostListing.id}`);
   }
 
   goToListing(listing) {
@@ -93,6 +104,7 @@ class UserProfileListings extends Component {
             selectListing={this.props.selectListing}
             goToListing={this.goToListing}
           />
+          <Button bsStyle="primary" onClick={() => { this.editListing(hostListing); }}>EDIT</Button>
         </div>
       );
     });
@@ -212,4 +224,8 @@ class UserProfileListings extends Component {
   }
 }
 
-export default UserProfileListings;
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ selectListing }, dispatch);
+}
+
+export default connect(null, mapDispatchToProps)(UserProfileListings);

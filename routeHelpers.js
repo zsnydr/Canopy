@@ -77,6 +77,16 @@ module.exports = {
     });
   },
 
+  updateListing: (req, res) => {
+    dbHelpers.updateListing(req.body)
+    .then((listing) => {
+      res.json(listing);
+    })
+    .catch((err) => {
+      res.status(400).send(err);
+    });
+  },
+
   getUserRenterListings: (req, res) => {
     dbHelpers.getUserRenterListings(req.params.userId)
     .then((userRenterListings) => {

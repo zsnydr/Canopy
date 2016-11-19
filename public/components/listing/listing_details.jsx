@@ -2,7 +2,6 @@ import React from 'react';
 
 import ListingDesc from './listing_desc';
 import ListingPics from './listing_pics';
-import ListingScores from './listing_scores';
 
 const ListingDetail = ({ activeListing }) => {
   return (

@@ -124,6 +124,13 @@ module.exports = {
       });
   },
 
+  updateListing: (update) => {
+    return Listing.update(update, { where: { id: update.id } })
+    .then(() => {
+      return Listing.find({ where: { id: update.id }, include: [Image, City] });
+    });
+  },
+
   getUserRenterListings: (userId) => {
     return RenterListing.findAll({
       where: { renter_id: userId },
