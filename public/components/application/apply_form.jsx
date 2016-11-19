@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import request from 'axios';
 
-import FormText from './form/form_text';
-import FormNumber from './form/form_num';
+import FormText from '../form/form_text';
+import FormNumber from '../form/form_num';
 
 class ApplyForm extends Component {
   constructor(props) {

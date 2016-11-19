@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import { browserHistory } from 'react-router';
 
-import ListingsListItem from './listings_list_item';
+import ListingsListItem from '../listings_list/listings_list_item';
 
 class UserProfileListings extends Component {
   constructor(props) {

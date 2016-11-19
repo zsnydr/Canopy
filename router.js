@@ -30,7 +30,7 @@ module.exports = (app) => {
 
   app.post('/api/applyToListing', routeHelpers.applyToListing);
 
-  app.get('/api/userRenterListings/:userId', routeHelpers.getUserListings);
+  app.get('/api/userRenterListings/:userId', routeHelpers.getUserRenterListings);
 
-  app.get('/api/userHostListings/:userId', routeHelpers.getUserListings);
+  app.get('/api/userHostListings/:userId', routeHelpers.getUserHostListings);
 };

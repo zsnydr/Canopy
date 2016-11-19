@@ -80,7 +80,6 @@ module.exports = {
   getUserRenterListings: (req, res) => {
     dbHelpers.getUserRenterListings(req.params.userId)
     .then((userRenterListings) => {
-      console.log('GOT HERE')
       res.json(userRenterListings);
     })
     .catch((err) => {
@@ -91,7 +90,6 @@ module.exports = {
   getUserHostListings: (req, res) => {
     dbHelpers.getUserHostListings(req.params.userId)
     .then((userHostListings) => {
-      console.log('AND HERE')
       res.json(userHostListings);
     })
     .catch((err) => {
