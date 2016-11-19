@@ -22,8 +22,8 @@ const ListingsList = (props) => {
         <ListingsListItem
           key={listing.id}
           listing={listing}
-          city={props.city}
-          state={props.state}
+          city={listing.city.name}
+          state={listing.city.state}
           selectListing={props.selectListing}
           goToListing={goToListing}
         />

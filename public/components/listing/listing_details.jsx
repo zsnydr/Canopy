@@ -4,12 +4,12 @@ import ListingDesc from './listing_desc';
 import ListingPics from './listing_pics';
 import ListingScores from './listing_scores';
 
-const ListingDetail = ({ activeListing, activeCity }) => {
+const ListingDetail = ({ activeListing }) => {
   return (
     <div>
       <div>
         <div className="listingDesc">
-          <ListingDesc activeListing={activeListing} activeCity={activeCity} />
+          <ListingDesc activeListing={activeListing} />
         </div>
       </div>
       <ListingPics images={activeListing.images} />
