@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import { browserHistory } from 'react-router';
 
-import ListingsListItem from './listings_list_item';
+import ListingsListItem from '../listings_list/listings_list_item';
 
 class UserProfileListings extends Component {
   constructor(props) {
@@ -28,18 +28,20 @@ class UserProfileListings extends Component {
 
   goToListing(listing) {
     browserHistory.push(`/content/listing/${listing.id}`);
-  };
+  }
 
   renderAllRenterListings() {
     return this.state.renterListings.map(({ listing }) => {
       return (
-        <ListingsListItem
-          listing={listing}
-          city={listing.city.name}
-          state={listing.city.state}
-          selectListing={this.props.selectListing}
-          goToListing={this.goToListing}
-        />
+        <div className="listing">
+          <ListingsListItem
+            listing={listing}
+            city={listing.city.name}
+            state={listing.city.state}
+            selectListing={this.props.selectListing}
+            goToListing={this.goToListing}
+          />
+        </div>
       );
     });
   }
@@ -49,13 +51,15 @@ class UserProfileListings extends Component {
       return !renterListing.hasApplied;
     }).map(({ listing }) => {
       return (
-        <ListingsListItem
-          listing={listing}
-          city={listing.city.name}
-          state={listing.city.state}
-          selectListing={this.props.selectListing}
-          goToListing={this.goToListing}
-        />
+        <div className="listing">
+          <ListingsListItem
+            listing={listing}
+            city={listing.city.name}
+            state={listing.city.state}
+            selectListing={this.props.selectListing}
+            goToListing={this.goToListing}
+          />
+        </div>
       );
     });
   }
@@ -65,13 +69,15 @@ class UserProfileListings extends Component {
       return renterListing.hasApplied;
     }).map(({ listing }) => {
       return (
-        <ListingsListItem
-          listing={listing}
-          city={listing.city.name}
-          state={listing.city.state}
-          selectListing={this.props.selectListing}
-          goToListing={this.goToListing}
-        />
+        <div className="listing">
+          <ListingsListItem
+            listing={listing}
+            city={listing.city.name}
+            state={listing.city.state}
+            selectListing={this.props.selectListing}
+            goToListing={this.goToListing}
+          />
+        </div>
       );
     });
   }
@@ -79,13 +85,15 @@ class UserProfileListings extends Component {
   renderAllHostListings() {
     return this.state.hostListings.map((hostListing) => {
       return (
-        <ListingsListItem
-          listing={hostListing}
-          city={hostListing.city.name}
-          state={hostListing.city.state}
-          selectListing={this.props.selectListing}
-          goToListing={this.goToListing}
-        />
+        <div className="listing">
+          <ListingsListItem
+            listing={hostListing}
+            city={hostListing.city.name}
+            state={hostListing.city.state}
+            selectListing={this.props.selectListing}
+            goToListing={this.goToListing}
+          />
+        </div>
       );
     });
   }
@@ -97,13 +105,15 @@ class UserProfileListings extends Component {
           <div>Credit Checked: {newApp[1].creditChecked ? 'YES' : 'NO'}</div>
           <div>Background Checked: {newApp[1].backgroundChecked ? 'YES' : 'NO'}</div>
           <div>Rental History: {newApp[1].hasRentalHistory ? 'YES' : 'NO'}</div>
-          <ListingsListItem
-            listing={newApp[0]}
-            city={newApp[0].city.name}
-            state={newApp[0].city.state}
-            selectListing={this.props.selectListing}
-            goToListing={this.goToListing}
-          />
+          <div className="listing">
+            <ListingsListItem
+              listing={newApp[0]}
+              city={newApp[0].city.name}
+              state={newApp[0].city.state}
+              selectListing={this.props.selectListing}
+              goToListing={this.goToListing}
+            />
+          </div>
         </div>
       );
     });

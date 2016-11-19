@@ -7,17 +7,17 @@ import Listings from './containers/listings-page';
 import Splash from './components/splashpage';
 import ListingPage from './containers/listing-page';
 import AddListing from './components/add_listing_page';
-import SignIn from './components/sign_in';
-import SignUp from './components/sign_up';
+import SignIn from './components/profile/sign_in';
+import SignUp from './components/profile/sign_up';
 import UserProfile from './containers/user-profile';
-import CompareListings from './containers/compare-listings-page.jsx'
+import CompareListings from './containers/compare-listings-page';
 
 export default (
   <Route path="/" component={App}>
     <IndexRoute component={Splash} />
-    <Route path="signup" component={SignUp} />
-    <Route path="signin" component={SignIn} />
     <Route path="content" component={Nav}>
+      <Route path="signup" component={SignUp} />
+      <Route path="signin" component={SignIn} />
       <Route path="profile/:id" component={UserProfile} />
       <Route path="listings" component={Listings} />
       <Route path="listing/:id" component={ListingPage} />

@@ -27,11 +27,19 @@ class NavBar extends Component {
     browserHistory.push('/');
   }
 
+  goToSignUp() {
+    browserHistory.push('/content/signup');
+  }
+
+  goToSignIn() {
+    browserHistory.push('/content/signin');
+  }
+
   render() {
     return (
       <div className="navBar">
         <Navbar inverse collapseOnSelect>
-          <Navbar.Header className="renterCity">
+          <Navbar.Header className="Canopy">
             <Navbar.Brand>
               <a onClick={this.goHome}>canopy</a>
             </Navbar.Brand>
@@ -40,8 +48,8 @@ class NavBar extends Component {
           <Navbar.Collapse>
             <Nav className="links" pullRight>
               <NavItem eventKey={0} onClick={this.goToProfile}>Profile</NavItem>
-              <NavItem eventKey={1} href="#">SignIn</NavItem>
-              <NavItem eventKey={2} href="#">SignUp</NavItem>
+              <NavItem eventKey={1} onClick={this.goToSignIn}>SignIn</NavItem>
+              <NavItem eventKey={2} onClick={this.goToSignUp}>SignUp</NavItem>
               <NavItem eventKey={3} onClick={this.goToExplore}>Explore</NavItem>
               <NavItem eventKey={4} onClick={this.logOut}>Log Out</NavItem>
             </Nav>

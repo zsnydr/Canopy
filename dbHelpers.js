@@ -6,10 +6,8 @@ const Image = require('./db/schema').Image;
 const User = require('./db/schema').User;
 const Application = require('./db/schema').Application;
 const RentalHistory = require('./db/schema').RentalHistory;
-const RenterListing = require('./db/schema').RenterListing;
 
 const geoCoder = require('./geoCoder');
-const bcrypt = require('bcrypt');
 const request = require('axios');
 const parser = require('xml2json');
 const config = require('./config');

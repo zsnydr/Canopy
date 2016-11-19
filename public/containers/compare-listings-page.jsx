@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import GoogleMaps from '../components/google_maps';
-import ListingDetail from '../components/listing_details';
+import ListingDetail from '../components/listing/listing_details';
 
 class CompareListings extends Component {
   componentDidUpdate() {

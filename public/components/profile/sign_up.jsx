@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { browserHistory } from 'react-router';
 
-import selectUser from '../actions/select_user';
+import selectUser from '../../actions/select_user';
 
 class SignUpPage extends Component {
   constructor(props) {
@@ -46,7 +46,7 @@ class SignUpPage extends Component {
       window.localStorage.setItem('canopy', res.data.token);
       console.log('RES SIGNUP ', res.data.user)
       this.props.selectUser(res.data.user);
-      browserHistory.push('/');
+      browserHistory.push(`/content/profile/${res.data.user.id}`);
     })
     .catch((err) => {
       console.log('Error signing up: ', err);

@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { browserHistory } from 'react-router';
 
-import selectUser from '../actions/select_user';
+import selectUser from '../../actions/select_user';
 
 
 class SignInPage extends Component {
@@ -35,7 +35,7 @@ class SignInPage extends Component {
       window.localStorage.setItem('canopy', res.data.token);
       console.log('USER ', res.data.user)
       this.props.selectUser(res.data.user);
-      browserHistory.push('/');
+      browserHistory.push(`/content/profile/${res.data.user.id}`);
     })
     .catch((err) => {
       console.log('Error signing in: ', err);
