@@ -2,6 +2,7 @@ import React from 'react';
 import ListingScores from './listing_scores';
 
 const ListingDesc = ({ activeListing }) => {
+  console.log('ACTIVE LISTING ', activeListing)
   return (
     <div className="listingInfo">
       <h2>{activeListing.street}</h2>
