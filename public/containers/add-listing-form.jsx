@@ -141,6 +141,7 @@ class ListingForm extends Component {
             setImages={this.setImages}
             setActiveListing={this.setActiveListing}
             listingId={this.state.newListing.id}
+            hostId={this.state.newListing.host_id}
           />
         </Form>
       </div>
