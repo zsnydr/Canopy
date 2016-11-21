@@ -72,8 +72,6 @@ const User = db.define('user', {
   // numApplied: Sequelize.INTEGER, // null for host
   // numRatings: Sequelize.INTEGER, // null for renter
   // avgRating: Sequelize.DECIMAL(10, 1), // null for renter
-  // fk application id
-  // fk verification id
 });
 
 const RenterListing = db.define('renterlisting', {
@@ -101,6 +99,10 @@ const RenterListing = db.define('renterlisting', {
   hostSeen: {
     type: Sequelize.BOOLEAN,
     default: false
+  },
+  favorited: {
+    type: Sequelize.BOOLEAN,
+    default: false
   }
 });
 
@@ -112,15 +114,6 @@ const Image = db.define('image', {
   },
   ref: Sequelize.TEXT
 });
-
-// const Rating = db.define('rating', {
-//   id: {
-//     type: Sequelize.INTEGER,
-//     primaryKey: true,
-//     autoIncrement: true
-//   },
-//   stars: Sequelize.INTEGER
-// });
 
 const Verification = db.define('verification', {
   id: {

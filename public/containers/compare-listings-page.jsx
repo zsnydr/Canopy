@@ -10,12 +10,6 @@ class CompareListings extends Component {
   }
 
   render() {
-    console.log(this.props.compareListings);
-
-    // if(!this.props.compareListings){
-    //   return <div> waiting for listings to compare dude! </div>
-    // }
-
     return (
       <div>
         <GoogleMaps

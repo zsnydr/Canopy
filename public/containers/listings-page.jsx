@@ -26,6 +26,7 @@ class ListingsPage extends Component {
       sorter: 'id'
     };
     this.listingsCompared = [];
+    this.compareButton = 'star';
     this.updateBedFilter = this.updateBedFilter.bind(this);
     this.updateBathFilter = this.updateBathFilter.bind(this);
     this.updateMinRentFilter = this.updateMinRentFilter.bind(this);
@@ -71,9 +72,10 @@ class ListingsPage extends Component {
 
   compareListings(event) {
     event.preventDefault();
-    console.log("listings to compare", this.listingsCompared);
-    this.props.compareListings(this.listingsCompared);
-    browserHistory.push('/content/compareListings');
+    if (this.listingsCompared.length == 2){
+     this.props.compareListings(this.listingsCompared);
+     browserHistory.push('/content/compareListings');    
+    }
   }
 
   updateCompareListings(listing, key) {
@@ -99,8 +101,12 @@ class ListingsPage extends Component {
           <CitySearch />
         </div>
         <div>
-          <Button bsStyle="primary" onClick={this.compareListings}>
-            Compare Listings
+          <Button
+            bsStyle="primary"
+            onClick={this.compareListings}
+            disabled={false}
+          >
+           Compare Listings
           </Button>
         </div>
         <div className="listings_list">
@@ -108,6 +114,7 @@ class ListingsPage extends Component {
             listings={filtered}
             city={this.props.activeCity.name}
             state={this.props.activeCity.state}
+            activeUser={this.props.activeUser}
             updateBedFilter={this.updateBedFilter}
             updateBathFilter={this.updateBathFilter}
             updateMinRentFilter={this.updateMinRentFilter}
@@ -119,6 +126,7 @@ class ListingsPage extends Component {
             maxRentFilterHeader={this.state.maxRentFilterHeader}
             selectListing={this.props.selectListing}
             updateCompareListings={this.updateCompareListings}
+            compareButton={this.compareButton}
           />
         </div>
         <div className="listings_map">
@@ -133,10 +141,11 @@ class ListingsPage extends Component {
   }
 }
 
-function mapStateToProps({ activeCity, listings }) {
+function mapStateToProps({ activeCity, listings, activeUser }) {
   return {
     activeCity,
-    listings
+    listings,
+    activeUser
   };
 }
 

@@ -35,4 +35,6 @@ module.exports = (app) => {
   app.get('/api/userRenterListings/:userId', routeHelpers.getUserRenterListings);
 
   app.get('/api/userHostListings/:userId', routeHelpers.getUserHostListings);
+
+  app.post('/api/addfavorite', routeHelpers.addFavoriteListing);
 };

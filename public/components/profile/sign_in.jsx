@@ -3,6 +3,7 @@ import request from 'axios';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { browserHistory } from 'react-router';
+import { Alert } from 'react-bootstrap';
 
 import selectUser from '../../actions/select_user';
 
@@ -13,7 +14,9 @@ class SignInPage extends Component {
 
     this.state = {
       email: '',
-      password: ''
+      password: '',
+      passwordflag: false
+
     };
 
     this.onEmailChange = this.onEmailChange.bind(this);
@@ -26,7 +29,7 @@ class SignInPage extends Component {
   }
 
   onPasswordChange(event) {
-    this.setState({ password: event.target.value });
+    this.setState({ password: event.target.value,passwordflag: false});
   }
 
   signIn() {
@@ -39,21 +42,31 @@ class SignInPage extends Component {
     })
     .catch((err) => {
       console.log('Error signing in: ', err);
+      this.setState({ passwordflag: true, password: '' });
       browserHistory.push('/signin');
     });
   }
 
   render() {
     return (
-      <div>
+      <div className="signIn">
         <h3>Sign In</h3>
         <form onSubmit={this.signIn} action="javascript:void(0)">
-          <input type="text" onChange={this.onEmailChange} value={this.state.email}>Email</input>
-          <input type="text" onChange={this.onPasswordChange} value={this.state.password}>Password</input>
+          <p>Email:
+            <input type="text" onChange={this.onEmailChange} value={this.state.email} />
+          </p>
+          <p>Password:
+            <input type="password" onChange={this.onPasswordChange} value={this.state.password} />
+          </p>
           <input type="submit" />
         </form>
+        {this.state.passwordflag &&
+          <Alert bsStyle="warning">
+             your username or password is wrong bruh.
+          </Alert>
+        }
       </div>
-    );
+   );
   }
 }
 

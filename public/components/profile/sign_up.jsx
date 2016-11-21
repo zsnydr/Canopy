@@ -59,10 +59,22 @@ class SignUpPage extends Component {
       <div>
         <h3>Sign Up</h3>
         <form onSubmit={this.signUp} action="javascript:void(0)">
-          <input type="text" onChange={this.onNameChange} value={this.state.name}>Name</input>
-          <input type="text" onChange={this.onUsernameChange} value={this.state.email}>Email</input>
-          <input type="text" onChange={this.onPasswordChange} value={this.state.password}>Password</input>
-          <input type="text" onChange={this.onUserTypeChange} value={this.state.userType}>User Type</input>
+          <p>
+            Name:
+            <input type="text" onChange={this.onNameChange} value={this.state.name} required />
+          </p>
+          <p>
+            Email:
+            <input type="text" onChange={this.onUsernameChange} value={this.state.email} required />
+          </p>
+          <p>
+           Password:
+            <input type="password" onChange={this.onPasswordChange} value={this.state.password} pattern=".{0}|.{6,}" placeholder="(6 char min)" required />
+          </p>
+          <p>
+            User Type:
+            <input type="text" onChange={this.onUserTypeChange} value={this.state.userType} required />
+          </p>
           <input type="submit" />
         </form>
       </div>

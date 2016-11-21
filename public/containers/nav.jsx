@@ -38,7 +38,7 @@ class NavBar extends Component {
   render() {
     return (
       <div className="navBar">
-        <Navbar inverse collapseOnSelect>
+        <Navbar collapseOnSelect>
           <Navbar.Header className="Canopy">
             <Navbar.Brand>
               <a onClick={this.goHome}>canopy</a>
