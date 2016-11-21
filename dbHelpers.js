@@ -220,18 +220,16 @@ module.exports = {
     });
   },
 
-  addFavoriteListing: (listing, user) => {
-    return RenterListing.findOrCreate({where: { renter_id: listing.id } })
-    .spread((listing, user) => {
-      return (listing,user)
-
-    }) 
-    .then((renterListing) => {
-      console.log('favorited listing', renterListing);
-      return renterListing;
+  addFavoriteListing: (renterIdListingId) => {
+    return RenterListing.findOrCreate({
+      where: { renter_id: renterIdListingId.renter_id },
+      defaults: {
+        listing_id: renterIdListingId.listing_id,
+        favorited: true
+      }
     })
     .catch((err) => {
       console.log('Error updating favorites:', err);
-    }); 
+    });
   }
 };

@@ -114,6 +114,7 @@ class ListingsPage extends Component {
             listings={filtered}
             city={this.props.activeCity.name}
             state={this.props.activeCity.state}
+            activeUser={this.props.activeUser}
             updateBedFilter={this.updateBedFilter}
             updateBathFilter={this.updateBathFilter}
             updateMinRentFilter={this.updateMinRentFilter}
@@ -140,10 +141,11 @@ class ListingsPage extends Component {
   }
 }
 
-function mapStateToProps({ activeCity, listings }) {
+function mapStateToProps({ activeCity, listings, activeUser }) {
   return {
     activeCity,
-    listings
+    listings,
+    activeUser
   };
 }
 

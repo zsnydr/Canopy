@@ -24,12 +24,21 @@ class ListingsList extends Component {
     browserHistory.push(`/content/listing/${listing.id}`);
   }
 
-  addToFavorites(listing) {
-    request.post('/api/addfavorite', {
-      listing
-    }).catch((err) => {
-      console.log('Error favoriting listing', err);
-    });
+  addToFavorites(listing_id) {
+    if (this.props.activeUser.length === 0) {
+      return alert('must be logged in to add favorite');
+    } else {
+      return request.post('/api/addfavorite', {
+        listing_id,
+        renter_id: this.props.activeUser.id
+      })
+      .then(() => {
+        console.log('favorited listing');
+      })
+      .catch((err) => {
+        console.log('Error favoriting listing', err);
+      });
+    }
   }
 
   renderListings() {
@@ -64,7 +73,7 @@ class ListingsList extends Component {
             bsSize="small"
             bsStyle="info"
             onClick={() => {
-              this.addToFavorites(listing);
+              this.addToFavorites(listing.id);
             }}
           >
             <Glyphicon glyph="heart-empty" />

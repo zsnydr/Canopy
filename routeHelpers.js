@@ -181,7 +181,7 @@ module.exports = {
 
   // Takes a renter_id and listing_id and returns renterListing
   addFavoriteListing: (req, res) => {
-    dbHelpers.addFavoriteListing(res.body)
+    dbHelpers.addFavoriteListing(req.body)
     .then((renterListing) => {
       res.json(renterListing);
     })

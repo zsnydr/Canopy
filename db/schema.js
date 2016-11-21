@@ -101,7 +101,7 @@ const RenterListing = db.define('renterlisting', {
     default: false
   },
   favorited: {
-    tyep: Sequelize.BOOLEAN,
+    type: Sequelize.BOOLEAN,
     default: false
   }
 });
