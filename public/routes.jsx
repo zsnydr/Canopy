@@ -8,8 +8,8 @@ import Splash from './components/splashpage';
 import ListingPage from './containers/listing-page';
 import ListingPageEdit from './components/listing/edit/listing_page_edit';
 import AddListing from './components/add_listing_page';
-import SignIn from './components/profile/sign_in';
-import SignUp from './components/profile/sign_up';
+import SignIn from './containers/sign_in';
+import SignUp from './containers/sign_up';
 import UserProfile from './containers/user-profile';
 import ApplicationPage from './containers/application-page';
 

@@ -1,9 +1,22 @@
 import React from 'react';
 import { Button, Glyphicon } from 'react-bootstrap';
+import request from 'axios';
 
 import ListingScores from './listing_scores';
 
 const ListingDesc = ({ activeListing, activeUser }) => {
+  const applyToListing = () => {
+    request.post('/api/applyToListing', {
+      renterId: activeUser.id,
+      listingId: activeListing.id
+    })
+    .then((renterListing) => {
+      console.log('Successful in sending renter listing', renterListing);
+    })
+    .catch((err) => {
+      console.log('Failed to post renterApplication to use', err);
+    });
+  };
 
   return (
     <div className="listingInfo">
@@ -35,13 +48,7 @@ const ListingDesc = ({ activeListing, activeUser }) => {
         </Button>
 
         {(activeUser.userType !== 1) &&
-          <button
-            onClick={() => {
-              console.log('clicked');
-            }}
-          >
-          Apply
-          </button>
+          <button onClick={applyToListing}> Apply </button>
         }
       </div>
     </div>
