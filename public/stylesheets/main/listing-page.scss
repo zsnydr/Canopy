@@ -30,9 +30,10 @@
 }
 
 .listingPics {
-  height: 100%;
+  margin-left: 25vw;
+  width: 50vw;
   img{
-    height: 100%;
-    width: 100%
+    max-height: 50vh;
+    width: 50vw
   }
 }

@@ -5,13 +5,12 @@ import request from 'axios';
 
 import OptionBox from './option_box';
 import ListingsListItem from './listings_list_item';
+import CompareFavoriteButtons from './compareListingButton';
 
 class ListingsList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      glyphiconStar: 'star-empty',
-      glyphiconheart: 'heart',
       test: false
     };
 
@@ -57,27 +56,11 @@ class ListingsList extends Component {
             selectListing={this.props.selectListing}
             goToListing={this.goToListing}
           />
-          Compare:
-          <Button
-            className="compare"
-            bsSize="small"
-            bsStyle="info"
-            onClick={() => {
-              this.props.updateCompareListings(listing);
-            }}
-          >
-            <Glyphicon glyph={this.state.glyphiconStar} />
-          </Button>
-          <Button
-            className="favorite"
-            bsSize="small"
-            bsStyle="info"
-            onClick={() => {
-              this.addToFavorites(listing.id);
-            }}
-          >
-            <Glyphicon glyph="heart-empty" />
-          </Button>
+          <CompareFavoriteButtons
+            addToFavorites={this.addToFavorites}
+            updateCompareListings={this.props.updateCompareListings}
+            listing={listing}
+          />
         </div>
       );
     });

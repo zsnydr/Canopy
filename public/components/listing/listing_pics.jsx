@@ -19,13 +19,18 @@ class ListingPics extends Component {
   }
 
   render() {
-    if (!this.props.images.length){
+    if (!this.props.images.length) {
       return (<div>
         No photos available
       </div>);
     }
     return (
-     <Carousel className="listingPics" activeIndex={this.state.index} direction={this.state.direction} onSelect={this.handleSelect}>
+      <Carousel
+        className="listingPics"
+        activeIndex={this.state.index}
+        direction={this.state.direction}
+        onSelect={this.handleSelect}
+      >
        {this.props.images.map((image) => (
         <Carousel.Item>
           <img
