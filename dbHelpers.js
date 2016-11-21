@@ -210,7 +210,12 @@ module.exports = {
   },
 
   applyToListing: (renterIdListingId) => {
-    return RenterListing.create(renterIdListingId)
+    return RenterListing.findOrcreate({
+      where: { renter_id: renterIdListingId.renter_id },
+      defaults: {
+        listing_id: renterIdListingId.listing_id
+      }
+    })
     .then((renterListing) => {
       console.log('this is what i get', renterListing);
       return renterListing;
@@ -227,6 +232,10 @@ module.exports = {
         listing_id: renterIdListingId.listing_id,
         favorited: true
       }
+    }).spread((resp, found) => {  
+      console.log('++++ This is what i get +++', resp);
+      console.log('+++++ found +++++', found);
+      return resp;
     })
     .catch((err) => {
       console.log('Error updating favorites:', err);

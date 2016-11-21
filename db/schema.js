@@ -99,10 +99,6 @@ const RenterListing = db.define('renterlisting', {
   hostSeen: {
     type: Sequelize.BOOLEAN,
     default: false
-  },
-  favorited: {
-    type: Sequelize.BOOLEAN,
-    default: false
   }
 });
 
