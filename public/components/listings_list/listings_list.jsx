@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { browserHistory } from 'react-router';
-import { Button, Glyphicon } from 'react-bootstrap';
+import { Button, Glyphicon, Modal } from 'react-bootstrap';
 import request from 'axios';
 
 import OptionBox from './option_box';
@@ -85,7 +85,34 @@ class ListingsList extends Component {
 
   render() {
     return (
-      <div>
+      <div className="modal-container">
+        <Modal
+          show={this.props.focusListing}
+          container={this}
+          aria-labelledby="contained-modal-title"
+        >
+          <Modal.Body>
+            <div className="listing">
+              {this.props.focusListing && <ListingsListItem
+                key={this.props.focusListing.id}
+                listing={this.props.focusListing}
+                city={this.props.focusListing.city.name}
+                state={this.props.focusListing.city.state}
+                selectListing={this.props.selectListing}
+                goToListing={this.goToListing}
+              />}
+            </div>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button onClick={() => { this.props.closeModal(); }}>Close</Button>
+            <Button onClick={() => {
+                this.goToListing(this.props.focusListing);
+                this.props.selectListing(this.props.focusListing); }}
+            >
+              View Listing
+            </Button>
+          </Modal.Footer>
+        </Modal>
         <OptionBox
           bedFilterHeader={this.props.bedFilterHeader}
           bathFilterHeader={this.props.bathFilterHeader}

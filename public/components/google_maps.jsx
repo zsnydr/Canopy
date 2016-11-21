@@ -10,7 +10,7 @@ export default (props) => {
           lng: listing.lon
         },
         key: listing.id,
-        onClick: () => { console.log('MARKER CLICK'); }
+        onClick: () => { props.focusListing(listing); }
       };
     });
   };
