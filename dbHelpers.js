@@ -210,7 +210,12 @@ module.exports = {
   },
 
   applyToListing: (renterIdListingId) => {
-    return RenterListing.create(renterIdListingId)
+    return RenterListing.findOrcreate({
+      where: { renter_id: renterIdListingId.renter_id },
+      defaults: {
+        listing_id: renterIdListingId.listing_id
+      }
+    })
     .then((renterListing) => {
       console.log('this is what i get', renterListing);
       return renterListing;
@@ -220,13 +225,25 @@ module.exports = {
     });
   },
 
+ // Takes renter_id and listing_id and creates or updates renterlistings as a favorite
   addFavoriteListing: (renterIdListingId) => {
     return RenterListing.findOrCreate({
-      where: { renter_id: renterIdListingId.renter_id },
+      where: {
+        renter_id: renterIdListingId.renter_id,
+        listing_id: renterIdListingId.listing_id
+      },
       defaults: {
-        listing_id: renterIdListingId.listing_id,
         favorited: true
       }
+    }).spread((renterListing, created) => {
+      if (!created) {
+        return RenterListing.update({ favorited: true }, {
+          where: { id: renterListing.dataValues.id }
+        }).then((updated) => {
+          return updated;
+        });
+      }
+      return renterListing;
     })
     .catch((err) => {
       console.log('Error updating favorites:', err);

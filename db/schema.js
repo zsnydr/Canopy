@@ -222,5 +222,4 @@ module.exports = {
   Application,
   RentalHistory,
   Image
-  // Rating
 };
