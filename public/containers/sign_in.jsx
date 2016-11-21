@@ -6,7 +6,8 @@ import { browserHistory } from 'react-router';
 import { Alert } from 'react-bootstrap';
 
 import selectUser from '../actions/select_user';
-
+import selectCity from '../actions/select_city';
+import updateListings from '../actions/update_listings';
 
 class SignInPage extends Component {
   constructor(props) {
@@ -33,13 +34,28 @@ class SignInPage extends Component {
   }
 
   signIn() {
-    
     request.post('/api/signin', this.state)
     .then((res) => {
       window.localStorage.setItem('canopy', res.data.token);
       console.log('USER ', res.data.user)
       this.props.selectUser(res.data.user);
-      browserHistory.push(`/content/profile/${res.data.user.id}`);
+      if (!this.props.activeCity) {
+        request.get('/api/cities/San Francisco, CA')
+        .then((city) => {
+          console.log('city got it');
+          this.props.selectCity(city.data);
+          return request.get(`/api/listings/${city.data.id}`);
+        })
+        .then((listings) => {
+          this.props.updateListings(listings.data);
+          browserHistory.push('/content/listings');
+        })
+        .catch((err) => {
+          console.log('Error submitting city or getting listings: ', err);
+        });
+      } else {
+        browserHistory.push('/content/listings');
+      }
     })
     .catch((err) => {
       console.log('Error signing in: ', err);
@@ -67,12 +83,17 @@ class SignInPage extends Component {
           </Alert>
         }
       </div>
-   );
+    );
   }
 }
 
+function mapStateToProps({ activeListing, activeUser }) {
+  return {
+    activeCity
+  };
+}
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ selectUser }, dispatch);
+  return bindActionCreators({ selectUser, selectCity, updateListings }, dispatch);
 }
 
 export default connect(null, mapDispatchToProps)(SignInPage);

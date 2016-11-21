@@ -48,11 +48,11 @@ class NavBar extends Component {
           </Navbar.Header>
           <Navbar.Collapse>
             <Nav className="links" pullRight>
-              {(!!Object.keys(this.props.activeUser).length) && <NavItem eventKey={0} onClick={this.goToProfile}>Profile</NavItem>}
-              {(!Object.keys(this.props.activeUser).length) && <NavItem eventKey={1} onClick={this.goToSignIn}>SignIn</NavItem>}
-              {(!Object.keys(this.props.activeUser).length) && <NavItem eventKey={2} onClick={this.goToSignUp}>SignUp</NavItem>}
-              <NavItem eventKey={3} onClick={this.goToExplore}>Explore</NavItem>
-              {(!!Object.keys(this.props.activeUser).length) && <NavItem eventKey={4} onClick={this.logOut}>Log Out</NavItem>}
+              {!!Object.keys(this.props.activeUser).length && <NavItem eventKey={0} onClick={this.goToProfile}>Profile</NavItem>}
+              {!Object.keys(this.props.activeUser).length && <NavItem eventKey={1} onClick={this.goToSignIn}>SignIn</NavItem>}
+              {!Object.keys(this.props.activeUser).length && <NavItem eventKey={2} onClick={this.goToSignUp}>SignUp</NavItem>}
+              {!!this.props.activeCity && <NavItem eventKey={3} onClick={this.goToExplore}>Explore</NavItem>}
+              {!!Object.keys(this.props.activeUser).length && <NavItem eventKey={4} onClick={this.logOut}>Log Out</NavItem>}
             </Nav>
           </Navbar.Collapse>
         </Navbar>
@@ -62,9 +62,10 @@ class NavBar extends Component {
   }
 }
 
-function mapStateToProps({ activeUser }) {
+function mapStateToProps({ activeUser, activeCity }) {
   return {
-    activeUser
+    activeUser,
+    activeCity
   };
 }
 

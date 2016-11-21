@@ -210,14 +210,21 @@ module.exports = {
   },
 
   applyToListing: (renterIdListingId) => {
-    return RenterListing.findOrcreate({
-      where: { renter_id: renterIdListingId.renter_id },
+    return RenterListing.findOrCreate({
+      where: {
+        renter_id: renterIdListingId.renterId },
       defaults: {
-        listing_id: renterIdListingId.listing_id
+        listing_id: renterIdListingId.listingId
       }
     })
-    .then((renterListing) => {
+    .spread((renterListing) => {
       console.log('this is what i get', renterListing);
+      RenterListing.update(
+        { hasApplied: true },
+        { where: {
+          renter_id: renterIdListingId.renterId,
+          listing_id: renterIdListingId.listingId
+        } });
       return renterListing;
     })
     .catch((err) => {

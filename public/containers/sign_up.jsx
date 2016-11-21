@@ -5,6 +5,8 @@ import { bindActionCreators } from 'redux';
 import { browserHistory } from 'react-router';
 
 import selectUser from '../actions/select_user';
+import selectCity from '../actions/select_city';
+import updateListings from '../actions/update_listings';
 
 class SignUpPage extends Component {
   constructor(props) {
@@ -46,7 +48,23 @@ class SignUpPage extends Component {
       window.localStorage.setItem('canopy', res.data.token);
       console.log('RES SIGNUP ', res.data.user)
       this.props.selectUser(res.data.user);
-      browserHistory.push(`/content/profile/${res.data.user.id}`);
+      if (!this.props.activeCity) {
+        request.get('/api/cities/San Francisco, CA')
+        .then((city) => {
+          console.log('city got it');
+          this.props.selectCity(city.data);
+          return request.get(`/api/listings/${city.data.id}`);
+        })
+        .then((listings) => {
+          this.props.updateListings(listings.data);
+          browserHistory.push('/content/listings');
+        })
+        .catch((err) => {
+          console.log('Error submitting city or getting listings: ', err);
+        });
+      } else {
+        browserHistory.push('/content/listings');
+      }
     })
     .catch((err) => {
       console.log('Error signing up: ', err);
@@ -83,7 +101,7 @@ class SignUpPage extends Component {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ selectUser }, dispatch);
+  return bindActionCreators({ selectUser, selectCity, updateListings }, dispatch);
 }
 
 export default connect(null, mapDispatchToProps)(SignUpPage);
