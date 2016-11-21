@@ -5,8 +5,8 @@ import { browserHistory } from 'react-router';
 import { Form, Checkbox, Button } from 'react-bootstrap';
 import request from 'axios';
 
-import ApplicationForm from '../components/form/form_num';
-import ApplicationView from '../components/form/form_text';
+import ApplicationForm from '../components/application/apply_form';
+import ApplicationView from '../components/application/apply_display';
 
 import selectCity from '../actions/select_city';
 

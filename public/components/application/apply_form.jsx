@@ -42,7 +42,7 @@ class ApplyForm extends Component {
     .then((application) => {
       console.log('Successfullly stored this application data to DB: ', application);
       //Must have access to renterId
-      browserHistory.push(`/content/application/view/${this.state.renter_id}`);
+      browserHistory.push(`/content/profile/${this.state.renter_id}`);
     });
   }
 

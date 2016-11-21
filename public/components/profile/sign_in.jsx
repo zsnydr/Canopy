@@ -44,7 +44,7 @@ class SignInPage extends Component {
     .catch((err) => {
       console.log('Error signing in: ', err);
       this.setState({ passwordflag: true, password: '' });
-      browserHistory.push('/signin');
+      browserHistory.push('/content/signin');
     });
   }
 
