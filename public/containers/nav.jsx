@@ -15,7 +15,7 @@ class NavBar extends Component {
   }
 
   goToExplore() {
-    browserHistory.push('/content/addListing');
+    browserHistory.push('/content/listings');
   }
 
   goToProfile() {
