@@ -21,15 +21,18 @@ class ListingPage extends Component {
         </div>
         <ListingDetail
           activeListing={this.props.activeListing}
+          activeUser={this.props.activeUser}
         />
       </div>
     );
   }
 }
 
-function mapStateToProps({ activeListing }) {
+function mapStateToProps({ activeListing, activeUser }) {
   return {
-    activeListing
+    activeListing,
+    activeUser
+
   };
 }
 

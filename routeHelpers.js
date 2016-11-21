@@ -179,7 +179,7 @@ module.exports = {
     });
   },
 
-  // Takes a renter_id and listing_id and returns renterListing
+  // Takes renter_id and listing_id and returns renterListing
   addFavoriteListing: (req, res) => {
     dbHelpers.addFavoriteListing(req.body)
     .then((renterListing) => {
