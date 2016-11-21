@@ -41,7 +41,7 @@ class UserProfile extends Component {
     return (
       <div>
         <UserProfileInfo activeUser={this.props.activeUser} />
-        {(this.props.activeUser.userType === 1) ? '' : 
+        {(this.props.activeUser.userType === 1) ? '' :
         <span>
           <button onClick={this.goToSubmitApplication} >Go to submit application</button>
           <button onClick={this.goToViewApplication} >Go to view application</button>
