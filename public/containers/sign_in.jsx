@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 import { browserHistory } from 'react-router';
 import { Alert } from 'react-bootstrap';
 
-import selectUser from '../../actions/select_user';
+import selectUser from '../actions/select_user';
 
 
 class SignInPage extends Component {

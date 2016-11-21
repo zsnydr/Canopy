@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { browserHistory } from 'react-router';
 
-import selectUser from '../../actions/select_user';
+import selectUser from '../actions/select_user';
 
 class SignUpPage extends Component {
   constructor(props) {
