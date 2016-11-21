@@ -23,7 +23,8 @@ class ListingsPage extends Component {
       bathFilterHeader: 'Baths',
       minRentFilterHeader: '',
       maxRentFilterHeader: '',
-      sorter: 'id'
+      sorter: 'id',
+      focusListing: null
     };
     this.listingsCompared = [];
     this.compareButton = 'star';
@@ -34,6 +35,9 @@ class ListingsPage extends Component {
     this.updateSorter = this.updateSorter.bind(this);
     this.compareListings = this.compareListings.bind(this);
     this.updateCompareListings = this.updateCompareListings.bind(this);
+
+    this.focusListing = this.focusListing.bind(this);
+    this.closeModal = this.closeModal.bind(this);
   }
 
   updateBedFilter(numBeds) {
@@ -74,7 +78,7 @@ class ListingsPage extends Component {
     event.preventDefault();
     if (this.listingsCompared.length == 2){
      this.props.compareListings(this.listingsCompared);
-     browserHistory.push('/content/compareListings');    
+     browserHistory.push('/content/compareListings');
     }
   }
 
@@ -82,6 +86,15 @@ class ListingsPage extends Component {
     event.preventDefault();
     console.log('listingselected', listing, key);
     this.listingsCompared = [...this.listingsCompared, listing]
+  }
+
+  focusListing(listing) {
+    console.log('GOT HERE ', listing)
+    this.setState({ focusListing: listing });
+  }
+
+  closeModal() {
+    this.setState({ focusListing: null });
   }
 
 
@@ -111,6 +124,8 @@ class ListingsPage extends Component {
         </div>
         <div className="listings_list">
           <ListingsList
+            focusListing={this.state.focusListing}
+            closeModal={this.closeModal}
             listings={filtered}
             city={this.props.activeCity.name}
             state={this.props.activeCity.state}
@@ -134,6 +149,7 @@ class ListingsPage extends Component {
             listings={filtered}
             focalLat={this.props.activeCity.lat}
             focalLon={this.props.activeCity.lon}
+            focusListing={this.focusListing}
           />
         </div>
       </div>
