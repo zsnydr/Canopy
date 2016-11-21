@@ -14,7 +14,7 @@ class UserProfile extends Component {
     super(props);
     this.goToSubmitApplication = this.goToSubmitApplication.bind(this);
     this.goToViewApplication = this.goToViewApplication.bind(this);
-    this.renderViewAppButton = this.renderViewAppButton.bind(this);
+    this.goToSubmitListing = this.goToSubmitListing.bind(this);
   }
 
   goToSubmitApplication() {
@@ -22,15 +22,13 @@ class UserProfile extends Component {
     browserHistory.push('/content/application');
   }
 
+  goToSubmitListing() {
+    browserHistory.push('/content/addListing');
+  }
+
   goToViewApplication() {
     this.props.typeToAppView({ type: 'view', renterId: this.props.activeUser.id });
     browserHistory.push('/content/application');
-  }
-
-  renderViewAppButton() {
-    return ((this.props.activeUser.type ===1) ? '' :
-    <button onClick={this.goToViewApplication} >Go to view application</button>
-    );
   }
 
   render() {
@@ -43,8 +41,13 @@ class UserProfile extends Component {
     return (
       <div>
         <UserProfileInfo activeUser={this.props.activeUser} />
-        <button onClick={this.goToSubmitApplication} >Go to submit application</button>
-        {this.renderViewAppButton()}
+        {(this.props.activeUser.userType === 1) ? '' : 
+        <span>
+          <button onClick={this.goToSubmitApplication} >Go to submit application</button>
+          <button onClick={this.goToViewApplication} >Go to view application</button>
+        </span>}
+        {(this.props.activeUser.userType === 0) ? '' :
+        <button onClick={this.goToSubmitListing} >Go to submit listing</button>}
         <UserProfileListings
           activeUser={this.props.activeUser}
           selectListing={this.props.selectListing}
