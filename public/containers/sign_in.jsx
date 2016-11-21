@@ -87,13 +87,14 @@ class SignInPage extends Component {
   }
 }
 
-function mapStateToProps({ activeListing, activeUser }) {
+function mapStateToProps({ activeCity }) {
   return {
     activeCity
   };
 }
+
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({ selectUser, selectCity, updateListings }, dispatch);
 }
 
-export default connect(null, mapDispatchToProps)(SignInPage);
+export default connect(mapStateToProps, mapDispatchToProps)(SignInPage);
