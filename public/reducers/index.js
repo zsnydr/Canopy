@@ -6,6 +6,7 @@ import activeCity from './reducer_active_city';
 import activeListing from './reducer_active_listing';
 import activeUser from './reducer_active_user';
 import compareListings from './reducer_compare_listings';
+import applicationType from './reducer_application_type';
 
 const rootReducer = combineReducers({
   routing: routerReducer,
@@ -13,7 +14,8 @@ const rootReducer = combineReducers({
   activeCity,
   activeUser,
   listings,
-  compareListings
+  compareListings,
+  applicationType
 });
 
 export default rootReducer;

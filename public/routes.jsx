@@ -11,10 +11,7 @@ import AddListing from './components/add_listing_page';
 import SignIn from './components/profile/sign_in';
 import SignUp from './components/profile/sign_up';
 import UserProfile from './containers/user-profile';
-import AppView from './components/application/apply_display';
-import AppForm from './components/application/apply_form';
-import AppHistory from './components/application/apply_rental_History';
-
+import ApplicationPage from './containers/application-page';
 
 export default (
   <Route path="/" component={App}>
@@ -27,8 +24,7 @@ export default (
       <Route path="listing/:id" component={ListingPage} />
       <Route path="editListing/:id" component={ListingPageEdit} />
       <Route path="addListing" component={AddListing} />
-      <Route path="application/view/:id" component={AppView} />
-      <Route path="application/form" component={AppForm} />
+      <Route path="application" component={ApplicationPage} />
     </Route>
   </Route>
 );

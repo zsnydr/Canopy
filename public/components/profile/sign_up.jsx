@@ -50,7 +50,7 @@ class SignUpPage extends Component {
     })
     .catch((err) => {
       console.log('Error signing up: ', err);
-      browserHistory.push('/signup');
+      browserHistory.push('/content/signup');
     });
   }
 
