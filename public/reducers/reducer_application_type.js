@@ -1,10 +1,6 @@
-export default function (state = null, action) {
+export default function (state = { type: 'form', renterId: 1 }, action) {
   switch (action.type) {
-    case 'VEIW_APPLICATION':
-      console.log('APPLICATION ACTION: ', action.payload);
-      return action.payload;
-    case 'FORM_APPLICATION':
-      console.log('APPLICATION ACTION: ', action.payload);
+    case 'UPDATE_APPLICATION_TYPE':
       return action.payload;
   }
   return state;

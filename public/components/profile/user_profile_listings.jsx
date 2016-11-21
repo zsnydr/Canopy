@@ -8,6 +8,7 @@ import { browserHistory } from 'react-router';
 
 import selectListing from '../../actions/select_listing';
 import ListingsListItem from '../listings_list/listings_list_item';
+import updateApplicationType from '../../actions/typeToAppView';
 
 class UserProfileListings extends Component {
   constructor(props) {
@@ -39,6 +40,14 @@ class UserProfileListings extends Component {
 
   goToListing(listing) {
     browserHistory.push(`/content/listing/${listing.id}`);
+  }
+
+  showApplication(renterId) {
+    const context = this;
+    return () => {
+      context.props.updateApplicationType({ type: 'view', renterId });
+      browserHistory.push('/content/application');
+    }
   }
 
   renderAllRenterListings() {
@@ -126,6 +135,7 @@ class UserProfileListings extends Component {
               goToListing={this.goToListing}
             />
           </div>
+          <button onClick={this.showApplication(newApp[1]['renter_id'])}>View application</button>
         </div>
       );
     });
@@ -225,7 +235,7 @@ class UserProfileListings extends Component {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ selectListing }, dispatch);
+  return bindActionCreators({ selectListing, updateApplicationType }, dispatch);
 }
 
 export default connect(null, mapDispatchToProps)(UserProfileListings);

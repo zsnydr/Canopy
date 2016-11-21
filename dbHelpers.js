@@ -116,7 +116,7 @@ module.exports = {
       return Listing.create(listingInfo);
     })
       .then((listing) => {
-        console.log('listing created', listing);
+        console.log('listing created');
         return listing;
       })
       .catch((err) => {
@@ -149,7 +149,6 @@ module.exports = {
   },
 
   postImages: (imageData) => {
-    console.log(imageData);
     return new Promise((resolve, reject) => {
       const { images, listing_id } = imageData;
       images.forEach((image) => {
@@ -158,7 +157,7 @@ module.exports = {
           ref: image
         })
         .then((img) => {
-          console.log('Created image: ', img);
+          console.log('Created image: ');
         })
         .catch((err) => {
           console.log('Error creating image: ', err);
@@ -218,7 +217,6 @@ module.exports = {
       }
     })
     .spread((renterListing) => {
-      console.log('this is what i get', renterListing);
       RenterListing.update(
         { hasApplied: true },
         { where: {
