@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import request from 'superagent';
 import Dropzone from 'react-dropzone';
-import { Button, ProgressBar } from 'react-bootstrap';
+import { Button, Modal } from 'react-bootstrap';
+import { browserHistory } from 'react-router';
 
 const CLOUDINARY_UPLOAD_PRESET = 'wdrjd71q';
 const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/canopydev/image/upload';
@@ -12,17 +13,38 @@ class ImageDrop extends Component {
 
     this.state = {
       images: [],
-      button: true
+      button: true,
+      showModal: false
     };
 
     this.handleImageUpload = this.handleImageUpload.bind(this);
     this.onDrop = this.onDrop.bind(this);
     this.onFormSubmit = this.onFormSubmit.bind(this);
+
+    this.showModal = this.showModal.bind(this);
+    this.closeModalAndShowListing = this.closeModalAndShowListing.bind(this);
+    this.closeModalAndShowProfile = this.closeModalAndShowProfile.bind(this);
+  }
+
+  closeModalAndShowListing(event) {
+    event.preventDefault();
+    this.setState({ showModal: false });
+    this.props.setActiveListing();
+  }
+
+  closeModalAndShowProfile(event) {
+    event.preventDefault();
+    this.setState({ showModal: false });
+    browserHistory.push(`/content/profile/${this.props.hostId}`);
+  }
+
+  showModal() {
+    this.setState({ showModal: true });
   }
 
   onDrop(acceptedFiles, rejectedFiles) {
     console.log('ACC ', acceptedFiles);
-    this.setState({button: true});
+    this.setState({ button: true });
     this.handleImageUpload(acceptedFiles);
   }
 
@@ -33,8 +55,9 @@ class ImageDrop extends Component {
         listing_id: this.props.listingId,
         images: this.state.images
       });
-    sendImage.end();
-    this.props.setActiveListing();
+    sendImage.end(() => {
+      this.showModal();
+    });
   }
 
   handleImageUpload(files) {
@@ -55,6 +78,15 @@ class ImageDrop extends Component {
   render() {
     return (
       <div>
+        <Modal show={this.state.showModal}>
+          <Modal.Header closeButton>
+            <Modal.Title>Listing Posted!</Modal.Title>
+          </Modal.Header>
+          <Modal.Footer>
+            <Button onClick={this.closeModalAndShowListing}>View Listing</Button>
+            <Button onClick={this.closeModalAndShowProfile}>Back to Profile</Button>
+          </Modal.Footer>
+        </Modal>
         <Dropzone onDrop={this.onDrop}>
           <div>Drop images here, or click to select files to upload.</div>
         </Dropzone>
