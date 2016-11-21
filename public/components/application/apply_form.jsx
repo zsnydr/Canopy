@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { Form, Button } from 'react-bootstrap';
+import { browserHistory } from 'react-router';
 import request from 'axios';
 
+import RentalHistoryForm from './apply_rental_History';
 import FormText from '../form/form_text';
 import FormNumber from '../form/form_num';
 
@@ -22,21 +24,34 @@ class ApplyForm extends Component {
       supervisorName: 'Josh',
       supervisorPhone: 5073015775,
       eSign: 'Victor Choi',
-      renter_id: 1
+      renter_id: 1,
+      rentalHistories: 0
     };
     this.onFormSubmit = this.onFormSubmit.bind(this);
+    this.addRentalHistory = this.addRentalHistory.bind(this);
+    this.subRentalHistory = this.subRentalHistory.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.handleSelect = this.handleSelect.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
+
 
   onFormSubmit(event) {
     event.preventDefault();
     request.post('/api/application', this.state)
     .then((application) => {
       console.log('Successfullly stored this application data to DB: ', application);
-      // redirect to rental history page
+      //Must have access to renterId
+      browserHistory.push(`/content/profile/${this.state.renter_id}`);
     });
+  }
+
+  addRentalHistory() {
+    this.setState({ rentalHistories: this.state.rentalHistories + 1 });
+  }
+
+  subRentalHistory() {
+    this.setState({ rentalHistories: this.state.rentalHistories - 1 });
   }
 
   handleClick(key) {
@@ -63,7 +78,14 @@ class ApplyForm extends Component {
     };
   }
 
+
   render() {
+    const rentalHistoryForms = [];
+    for (let i = 0; i < this.state.rentalHistories; i += 1) {
+      rentalHistoryForms.push(
+        <RentalHistoryForm subRentalHistory={this.subRentalHistory} />
+      );
+    }
     return (
       <div className="listingForm">
         <Form inline>
@@ -85,8 +107,12 @@ class ApplyForm extends Component {
           <br />
           <FormText type="eSign" handleChange={this.handleChange} placeholder=" eg.88888" />
           <br />
+          <Button onClick={this.addRentalHistory} type="button">
+            Add a rental history
+          </Button>
+          {rentalHistoryForms}
           <Button onClick={this.onFormSubmit} type="submit">
-            Submit
+            Submit application
           </Button>
         </Form>
       </div>

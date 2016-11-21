@@ -33,6 +33,7 @@ class SignInPage extends Component {
   }
 
   signIn() {
+    
     request.post('/api/signin', this.state)
     .then((res) => {
       window.localStorage.setItem('canopy', res.data.token);
@@ -43,7 +44,7 @@ class SignInPage extends Component {
     .catch((err) => {
       console.log('Error signing in: ', err);
       this.setState({ passwordflag: true, password: '' });
-      browserHistory.push('/signin');
+      browserHistory.push('/content/signin');
     });
   }
 

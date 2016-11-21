@@ -1,10 +1,13 @@
 import React from 'react';
 
 const ApplicationDisplay = (props) => {
-  return (
-    <div>
-      {props.application.name}
-    </div>
-  )
-export default ApplicationDisplay;
 
+  return (
+    <div className="container">
+      Application Page
+      {props.renterId}
+    </div>
+  );
+};
+
+export default ApplicationDisplay;
