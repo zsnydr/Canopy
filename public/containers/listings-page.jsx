@@ -76,16 +76,22 @@ class ListingsPage extends Component {
 
   compareListings(event) {
     event.preventDefault();
-    if (this.listingsCompared.length == 2){
-     this.props.compareListings(this.listingsCompared);
-     browserHistory.push('/content/compareListings');
-    }
+    console.log("listings to compare", this.listingsCompared);
+    this.props.compareListings(this.listingsCompared);
+    browserHistory.push('/content/compareListings');
   }
 
-  updateCompareListings(listing, key) {
+  updateCompareListings(listing) {
     event.preventDefault();
-    console.log('listingselected', listing, key);
-    this.listingsCompared = [...this.listingsCompared, listing]
+    const index = this.listingsCompared.indexOf(listing);
+    if (index >= 0) {
+      this.listingsCompared.splice(index, index + 1);
+    } else if (this.listingsCompared.length > 1) {
+      alert('too many listings selected');
+    } else if (index === -1) {
+      this.listingsCompared.push(listing);
+    }
+    console.log(this.listingsCompared);
   }
 
   focusListing(listing) {
@@ -142,6 +148,7 @@ class ListingsPage extends Component {
             selectListing={this.props.selectListing}
             updateCompareListings={this.updateCompareListings}
             compareButton={this.compareButton}
+            listingsCompared={this.listingsCompared}
           />
         </div>
         <div className="listings_map">

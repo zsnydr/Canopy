@@ -12,6 +12,8 @@ import SignIn from './containers/sign_in';
 import SignUp from './containers/sign_up';
 import UserProfile from './containers/user-profile';
 import ApplicationPage from './containers/application-page';
+import CompareListings from './containers/compare-listings-page';
+
 
 export default (
   <Route path="/" component={App}>
@@ -25,6 +27,7 @@ export default (
       <Route path="editListing/:id" component={ListingPageEdit} />
       <Route path="addListing" component={AddListing} />
       <Route path="application" component={ApplicationPage} />
+      <Route path="compareListings" component={CompareListings} />
     </Route>
   </Route>
 );

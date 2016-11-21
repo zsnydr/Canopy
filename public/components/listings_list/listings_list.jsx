@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { browserHistory } from 'react-router';
-import { Button, Glyphicon, Modal } from 'react-bootstrap';
 import request from 'axios';
 
 import OptionBox from './option_box';
@@ -26,18 +25,17 @@ class ListingsList extends Component {
   addToFavorites(listing_id) {
     if (this.props.activeUser.length === 0) {
       return alert('must be logged in to add favorite');
-    } else {
-      return request.post('/api/addfavorite', {
-        listing_id,
-        renter_id: this.props.activeUser.id
-      })
-      .then(() => {
-        console.log('favorited listing');
-      })
-      .catch((err) => {
-        console.log('Error favoriting listing', err);
-      });
     }
+    return request.post('/api/addfavorite', {
+      listing_id,
+      renter_id: this.props.activeUser.id
+    })
+    .then(() => {
+      console.log('favorited listing');
+    })
+    .catch((err) => {
+      console.log('Error favoriting listing', err);
+    });
   }
 
   renderListings() {
@@ -59,7 +57,9 @@ class ListingsList extends Component {
           <CompareFavoriteButtons
             addToFavorites={this.addToFavorites}
             updateCompareListings={this.props.updateCompareListings}
+            activeUser={this.props.activeUser}
             listing={listing}
+            listingsCompared={this.props.listingsCompared}
           />
         </div>
       );

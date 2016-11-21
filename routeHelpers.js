@@ -191,7 +191,7 @@ module.exports = {
     .then((renterListing) => {
       res.json(renterListing);
     })
-    .catch((err)=> {
+    .catch((err) => {
       console.log('Failed to add favorite');
       res.json(err);
     });

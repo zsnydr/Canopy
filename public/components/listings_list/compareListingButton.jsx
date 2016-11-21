@@ -15,13 +15,13 @@ class compareListingButton extends Component {
 
   toggleButton(value) {
     if (value === 'star') {
-      this.setState({star: 'star-empty'});
-    } else if ( value === 'star-empty') {
-      this.setState({star: 'star'});
-    } else if ( value === 'heart-empty') {
-      this.setState({heart: 'heart'});
+      this.setState({ star: 'star-empty' });
+    } else if (value === 'star-empty') {
+      this.setState({ star: 'star' });
+    } else if (value === 'heart-empty') {
+      this.setState({ heart: 'heart' });
     } else {
-      this.setState({heart: 'heart-empty'});
+      this.setState({ heart: 'heart-empty' });
     }
   }
 
@@ -35,18 +35,23 @@ class compareListingButton extends Component {
           bsStyle="info"
           onClick={() => {
             this.props.updateCompareListings(this.props.listing);
-            this.toggleButton(this.state.star);
+            if (this.props.listingsCompared.length < 2 || this.props.listingsCompared.indexOf(this.props.listing) >= 0) {
+              this.toggleButton(this.state.star);  
+            }
           }}
         >
           <Glyphicon glyph={this.state.star} />
         </Button>
+        Heart:
         <Button
           className="favorite"
           bsSize="small"
           bsStyle="info"
           onClick={() => {
             this.props.addToFavorites(this.props.listing.id);
-            this.toggleButton(this.state.heart);
+            if (this.props.activeUser.length !== 0) {
+              this.toggleButton(this.state.heart);
+            }
           }}
         >
           <Glyphicon glyph={this.state.heart} />
@@ -54,7 +59,7 @@ class compareListingButton extends Component {
       </div>
     );
   }
-};
+}
 
 export default compareListingButton;
 
