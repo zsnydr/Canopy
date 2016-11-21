@@ -218,7 +218,20 @@ module.exports = {
     .catch((err) => {
       console.log('Error creating renter listing: ', err);
     });
+  },
+
+  addFavoriteListing: (listing, user) => {
+    return RenterListing.findOrCreate({where: { renter_id: listing.id } })
+    .spread((listing, user) => {
+      return (listing,user)
+
+    }) 
+    .then((renterListing) => {
+      console.log('favorited listing', renterListing);
+      return renterListing;
+    })
+    .catch((err) => {
+      console.log('Error updating favorites:', err);
+    }); 
   }
 };
-
-//ghost code lives down here!!

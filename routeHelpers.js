@@ -177,5 +177,17 @@ module.exports = {
       console.log('Failed to post renterListing');
       res.json(err);
     });
+  },
+
+  // Takes a renter_id and listing_id and returns renterListing
+  addFavoriteListing: (req, res) => {
+    dbHelpers.addFavoriteListing(res.body)
+    .then((renterListing) => {
+      res.json(renterListing);
+    })
+    .catch((err)=> {
+      console.log('Failed to add favorite');
+      res.json(err);
+    });
   }
 };

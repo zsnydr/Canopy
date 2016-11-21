@@ -62,7 +62,7 @@ class SignInPage extends Component {
         </form>
         {this.state.passwordflag &&
           <Alert bsStyle="warning">
-            <strong>Holy guacamole!</strong> Best check yo self, you're not looking too good.
+             your username or password is wrong bruh.
           </Alert>
         }
       </div>
