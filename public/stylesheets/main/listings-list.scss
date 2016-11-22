@@ -22,7 +22,7 @@
   }
 
   .listings_list {
-    // position: fixed;   MAKES MAP DISAPPEAR
+    position: fixed;   // commenting out this line MAKES MAP DISAPPEAR
     display: inline-block;
     width: 50vw;
     height: 100vh;
