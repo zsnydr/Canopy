@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { browserHistory } from 'react-router';
 import request from 'axios';
-
+import { Modal, Button } from 'react-bootstrap';
 import OptionBox from './option_box';
 import ListingsListItem from './listings_list_item';
 import CompareFavoriteButtons from './compareListingButton';
