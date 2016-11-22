@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Button } from 'react-bootstrap';
-import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import { browserHistory } from 'react-router';
 
 import selectListing from '../../actions/select_listing';
@@ -18,7 +17,12 @@ class UserProfileListings extends Component {
       renterListings: [],
       hostListings: [],
       newApps: [],
-      data: false
+      favs: true,
+      applied: false,
+      allHost: false,
+      newAppsFlag: false,
+      data: false,
+      userType: this.props.activeUser.userType
     };
 
     this.goToListing = this.goToListing.bind(this);
@@ -33,7 +37,6 @@ class UserProfileListings extends Component {
   }
 
   editListing(hostListing) {
-    console.log("HOST LISTING ", hostListing)
     this.props.selectListing(hostListing);
     browserHistory.push(`/content/editListing/${hostListing.id}`);
   }
@@ -71,7 +74,7 @@ class UserProfileListings extends Component {
       return !renterListing.hasApplied;
     }).map(({ listing }) => {
       return (
-        <div className="listing">
+        <div className="listing" style={{position:'relative'}}>
           <ListingsListItem
             listing={listing}
             city={listing.city.name}
@@ -89,7 +92,7 @@ class UserProfileListings extends Component {
       return renterListing.hasApplied;
     }).map(({ listing }) => {
       return (
-        <div className="listing">
+        <div className="listing" style={{position:'relative'}}>
           <ListingsListItem
             listing={listing}
             city={listing.city.name}
@@ -178,57 +181,21 @@ class UserProfileListings extends Component {
     }
 
     return (
-      <div>
-        <Tabs>
-          <TabList style={{ textAlign: 'center' }}>
-            {this.props.activeUser.userType % 2 === 0 && <Tab className="profile-renter-tab">Renter</Tab>}
-            {this.props.activeUser.userType > 0 && <Tab className="profile-host-tab">Host</Tab>}
-          </TabList>
-          {this.props.activeUser.userType % 2 === 0 &&
-          <TabPanel>
-            <Tabs>
-              <TabList style={{ textAlign: 'center' }}>
-                <Tab>All Saved Listings</Tab>
-                <Tab>Favorited</Tab>
-                <Tab>Applied</Tab>
-              </TabList>
-              <TabPanel className="listingsPage">
-                <div className="listings_list">
-                  {this.renderAllRenterListings()}
-                </div>
-              </TabPanel>
-              <TabPanel className="listingsPage">
-                <div className="listings_list">
-                  {this.renderFavoriteRenterListings()}
-                </div>
-              </TabPanel>
-              <TabPanel className="listingsPage">
-                <div className="listings_list">
-                  {this.renderAppliedRenterListings()}
-                </div>
-              </TabPanel>
-            </Tabs>
-          </TabPanel>}
-          {this.props.activeUser.userType > 0 &&
-          <TabPanel>
-            <Tabs>
-              <TabList style={{ textAlign: 'center' }}>
-                <Tab>All Listings</Tab>
-                <Tab>New Applications</Tab>
-              </TabList>
-              <TabPanel className="listingsPage">
-                <div className="listings_list">
-                  {this.renderAllHostListings()}
-                </div>
-              </TabPanel>
-              <TabPanel className="listingsPage">
-                <div className="listings_list">
-                  {this.renderNewApplications()}
-                </div>
-              </TabPanel>
-            </Tabs>
-          </TabPanel>}
-        </Tabs>
+      <div className="col-md-6">
+        {this.props.activeUser.userType === 2 && <Button bsStyle="primary" onClick={() => { this.setState({ newAppsFlag: false, allHost: false, favs: true, applied: false }); }}>RENTER</Button>}
+        {this.props.activeUser.userType === 2 && <Button bsStyle="primary" onClick={() => { this.setState({ newAppsFlag: false, allHost: true, applied: false, favs: false }); }}>HOST</Button>}
+        {this.state.userType % 2 === 0 && <Button bsStyle="primary" onClick={() => { this.setState({ newAppsFlag: false, allHost: false, favs: true, applied: false }); }}>FAVS</Button>}
+        {this.state.userType % 2 === 0 && <Button bsStyle="primary" onClick={() => { this.setState({ newAppsFlag: false, allHost: false, applied: true, favs: false }); }}>APPLIED</Button>}
+        {this.state.userType > 0 && <Button bsStyle="primary" onClick={() => { this.setState({ newAppsFlag: false, allHost: true, applied: false, favs: false }); }}>MY LISTINGS</Button>}
+        {this.state.userType > 0 && <Button bsStyle="primary" onClick={() => { this.setState({ newAppsFlag: true, allHost: false, applied: false, favs: false }); }}>NEW APPLICATIONS</Button>}
+        <div className="listingsPage">
+          <div className="listings_list">
+            {this.state.favs && this.renderFavoriteRenterListings()}
+            {this.state.applied && this.renderAppliedRenterListings()}
+            {this.state.allHost && this.renderAllHostListings()}
+            {this.state.newAppsFlag && this.renderNewApplications()}
+          </div>
+        </div>
       </div>
     );
   }
