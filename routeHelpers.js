@@ -1,5 +1,6 @@
 // const fs = require('file-system');
 // const path = require('path');
+const nodemailer = require('nodemailer');
 const geoCoder = require('./geoCoder');
 
 const dbHelpers = require('./dbHelpers');
@@ -195,5 +196,35 @@ module.exports = {
       console.log('Failed to add favorite');
       res.json(err);
     });
+  },
+
+  sendEmail: (req, res) => {
+    const transporter = nodemailer.createTransport('smtps://user%40gmail.com:pass@smtp.gmail.com');
+    const mailOptions = req.body.mailOptions;
+      // Expect to see the followings
+      // from: Host Email
+      // Subject: 'Your application for {listing address}'
+
+      // text: will be fetched from db with renter name
+      // to: will be fetched from db
+    dbHelpers.getUserWithId(req.body.renterId)
+    .then((receiver) => {
+      console.log('This is the user that I get back: ', receiver);
+      mailOptions.text = req.body.textGen(receiver.name);
+      mailOptions.to = receiver.email;
+      return transporter.sendMail(mailOptions, (err, info) => {
+        if (err) {
+          console.log('Failed to send email');
+          res.end(err);
+        }
+        console.log('E-mail sent!: ', info.response);
+        res.end(info.response);
+      });
+    })
+    .catch((error) => {
+      console.log('Failed to fetch user data from db');
+      res.end(error);
+    });
   }
+
 };
