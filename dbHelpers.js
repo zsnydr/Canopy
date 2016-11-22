@@ -253,5 +253,12 @@ module.exports = {
     .catch((err) => {
       console.log('Error updating favorites:', err);
     });
+  },
+
+  getUserWithId: (renterId) => {
+    return User.find({
+      where: { renter_id: renterId }
+    });
   }
+
 };

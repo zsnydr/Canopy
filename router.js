@@ -37,4 +37,6 @@ module.exports = (app) => {
   app.get('/api/userHostListings/:userId', routeHelpers.getUserHostListings);
 
   app.post('/api/addfavorite', routeHelpers.addFavoriteListing);
+
+  app.post('/api/sendMail', routeHelpers.sendEmail);
 };
