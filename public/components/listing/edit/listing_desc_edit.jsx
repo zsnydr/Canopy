@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import request from 'superagent';
 import { browserHistory } from 'react-router';
+import { Modal, Button } from 'react-bootstrap';
 
 import selectListing from '../../../actions/select_listing';
 
@@ -25,7 +26,9 @@ class ListingDescEdit extends Component {
       street: this.props.activeListing.street,
       term: this.props.activeListing.term,
       unitNumber: this.props.activeListing.unitNumber,
-      availableDate: this.props.activeListing.availableDate.slice(0, 10)
+      availableDate: this.props.activeListing.availableDate.slice(0, 10),
+      showModal: false,
+      newListing: {}
     };
 
     this.updateStreet = this.updateStreet.bind(this);
@@ -37,6 +40,8 @@ class ListingDescEdit extends Component {
     this.updateAvailableDate = this.updateAvailableDate.bind(this);
 
     this.updateListing = this.updateListing.bind(this);
+    this.closeModalAndShowListing = this.closeModalAndShowListing.bind(this);
+    this.closeModalAndShowProfile = this.closeModalAndShowProfile.bind(this);
   }
 
   updateStreet(event) { this.setState({ street: event.target.value }); }
@@ -53,26 +58,49 @@ class ListingDescEdit extends Component {
 
     update.end((err, res) => {
       if (err) { console.log('Error updating listing: ', err); }
-      this.props.selectListing(res.body);
-      browserHistory.push(`/content/listing/${res.body.id}`);
+      this.setState({ showModal: true, newListing: res.body });
     });
+  }
+
+  closeModalAndShowListing(event) {
+    event.preventDefault();
+    this.setState({ showModal: false });
+    this.props.selectListing(this.state.newListing);
+    browserHistory.push(`/content/listing/${this.state.newListing.id}`);
+  }
+
+  closeModalAndShowProfile(event) {
+    event.preventDefault();
+    this.setState({ showModal: false });
+    browserHistory.push(`/content/profile/${this.state.newListing.host_id}`);
   }
 
   render() {
     return (
-      <div className="listingInfo">
-        <div className="details">
-          <h3>{this.props.activeListing.city.name}, {this.props.activeListing.city.state} {this.props.activeListing.zip}</h3><br />
-          <form action="javascript:void(0)">
-            Street: <input value={this.state.street} onChange={this.updateStreet} /><br />
-            Unit: <input value={this.state.unit} onChange={this.updateUnit} /><br />
-            Beds: <input value={this.state.beds} onChange={this.updateBeds} /><br />
-            Baths: <input value={this.state.baths} onChange={this.updateBaths} /><br />
-            Rent: <input value={this.state.rent} onChange={this.updateRent} /><br />
-            Sq. Footage: <input value={this.state.sqFoot} onChange={this.updateSqFoot} /><br />
-            Date Available: <input value={this.state.availableDate} onChange={this.updateAvailableDate} /><br />
-            <input type="submit" onClick={this.updateListing} />
-          </form>
+      <div>
+        <Modal show={this.state.showModal}>
+          <Modal.Header closeButton>
+            <Modal.Title>Listing Updated!</Modal.Title>
+          </Modal.Header>
+          <Modal.Footer>
+            <Button onClick={this.closeModalAndShowListing}>View Listing</Button>
+            <Button onClick={this.closeModalAndShowProfile}>Back to Profile</Button>
+          </Modal.Footer>
+        </Modal>
+        <div className="listingInfo">
+          <div className="details">
+            <h3>{this.props.activeListing.city.name}, {this.props.activeListing.city.state} {this.props.activeListing.zip}</h3><br />
+            <form action="javascript:void(0)">
+              Street: <input value={this.state.street} onChange={this.updateStreet} /><br />
+              Unit: <input value={this.state.unit} onChange={this.updateUnit} /><br />
+              Beds: <input value={this.state.beds} onChange={this.updateBeds} /><br />
+              Baths: <input value={this.state.baths} onChange={this.updateBaths} /><br />
+              Rent: <input value={this.state.rent} onChange={this.updateRent} /><br />
+              Sq. Footage: <input value={this.state.sqFoot} onChange={this.updateSqFoot} /><br />
+              Date Available: <input value={this.state.availableDate} onChange={this.updateAvailableDate} /><br />
+              <input type="submit" onClick={this.updateListing} />
+            </form>
+          </div>
         </div>
       </div>
     );
