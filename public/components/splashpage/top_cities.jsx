@@ -32,17 +32,17 @@ class topCities extends Component {
 
   render() {
     return (
-      <div className='topCities'>
-        <div className='chicago' onClick={ (event) => { this.onCityClick(event, 'chicago, il'); } }>
+      <div className="topCities">
+        <div className="chicago" onClick={ (event) => { this.onCityClick(event, 'chicago, il'); } }>
           Chicago
         </div>
-        <div className='sanFrancisco' onClick={ (event) => { this.onCityClick(event, 'san francisco, ca'); } }>
+        <div className="sanFrancisco" onClick={ (event) => { this.onCityClick(event, 'san francisco, ca'); } }>
           San Francisco
         </div>
-        <div className='NewYork' onClick={ (event) => { this.onCityClick(event, 'new york, ny'); } }>
+        <div className="newYork" onClick={ (event) => { this.onCityClick(event, 'new york, ny'); } }>
           New York
         </div>
-         <div className='Los Angeles' onClick={ (event) => { this.onCityClick(event, 'los angeles, ca'); } }>
+         <div className="losAngeles" onClick={ (event) => { this.onCityClick(event, 'los angeles, ca'); } }>
           Los Angeles
         </div>
       </div>
