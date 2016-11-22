@@ -12,6 +12,7 @@ module.exports = {
   signUp: (req, res) => {
     dbHelpers.signUp(req.body)
     .then((user) => {
+      user.password = '';
       res.json(encodeJwt(user));
     })
     .catch((err) => {
@@ -22,6 +23,7 @@ module.exports = {
   signIn: (req, res) => {
     dbHelpers.signIn(req.body)
     .then((user) => {
+      user.password = '';
       res.json(encodeJwt(user));
     })
     .catch((err) => {
