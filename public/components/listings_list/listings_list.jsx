@@ -1,17 +1,15 @@
 import React, { Component } from 'react';
 import { browserHistory } from 'react-router';
-import { Button, Glyphicon, Modal } from 'react-bootstrap';
 import request from 'axios';
-
+import { Modal, Button } from 'react-bootstrap';
 import OptionBox from './option_box';
 import ListingsListItem from './listings_list_item';
+import CompareFavoriteButtons from './compareListingButton';
 
 class ListingsList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      glyphiconStar: 'star-empty',
-      glyphiconheart: 'heart',
       test: false
     };
 
@@ -27,18 +25,17 @@ class ListingsList extends Component {
   addToFavorites(listing_id) {
     if (this.props.activeUser.length === 0) {
       return alert('must be logged in to add favorite');
-    } else {
-      return request.post('/api/addfavorite', {
-        listing_id,
-        renter_id: this.props.activeUser.id
-      })
-      .then(() => {
-        console.log('favorited listing');
-      })
-      .catch((err) => {
-        console.log('Error favoriting listing', err);
-      });
     }
+    return request.post('/api/addfavorite', {
+      listing_id,
+      renter_id: this.props.activeUser.id
+    })
+    .then(() => {
+      console.log('favorited listing');
+    })
+    .catch((err) => {
+      console.log('Error favoriting listing', err);
+    });
   }
 
   renderListings() {
@@ -57,27 +54,13 @@ class ListingsList extends Component {
             selectListing={this.props.selectListing}
             goToListing={this.goToListing}
           />
-          Compare:
-          <Button
-            className="compare"
-            bsSize="small"
-            bsStyle="info"
-            onClick={() => {
-              this.props.updateCompareListings(listing);
-            }}
-          >
-            <Glyphicon glyph={this.state.glyphiconStar} />
-          </Button>
-          <Button
-            className="favorite"
-            bsSize="small"
-            bsStyle="info"
-            onClick={() => {
-              this.addToFavorites(listing.id);
-            }}
-          >
-            <Glyphicon glyph="heart-empty" />
-          </Button>
+          <CompareFavoriteButtons
+            addToFavorites={this.addToFavorites}
+            updateCompareListings={this.props.updateCompareListings}
+            activeUser={this.props.activeUser}
+            listing={listing}
+            listingsCompared={this.props.listingsCompared}
+          />
         </div>
       );
     });

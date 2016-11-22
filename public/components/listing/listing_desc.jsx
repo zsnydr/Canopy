@@ -18,6 +18,22 @@ const ListingDesc = ({ activeListing, activeUser }) => {
     });
   };
 
+  const addToFavorites = (listing_id) => {
+    if (activeUser.length === 0) {
+      return alert('must be logged in to add favorite');
+    }
+    return request.post('/api/addfavorite', {
+      listing_id,
+      renter_id: activeUser.id
+    })
+    .then(() => {
+      console.log('favorited listing');
+    })
+    .catch((err) => {
+      console.log('Error favoriting listing', err);
+    });
+  };
+
   return (
     <div className="listingInfo">
       <h2>{activeListing.street}</h2>
@@ -37,17 +53,17 @@ const ListingDesc = ({ activeListing, activeUser }) => {
           <ListingScores activeListing={activeListing} />
         </div>
         <Button
-            className="favorite"
-            bsSize="small"
-            bsStyle="info"
-            onClick={() => {
-              this.addToFavorites(listing.id);
-            }}
+          className="favorite"
+          bsSize="small"
+          bsStyle="info"
+          onClick={() => {
+            addToFavorites(activeListing.id);
+          }}
         >
           <Glyphicon glyph="heart-empty" />
         </Button>
 
-        {(activeUser.userType !== 1) &&
+        {(activeUser && activeUser.userType !== 1) &&
           <button onClick={applyToListing}> Apply </button>
         }
       </div>
