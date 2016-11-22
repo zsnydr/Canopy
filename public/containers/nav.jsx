@@ -67,6 +67,7 @@ class NavBar extends Component {
   }
 }
 
+
 function mapStateToProps({ activeUser, activeCity }) {
   return {
     activeUser,

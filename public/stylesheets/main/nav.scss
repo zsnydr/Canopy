@@ -12,3 +12,30 @@
   width: 100%;
   right: 0;
 }
+
+.footer {
+  li {
+    font-family: 'Nova Mono', monospace;
+    list-style: none;
+    display: inline;
+    margin: 20% 20px 0 20px;
+  }
+  .logo {
+    font-size: 20px;
+    cursor: pointer;
+    }
+
+  a {
+    text-decoration: none;
+    &:hover {
+      color: #17A6B6;
+    }
+  }
+  .fa-github{
+    margin-right: 0.2em;
+  }
+}
+
+div.navbar.navbar-static-bottom{
+
+}
