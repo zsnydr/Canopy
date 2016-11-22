@@ -40,27 +40,18 @@ class SignInPage extends Component {
       console.log('USER ', res.data.user)
       this.props.selectUser(res.data.user);
       if (!this.props.activeCity) {
-        request.get('/api/cities/San Francisco, CA')
-        .then((city) => {
-          console.log('city got it');
-          this.props.selectCity(city.data);
-          return request.get(`/api/listings/${city.data.id}`);
-        })
+        this.props.selectCity(res.data.user.city);
+        return request.get(`/api/listings/${res.data.user.city.id}`)
         .then((listings) => {
           this.props.updateListings(listings.data);
           browserHistory.push('/content/listings');
-        })
-        .catch((err) => {
-          console.log('Error submitting city or getting listings: ', err);
         });
-      } else {
-        browserHistory.push('/content/listings');
       }
+      return browserHistory.push('/content/listings');
     })
     .catch((err) => {
       console.log('Error signing in: ', err);
-      this.setState({ passwordflag: true, password: '' });
-      browserHistory.push('/content/signin');
+      this.setState({ passwordflag: true, password: '', email: '' });
     });
   }
 
@@ -79,7 +70,7 @@ class SignInPage extends Component {
         </form>
         {this.state.passwordflag &&
           <Alert bsStyle="warning">
-             your username or password is wrong bruh.
+             your email or password is wrong bruh.
           </Alert>
         }
       </div>

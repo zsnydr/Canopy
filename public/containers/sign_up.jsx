@@ -3,6 +3,7 @@ import request from 'axios';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { browserHistory } from 'react-router';
+import { Alert } from 'react-bootstrap';
 
 import selectUser from '../actions/select_user';
 import selectCity from '../actions/select_city';
@@ -16,13 +17,16 @@ class SignUpPage extends Component {
       name: '',
       email: '',
       password: '',
-      userType: 0
+      homeBase: '',
+      userType: 0,
+      showAlert: false
     };
 
     this.onNameChange = this.onNameChange.bind(this);
     this.onUsernameChange = this.onUsernameChange.bind(this);
     this.onPasswordChange = this.onPasswordChange.bind(this);
     this.onUserTypeChange = this.onUserTypeChange.bind(this);
+    this.onHomeBaseChange = this.onHomeBaseChange.bind(this);
     this.signUp = this.signUp.bind(this);
   }
 
@@ -42,33 +46,29 @@ class SignUpPage extends Component {
     this.setState({ userType: event.target.value });
   }
 
+  onHomeBaseChange(event) {
+    this.setState({ homeBase: event.target.value });
+  }
+
   signUp() {
-    request.post('/api/signup', /*{ state:*/ this.state/*, token: window.localStorage.getItem('canopy') }*/)
+    request.post('/api/signup', this.state)
     .then((res) => {
       window.localStorage.setItem('canopy', res.data.token);
       console.log('RES SIGNUP ', res.data.user)
       this.props.selectUser(res.data.user);
       if (!this.props.activeCity) {
-        request.get('/api/cities/San Francisco, CA')
-        .then((city) => {
-          console.log('city got it');
-          this.props.selectCity(city.data);
-          return request.get(`/api/listings/${city.data.id}`);
-        })
+        this.props.selectCity(res.data.user.city);
+        return request.get(`/api/listings/${res.data.user.city.id}`)
         .then((listings) => {
           this.props.updateListings(listings.data);
           browserHistory.push('/content/listings');
-        })
-        .catch((err) => {
-          console.log('Error submitting city or getting listings: ', err);
         });
-      } else {
-        browserHistory.push('/content/listings');
       }
+      return browserHistory.push('/content/listings');
     })
     .catch((err) => {
       console.log('Error signing up: ', err);
-      browserHistory.push('/content/signup');
+      this.setState({ showAlert: true, password: '', email: '' });
     });
   }
 
@@ -93,8 +93,17 @@ class SignUpPage extends Component {
             User Type:
             <input type="text" onChange={this.onUserTypeChange} value={this.state.userType} required />
           </p>
+          <p>
+            Home City:
+            <input type="text" onChange={this.onHomeBaseChange} value={this.state.homeBase} required />
+          </p>
           <input type="submit" />
         </form>
+        {this.state.showAlert &&
+          <Alert bsStyle="warning">
+             User already exists with that email address.
+          </Alert>
+        }
       </div>
     );
   }

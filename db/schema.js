@@ -171,6 +171,8 @@ const RentalHistory = db.define('rentalhistory', {
 
 // define model relationships
 // Relationships for listings to detailed info
+User.belongsTo(City, { foreignKey: 'homebase_id' });
+
 Listing.belongsTo(City, { foreignKey: 'city_id' });
 City.hasMany(Listing, { foreignKey: 'city_id' });
 Image.belongsTo(Listing, { foreignKey: 'listing_id' });

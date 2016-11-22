@@ -15,29 +15,43 @@ const config = require('./config');
 module.exports = {
 
   signUp: (userData) => {
-    return User.find({ where: { email: userData.email } })
-    .then((found) => {
-      if (found) { throw new Error('User exists'); }
-      return saltPromise(12);
-    })
-    .then((salt) => {
-      return hashPromise(userData.password, salt);
-    })
-    .then((hash) => {
-      return User.create({
-        name: userData.name,
-        email: userData.email,
-        password: hash,
-        userType: userData.userType
+    return geoCoder.geocode(userData.homeBase)
+    .then((res) => {
+      return City.findOrCreate({
+        where: {
+          name: userData.homeBase.slice(0, -4).toUpperCase(),
+          state: userData.homeBase.slice(-2).toUpperCase(),
+          lat: res[0].latitude,
+          lon: res[0].longitude
+        }
       });
     })
-    .then((user) => {
-      return user;
+    .spread((cityData) => {
+      return User.find({ where: { email: userData.email } })
+      .then((found) => {
+        if (found) { throw new Error('User exists'); }
+        return saltPromise(12);
+      })
+      .then((salt) => {
+        return hashPromise(userData.password, salt);
+      })
+      .then((hash) => {
+        return User.create({
+          name: userData.name,
+          email: userData.email,
+          password: hash,
+          userType: userData.userType,
+          homebase_id: cityData.id
+        });
+      })
+      .then((user) => {
+        return User.find({ where: { id: user.id }, include: [City] });
+      });
     });
   },
 
   signIn: (userData) => {
-    return User.find({ where: { email: userData.email } })
+    return User.find({ where: { email: userData.email }, include: [City] })
     .then((user) => {
       if (!user) { throw new Error('User does not exist'); }
       return comparePromise(userData.password, user);

@@ -44,18 +44,21 @@ const hostData = [
     email: 'seanenright@property.com',
     phone: 5413856987,
     userType: 0,
+    homebase_id: 2,
     password: '$2a$12$aZpDFAPJh9Ql04O40fJoyODmcsn8qq06KFnhK3ZTBsYRkAvF2d9jW'
   }, {
     name: 'Victor Choi',
     email: 'victorchoi@nest.com',
     phone: 5413762384,
     userType: 1,
+    homebase_id: 1,
     password: '$2a$12$aZpDFAPJh9Ql04O40fJoyODmcsn8qq06KFnhK3ZTBsYRkAvF2d9jW'
   }, {
     name: 'Zack Snyder',
     email: 'zacksnyder@mgmt.com',
     phone: 5035869374,
     userType: 2,
+    homebase_id: 1,
     password: '$2a$12$aZpDFAPJh9Ql04O40fJoyODmcsn8qq06KFnhK3ZTBsYRkAvF2d9jW'
   }];
 
