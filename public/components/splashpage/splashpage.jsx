@@ -1,7 +1,8 @@
 import React from 'react';
 
-import CitySearch from '../containers/city-search';
-import Nav from '../containers/nav';
+import CitySearch from '../../containers/city-search';
+import Nav from '../../containers/nav';
+import TopCities from './top_cities';
 
 const Splash = () => {
   return (
@@ -16,7 +17,7 @@ const Splash = () => {
         </div>
       </div>
       <div className="mainInfo">
-        Below Home Page
+        <TopCities />
       </div>
        <div className="canopyTeam">
         Even further below home page

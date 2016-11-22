@@ -4,7 +4,7 @@ import { IndexRoute, Route } from 'react-router';
 import App from './components/app';
 import Nav from './containers/nav';
 import Listings from './containers/listings-page';
-import Splash from './components/splashpage';
+import Splash from './components/splashpage/splashpage';
 import ListingPage from './containers/listing-page';
 import ListingPageEdit from './components/listing/edit/listing_page_edit';
 import AddListing from './components/add_listing_page';
