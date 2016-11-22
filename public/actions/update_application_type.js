@@ -1,6 +1,6 @@
 export default function typeToAppForm(type) {
   return {
-    type: 'FORM_APPLICATION',
+    type: 'UPDATE_APPLICATION_TYPE',
     payload: type
   };
 }

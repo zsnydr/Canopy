@@ -171,9 +171,7 @@ module.exports = {
   applyToListing: (req, res) => {
     dbHelpers.getApplication(req.body.renterId)
     .then((application) => {
-      console.log('this is the application I got', application);
       if (!application) {
-        console.log('Let me go do the work');
         dbHelpers.applyToListing(req.body)
         .then((renterListing) => {
           res.json(renterListing);
@@ -184,7 +182,7 @@ module.exports = {
         });
       }
       console.log('I am done checking if app exists or not');
-    })
+    });
   },
 
   // Takes renter_id and listing_id and returns renterListing

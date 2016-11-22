@@ -6,8 +6,7 @@ import { browserHistory } from 'react-router';
 import UserProfileInfo from '../components/profile/user_profile_info';
 import UserProfileListings from '../components/profile/user_profile_listings';
 import selectListing from '../actions/select_listing';
-import typeToAppForm from '../actions/typeToAppForm';
-import typeToAppView from '../actions/typeToAppView';
+import updateApplicationType from '../actions/update_application_type';
 
 class UserProfile extends Component {
   constructor(props) {
@@ -18,7 +17,7 @@ class UserProfile extends Component {
   }
 
   goToSubmitApplication() {
-    this.props.typeToAppForm({ type: 'form', renterId: this.props.activeUser.id });
+    this.props.updateApplicationType({ type: 'form', renterId: this.props.activeUser.id });
     browserHistory.push('/content/application');
   }
 
@@ -27,7 +26,7 @@ class UserProfile extends Component {
   }
 
   goToViewApplication() {
-    this.props.typeToAppView({ type: 'view', renterId: this.props.activeUser.id });
+    this.props.updateApplicationType({ type: 'view', renterId: this.props.activeUser.id });
     browserHistory.push('/content/application');
   }
 
@@ -64,7 +63,7 @@ function mapStateToProps({ activeUser }) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ selectListing, typeToAppForm, typeToAppView }, dispatch);
+  return bindActionCreators({ selectListing, updateApplicationType }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserProfile);

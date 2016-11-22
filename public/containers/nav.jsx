@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { Nav, Navbar, NavItem } from 'react-bootstrap';
 import { browserHistory } from 'react-router';
+
+import selectUser from '../actions/select_user';
 
 class NavBar extends Component {
   constructor(props) {
@@ -9,6 +12,7 @@ class NavBar extends Component {
     this.state = { loggedIn: false };
 
     this.goToExplore = this.goToExplore.bind(this);
+    this.logOut = this.logOut.bind(this);
   }
 
   goHome() {
@@ -24,6 +28,7 @@ class NavBar extends Component {
   }
 
   logOut() {
+    this.props.selectUser([]);
     window.localStorage.removeItem('canopy');
     browserHistory.push('/');
   }
@@ -69,4 +74,8 @@ function mapStateToProps({ activeUser, activeCity }) {
   };
 }
 
-export default connect(mapStateToProps)(NavBar);
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ selectUser }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(NavBar);
