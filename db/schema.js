@@ -131,7 +131,11 @@ const Application = db.define('application', {
     primaryKey: true,
     autoIncrement: true
   },
+  name: Sequelize.TEXT,
+  dob: Sequelize.DATEONLY,
+  phone: Sequelize.BIGINT,
   city: Sequelize.TEXT,
+  state: Sequelize.TEXT,
   street: Sequelize.TEXT,
   zip: Sequelize.INTEGER,
   numAdultOccupants: {
@@ -142,6 +146,9 @@ const Application = db.define('application', {
     type: Sequelize.INTEGER,
     default: 0
   },
+  emergencyContact: Sequelize.TEXT,
+  emergencyNumber: Sequelize.BIGINT,
+  relationship: Sequelize.TEXT,
   pets: Sequelize.TEXT,
   currentEmployer: Sequelize.TEXT,
   position: Sequelize.TEXT,
