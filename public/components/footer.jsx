@@ -1,13 +1,19 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { browserHistory } from 'react-router';
 
 const Footer = (props) => {
+
+  const goToAboutUs = () => {
+    browserHistory.push('/content/aboutus');
+  }
+
   return (
     <div className="navbar navbar-static-bottom">
       <hr />
       <div className="text-center">
         <ul className="footer">
           <li>TechStack</li>
-          <li>ABOUT US</li>
+          <li onClick={goToAboutUs}>ABOUT US</li>
           <li>GitHub</li>
           <li>Canopy</li>
         </ul>

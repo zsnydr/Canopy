@@ -13,6 +13,7 @@ import SignUp from './containers/sign_up';
 import UserProfile from './containers/user-profile';
 import ApplicationPage from './containers/application-page';
 import CompareListings from './containers/compare-listings-page';
+import AboutUs from './components/about_us';
 
 
 export default (
@@ -28,6 +29,7 @@ export default (
       <Route path="addListing" component={AddListing} />
       <Route path="application" component={ApplicationPage} />
       <Route path="compareListings" component={CompareListings} />
+      <Route path="aboutus" component={AboutUs} />
     </Route>
   </Route>
 );
