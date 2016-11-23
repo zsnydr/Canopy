@@ -8,7 +8,7 @@ const OptionBox = (props) => {
       <Navbar.Header>
         <Navbar.Toggle />
       </Navbar.Header>
-      <Navbar.Collapse>
+      <div id="listings-filter">
         <Nav>
           <NavDropdown eventKey={0} title={props.bedFilterHeader} id="basic-nav-dropdown" onSelect={props.updateBedFilter}>
             <MenuItem eventKey={0}>any</MenuItem>
@@ -52,10 +52,8 @@ const OptionBox = (props) => {
             <MenuItem eventKey={'rent'}>Rent</MenuItem>
             <MenuItem eventKey={'sqFoot'}>Size</MenuItem>
           </NavDropdown>
-
         </Nav>
-        <Nav pullRight />
-      </Navbar.Collapse>
+      </div>
     </Navbar>
     </div>
   );

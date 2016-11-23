@@ -1,5 +1,13 @@
+.navBar-container{
+  position: relative;
+  .navbar-default{
+    margin-bottom: 0px;
+  }
+}
+
 .navBar{
   width: 100%;
+  position: sticky;
   font-family: 'Nova Mono', monospace;
   .Canopy {
     margin-left: 2vw;
@@ -11,42 +19,12 @@
   }
 }
 
+
 .container {
   margin: 0;
   padding: 0;
   width: 100vw;
   right: 0;
-}
-
-.navbar navbar-static-bottom {
-  bottom: 0;
-  left: 0;
-}
-
-.footer {
-  width: 100vw;
-
-  li {
-    font-family: 'Nova Mono', monospace;
-    list-style: none;
-    display: inline;
-    clear: both;
-    margin: 20% 20px 0 20px;
-  }
-  .logo {
-    font-size: 20px;
-    cursor: pointer;
-    }
-
-  a {
-    text-decoration: none;
-    &:hover {
-      color: #17A6B6;
-    }
-  }
-  .fa-github{
-    margin-right: 0.2em;
-  }
 }
 
 div.navbar.navbar-static-bottom{

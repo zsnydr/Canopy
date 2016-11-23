@@ -2,10 +2,10 @@
   width: 100vh;
   height: 95vh;
   margin: 0;
+  position: relative;
   font-family: 'Libre Franklin', sans-serif;
   text-shadow: 0 .1vh .5vh #9F9FED
 }
-
 .listingMap {
   margin:0;
   margin-left: 1vw;
@@ -13,26 +13,32 @@
   height: 20%;
   position: center;
 }
-
-.listingInfo {
-  display: inline-block;
-  margin-left: 2vw;
-    .walkScore div{
-      display: inline-block;
-    }
-
-  .details {
-    margin: 0;
-    margin-right: 2vw;
+.listingContainer{
+  width: 100vw;
+  .listingDetail{
     display: inline-block;
-  }
-}
+    top: 0px;
+    width: 50vw;
+    .listingInfo {
+      display: inline-block;
+      margin-left: 2vw;
+        .walkScore div{
+          display: inline-block;
+        }
 
-.listingPics {
-  margin-left: 25vw;
-  width: 50vw;
-  img{
-    max-height: 50vh;
-    width: 50vw
+      .details {
+        margin: 0;
+        margin-right: 2vw;
+        display: inline-block;
+      }
+    }
+  }
+  .listingPics {
+    display: inline-block;
+    width: 50vw;
+    img{
+      max-height: 50vh;
+      width: 50vw
+    }
   }
 }

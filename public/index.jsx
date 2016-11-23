@@ -21,7 +21,7 @@ ReactDOM.render(
     <Router history={history} routes={routes} />
   </Provider>
   ,
-  document.querySelector('.container')
+  document.querySelector('.canopyReactApp')
 );
 
 

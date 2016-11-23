@@ -43,7 +43,7 @@ class NavBar extends Component {
 
   render() {
     return (
-      <div className="navBar">
+      <div className="navBar-container">
         <Navbar collapseOnSelect>
           <Navbar.Header className="Canopy">
             <Navbar.Brand>
