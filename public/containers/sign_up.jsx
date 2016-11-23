@@ -43,7 +43,13 @@ class SignUpPage extends Component {
   }
 
   onUserTypeChange(event) {
-    this.setState({ userType: event.target.value });
+    if (event.target.value === 'renter') {
+      this.setState({ userType: 0 });
+    } else if (event.target.value === 'host') {
+      this.setState({ userType: 1 });
+    } else {
+      this.setState({ userType: 2 });
+    }
   }
 
   onHomeBaseChange(event) {
@@ -74,31 +80,38 @@ class SignUpPage extends Component {
 
   render() {
     return (
-      <div>
-        <h3>Sign Up</h3>
-        <form onSubmit={this.signUp} action="javascript:void(0)">
-          <p>
-            Name:
-            <input type="text" onChange={this.onNameChange} value={this.state.name} required />
-          </p>
-          <p>
-            Email:
-            <input type="text" onChange={this.onUsernameChange} value={this.state.email} required />
-          </p>
-          <p>
-           Password:
-            <input type="password" onChange={this.onPasswordChange} value={this.state.password} pattern=".{0}|.{6,}" placeholder="(6 char min)" required />
-          </p>
-          <p>
-            User Type:
-            <input type="text" onChange={this.onUserTypeChange} value={this.state.userType} required />
-          </p>
-          <p>
-            Home City:
-            <input type="text" onChange={this.onHomeBaseChange} value={this.state.homeBase} required />
-          </p>
-          <input type="submit" />
-        </form>
+      <div className="signIn">
+        <h1>Sign Up</h1>
+        <div className="signInForm">
+          <form onSubmit={this.signUp} action="javascript:void(0)">
+            <p>
+              Name:
+              <input type="text" onChange={this.onNameChange} value={this.state.name} required />
+            </p>
+            <p>
+              Email:
+              <input type="text" onChange={this.onUsernameChange} value={this.state.email} required />
+            </p>
+            <p>
+             Password:
+              <input type="password" onChange={this.onPasswordChange} value={this.state.password} pattern=".{0}|.{6,}" placeholder="(6 char min)" required />
+            </p>
+            <p>
+              User Type:
+              <select name="userType" onChange={this.onUserTypeChange} >
+                <option> </option>
+                <option value="renter">Renter</option>
+                <option value="host">host</option>
+                <option value="other">Other</option>
+              </select>
+            </p>
+            <p>
+              Home City:
+              <input type="text" onChange={this.onHomeBaseChange} value={this.state.homeBase} required />
+            </p>
+            <input type="submit" />
+          </form>
+        </div>
         {this.state.showAlert &&
           <Alert bsStyle="warning">
              User already exists with that email address.
