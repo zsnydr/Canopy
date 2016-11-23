@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 import request from 'superagent';
 import { browserHistory } from 'react-router';
 import { Modal, Button } from 'react-bootstrap';
+import Dropzone from 'react-dropzone';
 
 import selectListing from '../../../actions/select_listing';
 
@@ -27,6 +28,7 @@ class ListingDescEdit extends Component {
       term: this.props.activeListing.term,
       unitNumber: this.props.activeListing.unitNumber,
       availableDate: this.props.activeListing.availableDate.slice(0, 10),
+      images: this.props.activeListing.images,
       showModal: false,
       newListing: {}
     };

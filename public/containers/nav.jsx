@@ -47,7 +47,7 @@ class NavBar extends Component {
         <Navbar collapseOnSelect>
           <Navbar.Header className="Canopy">
             <Navbar.Brand>
-              <a onClick={this.goHome}>canopy</a>
+              <a href="" onClick={this.goHome}>canopy</a>
             </Navbar.Brand>
             <Navbar.Toggle />
           </Navbar.Header>
