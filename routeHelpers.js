@@ -220,12 +220,12 @@ module.exports = {
           res.end(err);
         }
         console.log('E-mail sent!: ', info.response);
-        res.end(info.response);
+        res.json(info.response);
       });
     })
     .catch((error) => {
       console.log('Failed to fetch user data from db');
-      res.end(error);
+      res.json(error);
     });
   }
 

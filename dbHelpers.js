@@ -271,7 +271,7 @@ module.exports = {
 
   getUserWithId: (renterId) => {
     return User.find({
-      where: { renter_id: renterId }
+      where: { id: renterId }
     });
   }
 

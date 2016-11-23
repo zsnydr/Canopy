@@ -23,7 +23,10 @@ class UserProfile extends Component {
     return (
       <div className="container-fluid">
         <div className="row">
-          <UserProfileInfo activeUser={this.props.activeUser} />
+          <UserProfileInfo 
+          activeUser={this.props.activeUser}
+          updateApplicationType={this.props.updateApplicationType}
+          />
           <UserProfileListings
             activeUser={this.props.activeUser}
             selectListing={this.props.selectListing}
