@@ -220,7 +220,13 @@ module.exports = {
   },
 
   sendEmail: (req, res) => {
-    const transporter = nodemailer.createTransport('smtps://user%40gmail.com:pass@smtp.gmail.com');
+    const transporter = nodemailer.createTransport({
+      service: 'Gmail',
+      auth: {
+        user: 'victorchoi3318@gmail.com',
+        pass: 'lwuwjopolohaxuxq'
+      }
+    });
     const mailOptions = req.body.mailOptions;
       // Expect to see the followings
       // from: Host Email
