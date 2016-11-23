@@ -273,6 +273,12 @@ module.exports = {
     return User.find({
       where: { id: renterId }
     });
+  },
+
+  updateUser: (userInfo) => {
+    return User.update(userInfo, {
+      where: { email: userInfo.email }
+    });
   }
 
 };

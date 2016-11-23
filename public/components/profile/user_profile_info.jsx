@@ -35,6 +35,7 @@ class UserProfileInfo extends Component {
           <h4>({String(this.props.activeUser.phone).substring(0, 3)}) {String(this.props.activeUser.phone).substring(3, 6)}-{String(this.props.activeUser.phone).substring(6, 12)}</h4>
         </div>
         <div>
+          <button onClick={this.props.editUserInfo}>Edit User Profile</button> 
           {(this.props.activeUser.userType % 2 === 0) ?
           <span>
             <button onClick={this.goToSubmitApplication}>Edit Application</button>
