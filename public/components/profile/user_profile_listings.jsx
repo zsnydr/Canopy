@@ -5,8 +5,9 @@ import { bindActionCreators } from 'redux';
 import { Button } from 'react-bootstrap';
 import { browserHistory } from 'react-router';
 
-import selectListing from '../../actions/select_listing';
 import ListingsListItem from '../listings_list/listings_list_item';
+import FormText from '../form/form_text';
+import selectListing from '../../actions/select_listing';
 import updateApplicationType from '../../actions/typeToAppView';
 
 class UserProfileListings extends Component {
@@ -22,8 +23,13 @@ class UserProfileListings extends Component {
       allHost: false,
       newAppsFlag: false,
       data: false,
-      userType: this.props.activeUser.userType
+      userType: this.props.activeUser.userType,
+      showEmailBox: false,
+      emailRenterId: 0,
+      emailAddress: '611 Mission Street'
     };
+
+    this.sendEmail = this.sendEmail.bind(this);
 
     this.goToListing = this.goToListing.bind(this);
     this.editListing = this.editListing.bind(this);
@@ -50,7 +56,36 @@ class UserProfileListings extends Component {
     return () => {
       context.props.updateApplicationType({ type: 'view', renterId });
       browserHistory.push('/content/application');
-    }
+    };
+  }
+
+  showEmailBox(renterId, listingAddress) {
+    this.setState({
+      showEmailBox: true,
+      emailRenterId: renterId,
+      emailAddress: listingAddress
+    });
+  }
+
+  sendEmail(event) {
+    event.preventDefault();
+    console.log('Send Email invoked');
+    const reqBody = {
+      renterId: this.state.emailRenterId,
+      mailOptions: {
+        from: this.props.activeUser.email,
+        Subject: `Your application for ${this.state.emailAddress}}`
+      },
+      textGen: (renterName) => {
+        //Have to grab the text from input text field
+        return (`Hi, ${renterName}. I am contacting you about ${this.state.emailAddress}.`);
+      }
+    };
+    request.post('/api/sendMail', reqBody)
+    .end((err, result) => {
+      console.log('this works', result);
+      this.setState({ showEmailBox: false });
+    });
   }
 
   renderAllRenterListings() {
@@ -139,6 +174,7 @@ class UserProfileListings extends Component {
             />
           </div>
           <button onClick={this.showApplication(newApp[1]['renter_id'])}>View application</button>
+          <button onClick={() => { this.showEmailBox(newApp[1]['renter_id'], newApp[0].address) }}>Send e-mail</button>
         </div>
       );
     });
@@ -196,6 +232,13 @@ class UserProfileListings extends Component {
             {this.state.newAppsFlag && this.renderNewApplications()}
           </div>
         </div>
+        {(!this.state.showEmailBox) ? '' :
+        <div className="emailBox">
+          <form onSubmit={this.sendEmail} id="emailForm">
+            <button type="submit" value="submit" > Submit </button>
+          </form>
+          <textarea form="emailForm" rows="4" cols="50" name="emailcontent" />
+        </div>}
       </div>
     );
   }
