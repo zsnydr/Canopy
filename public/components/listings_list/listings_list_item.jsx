@@ -19,14 +19,14 @@ const ListingsListItem = (props) => {
           <h4>{props.listing.beds}</h4>
         </div>
         <div className="listingDetails">
-          <h1>|</h1>  
+          <h1>|</h1>
         </div>
         <div className="listingDetails">
           <h4>baths</h4>
           <h4>{props.listing.baths}</h4>
         </div>
         <div className="listingDetails">
-          <h1>|</h1>  
+          <h1>|</h1>
         </div>
         <div className="listingDetails">
           <h4>sq. foot</h4>
