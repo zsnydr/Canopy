@@ -21,22 +21,20 @@ class ListingDesc extends Component {
 
   applyToListing() {
     if (this.props.activeUser.length === 0) {
-       this.setState({ noUser : true });
-       return;
+      this.setState({ noUser : true });
+      return;
     }
     request.post('/api/applyToListing', {
       renterId: this.props.activeUser.id,
       listingId: this.props.activeListing.id
     })
-    .then((renterListing) => {
-      console.log('response', renterListing)
+    .then(() => {
       this.setState({ applySuccess: true });
-
     })
     .catch((err) => {
       this.setState({ applyFail: true });
     });
-  };
+  }
 
   addToFavorites(listing_id) {
     if (this.props.activeUser.length === 0) {
@@ -48,7 +46,6 @@ class ListingDesc extends Component {
     })
     .then(() => {
       this.setState({ heart: 'heart' });
-      console.log('favorited listing');
     })
     .catch((err) => {
       console.log('Error favoriting listing', err);
