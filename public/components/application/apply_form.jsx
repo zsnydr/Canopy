@@ -13,7 +13,7 @@ class ApplyForm extends Component {
     super(props);
     this.state = {
       name: this.props.activeUser.name,
-      dob: 'mm/dd/yyy',
+      dob: '',
       phone: this.props.activeUser.phone,
       city: this.props.activeUser.city.name,
       state: this.props.activeUser.city.state,
@@ -50,7 +50,7 @@ class ApplyForm extends Component {
     request.post('/api/application', this.state)
     .then((application) => {
       console.log('Successfullly stored this application data to DB: ', application);
-      //Must have access to renterId
+      //Must have access to renterIdå
       browserHistory.push(`/content/profile/${this.state.renter_id}`);
     });
   }
@@ -81,9 +81,11 @@ class ApplyForm extends Component {
 
   handleChange(key) {
     return (e) => {
+      console.log(key, e.target.value);
       const state = {};
       state[key] = e.target.value;
       this.setState(state);
+      console.log(this.state);
     };
   }
 
@@ -100,7 +102,7 @@ class ApplyForm extends Component {
         <Form inline>
           <FormText type="name" handleChange={this.handleChange} placeholder={this.state.name} /> 
           D.O.B.
-          <FormDate type="dob" handleChange={this.handleChange} placeholder='mm/dd/yyy' />
+          <FormDate label="dob" handleChange={this.handleChange} placeholder='mm/dd/yyy' />
           <br />
             <FormNumber type="phone" handleChange={this.handleChange} placeholder={this.state.phone} />
             <FormText type="state" handleChange={this.handleChange} placeholder={this.state.state} />
