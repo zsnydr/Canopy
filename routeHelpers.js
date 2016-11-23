@@ -88,6 +88,16 @@ module.exports = {
     });
   },
 
+  updateListingImages: (req, res) => {
+    dbHelpers.updateListingImages(req.body)
+    .then((images) => {
+      res.end();
+    })
+    .catch((err) => {
+      res.status(400).send(err);
+    });
+  },
+
   getUserRenterListings: (req, res) => {
     dbHelpers.getUserRenterListings(req.params.userId)
     .then((userRenterListings) => {
@@ -175,7 +185,7 @@ module.exports = {
       if (application) {
         dbHelpers.applyToListing(req.body)
         .then((renterListing) => {
-          
+
           res.json(renterListing);
         })
         .catch((err) => {

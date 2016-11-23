@@ -16,6 +16,8 @@ module.exports = (app) => {
 
   app.post('/api/updateListing', routeHelpers.updateListing);
 
+  app.post('/api/updateListingImages', routeHelpers.updateListingImages);
+
   app.get('/api/listing/:listingId', routeHelpers.getListing);
   app.get('/content/listing/:listingId', routeHelpers.getListing);
 

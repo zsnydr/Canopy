@@ -17,7 +17,7 @@ class SignUpPage extends Component {
       name: '',
       email: '',
       password: '',
-      phoneNum: '',
+      phone: '',
       homeBase: '',
       userType: 0,
       showAlert: false
@@ -45,7 +45,7 @@ class SignUpPage extends Component {
   }
 
   onPhoneNumChange(event) {
-    this.setState({ phoneNum: event.target.value });
+    this.setState({ phone: event.target.value });
   }
 
   onUserTypeChange(event) {
@@ -104,7 +104,7 @@ class SignUpPage extends Component {
             </p>
             <p>
              Phone number:
-              <input type="phoneNum" onChange={this.onPhoneNumChange} value={this.state.phoneNum} required />
+              <input type="phoneNum" onChange={this.onPhoneNumChange} value={this.state.phone} required />
             </p>
             <p>
               User Type:

@@ -15,9 +15,6 @@ class ImageDrop extends Component {
       images: [],
       button: true,
       showModal: false,
-      showLoading: false,
-      showProgress: false,
-      showSuccess: false,
       count: 0,
       active: 'warning'
     };
@@ -49,7 +46,7 @@ class ImageDrop extends Component {
 
   onDrop(acceptedFiles, rejectedFiles) {
     console.log('ACC ', acceptedFiles);
-    this.setState({ button: true, showProgress: true, count: 0, active: 'active' });
+    this.setState({ button: true, count: 0, active: 'active' });
     this.handleImageUpload(acceptedFiles);
   }
 
@@ -77,7 +74,7 @@ class ImageDrop extends Component {
         button: false,
         count: 100,
         active: 'success'
-      });   
+      });
       this.props.setImages({ ref: res.body.secure_url, id: res.body.secure_url });
     });
   }

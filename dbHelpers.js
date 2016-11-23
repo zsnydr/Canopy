@@ -145,6 +145,16 @@ module.exports = {
     });
   },
 
+  updateListingImages: ({ images, listing_id }) => {
+    return Image.destroy({ where: { listing_id } })
+    .then(() => {
+      const bulkImages = images.map(({ ref }) => {
+        return { listing_id, ref };
+      });
+      return Image.bulkCreate(bulkImages);
+    });
+  },
+
   getUserRenterListings: (userId) => {
     return RenterListing.findAll({
       where: { renter_id: userId },

@@ -39,7 +39,7 @@ const AboutUs = () => {
         </div>
       </div>
 
-      <div className="row"  style={{ textAlign: 'center' }}>
+      <div className="row" style={{ textAlign: 'center' }}>
         <div className="col-md-4">
           <a target="_blank" href="https://github.com/pizzasaurusrex">
             <i className="fa fa-github about-links" />
