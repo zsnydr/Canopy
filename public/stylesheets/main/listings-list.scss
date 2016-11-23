@@ -5,9 +5,20 @@
   }
 
 .modal-container .modal, .modal-container .modal-backdrop {
-  position: relative;
+  position: absolute;
 }
 
+.modal-body {
+  width:50vw;
+  text-align: center;
+  .listingDetails {
+    display: inline-block;
+  }
+}
+
+.modal-content .modal-footer {
+  width:50vw;
+}
 
 .listingsPage {
   position: relative;
