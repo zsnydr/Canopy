@@ -100,7 +100,7 @@ const listingData = [
     parking: '2',
     laundry: 'In Unit',
     availableDate: '2016-11-07',
-    host_id: 1,
+    host_id: 3,
     lat: 37.78413,
     lon: -122.39574,
     walkScore: `{"result":{"xmlns":"http://walkscore.com/2008/results","status":"1","walkscore":"99","description":"Walker's Paradise","updated":"2016-07-13 08:26:39.720670","logo_url":"https://cdn.walk.sc/images/api-logo.png","more_info_icon":"https://cdn.walk.sc/images/api-more-info.gif","more_info_link":"https://www.redfin.com/how-walk-score-works","ws_link":"https://www.walkscore.com/score/800-Bush-Street.and.San-Francisco.and.CA.and.94108/lat=37.79014799999999/lng=-122.410717/?utm_source=138.68.11.13:3000&utm_medium=ws_api&utm_campaign=ws_api","help_link":"https://www.redfin.com/how-walk-score-works","snapped_lat":"37.7895","snapped_lon":"-122.4105"}}`

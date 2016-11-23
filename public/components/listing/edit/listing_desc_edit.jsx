@@ -3,10 +3,13 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import request from 'superagent';
 import { browserHistory } from 'react-router';
-import { Modal, Button } from 'react-bootstrap';
+import { Modal, Button, ProgressBar } from 'react-bootstrap';
 import Dropzone from 'react-dropzone';
 
 import selectListing from '../../../actions/select_listing';
+
+const CLOUDINARY_UPLOAD_PRESET = 'wdrjd71q';
+const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/canopydev/image/upload';
 
 class ListingDescEdit extends Component {
   constructor(props) {
@@ -29,8 +32,10 @@ class ListingDescEdit extends Component {
       unitNumber: this.props.activeListing.unitNumber,
       availableDate: this.props.activeListing.availableDate.slice(0, 10),
       images: this.props.activeListing.images,
+      newListing: {},
       showModal: false,
-      newListing: {}
+      count: 0,
+      active: 'warning'
     };
 
     this.updateStreet = this.updateStreet.bind(this);
@@ -44,6 +49,10 @@ class ListingDescEdit extends Component {
     this.updateListing = this.updateListing.bind(this);
     this.closeModalAndShowListing = this.closeModalAndShowListing.bind(this);
     this.closeModalAndShowProfile = this.closeModalAndShowProfile.bind(this);
+
+    this.removeImage = this.removeImage.bind(this);
+    this.onDrop = this.onDrop.bind(this);
+    this.handleImageUpload = this.handleImageUpload.bind(this);
   }
 
   updateStreet(event) { this.setState({ street: event.target.value }); }
@@ -55,12 +64,17 @@ class ListingDescEdit extends Component {
   updateAvailableDate(event) { this.setState({ availableDate: event.target.value }); }
 
   updateListing() {
-    const update = request.post('/api/updateListing')
-                          .send(this.state);
+    const updateImages = request.post('/api/updateListingImages')
+                                .send({ images: this.state.images, listing_id: this.state.id });
 
-    update.end((err, res) => {
-      if (err) { console.log('Error updating listing: ', err); }
-      this.setState({ showModal: true, newListing: res.body });
+    updateImages.end((err, res) => {
+      const update = request.post('/api/updateListing')
+                            .send(this.state);
+
+      update.end((err, res) => {
+        if (err) { console.log('Error updating listing: ', err); }
+        this.setState({ showModal: true, newListing: res.body });
+      });
     });
   }
 
@@ -75,6 +89,37 @@ class ListingDescEdit extends Component {
     event.preventDefault();
     this.setState({ showModal: false });
     browserHistory.push(`/content/profile/${this.state.newListing.host_id}`);
+  }
+
+  removeImage(ref) {
+    for (let i = 0; i < this.state.images.length; i++) {
+      if (this.state.images[i].ref === ref) {
+        const newImageList = this.state.images.slice(0,i).concat(this.state.images.slice(i+1));
+        this.setState({ images: newImageList})
+      }
+    }
+  }
+
+  onDrop(acceptedFiles, rejectedFiles) {
+    console.log('ACC ', acceptedFiles);
+    this.setState({ count: 0, active: 'active' });
+    this.handleImageUpload(acceptedFiles);
+  }
+
+  handleImageUpload(files) {
+    const upload = request.post(CLOUDINARY_UPLOAD_URL)
+                          .field('upload_preset', CLOUDINARY_UPLOAD_PRESET)
+                          .field('file', files[0]);
+    upload.end((err, res) => {
+      if (err) { console.log('Cloudinary Error: ', err); }
+      console.log('CLOUDINARY URL ', res.body.secure_url);
+      this.setState({
+        images: [...this.state.images, { ref: res.body.secure_url }],
+        count: 100,
+        active: 'success'
+      });
+      // this.props.setImages({ ref: res.body.secure_url, id: res.body.secure_url });
+    });
   }
 
   render() {
@@ -103,6 +148,25 @@ class ListingDescEdit extends Component {
               <input type="submit" onClick={this.updateListing} />
             </form>
           </div>
+        </div>
+        <div>
+          <Dropzone className="Dropzone" onDrop={this.onDrop}>
+            <div>Drop images here, or click to select files to upload.</div>
+          </Dropzone>
+        </div>
+        <div style={{ position: 'relative' }}>
+          <h3> Dropped Images:</h3>
+            {this.state.images.map((img) => {
+              return (
+                <div style={{ display: 'inline-block' }}>
+                  <div onClick={() => { this.removeImage(img.ref); }}>X</div>
+                  <img className="droppedPics" key={img.ref} src={img.ref} alt="" />
+                </div>
+              )
+            })}
+        </div>
+        <div>
+          <ProgressBar bsStyle={this.state.active} now={this.state.count} />
         </div>
       </div>
     );
