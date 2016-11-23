@@ -13,7 +13,8 @@ const Splash = () => {
           <Nav />
         </div>
         <div>
-          <h1>canopy</h1>
+          <h1>Get ready to get comfortable</h1>
+          <h2> in your new home </h2>
           <CitySearch />
         </div>
       </div>

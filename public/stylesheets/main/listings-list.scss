@@ -1,9 +1,11 @@
 .modal-container {
+   position: absolute;
+  }
+
+.modal-container .modal, .modal-container .modal-backdrop {
   position: relative;
 }
-.modal-container .modal, .modal-container .modal-backdrop {
-  position: absolute;
-}
+
 
 .listingsPage {
   position: fixed;
@@ -37,6 +39,8 @@
     right:0;
     left:0;
     overflow: auto;
+
+
 
     .listing {
       border: solid 1px;

@@ -31,7 +31,14 @@ class ProfileEdit extends Component {
   }
 
   onUserTypeChange(event) {
-    this.setState({ userType: event.target.value });
+      if (event.target.value === 'renter') {
+      this.setState({ userType: 0 });
+    } else if (event.target.value === 'host') {
+      this.setState({ userType: 1 });
+    } else {
+      this.setState({ userType: 2 });
+    }
+    console.log(this.state);
   }
 
   onHomeBaseChange(event) {
@@ -56,7 +63,12 @@ class ProfileEdit extends Component {
           </p>
           <p>
             User Type:
-            <input type="text" onChange={this.onUserTypeChange} value={this.state.userType} required />
+             <select name="userType" onChange={this.onUserTypeChange} >
+                <option> </option>
+                <option value="renter">Renter</option>
+                <option value="host">host</option>
+                <option value="other">Other</option>
+              </select>
           </p>
           <p>
             Home City:
