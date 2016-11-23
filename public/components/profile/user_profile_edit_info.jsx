@@ -10,24 +10,18 @@ class ProfileEdit extends Component {
     this.state = {
       name: '',
       email: '',
-      password: '',
       homeBase: '',
       userType: 0,
       showAlert: false
     };
     console.log(this.state);
     this.onNameChange = this.onNameChange.bind(this);
-    this.onPasswordChange = this.onPasswordChange.bind(this);
     this.onUserTypeChange = this.onUserTypeChange.bind(this);
     this.onHomeBaseChange = this.onHomeBaseChange.bind(this);
   }
 
   onNameChange(event) {
     this.setState({ name: event.target.value });
-  }
-
-  onPasswordChange(event) {
-    this.setState({ password: event.target.value });
   }
 
   onUserTypeChange(event) {
@@ -44,7 +38,7 @@ class ProfileEdit extends Component {
   onHomeBaseChange(event) {
     this.setState({ homeBase: event.target.value });
   }
-  
+
   componentDidMount() {
     this.setState(this.props.activeUser);
   }
@@ -56,10 +50,6 @@ class ProfileEdit extends Component {
           <p>
             Name:
             <input type="text" onChange={this.onNameChange} value={this.state.name} required />
-          </p>
-          <p>
-           Password:
-            <input type="password" onChange={this.onPasswordChange} value={this.state.password} pattern=".{0}|.{6,}" placeholder="(6 char min)" required />
           </p>
           <p>
             User Type:

@@ -17,6 +17,7 @@ class SignUpPage extends Component {
       name: '',
       email: '',
       password: '',
+      phoneNum: '',
       homeBase: '',
       userType: 0,
       showAlert: false
@@ -25,6 +26,7 @@ class SignUpPage extends Component {
     this.onNameChange = this.onNameChange.bind(this);
     this.onUsernameChange = this.onUsernameChange.bind(this);
     this.onPasswordChange = this.onPasswordChange.bind(this);
+    this.onPhoneNumChange = this.onPhoneNumChange.bind(this);
     this.onUserTypeChange = this.onUserTypeChange.bind(this);
     this.onHomeBaseChange = this.onHomeBaseChange.bind(this);
     this.signUp = this.signUp.bind(this);
@@ -40,6 +42,10 @@ class SignUpPage extends Component {
 
   onPasswordChange(event) {
     this.setState({ password: event.target.value });
+  }
+
+  onPhoneNumChange(event) {
+    this.setState({ phoneNum: event.target.value });
   }
 
   onUserTypeChange(event) {
@@ -95,6 +101,10 @@ class SignUpPage extends Component {
             <p>
              Password:
               <input type="password" onChange={this.onPasswordChange} value={this.state.password} pattern=".{0}|.{6,}" placeholder="(6 char min)" required />
+            </p>
+            <p>
+             Phone number:
+              <input type="phoneNum" onChange={this.onPhoneNumChange} value={this.state.phoneNum} required />
             </p>
             <p>
               User Type:

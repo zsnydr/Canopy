@@ -175,6 +175,7 @@ module.exports = {
       if (application) {
         dbHelpers.applyToListing(req.body)
         .then((renterListing) => {
+          
           res.json(renterListing);
         })
         .catch((err) => {
