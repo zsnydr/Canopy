@@ -22,7 +22,7 @@ class ApplicationDisplay extends Component {
     };
   }
   componentDidMount() {
-    console.log('Making get request to get application information from db');
+    console.log('Making get request to get application information from db: ', this.props.renterId);
     request.get(`/api/application/${this.props.renterId}`)
     .then((res) => {
       const application = res.data;

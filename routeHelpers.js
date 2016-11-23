@@ -50,7 +50,6 @@ module.exports = {
   getListings: (req, res) => {
     dbHelpers.getListings(req.params.cityId)
     .then((listings) => {
-      console.log('listings from route helpers', listings);
       res.json(listings);
     })
     .catch((err) => {
@@ -71,7 +70,6 @@ module.exports = {
   postListing: (req, res) => {
     dbHelpers.postListing(req.body)
     .then((listing) => {
-      console.log('Posted listing: ', listing);
       res.json(listing);
     })
     .catch((err) => {
@@ -174,9 +172,10 @@ module.exports = {
   applyToListing: (req, res) => {
     dbHelpers.getApplication(req.body.renterId)
     .then((application) => {
-      if (!application) {
+      if (application) {
         dbHelpers.applyToListing(req.body)
         .then((renterListing) => {
+          
           res.json(renterListing);
         })
         .catch((err) => {
@@ -211,7 +210,6 @@ module.exports = {
       // to: will be fetched from db
     dbHelpers.getUserWithId(req.body.renterId)
     .then((receiver) => {
-      console.log('This is the user that I get back: ', receiver);
       mailOptions.text = req.body.textGen(receiver.name);
       mailOptions.to = receiver.email;
       return transporter.sendMail(mailOptions, (err, info) => {
@@ -230,7 +228,6 @@ module.exports = {
   },
 
   updateUser: (req, res) => {
-    console.log(req.body);
     dbHelpers.updateUser(req.body)
     .then((userInfo) => {
       res.json(userInfo);
