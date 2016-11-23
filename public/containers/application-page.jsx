@@ -16,7 +16,7 @@ class ApplicationPage extends Component {
 
   render() {
     if (this.props.applicationType.type === 'form') {
-      return <ApplicationForm />;
+      return <ApplicationForm activeUser={this.props.activeUser}/>;
     } else if (this.props.applicationType.type === 'view') {
       return <ApplicationView renterId={this.props.applicationType.renterId} />;
     }

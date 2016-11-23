@@ -24,7 +24,7 @@ class ApplyForm extends Component {
       supervisorName: 'Josh',
       supervisorPhone: 5073015775,
       eSign: 'Victor Choi',
-      renter_id: 1,
+      renter_id: this.props.activeUser.id,
       rentalHistories: 0
     };
     this.onFormSubmit = this.onFormSubmit.bind(this);
@@ -37,6 +37,7 @@ class ApplyForm extends Component {
 
 
   onFormSubmit(event) {
+    console.log(this.state);
     event.preventDefault();
     request.post('/api/application', this.state)
     .then((application) => {
@@ -77,7 +78,6 @@ class ApplyForm extends Component {
       this.setState(state);
     };
   }
-
 
   render() {
     const rentalHistoryForms = [];

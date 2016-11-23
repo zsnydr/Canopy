@@ -31,7 +31,7 @@ class ListingForm extends Component {
       cats: false,
       term: 0,
       availableDate: '',
-      host_id: 1,
+      host_id: this.props.activeUser.id,
       images: [],
       newListing: []
     };
@@ -149,8 +149,14 @@ class ListingForm extends Component {
   }
 }
 
+function mapStateToProps({ activeUser }) {
+  return {
+    activeUser
+  };
+}
+
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({ selectListing, selectCity }, dispatch);
 }
 
-export default connect(null, mapDispatchToProps)(ListingForm);
+export default connect(mapStateToProps, mapDispatchToProps)(ListingForm);
