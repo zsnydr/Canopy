@@ -18,7 +18,7 @@ class ApplyForm extends Component {
       numChildOccupants: 0,
       pets: 0,
       currentEmployer: 'Hack Reactor',
-      currentPosition: 'Student',
+      position: 'Student',
       duration: 6,
       annualIncome: 0,
       supervisorName: 'Josh',
@@ -98,7 +98,7 @@ class ApplyForm extends Component {
           <FormText type="pets" handleChange={this.handleChange} placeholder=" eg.88888" />
           <br />
           <FormText type="currentEmployer" handleChange={this.handleChange} placeholder=" eg.88888" />
-          <FormText type="currentPosition" handleChange={this.handleChange} placeholder=" eg.88888" />
+          <FormText type="position" handleChange={this.handleChange} placeholder=" eg.88888" />
           <FormNumber type="duration" handleChange={this.handleChange} placeholder="12" />
           <br />
           <FormNumber type="annualIncome" handleChange={this.handleChange} placeholder=" eg.88888" />

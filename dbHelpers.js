@@ -39,6 +39,7 @@ module.exports = {
         return User.create({
           name: userData.name,
           email: userData.email,
+          phone: userData.phone,
           password: hash,
           userType: userData.userType,
           homebase_id: cityData.id
