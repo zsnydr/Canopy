@@ -39,4 +39,6 @@ module.exports = (app) => {
   app.post('/api/addfavorite', routeHelpers.addFavoriteListing);
 
   app.post('/api/sendMail', routeHelpers.sendEmail);
+
+  app.post('/api/updateUser', routeHelpers.updateUser);
 };

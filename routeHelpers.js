@@ -227,6 +227,18 @@ module.exports = {
       console.log('Failed to fetch user data from db');
       res.json(error);
     });
+  },
+
+  updateUser: (req, res) => {
+    console.log(req.body);
+    dbHelpers.updateUser(req.body)
+    .then((userInfo) => {
+      res.json(userInfo);
+    })
+    .catch((err) => {
+      console.log('Failed to update user data in db');
+      res.json(err);
+    });
   }
 
 };
