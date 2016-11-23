@@ -203,6 +203,7 @@ module.exports = {
   },
 
   getApplication: (renterId) => {
+    console.log(renterId);
     return Application.find({ where: { renter_id: renterId } })
     .then((application) => {
       return application;
