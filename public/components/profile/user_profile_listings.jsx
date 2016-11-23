@@ -74,13 +74,11 @@ class UserProfileListings extends Component {
     const reqBody = {
       renterId: this.state.emailRenterId,
       mailOptions: {
-        from: this.props.activeUser.email,
-        Subject: `Your application for ${this.state.emailAddress}}`
+        subject: `Your application for ${this.state.emailAddress}}`
       },
-      textGen: (renterName) => {
-        //Have to grab the text from input text field
-        return (`Hi, ${renterName}. I am contacting you about ${this.state.emailAddress}.`);
-      }
+      text: `I am getting back on you about ${this.state.emailAddress}.
+        Contact me through e-mail ${this.props.activeUser.email},
+        Best, ${this.props.activeUser.name}`
     };
     request.post('/api/sendMail', reqBody)
     .end((err, result) => {
@@ -175,7 +173,7 @@ class UserProfileListings extends Component {
             />
           </div>
           <button onClick={this.showApplication(newApp[1]['renter_id'])}>View application</button>
-          <button onClick={() => { this.showEmailBox(newApp[1]['renter_id'], newApp[0].address) }}>Send e-mail</button>
+          <button onClick={() => { this.showEmailBox(newApp[1]['renter_id'], newApp[0].street) }}>Send e-mail</button>
         </div>
       );
     });

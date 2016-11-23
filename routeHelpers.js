@@ -228,17 +228,11 @@ module.exports = {
       }
     });
     const mailOptions = req.body.mailOptions;
-      // Expect to see the followings
-      // from: Host Email
-      // Subject: 'Your application for {listing address}'
-
-      // text: will be fetched from db with renter name
-      // to: will be fetched from db
     dbHelpers.getUserWithId(req.body.renterId)
     .then((receiver) => {
-      mailOptions.text = req.body.textGen(receiver.name);
+      mailOptions.text = `Hi, ${receiver.name}, ${req.body.text}`;
       mailOptions.to = receiver.email;
-      return transporter.sendMail(mailOptions, (err, info) => {
+      transporter.sendMail(mailOptions, (err, info) => {
         if (err) {
           console.log('Failed to send email');
           res.end(err);
