@@ -128,7 +128,7 @@ class ListingsPage extends Component {
            Compare Listings
           </Button>
         </div>
-        <div className="listings_list">
+        <div>
           <ListingsList
             focusListing={this.state.focusListing}
             closeModal={this.closeModal}

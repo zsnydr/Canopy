@@ -44,23 +44,29 @@ class ListingsList extends Component {
     }
 
     return this.props.listings.map((listing) => {
+      const divStyle = {
+        backgroundImage: 'url(' + listing.images[0].ref + ')'
+
+      };
       return (
-        <div className="listing">
-          <ListingsListItem
-            key={listing.id}
-            listing={listing}
-            city={listing.city.name}
-            state={listing.city.state}
-            selectListing={this.props.selectListing}
-            goToListing={this.goToListing}
-          />
-          <CompareFavoriteButtons
-            addToFavorites={this.addToFavorites}
-            updateCompareListings={this.props.updateCompareListings}
-            activeUser={this.props.activeUser}
-            listing={listing}
-            listingsCompared={this.props.listingsCompared}
-          />
+        <div className="listing" style={divStyle}>
+          <div className="listingOverlay">
+            <ListingsListItem
+              key={listing.id}
+              listing={listing}
+              city={listing.city.name}
+              state={listing.city.state}
+              selectListing={this.props.selectListing}
+              goToListing={this.goToListing}
+            />
+            <CompareFavoriteButtons
+              addToFavorites={this.addToFavorites}
+              updateCompareListings={this.props.updateCompareListings}
+              activeUser={this.props.activeUser}
+              listing={listing}
+              listingsCompared={this.props.listingsCompared}
+            />
+          </div>
         </div>
       );
     });
@@ -107,7 +113,9 @@ class ListingsList extends Component {
           updateMaxRentFilter={this.props.updateMaxRentFilter}
           updateSorter={this.props.updateSorter}
         />
-        {this.renderListings()}
+        <div className="listings_list">
+          {this.renderListings()}
+        </div>
       </div>
     );
   }

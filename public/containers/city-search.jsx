@@ -24,6 +24,7 @@ class CitySearch extends Component {
 
   onFormSubmit(event) {
     event.preventDefault();
+    console.log(this.state.term)
     request.get(`/api/cities/${this.state.term}`)
     .then((city) => {
       // console.log('city got it');

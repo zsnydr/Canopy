@@ -2,10 +2,6 @@ const routeHelpers = require('./routeHelpers');
 // const authHelpers = require('./authHelpers');
 
 module.exports = (app) => {
-  app.get('/test', (req, res) => {
-    res.send('hello');
-  });
-
   app.post('/api/signup', routeHelpers.signUp);
 
   app.post('/api/signin', routeHelpers.signIn);
@@ -21,6 +17,7 @@ module.exports = (app) => {
   app.post('/api/updateListing', routeHelpers.updateListing);
 
   app.get('/api/listing/:listingId', routeHelpers.getListing);
+  app.get('/content/listing/:listingId', routeHelpers.getListing);
 
   app.post('/api/images', routeHelpers.postImages);
 

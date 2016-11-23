@@ -24,7 +24,8 @@
     margin-top:20vh;
     color: #313D5A;
     font-size: 10vh;
-    font-family: 'Nova Mono', monospace;
+    font-family: 'Proza Libre', sans-serif;
+    text-shadow: 0 .1vh .5vh #9F9FED
   }
   form {
     display: inline-block;
@@ -33,20 +34,20 @@
       text-align: center;
       width: 55vw;
       height: 7vh;
+      font-family: 'Libre Franklin', sans-serif;
       font-size: 3vh;
     }
     Button {
       display: inline-block;
-      background-color: #73628A;
-      color: #FEF9FF;
-      width: 4em;
-      padding: auto;
       height: 7vh;
+      background-color: #73628A;
+      font-family: 'Libre Franklin', sans-serif;
+      color: #FEF9FF;
       font-size: 3vh;
-      font-family: 'Amaranth', sans-serif;
     }
   }
 }
+
 
 .mainInfo {
   position: relative;

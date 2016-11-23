@@ -1,19 +1,33 @@
 .navBar{
   width: 100%;
   font-family: 'Nova Mono', monospace;
+  .Canopy {
+    margin-left: 2vw;
+  }
+  
   .links {
     margin-left: 1%;
     margin-right: 1%;
   }
 }
+
 .container {
   margin: 0;
   padding: 0;
-  width: 100%;
+  width: 100vw;
   right: 0;
 }
 
+.navbar navbar-static-bottom {
+  bottom: 0;
+  left: 0;
+}
+
+
+
 .footer {
+  width: 100vw;
+
   li {
     font-family: 'Nova Mono', monospace;
     list-style: none;

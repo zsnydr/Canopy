@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import request from 'superagent';
 import Dropzone from 'react-dropzone';
-import { Button, Modal } from 'react-bootstrap';
+import { Button, Modal, ProgressBar } from 'react-bootstrap';
 import { browserHistory } from 'react-router';
 
 const CLOUDINARY_UPLOAD_PRESET = 'wdrjd71q';
@@ -14,7 +14,12 @@ class ImageDrop extends Component {
     this.state = {
       images: [],
       button: true,
-      showModal: false
+      showModal: false,
+      showLoading: false,
+      showProgress: false,
+      showSuccess: false,
+      count: 0,
+      active: 'warning'
     };
 
     this.handleImageUpload = this.handleImageUpload.bind(this);
@@ -44,7 +49,7 @@ class ImageDrop extends Component {
 
   onDrop(acceptedFiles, rejectedFiles) {
     console.log('ACC ', acceptedFiles);
-    this.setState({ button: true });
+    this.setState({ button: true, showProgress: true, count: 0, active: 'active' });
     this.handleImageUpload(acceptedFiles);
   }
 
@@ -69,8 +74,10 @@ class ImageDrop extends Component {
       console.log('CLOUDINARY URL ', res.body.secure_url);
       this.setState({
         images: [...this.state.images, res.body.secure_url],
-        button: false
-      });
+        button: false,
+        count: 100,
+        active: 'success'
+      });   
       this.props.setImages({ ref: res.body.secure_url, id: res.body.secure_url });
     });
   }
@@ -87,18 +94,31 @@ class ImageDrop extends Component {
             <Button onClick={this.closeModalAndShowProfile}>Back to Profile</Button>
           </Modal.Footer>
         </Modal>
-        <Dropzone onDrop={this.onDrop}>
-          <div>Drop images here, or click to select files to upload.</div>
-        </Dropzone>
-        <h1> Dropped Images:</h1>
-        <div>
-          {this.state.images.map((img) => {
-            return <img className="droppedPics" key={img} src={img} alt="" />;
-          })}
+        <div className="container-fluid" style={{ textAlign: 'center' }}>
+          <div className="row">
+            <div className="col-md-6">
+              <Dropzone className="Dropzone" onDrop={this.onDrop}>
+                <div>Drop images here, or click to select files to upload.</div>
+              </Dropzone>
+            </div>
+            <div className="col-md-6">
+              <h1> Dropped Images:</h1>
+                {this.state.images.map((img) => {
+                  return <img className="droppedPics" key={img} src={img} alt="" />;
+                })}
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-md-6">
+              <Button onClick={this.onFormSubmit} type="submit" disabled={this.state.button}>
+                Submit
+              </Button>
+            </div>
+              <div className="col-md-6">
+                 <ProgressBar bsStyle={this.state.active} now={this.state.count} />
+              </div>
+          </div>
         </div>
-        <Button onClick={this.onFormSubmit} type="submit" disabled={this.state.button}>
-          Submit
-        </Button>
       </div>
     );
   }
