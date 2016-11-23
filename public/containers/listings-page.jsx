@@ -116,7 +116,7 @@ class ListingsPage extends Component {
 
     return (
       <div className="listingsPage">
-        <div>
+        <div className="city-search-listings">
           <CitySearch />
         </div>
         <div>
@@ -128,7 +128,7 @@ class ListingsPage extends Component {
            Compare Listings
           </Button>
         </div>
-        <div>
+        <div id="listingsList-container">
           <ListingsList
             focusListing={this.state.focusListing}
             closeModal={this.closeModal}

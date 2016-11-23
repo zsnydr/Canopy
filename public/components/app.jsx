@@ -5,9 +5,10 @@ import Footer from '../components/footer';
 const App = (props) => {
   return (
     <div>
-      <div>
+      <div className="main-content">
         {props.children}
       </div>
+      <Footer />
     </div>);
 };
 

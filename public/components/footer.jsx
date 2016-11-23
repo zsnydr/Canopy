@@ -8,7 +8,7 @@ const Footer = (props) => {
   }
 
   return (
-    <div className="navbar navbar-static-bottom">
+    <div className="navbar navbar-static-bottom" id="footer-container">
       <hr />
       <div className="text-center">
         <ul className="footer">
