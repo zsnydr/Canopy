@@ -30,9 +30,6 @@ class ListingsList extends Component {
       listing_id,
       renter_id: this.props.activeUser.id
     })
-    .then(() => {
-      console.log('favorited listing');
-    })
     .catch((err) => {
       console.log('Error favoriting listing', err);
     });

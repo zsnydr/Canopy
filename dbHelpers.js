@@ -130,7 +130,6 @@ module.exports = {
       return Listing.create(listingInfo);
     })
       .then((listing) => {
-        console.log('listing created');
         return listing;
       })
       .catch((err) => {
@@ -179,9 +178,6 @@ module.exports = {
         Image.create({
           listing_id,
           ref: image
-        })
-        .then((img) => {
-          console.log('Created image: ');
         })
         .catch((err) => {
           console.log('Error creating image: ', err);
