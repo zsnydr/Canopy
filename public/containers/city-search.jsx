@@ -48,7 +48,7 @@ class CitySearch extends Component {
             id="formControlsText"
             type="text"
             label="Text"
-            placeholder="apartment search by city eg. San Francisco, Ca"
+            placeholder="search by city e.g. San Francisco, Ca"
             onChange={this.onInputChange}
             value={this.state.term}
           />
