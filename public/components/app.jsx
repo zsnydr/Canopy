@@ -7,8 +7,7 @@ const App = (props) => {
     <div>
       <div>
         {props.children}
-      </div>  
-      <Footer />
+      </div>
     </div>);
 };
 

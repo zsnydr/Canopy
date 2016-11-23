@@ -14,7 +14,8 @@ class ImageDrop extends Component {
     this.state = {
       images: [],
       button: true,
-      showModal: false
+      showModal: false,
+      showLoading: false
     };
 
     this.handleImageUpload = this.handleImageUpload.bind(this);
@@ -92,6 +93,9 @@ class ImageDrop extends Component {
         </Dropzone>
         <h1> Dropped Images:</h1>
         <div>
+          {this.state.showLoading &&
+            <div>hi!</div>
+          }
           {this.state.images.map((img) => {
             return <img className="droppedPics" key={img} src={img} alt="" />;
           })}
