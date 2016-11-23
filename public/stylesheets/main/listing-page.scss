@@ -2,7 +2,8 @@
   width: 100vh;
   height: 95vh;
   margin: 0;
-  font-family: 'Amaranth', sans-serif;
+  font-family: 'Libre Franklin', sans-serif;
+  text-shadow: 0 .1vh .5vh #9F9FED
 }
 
 .listingMap {
@@ -18,7 +19,6 @@
   margin-left: 2vw;
     .walkScore div{
       display: inline-block;
-
     }
 
   .details {

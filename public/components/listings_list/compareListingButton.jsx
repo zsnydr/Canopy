@@ -27,35 +27,37 @@ class compareListingButton extends Component {
 
   render() {
     return (
-      <div>
-        Compare:
-        <Button
-          className="compare"
-          bsSize="small"
-          bsStyle="info"
-          onClick={() => {
-            this.props.updateCompareListings(this.props.listing);
-            if (this.props.listingsCompared.length < 2 || this.props.listingsCompared.indexOf(this.props.listing) >= 0) {
-              this.toggleButton(this.state.star);  
-            }
-          }}
-        >
-          <Glyphicon glyph={this.state.star} />
-        </Button>
-        Heart:
-        <Button
-          className="favorite"
-          bsSize="small"
-          bsStyle="info"
-          onClick={() => {
-            this.props.addToFavorites(this.props.listing.id);
-            if (this.props.activeUser.length !== 0) {
-              this.toggleButton(this.state.heart);
-            }
-          }}
-        >
-          <Glyphicon glyph={this.state.heart} />
-        </Button>
+      <div className="likeCompare">
+        <div className="compare">
+          <Button
+            bsSize="small"
+            bsStyle="info"
+            onClick={() => {
+              this.props.updateCompareListings(this.props.listing);
+              if (this.props.listingsCompared.length < 2 || this.props.listingsCompared.indexOf(this.props.listing) >= 0) {
+                this.toggleButton(this.state.star);  
+              }
+            }}
+          >
+            Compare {}
+            <Glyphicon glyph={this.state.star} />         
+          </Button>
+        </div>
+        <div className="favorite">
+          <Button
+            bsSize="small"
+            bsStyle="info"
+            onClick={() => {
+              this.props.addToFavorites(this.props.listing.id);
+              if (this.props.activeUser.length !== 0) {
+                this.toggleButton(this.state.heart);
+              }
+            }}
+          >
+            Like {}
+            <Glyphicon glyph={this.state.heart} />
+          </Button>
+        </div>
       </div>
     );
   }

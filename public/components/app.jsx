@@ -5,7 +5,9 @@ import Footer from '../components/footer';
 const App = (props) => {
   return (
     <div>
-      {props.children}
+      <div>
+        {props.children}
+      </div>  
       <Footer />
     </div>);
 };

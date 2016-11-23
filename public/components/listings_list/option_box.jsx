@@ -3,7 +3,8 @@ import { Nav, Navbar, MenuItem, NavDropdown, SplitButton } from 'react-bootstrap
 
 const OptionBox = (props) => {
   return (
-    <Navbar className="listingOptions" inverse collapseOnSelect>
+    <div className="listingOptions">
+    <Navbar inverse collapseOnSelect>
       <Navbar.Header>
         <Navbar.Toggle />
       </Navbar.Header>
@@ -56,6 +57,7 @@ const OptionBox = (props) => {
         <Nav pullRight />
       </Navbar.Collapse>
     </Navbar>
+    </div>
   );
 };
 

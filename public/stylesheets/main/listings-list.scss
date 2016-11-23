@@ -10,15 +10,22 @@
   width: 98vh;
   height: 99vh;
   margin: 0vh 1vh 1vh 1vh;
-  font-family: 'Amaranth', sans-serif;
+  font-family: 'Work Sans', sans-serif;
 
   .listings_map {
     position: fixed;
     display: inline-block;
-    margin: 0vh 1vh 1vh 0vh;
+    margin: -9vh 1vh 1vh 0vh;
     width: 48vw;
     height: 80vh;
     right:0;
+  }
+
+  .listingOptions {
+    margin-top: 2vh;
+    margin-bottom: 0;
+    width: 48vw;
+
   }
 
   .listings_list {
@@ -31,39 +38,52 @@
     left:0;
     overflow: auto;
 
-    .listing{
+    .listing {
       border: solid 1px;
-      text-align: left;
-      margin: 0;
+      text-align: center;
+      margin: 0 0 .5vh 0;
       width: 47.5vw;
+      background-repeat: no-repeat;
+      background-size: cover;
 
-      .listingImg {
-        position: relative;
-        vertical-align: top;
-        height: 15vh;
-        display: inline-block;
-        width:20%;
-        border: solid 1px;
+      .listingOverlay {
+        background-color: white;
+        opacity: .7;
+        text-shadow: 0 .1vh .1vh #9F9FED;
+        text-rendering: optimizeLegibility;
       }
-      
-      .listingListDetails {
-        margin-left: 4vh;
-        display: inline-block;
-        margin: 0;
 
-        h3 {
-          margin: 0;
-          margin-left: 4vh;
-        }
-
-        .listingDetails {
-
-          top: 0;
+        .listingListDetails {
           margin-left: 4vh;
           display: inline-block;
+          margin: 0;
+
+          h3 {
+            margin: 0;
+            margin-left: 4vh;
+          }
+
+          .listingDetails {
+            top: 0;
+            margin: 0 0 1vh 4vh;
+            display: inline-block;
+          }
         }
-      }
+
+        .likeCompare {
+          .compare {
+           display: inline-block;
+            left: 0        
+          }
+
+          .favorite {
+            display: inline-block;
+            margin-left: 10vw;
+          }
+        }
+      
     }
   }
 }
+
 
