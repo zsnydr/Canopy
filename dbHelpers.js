@@ -154,6 +154,10 @@ module.exports = {
     });
   },
 
+  removeListing: ({ id }) => {
+    return Listing.destroy({ where: { id } });
+  },
+
   getUserRenterListings: (userId) => {
     return RenterListing.findAll({
       where: { renter_id: userId },

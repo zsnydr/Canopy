@@ -98,6 +98,16 @@ module.exports = {
     });
   },
 
+  removeListing: (req, res) => {
+    dbHelpers.removeListing(req.body)
+    .then(() => {
+      res.end();
+    })
+    .catch((err) => {
+      res.status(400).send(err);
+    });
+  },
+
   getUserRenterListings: (req, res) => {
     dbHelpers.getUserRenterListings(req.params.userId)
     .then((userRenterListings) => {

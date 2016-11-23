@@ -33,7 +33,8 @@ class ListingDescEdit extends Component {
       availableDate: this.props.activeListing.availableDate.slice(0, 10),
       images: this.props.activeListing.images,
       newListing: {},
-      showModal: false,
+      showUpdateModal: false,
+      showRemoveModal: false,
       count: 0,
       active: 'warning'
     };
@@ -49,6 +50,10 @@ class ListingDescEdit extends Component {
     this.updateListing = this.updateListing.bind(this);
     this.closeModalAndShowListing = this.closeModalAndShowListing.bind(this);
     this.closeModalAndShowProfile = this.closeModalAndShowProfile.bind(this);
+
+    this.removeListing = this.removeListing.bind(this);
+    this.closeRemoveModal = this.closeRemoveModal.bind(this);
+    this.closeRemoveModalAndRemoveListing = this.closeRemoveModalAndRemoveListing.bind(this);
 
     this.removeImage = this.removeImage.bind(this);
     this.onDrop = this.onDrop.bind(this);
@@ -68,36 +73,55 @@ class ListingDescEdit extends Component {
                                 .send({ images: this.state.images, listing_id: this.state.id });
 
     updateImages.end((err, res) => {
-      const update = request.post('/api/updateListing')
+      const updateListing = request.post('/api/updateListing')
                             .send(this.state);
 
-      update.end((err, res) => {
+      updateListing.end((err, res) => {
         if (err) { console.log('Error updating listing: ', err); }
-        this.setState({ showModal: true, newListing: res.body });
+        this.setState({ showUpdateModal: true, newListing: res.body });
       });
     });
   }
 
   closeModalAndShowListing(event) {
     event.preventDefault();
-    this.setState({ showModal: false });
+    this.setState({ showUpdateModal: false });
     this.props.selectListing(this.state.newListing);
     browserHistory.push(`/content/listing/${this.state.newListing.id}`);
   }
 
   closeModalAndShowProfile(event) {
     event.preventDefault();
-    this.setState({ showModal: false });
+    this.setState({ showUpdateModal: false });
     browserHistory.push(`/content/profile/${this.state.newListing.host_id}`);
+  }
+
+  closeRemoveModal() {
+    this.setState({ showRemoveModal: false });
+  }
+
+  closeRemoveModalAndRemoveListing() {
+    const removeListing = request.post('/api/removeListing')
+                                 .send({ id: this.state.id });
+
+    removeListing.end((err) => {
+      if (err) { console.log('Error removing listing: ', err); }
+      this.setState({ showRemoveModal: false });
+      browserHistory.push(`/content/profile/${this.state.host_id}`);
+    });
   }
 
   removeImage(ref) {
     for (let i = 0; i < this.state.images.length; i++) {
       if (this.state.images[i].ref === ref) {
-        const newImageList = this.state.images.slice(0,i).concat(this.state.images.slice(i+1));
-        this.setState({ images: newImageList})
+        const newImageList = this.state.images.slice(0, i).concat(this.state.images.slice(i + 1));
+        this.setState({ images: newImageList })
       }
     }
+  }
+
+  removeListing() {
+    this.setState({ showRemoveModal: true })
   }
 
   onDrop(acceptedFiles, rejectedFiles) {
@@ -118,14 +142,22 @@ class ListingDescEdit extends Component {
         count: 100,
         active: 'success'
       });
-      // this.props.setImages({ ref: res.body.secure_url, id: res.body.secure_url });
     });
   }
 
   render() {
     return (
       <div>
-        <Modal show={this.state.showModal}>
+        <Modal show={this.state.showRemoveModal}>
+          <Modal.Header closeButton>
+            <Modal.Title>Are you sure you wanto to remove this listing?</Modal.Title>
+          </Modal.Header>
+          <Modal.Footer>
+            <Button onClick={this.closeRemoveModal}>Cancel</Button>
+            <Button onClick={this.closeRemoveModalAndRemoveListing}>Yes</Button>
+          </Modal.Footer>
+        </Modal>
+        <Modal show={this.state.showUpdateModal}>
           <Modal.Header closeButton>
             <Modal.Title>Listing Updated!</Modal.Title>
           </Modal.Header>
@@ -145,7 +177,6 @@ class ListingDescEdit extends Component {
               Rent: <input value={this.state.rent} onChange={this.updateRent} /><br />
               Sq. Footage: <input value={this.state.sqFoot} onChange={this.updateSqFoot} /><br />
               Date Available: <input value={this.state.availableDate} onChange={this.updateAvailableDate} /><br />
-              <input type="submit" onClick={this.updateListing} />
             </form>
           </div>
         </div>
@@ -168,6 +199,8 @@ class ListingDescEdit extends Component {
         <div>
           <ProgressBar bsStyle={this.state.active} now={this.state.count} />
         </div>
+        <Button onClick={this.updateListing}>Submit Updates</Button>
+        <Button onClick={this.removeListing}>Remove Listing</Button>
       </div>
     );
   }
