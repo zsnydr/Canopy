@@ -130,7 +130,6 @@ module.exports = {
       return Listing.create(listingInfo);
     })
       .then((listing) => {
-        console.log('listing created');
         return listing;
       })
       .catch((err) => {
@@ -180,9 +179,6 @@ module.exports = {
           listing_id,
           ref: image
         })
-        .then((img) => {
-          console.log('Created image: ');
-        })
         .catch((err) => {
           console.log('Error creating image: ', err);
           reject(err);
@@ -203,7 +199,6 @@ module.exports = {
   },
 
   getApplication: (renterId) => {
-    console.log(renterId);
     return Application.find({ where: { renter_id: renterId } })
     .then((application) => {
       return application;
