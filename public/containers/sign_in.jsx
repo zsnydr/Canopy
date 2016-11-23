@@ -3,7 +3,7 @@ import request from 'axios';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { browserHistory } from 'react-router';
-import { Alert } from 'react-bootstrap';
+import { Alert, Glyphicon } from 'react-bootstrap';
 
 import selectUser from '../actions/select_user';
 import selectCity from '../actions/select_city';
@@ -58,21 +58,21 @@ class SignInPage extends Component {
   render() {
     return (
       <div className="signIn">
-        <h3>Sign In</h3>
-        <form onSubmit={this.signIn} action="javascript:void(0)">
-          <p>Email:
-            <input type="text" onChange={this.onEmailChange} value={this.state.email} />
-          </p>
-          <p>Password:
-            <input type="password" onChange={this.onPasswordChange} value={this.state.password} />
-          </p>
-          <input type="submit" />
-        </form>
-        {this.state.passwordflag &&
-          <Alert bsStyle="warning">
-             your email or password is wrong bruh.
-          </Alert>
-        }
+        <h1>Sign In  <Glyphicon glyph="sunglasses" /></h1>
+        <div className="signInForm">
+          <form onSubmit={this.signIn}  action="javascript:void(0)">  
+            <input type="text" placeholder="email" onChange={this.onEmailChange} value={this.state.email} />
+            <br />
+            <input type="password" placeholder="password" onChange={this.onPasswordChange} value={this.state.password} />
+            <br />
+            <input type="submit" />
+          </form>
+          {this.state.passwordflag &&
+            <Alert bsStyle="warning">
+               your email or password is wrong bruh.
+            </Alert>
+          }
+        </div>
       </div>
     );
   }

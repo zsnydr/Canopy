@@ -12,7 +12,7 @@ const walkScore = ({ activeListing }) => {
             <a href={newScore.result.help_link}>
               <img src={newScore.result.logo_url}></img>
             </a>
-            <a href={newScore.result.ws_link}>{newScore.result.walkscore} </a>
+            <a target="_blank" href={newScore.result.ws_link}>{newScore.result.walkscore} </a>
           </p>
         </div>
       </div>
