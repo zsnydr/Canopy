@@ -11,9 +11,13 @@ class ApplyForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      name: this.props.activeUser.name,
+      DOB: 'mm/dd/yyy',
+      phone: this.props.activeUser.phone,
       street: '611 Mission street',
       zip: 21233,
-      city: 'San Francisco',
+      city: this.props.activeUser.city.name,
+      state: this.props.activeUser.city.state,
       numAdultOccupants: 2,
       numChildOccupants: 0,
       pets: 0,
@@ -80,6 +84,7 @@ class ApplyForm extends Component {
   }
 
   render() {
+
     const rentalHistoryForms = [];
     for (let i = 0; i < this.state.rentalHistories; i += 1) {
       rentalHistoryForms.push(
@@ -89,7 +94,9 @@ class ApplyForm extends Component {
     return (
       <div className="listingForm">
         <Form inline>
-          <FormText type="city" handleChange={this.handleChange} placeholder=" eg.Chicago" />
+          <FormText type="name" handleChange={this.handleChange} placeholder={this.state.name} />
+           <FormText type="date" handleChange={this.handleChange} placeholder='mm/dd/yyy' />
+          <FormText type="city" handleChange={this.handleChange} placeholder=" eg. fartlandmcfart" />
           <FormText type="street" handleChange={this.handleChange} placeholder=" eg.1060 W. Addison" />
           <FormText type="zip" handleChange={this.handleChange} placeholder=" eg.88888" />
           <br />
