@@ -12,8 +12,7 @@ class ListingDesc extends Component {
       heart: 'heart-empty',
       applySuccess: false,
       applyFail: false,
-      noUser: false,
-
+      noUser: false
     };
     this.applyToListing = this.applyToListing.bind(this);
     this.addToFavorites = this.addToFavorites.bind(this);
