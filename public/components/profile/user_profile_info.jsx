@@ -30,7 +30,7 @@ class UserProfileInfo extends Component {
         <div>
           <br />
           <h1>{this.props.activeUser.name}</h1>
-          <h3>San Francisco, CA</h3>
+          <h3>{this.props.activeUser.city.name}, {this.props.activeUser.city.state}</h3>
           <h4>{this.props.activeUser.email}</h4>
           <h4>({String(this.props.activeUser.phone).substring(0, 3)}) {String(this.props.activeUser.phone).substring(3, 6)}-{String(this.props.activeUser.phone).substring(6, 12)}</h4>
         </div>
