@@ -70,24 +70,19 @@ class NavBar extends Component {
 
   render() {
     return (
-      <div className="navBar-container">
+      <div className="navBar-container navBar">
         <Navbar collapseOnSelect>
-          <Navbar.Header className="Canopy">
-            <Navbar.Brand>
-              <a onClick={this.goHome}>canopy</a>
-            </Navbar.Brand>
-            <Navbar.Toggle />
-          </Navbar.Header>
           <Navbar.Collapse>
             <Nav className="links" pullLeft>
-              <NavItem eventKey={3} onClick={this.goToExplore}>Find a Rental</NavItem>
-              <NavItem eventKey={3} onClick={this.goToPostListing}>Post a Listing</NavItem>
+              <NavItem eventKey={0} onClick={this.goHome} className="Canopy">canopy</NavItem>
+              <NavItem eventKey={1} onClick={this.goToExplore}>FIND A RENTAL</NavItem>
+              <NavItem eventKey={2} onClick={this.goToPostListing}>POST A LISTING</NavItem>
             </Nav>
             <Nav className="links" pullRight>
-              {!!Object.keys(this.props.activeUser).length && <NavItem eventKey={0} onClick={this.goToProfile}>Profile</NavItem>}
-              {!Object.keys(this.props.activeUser).length && <NavItem eventKey={1} onClick={this.goToSignIn}>Sign In</NavItem>}
-              {!Object.keys(this.props.activeUser).length && <NavItem eventKey={2} onClick={this.goToSignUp}>Register</NavItem>}
-              {!!Object.keys(this.props.activeUser).length && <NavItem eventKey={4} onClick={this.logOut}>Log Out</NavItem>}
+              {!!Object.keys(this.props.activeUser).length && <NavItem eventKey={3} onClick={this.goToProfile}>Profile</NavItem>}
+              {!Object.keys(this.props.activeUser).length && <NavItem eventKey={4} onClick={this.goToSignIn}>Sign In</NavItem>}
+              {!Object.keys(this.props.activeUser).length && <NavItem eventKey={5} onClick={this.goToSignUp}>Register</NavItem>}
+              {!!Object.keys(this.props.activeUser).length && <NavItem eventKey={6} onClick={this.logOut}>Log Out</NavItem>}
             </Nav>
           </Navbar.Collapse>
         </Navbar>
@@ -110,3 +105,13 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(NavBar);
+
+
+
+
+// <Navbar.Header className="Canopy">
+//   <Navbar.Brand>
+//     <a onClick={this.goHome}><strong>canopy</strong></a>
+//   </Navbar.Brand>
+//   <Navbar.Toggle />
+// </Navbar.Header>

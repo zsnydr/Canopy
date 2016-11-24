@@ -8,14 +8,18 @@
 .navBar{
   width: 100%;
   position: sticky;
-  font-family: 'Nova Mono', monospace;
-  .Canopy {
-    margin-left: 2vw;
-  }
-  
+  // font-family: 'Nova Mono', monospace;
+
   .links {
+    font-family: 'Muli', sans-serif;
+    font-size: 12px;
     margin-left: 1%;
     margin-right: 1%;
+    .Canopy {
+      font-family: 'Poiret One', sans-serif;
+      font-size: 20px;
+      margin-left: 5vw;
+    }
   }
 }
 

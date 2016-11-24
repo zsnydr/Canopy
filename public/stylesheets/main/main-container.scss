@@ -5,18 +5,23 @@
 
 }
 #footer-container {
-  max-height: 10%;
+  max-height: 8%;
   bottom: 0px;
   position: fixed;
   background-color:white;
   vertical-align: middle;
   margin-bottom: 0px;
   hr{
-    margin: 0px;  
+    margin: 0px;
   }
   .footer {
-    margin: 10px;
+    margin: 5px;
     width: 100vw;
+
+    .copyright {
+      font-size: 10px;
+      margin: 5px;
+    }
 
     li {
       font-family: 'Nova Mono', monospace;
