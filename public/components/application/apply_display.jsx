@@ -6,11 +6,18 @@ class ApplicationDisplay extends Component {
     super(props);
     this.state = {
       infoMounted: false,
+      name: 'Victor Choi',
+      dob: 1991.0301,
+      phone: 5073015775,
       city: 'San Francisco',
+      state: 'CA',
       street: '611 Mission Street',
       zip: 94107,
       numAdultOccupants: 2,
       numChildOccupants: 1,
+      emergencyContact: 'Victor Choi',
+      emergencyNumber: 5073015775,
+      relationship: 'myselffffff',
       pets: 'Snails and dolphins',
       currentEmployer: 'Josh',
       position: 'intern',
@@ -21,6 +28,7 @@ class ApplicationDisplay extends Component {
       eSign: 'Victor Choi'
     };
   }
+
   componentDidMount() {
     console.log('Making get request to get application information from db: ', this.props.renterId);
     request.get(`/api/application/${this.props.renterId}`)
@@ -30,11 +38,18 @@ class ApplicationDisplay extends Component {
       console.log('this is what I got: ', application);
       this.setState({
         infoMounted: true,
+        name: application.name,
+        dob: application.dob,
+        phone: application.phone,
         city: application.city,
+        state: application.state,
         street: application.street,
         zip: application.zip,
         numAdultOccupants: application.numAdultOccupants,
         numChildOccupants: application.numChildOccupants,
+        emergencyContact: application.emergencyContact,
+        emergencyNumber: application.emergencyNumber,
+        relationship: application.relationship,
         pets: application.pets,
         currentEmployer: application.currentEmployer,
         position: application.position,
@@ -51,15 +66,32 @@ class ApplicationDisplay extends Component {
       return <div>Fetching application information</div>;
     }
     return (
-      <div className="container">
-        Application Page
-        <div>Address: {this.state.street} {this.state.city}, zip:{this.state.zip} </div>
-        <div>adults: {this.state.numAdultOccupants}, children: {this.state.numChildOccupants}</div>
-        <div>pets: {this.state.pets}</div>
-        <div>Current Employer: {this.state.currentEmployer}, position: {this.state.position}, duration: {this.state.duration}</div>
-        <div>Annual Income: {this.state.annualIncome}</div>
-        <div>Supervisor Name: {this.state.supervisorName}, Supervisor Phone: {this.state.supervisorPhone}</div>
-        <div>eSign: {this.state.eSign}</div>
+      <div className="form-container container-fluid">
+        <h1> Application Page </h1>
+        <div className="row">
+          <div className="col-sm-4">Address</div><div className="col-sm-4">:{this.state.street} {this.state.city}, {this.state.state} </div>
+          <div className="col-sm-6">Zip code</div><div className="col-sm-6">:{this.state.zip} </div>
+        </div>
+        <div className="row">
+          <div className="col-sm-6">Adults</div><div className="col-sm-6">: {this.state.numAdultOccupants}</div>
+          <div className="col-sm-6">Children</div><div className="col-sm-6">: {this.state.numChildOccupants}</div>
+        </div>
+        <div className="row">
+          <div>pets: {this.state.pets}</div>
+        </div>
+        <div className="row">
+          <div className="col-sm-8">Current Employer</div><div className="col-sm-8">: {this.state.currentEmployer}</div>
+          <div className="col-sm-8"> position</div><div className="col-sm-8">: {this.state.position}</div>
+          <div className="col-sm-8"> duration</div><div className="col-sm-8">: {this.state.duration}</div>
+        </div>
+        <div className="row">
+          <div className="col-sm-8">Annual Income: {this.state.annualIncome}</div>
+          <div className="col-sm-8">Supervisor Name: {this.state.supervisorName}</div>
+          <div className="col-sm-8"> Supervisor Phone: {this.state.supervisorPhone}</div>
+        </div>
+        <div className="row">
+          <div>eSign: {this.state.eSign}</div>
+        </div>
       </div>
     );
   }
