@@ -181,6 +181,8 @@ class ListingDescEdit extends Component {
           </div>
         </div>
         <div>
+          <Button onClick={this.updateListing}>Submit Updates</Button>
+          <Button onClick={this.removeListing}>Remove Listing</Button>
           <Dropzone className="Dropzone" onDrop={this.onDrop}>
             <div>Drop images here, or click to select files to upload.</div>
           </Dropzone>
@@ -199,8 +201,6 @@ class ListingDescEdit extends Component {
         <div>
           <ProgressBar bsStyle={this.state.active} now={this.state.count} />
         </div>
-        <Button onClick={this.updateListing}>Submit Updates</Button>
-        <Button onClick={this.removeListing}>Remove Listing</Button>
       </div>
     );
   }

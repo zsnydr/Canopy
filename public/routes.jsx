@@ -14,6 +14,7 @@ import UserProfile from './containers/user-profile';
 import ApplicationPage from './containers/application-page';
 import CompareListings from './containers/compare-listings-page';
 import AboutUs from './components/about_us';
+import TechStack from './components/tech_stack';
 
 
 export default (
@@ -30,6 +31,7 @@ export default (
       <Route path="application" component={ApplicationPage} />
       <Route path="compareListings" component={CompareListings} />
       <Route path="aboutus" component={AboutUs} />
+      <Route path="technologies" component={TechStack} />
     </Route>
   </Route>
 );
