@@ -70,7 +70,7 @@ class UserProfileListings extends Component {
 
   sendEmail(event) {
     event.preventDefault();
-    console.log('Send Email invoked');
+    console.log('Send Email invoked', event);
     const reqBody = {
       renterId: this.state.emailRenterId,
       mailOptions: {
@@ -216,7 +216,7 @@ class UserProfileListings extends Component {
     }
 
     return (
-      <div className="col-md-6">
+      <div className="col-md-6 profile_listings">
         {this.props.activeUser.userType === 2 && <Button bsStyle="primary" onClick={() => { this.setState({ newAppsFlag: false, allHost: false, favs: true, applied: false }); }}>RENTER</Button>}
         {this.props.activeUser.userType === 2 && <Button bsStyle="primary" onClick={() => { this.setState({ newAppsFlag: false, allHost: true, applied: false, favs: false }); }}>HOST</Button>}
         {this.state.userType % 2 === 0 && <Button bsStyle="primary" onClick={() => { this.setState({ newAppsFlag: false, allHost: false, favs: true, applied: false }); }}>FAVS</Button>}
@@ -236,7 +236,7 @@ class UserProfileListings extends Component {
           <form onSubmit={this.sendEmail} id="emailForm">
             <button type="submit" value="submit" > Submit </button>
           </form>
-          <textarea form="emailForm" rows="4" cols="50" name="emailcontent" />
+          <textarea form="emailForm" rows="8" cols="50" name="emailcontent" />
         </div>}
       </div>
     );
