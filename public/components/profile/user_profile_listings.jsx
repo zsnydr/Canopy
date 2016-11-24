@@ -26,10 +26,14 @@ class UserProfileListings extends Component {
       userType: this.props.activeUser.userType,
       showEmailBox: false,
       emailRenterId: 0,
-      emailAddress: '611 Mission Street'
+      emailAddress: '611 Mission Street',
+      emailText: `I am getting back on you about your application.
+  Contact me through e-mail ${this.props.activeUser.email},
+  Best, ${this.props.activeUser.name}`
     };
 
     this.sendEmail = this.sendEmail.bind(this);
+    this.updateEmailText = this.updateEmailText.bind(this);
 
     this.goToListing = this.goToListing.bind(this);
     this.editListing = this.editListing.bind(this);
@@ -51,6 +55,12 @@ class UserProfileListings extends Component {
   goToListing(listing) {
     browserHistory.push(`/content/listing/${listing.id}`);
   }
+  
+  updateEmailText(e) {
+    this.setState({
+      emailText: e.target.value
+    });
+  }
 
   showApplication(renterId) {
     const context = this;
@@ -70,17 +80,13 @@ class UserProfileListings extends Component {
 
   sendEmail(event) {
     event.preventDefault();
-    console.log('Send Email invoked');
+    console.log('Send Email invoked', this.state.emailText);
     const reqBody = {
       renterId: this.state.emailRenterId,
       mailOptions: {
-        from: this.props.activeUser.email,
-        Subject: `Your application for ${this.state.emailAddress}}`
+        subject: `Your application for ${this.state.emailAddress}`
       },
-      textGen: (renterName) => {
-        //Have to grab the text from input text field
-        return (`Hi, ${renterName}. I am contacting you about ${this.state.emailAddress}.`);
-      }
+      text: this.state.emailText
     };
     request.post('/api/sendMail', reqBody)
     .end((err, result) => {
@@ -175,7 +181,7 @@ class UserProfileListings extends Component {
             />
           </div>
           <button onClick={this.showApplication(newApp[1]['renter_id'])}>View application</button>
-          <button onClick={() => { this.showEmailBox(newApp[1]['renter_id'], newApp[0].address) }}>Send e-mail</button>
+          <button onClick={() => { this.showEmailBox(newApp[1]['renter_id'], newApp[0].street) }}>Send e-mail</button>
         </div>
       );
     });
@@ -218,7 +224,7 @@ class UserProfileListings extends Component {
     }
 
     return (
-      <div className="col-md-6">
+      <div className="col-md-6 profile_listings">
         {this.props.activeUser.userType === 2 && <Button bsStyle="primary" onClick={() => { this.setState({ newAppsFlag: false, allHost: false, favs: true, applied: false }); }}>RENTER</Button>}
         {this.props.activeUser.userType === 2 && <Button bsStyle="primary" onClick={() => { this.setState({ newAppsFlag: false, allHost: true, applied: false, favs: false }); }}>HOST</Button>}
         {this.state.userType % 2 === 0 && <Button bsStyle="primary" onClick={() => { this.setState({ newAppsFlag: false, allHost: false, favs: true, applied: false }); }}>FAVS</Button>}
@@ -238,7 +244,7 @@ class UserProfileListings extends Component {
           <form onSubmit={this.sendEmail} id="emailForm">
             <button type="submit" value="submit" > Submit </button>
           </form>
-          <textarea form="emailForm" rows="4" cols="50" name="emailcontent" />
+          <textarea form="emailForm" rows="8" cols="50" name="emailcontent" value={this.state.emailText} onChange={this.updateEmailText}/>
         </div>}
       </div>
     );

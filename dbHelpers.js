@@ -194,7 +194,6 @@ module.exports = {
   },
 
   postApplication: (applicationObj) => {
-    console.log("+++++++applicaiton+++++++" ,applicationObj);
     return Application.create(applicationObj)
     .then((application) => {
       return application;

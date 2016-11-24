@@ -1,0 +1,11 @@
+.profile_listings {
+  .emailBox {
+    z-index: 999;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    float: right;
+    background-color: white;
+    min-height: 22vh;
+  }
+}
