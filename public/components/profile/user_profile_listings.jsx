@@ -26,10 +26,14 @@ class UserProfileListings extends Component {
       userType: this.props.activeUser.userType,
       showEmailBox: false,
       emailRenterId: 0,
-      emailAddress: '611 Mission Street'
+      emailAddress: '611 Mission Street',
+      emailText: `I am getting back on you about your application.
+  Contact me through e-mail ${this.props.activeUser.email},
+  Best, ${this.props.activeUser.name}`
     };
 
     this.sendEmail = this.sendEmail.bind(this);
+    this.updateEmailText = this.updateEmailText.bind(this);
 
     this.goToListing = this.goToListing.bind(this);
     this.editListing = this.editListing.bind(this);
@@ -51,6 +55,12 @@ class UserProfileListings extends Component {
   goToListing(listing) {
     browserHistory.push(`/content/listing/${listing.id}`);
   }
+  
+  updateEmailText(e) {
+    this.setState({
+      emailText: e.target.value
+    });
+  }
 
   showApplication(renterId) {
     const context = this;
@@ -70,15 +80,13 @@ class UserProfileListings extends Component {
 
   sendEmail(event) {
     event.preventDefault();
-    console.log('Send Email invoked', event);
+    console.log('Send Email invoked', this.state.emailText);
     const reqBody = {
       renterId: this.state.emailRenterId,
       mailOptions: {
-        subject: `Your application for ${this.state.emailAddress}}`
+        subject: `Your application for ${this.state.emailAddress}`
       },
-      text: `I am getting back on you about ${this.state.emailAddress}.
-        Contact me through e-mail ${this.props.activeUser.email},
-        Best, ${this.props.activeUser.name}`
+      text: this.state.emailText
     };
     request.post('/api/sendMail', reqBody)
     .end((err, result) => {
@@ -236,7 +244,7 @@ class UserProfileListings extends Component {
           <form onSubmit={this.sendEmail} id="emailForm">
             <button type="submit" value="submit" > Submit </button>
           </form>
-          <textarea form="emailForm" rows="8" cols="50" name="emailcontent" />
+          <textarea form="emailForm" rows="8" cols="50" name="emailcontent" value={this.state.emailText} onChange={this.updateEmailText}/>
         </div>}
       </div>
     );

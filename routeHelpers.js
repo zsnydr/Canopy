@@ -194,9 +194,9 @@ module.exports = {
     .then((application) => {
       if (application) {
         dbHelpers.applyToListing(req.body)
-        .then((renterListing) => {     
+        .then((renterListing) => {
           res.json(renterListing);
-        }) 
+        })
         .catch((err) => {
           console.log('Failed to post renterListing');
           res.json(err);
