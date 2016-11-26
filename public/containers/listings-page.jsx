@@ -115,19 +115,19 @@ class ListingsPage extends Component {
 
     return (
       <div className="listingsPage">
+        <OptionBox
+          bedFilterHeader={this.state.bedFilterHeader}
+          bathFilterHeader={this.state.bathFilterHeader}
+          minRentFilterHeader={this.state.minRentFilterHeader}
+          maxRentFilterHeader={(this.state.maxRentFilterHeader === '$100000') ? '' : this.state.maxRentFilterHeader}
+          updateBedFilter={this.updateBedFilter}
+          updateBathFilter={this.updateBathFilter}
+          updateMinRentFilter={this.updateMinRentFilter}
+          updateMaxRentFilter={this.updateMaxRentFilter}
+          updateSorter={this.state.updateSorter}
+          compareListings={this.compareListings}
+        />
         <div id="listingsList-container">
-          <OptionBox
-            bedFilterHeader={this.state.bedFilterHeader}
-            bathFilterHeader={this.state.bathFilterHeader}
-            minRentFilterHeader={this.state.minRentFilterHeader}
-            maxRentFilterHeader={(this.state.maxRentFilterHeader === '$100000') ? '' : this.state.maxRentFilterHeader}
-            updateBedFilter={this.updateBedFilter}
-            updateBathFilter={this.updateBathFilter}
-            updateMinRentFilter={this.updateMinRentFilter}
-            updateMaxRentFilter={this.updateMaxRentFilter}
-            updateSorter={this.state.updateSorter}
-            compareListings={this.compareListings}
-          />
           <ListingsList
             focusListing={this.state.focusListing}
             closeModal={this.closeModal}
@@ -149,14 +149,14 @@ class ListingsPage extends Component {
             compareButton={this.compareButton}
             listingsCompared={this.listingsCompared}
           />
-        </div>
-        <div className="listings_map">
-          <GoogleMaps
-            listings={filtered}
-            focalLat={this.props.activeCity.lat}
-            focalLon={this.props.activeCity.lon}
-            focusListing={this.focusListing}
-          />
+          <div className="listings_map">
+            <GoogleMaps
+              listings={filtered}
+              focalLat={this.props.activeCity.lat}
+              focalLon={this.props.activeCity.lon}
+              focusListing={this.focusListing}
+            />
+          </div>
         </div>
       </div>
     );

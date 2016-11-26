@@ -30,28 +30,35 @@
   }
 
   #listingsList-container{
+    position: relative;
     display:inline-block;
     width:100%;
     max-height: 50vh;
+    .listings_map {
+      position: absolute;
+      display: inline-block;
+      width: 50%;
+      height: 83vh;
+      right:0px;
+      top: 0px;
+    }
   }
 
 
-  .listings_map {
-    position: absolute;
-    display: inline-block;
-    width: 50%;
-    height: 83vh;
-    right:0px;
-    top: 55px;
-  }
 
   .listingOptions {
     margin-bottom: 0;
     width: 100%;
+    .container {
+      height: 100%;
+      position: relative;
+    }
     #listings-filter{    
       margin: 0;
       padding: 0;
+      top:0px;
       display: inline-block;
+      z-index:99;
       .nav{
         width:100vw;
         .city-search-listings{
@@ -63,18 +70,27 @@
           *{
             display: inline-block;
           }
+          .form-inline {
+            margin-right: 25px;
+          }
           input{
             width: 150px;
             display: inline-block;
             right: 15px;
+          }
+          .citySelect {
+            background-color: #73628A;
+            border-color: #73628A;
+            height: 34px
           }
         }
       }
     }
     .navbar{
       margin-bottom: 0;
-      height: 48px;
+      height: 55px;
       width: 100%;
+      border-radius: 0px;
     }
     .compareBtn{
       display: inline-block;
