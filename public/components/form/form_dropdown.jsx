@@ -10,6 +10,7 @@ const FormDropdown = (props) => {
       componentClass={InputGroup.Button}
       id="input-dropdown-addon"
       title={props.type || ''}
+      value={props.value}
       onSelect={props.handleSelect(props.type)}
     >
       {menuItems}
