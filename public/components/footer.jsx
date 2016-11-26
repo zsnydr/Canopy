@@ -16,7 +16,6 @@ const Footer = () => {
 
   return (
     <div className="navbar navbar-static-bottom" id="footer-container">
-      <hr />
       <div className="text-center">
         <ul className="footer">
           <li onClick={goHome}><a>Canopy</a></li>

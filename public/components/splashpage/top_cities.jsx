@@ -32,18 +32,23 @@ class topCities extends Component {
 
   render() {
     return (
-      <div className="topCities">
-        <div className="chicago" onClick={ (event) => { this.onCityClick(event, 'chicago, il'); } }>
-          Chicago
+      <div className="container-fluid topCities">
+        <h3>Popular Cities<hr /></h3>
+        <div className="row">
+          <div className="col-md-6 splash-city-top chicago" onClick={(event) => { this.onCityClick(event, 'chicago, il'); }}>
+            <p>Chicago<hr /></p>
+          </div>
+          <div className="col-md-6 splash-city-top san-francisco" onClick={(event) => { this.onCityClick(event, 'san francisco, ca'); }}>
+            <p>San Francisco<hr /></p>
+          </div>
         </div>
-        <div className="sanFrancisco" onClick={ (event) => { this.onCityClick(event, 'san francisco, ca'); } }>
-          San Francisco
-        </div>
-        <div className="newYork" onClick={ (event) => { this.onCityClick(event, 'new york, ny'); } }>
-          New York
-        </div>
-         <div className="losAngeles" onClick={ (event) => { this.onCityClick(event, 'los angeles, ca'); } }>
-          Los Angeles
+        <div className="row">
+          <div className="col-md-6 splash-city-bottom new-york" onClick={(event) => { this.onCityClick(event, 'new york, ny'); }}>
+            <p>New York<hr /></p>
+          </div>
+          <div className="col-md-6 splash-city-bottom los-angeles" onClick={(event) => { this.onCityClick(event, 'los angeles, ca'); }}>
+            <p>Los Angeles<hr /></p>
+          </div>
         </div>
       </div>
     );
@@ -55,4 +60,3 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default connect(null, mapDispatchToProps)(topCities);
-

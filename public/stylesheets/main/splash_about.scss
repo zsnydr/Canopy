@@ -1,52 +1,50 @@
-.splashAbout { 
+.splash-about {
+  margin-left: 1vw;
+  margin-right: 1vw;
+  margin-bottom: 1vh;
+  width: 98vw;
+  background-color: #7B858E;
+  color: white;
+  padding-top: 4vh;
+  padding-bottom: 5vh;
 
-  .aboutCan {
-    border: solid 1px;
-    height: 15vh;
-    width : 60vw;
-    display: inline-block;
-    margin: 4vh 0vw 3vh 6vw;
+  .splash-about-header {
+    font-family: 'Muli', sans-serif;
+    text-align: center;
+    font-size: 4vh;
+    margin-bottom: 5vh;
   }
 
-  .greatSearch {
-    border: solid 1px;
-    height: 20vh;
-    width : 20vw;
-    display: inline-block;
-    margin: 2vh 3vw 0vh 3vw;
+  .splash-about-desc-top {
+    font-family: 'Quicksand', sans-serif;
+    padding: 3vh 3vw 3vh 15vw;
+    font-size: 20px;
 
+    h3 {
+      font-size: 26px;
+    }
+  }
+
+  .splash-about-img-top {
+    padding: 0vh 7vw 0vh 0vw;
+  }
+
+  .splash-about-desc-middle {
+    font-family: 'Quicksand', sans-serif;
+    padding: 3vh 14vw 3vh 3vw;
+    font-size: 20px;
+
+    h3 {
+      font-size: 26px;
+    }
+  }
+
+  .splash-about-img-middle {
+    padding: 0vh 0vw 0vh 7vw;
 
   }
-  .simpleApp {
-    border: solid 1px;
-    height: 20vh;
-    width : 20vw;
-    display: inline-block;
-    margin: 4vh 10vw 0vh 6vw;
 
-  }
-  .simpleCompare {
-    border: solid 1px;
-    height: 20vh;
-    width : 20vw;
-    display: inline-block;
-    margin: 0vh 5vw 8vh 0vw;
-
-  }
-  .simpleList {
-    border: solid 1px;
-    height: 20vh;
-    width : 20vw;
-    display: inline-block;
-    margin: 10vh 10vw 5vh 10vw;
-
-  }
-  .simpleContact {
-    border: solid 1px;
-    height: 20vh;
-    width : 20vw;
-    display: inline-block;
-    margin: 3vh 0vw 5vh 20vw;
-
+  .splash-about-img-bottom {
+    padding: 0vh 7vw 0vh 0vw;
   }
 }

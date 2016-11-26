@@ -1,3 +1,4 @@
+
 .main-content {
   position: relative;
   min-height: 85vh;
@@ -7,40 +8,48 @@
 #footer-container {
   max-height: 8%;
   bottom: 0px;
-  position: fixed;
-  background-color:white;
+  position: relative;
+  background-color: white;
   vertical-align: middle;
   margin-bottom: 0px;
-  hr{
+
+  hr {
     margin: 0px;
   }
+
   .footer {
+    padding: 0;
     margin: 5px;
     width: 100vw;
+    font-family: 'Muli', sans-serif;
 
     .copyright {
+      cursor: text;
+      color: #7B858E;
       font-size: 10px;
       margin: 5px;
     }
 
     li {
-      font-family: 'Nova Mono', monospace;
+      cursor: pointer;
       list-style: none;
       display: inline;
       clear: both;
       margin: 20% 20px 0 20px;
+      a {
+        color: #7B858E;
+        text-decoration: none;
+        &:hover {
+          color: #262626;
+        }
+      }
     }
+
     .logo {
       font-size: 20px;
       cursor: pointer;
       }
 
-    a {
-      text-decoration: none;
-      &:hover {
-        color: #17A6B6;
-      }
-    }
     .fa-github{
       margin-right: 0.2em;
     }
