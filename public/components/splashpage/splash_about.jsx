@@ -5,7 +5,7 @@ const splashAbout = () => {
     <div className="container-fluid">
       <h3 className="splash-about-header">One Application. Unlimited Possibilities.</h3>
       <div className="row">
-        <div className="col-md-6 splash-about-desc">
+        <div className="col-md-6 splash-about-desc-top">
           <h3>Renting Made Easy</h3>
           <hr />
           <p>
@@ -15,27 +15,27 @@ const splashAbout = () => {
             leave the rest to us.
           </p>
         </div>
-        <div className="col-md-6 splash-about-img">
-          <img src="" />
+        <div className="col-md-6 splash-about-img-top">
+          <img src="./app.svg" />
         </div>
       </div>
       <div className="row">
-        <div className="col-md-6 splash-about-img">
-          <img src="" />
+        <div className="col-md-6 splash-about-img-middle">
+          <img src="./checks.svg" />
         </div>
-        <div className="col-md-6 splash-about-desc">
+        <div className="col-md-6 splash-about-desc-middle">
           <h3>Transparency in Action</h3>
           <hr />
           <p>
-            We create transparency for property owners by verifying background, rental
-            history and credit worthiness of all potential tenants.  As a renter,
-            a single comprehensive form for all listings gets you the information
-            you need to make an informed decision and get on with your life.
+            We create transparency for property owners by verifying the background
+            of all potential tenants.  As a renter, a single comprehensive listing
+            form gets you the information you need to make an informed decision
+            and get on with your life.
           </p>
         </div>
       </div>
       <div className="row">
-        <div className="col-md-6 splash-about-desc">
+        <div className="col-md-6 splash-about-desc-top">
           <h3>Effortless Communication</h3>
           <hr />
           <p>
@@ -44,8 +44,8 @@ const splashAbout = () => {
             future tenant and landlord to ensure a smooth and pleasant transition.
           </p>
         </div>
-        <div className="col-md-6 splash-about-img">
-          <img src="" />
+        <div className="col-md-6 splash-about-img-bottom">
+          <img src="./comm.svg" />
         </div>
       </div>
     </div>

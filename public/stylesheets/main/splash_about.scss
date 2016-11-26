@@ -15,13 +15,36 @@
     margin-bottom: 5vh;
   }
 
-  .splash-about-desc {
+  .splash-about-desc-top {
     font-family: 'Quicksand', sans-serif;
-    padding: 0 10vw 0 10vw;
-    font-size: 18px;
+    padding: 3vh 3vw 3vh 15vw;
+    font-size: 20px;
+
+    h3 {
+      font-size: 26px;
+    }
   }
 
-  .splash-about-img {
-    padding: 0 10vw 0 10vw;
+  .splash-about-img-top {
+    padding: 0vh 7vw 0vh 0vw;
+  }
+
+  .splash-about-desc-middle {
+    font-family: 'Quicksand', sans-serif;
+    padding: 3vh 14vw 3vh 3vw;
+    font-size: 20px;
+
+    h3 {
+      font-size: 26px;
+    }
+  }
+
+  .splash-about-img-middle {
+    padding: 0vh 0vw 0vh 7vw;
+
+  }
+
+  .splash-about-img-bottom {
+    padding: 0vh 7vw 0vh 0vw;
   }
 }
