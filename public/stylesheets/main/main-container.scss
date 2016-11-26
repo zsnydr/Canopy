@@ -9,12 +9,14 @@
   max-height: 8%;
   bottom: 0px;
   position: relative;
-  background-color:white;
+  background-color: white;
   vertical-align: middle;
   margin-bottom: 0px;
-  hr{
+
+  hr {
     margin: 0px;
   }
+
   .footer {
     padding: 0;
     margin: 5px;
@@ -23,11 +25,10 @@
 
     .copyright {
       cursor: text;
-      color: #8A9299;
+      color: #7B858E;
       font-size: 10px;
       margin: 5px;
     }
-
 
     li {
       cursor: pointer;
@@ -36,10 +37,10 @@
       clear: both;
       margin: 20% 20px 0 20px;
       a {
-        color: #8A9299;
+        color: #7B858E;
         text-decoration: none;
         &:hover {
-          color: black;
+          color: #262626;
         }
       }
     }

@@ -9,7 +9,6 @@
 }
 //
 
-
 .splash-main {
   position: relative;
   margin-left: 1vw;
@@ -23,13 +22,15 @@
   background-repeat: no-repeat;
   background-size: cover;
   text-align: center;
+
   h1 {
     margin-top: 0;
-    padding-top:25vh;
+    padding-top: 25vh;
     color: white;
     font-size: 5vh;
     font-family: 'Quicksand', sans-serif;
   }
+
   form {
     display: inline-block;
     margin-bottom: 0;
@@ -39,8 +40,9 @@
       height: 7vh;
       font-family: 'Libre Franklin', sans-serif;
       font-size: 3vh;
-      border-radius: 1% 0% 0% 1%;
+      border-radius: 3px 0px 0px 3px;
     }
+
     Button {
       display: inline-block;
       height: 7vh;

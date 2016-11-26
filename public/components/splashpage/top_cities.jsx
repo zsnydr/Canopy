@@ -33,7 +33,7 @@ class topCities extends Component {
   render() {
     return (
       <div className="container-fluid topCities">
-        <h3>Popular Destinations<hr /></h3>
+        <h3>Popular Cities<hr /></h3>
         <div className="row">
           <div className="col-md-6 splash-city-top chicago" onClick={(event) => { this.onCityClick(event, 'chicago, il'); }}>
             <p>Chicago<hr /></p>

@@ -3,14 +3,16 @@ import React from 'react';
 const splashAbout = () => {
   return (
     <div className="container-fluid">
+      <h3 className="splash-about-header">One Application. Unlimited Possibilities.</h3>
       <div className="row">
         <div className="col-md-6 splash-about-desc">
-          <h3>Searching Made Easy</h3>
+          <h3>Renting Made Easy</h3>
           <hr />
           <p>
-            Canopy is your one stop source for apartment rentals.
-            We give you the inside scoop on places and neighborhoods you'll dig.
-            We wrangle together the most accurate and up-to-date rentals.
+            Whether you are a first time renter or have years of experience, we
+            make it easy to find the rental of your dreams.  Simply fill out the
+            streamlined application, apply to any listing with a single click and
+            leave the rest to us.
           </p>
         </div>
         <div className="col-md-6 splash-about-img">
@@ -22,23 +24,24 @@ const splashAbout = () => {
           <img src="" />
         </div>
         <div className="col-md-6 splash-about-desc">
-          <h3>One Application</h3>
-          <h3>Limitless Possibilities</h3>
+          <h3>Transparency in Action</h3>
           <hr />
           <p>
-            By filling out one quick application you'll be able to apply
-            to countless listings with the click of a button.
+            We create transparency for property owners by verifying background, rental
+            history and credit worthiness of all potential tenants.  As a renter,
+            a single comprehensive form for all listings gets you the information
+            you need to make an informed decision and get on with your life.
           </p>
         </div>
       </div>
       <div className="row">
         <div className="col-md-6 splash-about-desc">
-          <h3>Transparency</h3>
+          <h3>Effortless Communication</h3>
           <hr />
           <p>
-            We empower landlord's to easily manage their property listings and
-            quickly communicate with potential tenants only after the tenant has
-            been verified.
+            Communication is key in any new relationship.  Once you've found the
+            perfect place to call home, let us facilitate the interaction between
+            future tenant and landlord to ensure a smooth and pleasant transition.
           </p>
         </div>
         <div className="col-md-6 splash-about-img">
