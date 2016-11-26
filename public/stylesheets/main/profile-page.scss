@@ -9,3 +9,12 @@
     min-height: 22vh;
   }
 }
+.form-container {
+  .row {
+    margin: 0px;
+    border: 1px solid;
+    * {
+      font-size: 20px;
+    }
+  }
+}
