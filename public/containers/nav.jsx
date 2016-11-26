@@ -72,6 +72,7 @@ class NavBar extends Component {
     return (
       <div className="navBar-container navBar">
         <Navbar collapseOnSelect>
+          <Navbar.Toggle />
           <Navbar.Collapse>
             <Nav className="links" pullLeft>
               <NavItem eventKey={0} onClick={this.goHome} className="Canopy"><strong>canopy</strong></NavItem>
