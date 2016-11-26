@@ -48,15 +48,16 @@ class CitySearch extends Component {
             id="formControlsText"
             type="text"
             label="Text"
-            placeholder="search by city e.g. San Francisco, Ca"
+            placeholder="San Francisco, CA"
             onChange={this.onInputChange}
             value={this.state.term}
           />
           <Button
             className="citySelect"
             onClick={this.onFormSubmit}
-            bsStyle="primary">
-            submit
+            bsStyle="primary"
+          >
+            <i className="fa fa-search" />
           </Button>
         </Form>
       </div>

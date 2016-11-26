@@ -8,20 +8,15 @@ import SplashAbout from './splash_about';
 const Splash = () => {
   return (
     <div>
-      <div className="main">
-        <div>
-          <Nav />
-        </div>
-        <div>
-          <h1>Get ready to get comfortable</h1>
-          <h2> in your new home </h2>
-          <CitySearch />
-        </div>
+      <Nav />
+      <div className="splash-main">
+        <h1>Where will you call Home</h1>
+        <CitySearch />
       </div>
-      <div className="mainInfo">
+      <div className="splash-cities">
         <TopCities />
       </div>
-      <div className="splashAbout">
+      <div className="splash-about">
         <SplashAbout />
       </div>
     </div>
