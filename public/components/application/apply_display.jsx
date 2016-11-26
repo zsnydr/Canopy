@@ -69,28 +69,26 @@ class ApplicationDisplay extends Component {
       <div className="form-container container-fluid">
         <h1> Application Page </h1>
         <div className="row">
-          <div className="col-sm-4">Address</div><div className="col-sm-4">:{this.state.street} {this.state.city}, {this.state.state} </div>
-          <div className="col-sm-6">Zip code</div><div className="col-sm-6">:{this.state.zip} </div>
+          <div className="col-sm-2">Address</div><div className="col-sm-2">:{this.state.street} </div>
+          <div className="col-sm-3">{this.state.city}</div><div className="col-sm-2">, {this.state.state}{this.state.zip} </div>
         </div>
         <div className="row">
-          <div className="col-sm-6">Adults</div><div className="col-sm-6">: {this.state.numAdultOccupants}</div>
-          <div className="col-sm-6">Children</div><div className="col-sm-6">: {this.state.numChildOccupants}</div>
+          <div className="col-sm-2">Adults</div><div className="col-sm-2">: {this.state.numAdultOccupants}</div>
+          <div className="col-sm-2">Children</div><div className="col-sm-2">: {this.state.numChildOccupants}</div>
+          <div className="col-sm-2">pets</div><div className="col-sm-2">:{this.state.pets}</div>
         </div>
         <div className="row">
-          <div>pets: {this.state.pets}</div>
+          <div className="col-sm-2">Current Employer</div><div className="col-sm-2">: {this.state.currentEmployer}</div>
+          <div className="col-sm-2"> position</div><div className="col-sm-2">: {this.state.position}</div>
+          <div className="col-sm-2"> duration</div><div className="col-sm-2">: {this.state.duration}</div>
         </div>
         <div className="row">
-          <div className="col-sm-8">Current Employer</div><div className="col-sm-8">: {this.state.currentEmployer}</div>
-          <div className="col-sm-8"> position</div><div className="col-sm-8">: {this.state.position}</div>
-          <div className="col-sm-8"> duration</div><div className="col-sm-8">: {this.state.duration}</div>
+          <div className="col-sm-2">Annual Income</div><div className="col-sm-2">: {this.state.annualIncome}</div>
+          <div className="col-sm-2">Supervisor Name</div><div className="col-sm-2">: {this.state.supervisorName}</div>
+          <div className="col-sm-2"> Supervisor Phone</div><div className="col-sm-2">: {this.state.supervisorPhone}</div>
         </div>
         <div className="row">
-          <div className="col-sm-8">Annual Income: {this.state.annualIncome}</div>
-          <div className="col-sm-8">Supervisor Name: {this.state.supervisorName}</div>
-          <div className="col-sm-8"> Supervisor Phone: {this.state.supervisorPhone}</div>
-        </div>
-        <div className="row">
-          <div>eSign: {this.state.eSign}</div>
+          <div className="col-sm-2">eSign</div><div className="col-sm-2">: {this.state.eSign}</div>
         </div>
       </div>
     );
