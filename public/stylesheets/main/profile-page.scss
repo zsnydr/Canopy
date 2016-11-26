@@ -1,4 +1,15 @@
 .profile_listings {
+  font-family: 'Muli', sans-serif;
+  .usersthings {
+    margin-left: 4vw;
+  }
+
+
+   .listings_list div {
+      border-radius: 8px;
+      padding-top: .6%;
+   }
+
   .emailBox {
     z-index: 999;
     position: fixed;
@@ -9,12 +20,28 @@
     min-height: 22vh;
   }
 }
-.form-container {
-  .row {
-    margin: 0px;
-    border: 1px solid;
-    * {
-      font-size: 20px;
+
+.userInfo {
+  font-family: 'Muli', sans-serif;
+  border: solid 1px;
+  border-radius: 10px;
+  margin: 3vh 0 2vh 4vw;
+  background-color: #F6F5F8;
+
+  div {
+    display: inline-block;
+  }
+
+  .btn-group-vertical {
+    position: absolute;
+    
+    margin-top: 2vh;
+
+    button {
+      border: solid .5px #2660A4;
+
     }
   }
 }
+
+
