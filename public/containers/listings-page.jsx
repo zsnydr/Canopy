@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Button } from 'react-bootstrap';
 import { browserHistory } from 'react-router';
 
 import ListingsList from '../components/listings_list/listings_list';
 import GoogleMaps from '../components/google_maps';
-import CitySearch from './city-search';
+import OptionBox from '../components/listings_list/option_box';
 
 import selectListing from '../actions/select_listing';
 import compareListings from '../actions/compare_listings';
@@ -116,19 +115,19 @@ class ListingsPage extends Component {
 
     return (
       <div className="listingsPage">
-        <div className="city-search-listings">
-          <CitySearch />
-        </div>
-        <div>
-          <Button
-            bsStyle="primary"
-            onClick={this.compareListings}
-            disabled={false}
-          >
-           Compare Listings
-          </Button>
-        </div>
         <div id="listingsList-container">
+          <OptionBox
+            bedFilterHeader={this.state.bedFilterHeader}
+            bathFilterHeader={this.state.bathFilterHeader}
+            minRentFilterHeader={this.state.minRentFilterHeader}
+            maxRentFilterHeader={(this.state.maxRentFilterHeader === '$100000') ? '' : this.state.maxRentFilterHeader}
+            updateBedFilter={this.updateBedFilter}
+            updateBathFilter={this.updateBathFilter}
+            updateMinRentFilter={this.updateMinRentFilter}
+            updateMaxRentFilter={this.updateMaxRentFilter}
+            updateSorter={this.state.updateSorter}
+            compareListings={this.compareListings}
+          />
           <ListingsList
             focusListing={this.state.focusListing}
             closeModal={this.closeModal}

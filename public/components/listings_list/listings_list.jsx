@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { browserHistory } from 'react-router';
 import request from 'axios';
 import { Modal, Button } from 'react-bootstrap';
-import OptionBox from './option_box';
 import ListingsListItem from './listings_list_item';
 import CompareFavoriteButtons from './compareListingButton';
 
@@ -99,17 +98,6 @@ class ListingsList extends Component {
             </Button>
           </Modal.Footer>
         </Modal>
-        <OptionBox
-          bedFilterHeader={this.props.bedFilterHeader}
-          bathFilterHeader={this.props.bathFilterHeader}
-          minRentFilterHeader={this.props.minRentFilterHeader}
-          maxRentFilterHeader={(this.props.maxRentFilterHeader === '$100000') ? '' : this.props.maxRentFilterHeader}
-          updateBedFilter={this.props.updateBedFilter}
-          updateBathFilter={this.props.updateBathFilter}
-          updateMinRentFilter={this.props.updateMinRentFilter}
-          updateMaxRentFilter={this.props.updateMaxRentFilter}
-          updateSorter={this.props.updateSorter}
-        />
         <div className="listings_list">
           {this.renderListings()}
         </div>

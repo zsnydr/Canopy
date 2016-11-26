@@ -1,5 +1,7 @@
 import React from 'react';
-import { Nav, Navbar, MenuItem, NavDropdown, SplitButton } from 'react-bootstrap';
+import { Nav, Navbar, NavItem, MenuItem, NavDropdown, SplitButton, Button } from 'react-bootstrap';
+
+import CitySearch from '../../containers/city-search';
 
 const OptionBox = (props) => {
   return (
@@ -10,6 +12,15 @@ const OptionBox = (props) => {
       </Navbar.Header>
       <div id="listings-filter">
         <Nav>
+          <span className="city-search-listings">
+            <CitySearch />
+          </span>
+          <NavItem
+            bsStyle="primary"
+            onClick={props.compareListings}
+            disabled={false} >
+            Compare Listings
+          </NavItem>
           <NavDropdown eventKey={0} title={props.bedFilterHeader} id="basic-nav-dropdown" onSelect={props.updateBedFilter}>
             <MenuItem eventKey={0}>any</MenuItem>
             <MenuItem eventKey={2}>2+</MenuItem>
