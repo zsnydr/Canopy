@@ -46,7 +46,7 @@ class ListingsList extends Component {
       };
       return (
         <div className="listing" style={divStyle}>
-          <div className="listingItemContainer"> 
+          <div className="listingItemContainer">
             <ListingsListItem
               key={listing.id}
               listing={listing}

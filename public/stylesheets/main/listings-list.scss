@@ -159,11 +159,6 @@
             margin-left: 4vh;
           }
 
-          .listingDetails {
-            top: 0;
-            margin: 0 0 1vh 4vh;
-            display: inline-block;
-          }
         }
         .btn {
           background-color: #73628A;
@@ -171,6 +166,11 @@
         }
       }
 
+      .listingDetails {
+        top: 0;
+        margin: 0 0 1vh 4vh;
+        display: inline-block;
+      }
         .likeCompare {
           padding-bottom: 10px;
           .compare {
