@@ -74,6 +74,7 @@ class SignInPage extends Component {
             </Alert>
             }
           </div>
+          <div className="opacBG" />
         </div>
       </div>
     );
