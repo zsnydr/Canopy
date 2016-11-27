@@ -1,23 +1,63 @@
-.signIn {
-  border: solid 1px;
-  background-color: #EFEFEF;
-  width: 60vw;
-  height: 60vh;
-  margin: auto;
-  margin-top: 10vh;
+.sign-in {
+  background-color: white;
+  background-image: url('http://manual17.biz/wp-content/uploads/2016/04/34-amazing-modern-master-bedroom-designs-for-your-home-inside-amazing-master-bedroom-for-cozy.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
   text-align: center;
-  font-family: 'Libre Franklin';
+  margin-top: 1.5vh;
+  position: relative;
+  margin-left: 1vw;
+  margin-right: 1vw;
+  margin-bottom: 10px;
+  width: 98vw;
+  height: 95vh;
+  left: 0;
+  top: 0;
 
-  .signInForm {
-    margin-top: 10%;
+  .sign-in-focus {
+    position: fixed;
+    background-color: black;
+    opacity: 0.6;
+    width: 25vw;
+    height: 45vh;
+    margin-top: 15vh;
+    margin: 0 36.5vw 0 36.5vw;
+    border-radius: 3px;
+    margin-top: 10vh;
 
-    input {
-      width: 50%;
-      margin-top: 2%;
-      border-radius: 5px;
+    h1 {
+      color: white;
+      font-size: 7vh;
+      font-family: 'Quicksand', sans-serif;
+      margin-bottom: 3vh;
+      padding-top: 3vh;
+      width: 22vw;
+      margin-left: 1.5vw;
+      margin-right: 1.5vw;
+    }
+
+    .sign-in-form {
+      padding-bottom: 10vh;
+
+      input {
+        width: 20vw;
+        margin-top: 3vh;
+        border: none;
+        border-radius: 3px;
+        font-family: 'Muli', sans-serif;
+      }
+
+      .sign-in-input-submit {
+        color: white;
+        background-color: #73628A;
+        width: 15vw;
+        border: none;
+        border-radius: 3px;
+        font-family: 'Muli', sans-serif;
+        &:hover {
+          background-color: #39499e;
+        }
+      }
     }
   }
-
-
-
 }
