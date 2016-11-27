@@ -287,8 +287,23 @@ module.exports = {
   },
 
   updateUser: (userInfo) => {
-    return User.update(userInfo, {
-      where: { email: userInfo.email }
+    return module.exports.getCity(userInfo.homeBase)
+    .then((cityData) => {
+      const userSavingData = {};
+      Object.assign(userSavingData, userInfo);
+      userSavingData.homebase_id = cityData.id;
+      console.log('CITY DATA', userSavingData);
+      return User.update(userSavingData, {
+        where: { email: userInfo.email }
+      });
+    })
+    .then((success) => {
+      return User.find({
+        where: {
+          email: userInfo.email
+        },
+        include: [City]
+      });
     });
   }
 

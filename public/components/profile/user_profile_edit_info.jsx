@@ -9,17 +9,13 @@ class ProfileEdit extends Component {
 
     this.state = {
       name: '',
-      email: '',
       homeBase: '',
       userType: 0,
-      password: '',
       showAlert: false
     };
-    console.log(this.state);
     this.onNameChange = this.onNameChange.bind(this);
     this.onUserTypeChange = this.onUserTypeChange.bind(this);
     this.onHomeBaseChange = this.onHomeBaseChange.bind(this);
-    this.onPasswordChange = this.onPasswordChange.bind(this);
   }
 
   onNameChange(event) {
@@ -27,7 +23,7 @@ class ProfileEdit extends Component {
   }
 
   onUserTypeChange(event) {
-      if (event.target.value === 'renter') {
+    if (event.target.value === 'renter') {
       this.setState({ userType: 0 });
     } else if (event.target.value === 'host') {
       this.setState({ userType: 1 });
@@ -42,11 +38,10 @@ class ProfileEdit extends Component {
   }
 
   componentDidMount() {
-    this.setState(this.props.activeUser);
-  }
-
-  onPasswordChange(event) {
-    this.setState({ password: event.target.value });
+    const curUserInfo = {};
+    Object.assign(curUserInfo, this.props.activeUser);
+    delete curUserInfo.password;
+    this.setState(curUserInfo);
   }
 
   render() {
@@ -58,15 +53,11 @@ class ProfileEdit extends Component {
             <input type="text" onChange={this.onNameChange} value={this.state.name} required />
           </p>
           <p>
-            password:
-             <input type="password" placeholder="password" onChange={this.onPasswordChange} value={this.state.password} />
-          </p>
-          <p>
             User Type:
              <select name="userType" onChange={this.onUserTypeChange} >
                 <option> </option>
                 <option value="renter">Renter</option>
-                <option value="host">host</option>
+                <option value="host">Host</option>
                 <option value="other">Other</option>
               </select>
           </p>

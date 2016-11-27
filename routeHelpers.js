@@ -250,6 +250,7 @@ module.exports = {
   updateUser: (req, res) => {
     dbHelpers.updateUser(req.body)
     .then((userInfo) => {
+      console.log("gets to here");
       res.json(userInfo);
     })
     .catch((err) => {
