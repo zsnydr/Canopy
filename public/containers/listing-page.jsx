@@ -15,7 +15,7 @@ class ListingPage extends Component {
     }
 
     return (
-      <div className="listing_page">
+      <div className="listing-page">
         <div className="listing-map">
           <GoogleMaps listings={[this.props.activeListing]} />
         </div>

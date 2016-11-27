@@ -45,8 +45,8 @@ class UserProfile extends Component {
     }
 
     return (
-      <div className="container-fluid">
-        <div>
+      <div className="user-profile">
+        <div className="user-profile-header">
           {(this.state.profileType === 'info') ?
             <UserProfileInfo
               activeUser={this.props.activeUser}

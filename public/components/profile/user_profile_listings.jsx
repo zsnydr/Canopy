@@ -55,7 +55,7 @@ class UserProfileListings extends Component {
   goToListing(listing) {
     browserHistory.push(`/content/listing/${listing.id}`);
   }
-  
+
   updateEmailText(e) {
     this.setState({
       emailText: e.target.value
@@ -286,13 +286,3 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default connect(null, mapDispatchToProps)(UserProfileListings);
-
-
-
-
-
-
-
-
-
-

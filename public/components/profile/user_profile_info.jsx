@@ -26,7 +26,7 @@ class UserProfileInfo extends Component {
 
   render() {
     return (
-      <div className="userInfo col-md-11" >
+      <div className="user-info col-md-11" >
         <div className="col-md-8">
           <h1>{this.props.activeUser.name}</h1>
           <h3>{this.props.activeUser.city.name}, {this.props.activeUser.city.state}</h3>
