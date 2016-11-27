@@ -15,3 +15,14 @@ describe('ActiveListing', () => {
 });
 
 
+describe('actions', () => {
+  it('should create an action to select a listing', () => {
+    const listing = [{ listing: 'test' }];
+    const expectedListingAction = {
+      type: 'LISTING_SELECTED',
+      payload: listing
+    };
+    expect(selectListing(listing)).toEqual(expectedListingAction);
+  });
+});
+
