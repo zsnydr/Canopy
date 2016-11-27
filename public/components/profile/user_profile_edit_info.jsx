@@ -12,12 +12,14 @@ class ProfileEdit extends Component {
       email: '',
       homeBase: '',
       userType: 0,
+      password: '',
       showAlert: false
     };
     console.log(this.state);
     this.onNameChange = this.onNameChange.bind(this);
     this.onUserTypeChange = this.onUserTypeChange.bind(this);
     this.onHomeBaseChange = this.onHomeBaseChange.bind(this);
+    this.onPasswordChange = this.onPasswordChange.bind(this);
   }
 
   onNameChange(event) {
@@ -43,6 +45,10 @@ class ProfileEdit extends Component {
     this.setState(this.props.activeUser);
   }
 
+  onPasswordChange(event) {
+    this.setState({ password: event.target.value });
+  }
+
   render() {
     return (
       <div>
@@ -50,6 +56,10 @@ class ProfileEdit extends Component {
           <p>
             Name:
             <input type="text" onChange={this.onNameChange} value={this.state.name} required />
+          </p>
+          <p>
+            password:
+             <input type="password" placeholder="password" onChange={this.onPasswordChange} value={this.state.password} />
           </p>
           <p>
             User Type:

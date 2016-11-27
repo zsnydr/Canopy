@@ -26,24 +26,34 @@ class UserProfileInfo extends Component {
 
   render() {
     return (
-      <div className="col-md-6" style={{ borderRight: '1px solid #000' }}>
-        <div>
-          <br />
+      <div className="userInfo col-md-11" >
+        <div className="col-md-8">
           <h1>{this.props.activeUser.name}</h1>
           <h3>{this.props.activeUser.city.name}, {this.props.activeUser.city.state}</h3>
           <h4>{this.props.activeUser.email}</h4>
           <h4>({String(this.props.activeUser.phone).substring(0, 3)}) {String(this.props.activeUser.phone).substring(3, 6)}-{String(this.props.activeUser.phone).substring(6, 12)}</h4>
         </div>
-        <div>
-          <button onClick={this.props.editUserInfo}>Edit User Profile</button> 
-          {(this.props.activeUser.userType % 2 === 0) ?
-          <span>
-            <button onClick={this.goToSubmitApplication}>Edit Application</button>
-            <button onClick={this.goToViewApplication}>View Application</button>
-          </span> : null}
-          {(this.props.activeUser.userType > 0) ?
-          <button onClick={this.goToSubmitListing}>Submit New Listing</button> : null}
-        </div>
+          { (this.props.activeUser.userType === 0) &&
+            <div className="btn-group-vertical col-md-4">
+              <button type="button" class="btn btn-info" onClick={this.props.editUserInfo}>Edit User Profile</button> 
+              <button className="btn btn-info" onClick={this.goToSubmitApplication}>Edit Application</button>
+              <button className="btn btn-info" onClick={this.goToViewApplication}>View Application</button>
+            </div>
+          }
+          { (this.props.activeUser.userType === 1) &&
+            <div className="btn-group-vertical col-md-4">
+              <button type="button" className="btn btn-info" onClick={this.props.editUserInfo}>Edit User Profile</button>
+              <button className="btn btn-info" onClick={this.goToSubmitListing}>Submit New Listing</button>
+          </div>
+          }
+          { (this.props.activeUser.userType === 2) &&
+            <div className="btn-group-vertical col-md-4">
+              <button type="button" className="btn btn-info" onClick={this.props.editUserInfo}>Edit User Profile</button>
+              <button className="btn btn-info" onClick={this.goToSubmitApplication}>Edit Application</button>
+              <button className="btn btn-info" onClick={this.goToViewApplication}>View Application</button>
+              <button className="btn btn-info" onClick={this.goToSubmitListing}>Submit New Listing</button>
+            </div>
+          }
       </div>
     );
   }

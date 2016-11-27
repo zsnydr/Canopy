@@ -46,17 +46,19 @@ class UserProfile extends Component {
 
     return (
       <div className="container-fluid">
-        <div className="row">
-          {(this.state.profileType === 'info')?
-          <UserProfileInfo
-          activeUser={this.props.activeUser}
-          updateApplicationType={this.props.updateApplicationType}
-          editUserInfo={this.editUserInfo}/>:
-          <UserProfileEdit
-          submitChange={this.submitChange}
-          activeUser={this.props.activeUser}
-          />
+        <div>
+          {(this.state.profileType === 'info') ?
+            <UserProfileInfo
+              activeUser={this.props.activeUser}
+              updateApplicationType={this.props.updateApplicationType}
+              editUserInfo={this.editUserInfo}/> :
+              <UserProfileEdit
+                submitChange={this.submitChange}
+                activeUser={this.props.activeUser}
+              />
           }
+        </div>
+        <div>
           <UserProfileListings
             activeUser={this.props.activeUser}
             selectListing={this.props.selectListing}

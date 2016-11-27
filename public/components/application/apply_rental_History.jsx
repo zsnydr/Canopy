@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Button } from 'react-bootstrap';
+import { Form, Button, Modal } from 'react-bootstrap';
 import request from 'axios';
 
 import FormText from '../form/form_text';
@@ -17,12 +17,14 @@ class RentalHistoryForm extends Component {
       rentalPayment: 2,
       reasonLeft: 'Victor Choi',
       application_id: 1,
-      show: true
+      show: true,
+      showModal: false
     };
     this.onFormSubmit = this.onFormSubmit.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.handleSelect = this.handleSelect.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.closeModal = this.closeModal.bind(this);
   }
 
   onFormSubmit(event) {
@@ -30,7 +32,7 @@ class RentalHistoryForm extends Component {
     request.post('/api/rentalHistory', this.state)
     .then((rentalHistory) => {
       console.log('Successfullly stored this rental history data to DB: ', rentalHistory);
-      this.setState({show: false});
+      this.setState({ show: false, showModal: true });
     });
   }
 
@@ -55,8 +57,11 @@ class RentalHistoryForm extends Component {
       const state = {};
       state[key] = e.target.value;
       this.setState(state);
-      console.log (this.state);
     };
+  }
+
+  closeModal() {
+    this.setState({ showModal: false });
   }
 
   render() {
@@ -85,7 +90,16 @@ class RentalHistoryForm extends Component {
     }
 
     return (
-      <div> success! </div>
+      <div>
+        <Modal show={this.state.showModal} onHide={this.closeModal}>
+          <Modal.Header closeButton>
+            <Modal.Title> Success </Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <h2> Successfully submitted history </h2>
+          </Modal.Body>
+        </Modal>
+      </div>
     );
   }
 }

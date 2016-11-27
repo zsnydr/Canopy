@@ -224,28 +224,58 @@ class UserProfileListings extends Component {
     }
 
     return (
-      <div className="col-md-6 profile_listings">
-        {this.props.activeUser.userType === 2 && <Button bsStyle="primary" onClick={() => { this.setState({ newAppsFlag: false, allHost: false, favs: true, applied: false }); }}>RENTER</Button>}
-        {this.props.activeUser.userType === 2 && <Button bsStyle="primary" onClick={() => { this.setState({ newAppsFlag: false, allHost: true, applied: false, favs: false }); }}>HOST</Button>}
-        {this.state.userType % 2 === 0 && <Button bsStyle="primary" onClick={() => { this.setState({ newAppsFlag: false, allHost: false, favs: true, applied: false }); }}>FAVS</Button>}
-        {this.state.userType % 2 === 0 && <Button bsStyle="primary" onClick={() => { this.setState({ newAppsFlag: false, allHost: false, applied: true, favs: false }); }}>APPLIED</Button>}
-        {this.state.userType > 0 && <Button bsStyle="primary" onClick={() => { this.setState({ newAppsFlag: false, allHost: true, applied: false, favs: false }); }}>MY LISTINGS</Button>}
-        {this.state.userType > 0 && <Button bsStyle="primary" onClick={() => { this.setState({ newAppsFlag: true, allHost: false, applied: false, favs: false }); }}>NEW APPLICATIONS</Button>}
-        <div className="listingsPage">
-          <div className="listings_list">
-            {this.state.favs && this.renderFavoriteRenterListings()}
-            {this.state.applied && this.renderAppliedRenterListings()}
-            {this.state.allHost && this.renderAllHostListings()}
-            {this.state.newAppsFlag && this.renderNewApplications()}
+      <div className="profile_listings">
+        <div className="usersthings col-md-2">
+          <div className="btn-group-vertical" data-toggle="buttons">
+            { this.props.activeUser.userType === 2 &&
+              <label className="btn btn-info active" onClick={() => { this.setState({ newAppsFlag: false, allHost: false, favs: true, applied: false }); }}>
+                <input type="radio" name="options" id="option1" autocomplete="off" checked> RENTER </input>
+              </label>
+            }
+            { this.props.activeUser.userType === 2 &&
+              <label className="btn btn-info active" onClick={() => { this.setState({ newAppsFlag: false, allHost: true, applied: false, favs: false }); }}>
+                <input type="radio" name="options" id="option1" autocomplete="off" > HOST </input>
+              </label>
+            }
+            { this.state.userType % 2 === 0 &&
+              <label className="btn btn-info active" onClick={() => { this.setState({ newAppsFlag: false, allHost: false, favs: true, applied: false }); }}>
+                <input type="radio" name="options" id="option1" autocomplete="off" > FAVS </input>
+              </label>
+            }
+            { this.state.userType % 2 === 0 &&
+              <label className="btn btn-info active" onClick={() => { this.setState({ newAppsFlag: false, allHost: false, applied: true, favs: false }); }}>
+                <input type="radio" name="options" id="option1" autocomplete="off" > APPLIED </input>
+              </label>
+            }
+            { this.state.userType > 0 &&
+              <label className="btn btn-info active" onClick={() => { this.setState({ newAppsFlag: false, allHost: true, applied: false, favs: false }); }}>
+                <input type="radio" name="options" id="option1" autocomplete="off" > MY LISTINGS </input>
+              </label>
+            }
+            { this.state.userType > 0 &&
+              <label className="btn btn-info active" onClick={() => { this.setState({ newAppsFlag: true, allHost: false, applied: false, favs: false }); }}>
+                <input type="radio" name="options" id="option1" autocomplete="off" > NEW APPLICATIONS </input>
+              </label>
+            }
           </div>
         </div>
-        {(!this.state.showEmailBox) ? '' :
-        <div className="emailBox">
-          <form onSubmit={this.sendEmail} id="emailForm">
-            <button type="submit" value="submit" > Submit </button>
-          </form>
-          <textarea form="emailForm" rows="8" cols="50" name="emailcontent" value={this.state.emailText} onChange={this.updateEmailText}/>
-        </div>}
+        <div className="col-md-4">
+          <div className="listingsPage">
+            <div className="listings_list">
+              {this.state.favs && this.renderFavoriteRenterListings()}
+              {this.state.applied && this.renderAppliedRenterListings()}
+              {this.state.allHost && this.renderAllHostListings()}
+              {this.state.newAppsFlag && this.renderNewApplications()}
+            </div>
+          </div>
+          {(!this.state.showEmailBox) ? '' :
+          <div className="emailBox">
+            <form onSubmit={this.sendEmail} id="emailForm">
+              <button type="submit" value="submit" > Submit </button>
+            </form>
+            <textarea form="emailForm" rows="8" cols="50" name="emailcontent" value={this.state.emailText} onChange={this.updateEmailText}/>
+          </div>}
+        </div>
       </div>
     );
   }
@@ -256,3 +286,13 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default connect(null, mapDispatchToProps)(UserProfileListings);
+
+
+
+
+
+
+
+
+
+
