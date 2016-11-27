@@ -10,7 +10,7 @@ describe('compareListings', () => {
 
 describe('reducerCompareListings', () => {
   it('should be function', () => {
-    expect(reducerActiveCity).toEqual(jasmine).any(Function)
+    expect(reducerCompareListings).toEqual(jasmine).any(Function);
   });
 });
 
@@ -75,3 +75,4 @@ describe('actions' , () => {
     expect(compareListings(listings)).toEqual(expectedAction);
   })
 })
+
