@@ -57,21 +57,23 @@ class SignInPage extends Component {
 
   render() {
     return (
-      <div className="signIn">
-        <h1>Sign In  <Glyphicon glyph="sunglasses" /></h1>
-        <div className="signInForm">
-          <form onSubmit={this.signIn}  action="javascript:void(0)">  
-            <input type="text" placeholder="email" onChange={this.onEmailChange} value={this.state.email} />
-            <br />
-            <input type="password" placeholder="password" onChange={this.onPasswordChange} value={this.state.password} />
-            <br />
-            <input type="submit" />
-          </form>
-          {this.state.passwordflag &&
-            <Alert bsStyle="warning">
+      <div className="sign-in">
+        <div className="sign-in-focus">
+          <h1>SIGN IN<hr /></h1>
+          <div className="sign-in-form">
+            <form onSubmit={this.signIn}  action="javascript:void(0)">
+              <input type="text" placeholder="email" onChange={this.onEmailChange} value={this.state.email} />
+              <br />
+              <input type="password" placeholder="password" onChange={this.onPasswordChange} value={this.state.password} />
+              <br />
+              <input className="sign-in-input-submit" type="submit" />
+            </form>
+            {this.state.passwordflag &&
+            <Alert className="sign-in-warning" bsStyle="warning">
                your email or password is wrong bruh.
             </Alert>
-          }
+            }
+          </div>
         </div>
       </div>
     );
