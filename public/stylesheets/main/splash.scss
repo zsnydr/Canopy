@@ -1,10 +1,10 @@
 // for about us page
 .about-links {
   font-size: 3em;
-  color: #000;
+  color: #73628A;
   margin: 0 2px 0 2px;
   &:hover{
-    color: #00003d;
+    color: #39499e;
   }
 }
 //
@@ -53,6 +53,10 @@
       font-size: 3vh;
       border: #73628A;
       border-radius: 0% 5% 5% 0%;
+      &:hover {
+        background-color: #39499e;
+        border: #39499e;
+      }
     }
   }
 }

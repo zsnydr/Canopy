@@ -5,16 +5,18 @@ import ListingPics from './listing_pics';
 
 const ListingDetail = ({ activeListing, activeUser }) => {
   return (
-    <div className="listingContainer">
-      <div className="listingDetail">
-        <div className="listingDesc">
+    <div className="listing-container">
+      <div className="listing-detail">
+        <div className="listing-desc">
           <ListingDesc
             activeListing={activeListing}
             activeUser={activeUser}
           />
         </div>
       </div>
-      <ListingPics images={activeListing.images} />
+      <div className="listing-pics">
+        <ListingPics images={activeListing.images} />
+      </div>
     </div>
   );
 };

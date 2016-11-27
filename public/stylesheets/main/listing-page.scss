@@ -1,44 +1,84 @@
 .listing_page {
-  width: 100vh;
-  height: 95vh;
-  margin: 0;
+  width: 98vw;
+  height: 100vh;
+  margin-left: 1vw;
+  margin-right: 1vw;
   position: relative;
   font-family: 'Libre Franklin', sans-serif;
-  text-shadow: 0 .1vh .5vh #9F9FED
-}
-.listingMap {
-  margin:0;
-  margin-left: 1vw;
-  width: 98vw;
-  height: 20%;
-  position: center;
-}
-.listingContainer{
-  width: 100vw;
-  .listingDetail{
-    display: inline-block;
-    top: 0px;
-    width: 50vw;
-    .listingInfo {
+  background-color: #7B858E;
+
+  .listing-map {
+    padding-left: 1vw;
+    padding-top: 2vh;
+    width: 97vw;
+    height: 20vh;
+  }
+
+  .listing-container{
+    width: 98vw;
+
+    .listing-detail{
       display: inline-block;
-      margin-left: 2vw;
-        .walkScore div{
+
+      .listingInfo {
+        width: 30vw;
+        font-family: 'Muli', sans-serif;
+        color: white;
+        display: inline-block;
+        margin-left: 5vw;
+
+        .walkScore div {
+          display: inline-block;
+
+          a {
+            color: white;
+            &:hover {
+              color: #39499e;
+            }
+          }
+        }
+
+        .details {
+          margin: 0;
           display: inline-block;
         }
 
-      .details {
-        margin: 0;
-        margin-right: 2vw;
-        display: inline-block;
+        .favorite {
+          background-color: #73628A;
+          border: none;
+          border-right: solid white 0.5px;
+          border-radius: 5% 0 0 5%;
+          height: 6vh;
+          &:hover {
+            background-color: #39499e;
+          }
+        }
+
+        .listing-page-apply-button {
+          background-color: #73628A;
+          border-radius: 0 5% 5% 0;
+          border: none;
+          color: white;
+          height: 6vh;
+          &:hover {
+            background-color: #39499e;
+          }
+        }
       }
     }
-  }
-  .listingPics {
-    display: inline-block;
-    width: 50vw;
-    img{
-      max-height: 50vh;
-      width: 50vw
+
+    .listing-pics {
+      display: inline-block;
+      padding-left: 10vw;
+      // margin-right: 4vw;
+
+      .listing-carousel {
+        // margin-top: 10vh;
+
+        img{
+          max-height: 60vh;
+        }
+      }
     }
   }
 }

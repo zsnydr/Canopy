@@ -26,7 +26,7 @@ class ListingPics extends Component {
     }
     return (
       <Carousel
-        className="listingPics"
+        className="listing-carousel"
         activeIndex={this.state.index}
         direction={this.state.direction}
         onSelect={this.handleSelect}
