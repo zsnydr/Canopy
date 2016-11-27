@@ -9,10 +9,7 @@ const walkScore = ({ activeListing }) => {
       <div className="walkScore">
         <div>
           <p>
-            <a href={newScore.result.help_link}>
-              <img src={newScore.result.logo_url}></img>
-            </a>
-            <a target="_blank" href={newScore.result.ws_link}>{newScore.result.walkscore} </a>
+            <a target="_blank" href={newScore.result.ws_link}>Walking Score: {newScore.result.walkscore} </a>
           </p>
         </div>
       </div>
@@ -23,3 +20,5 @@ const walkScore = ({ activeListing }) => {
 };
 
 export default walkScore;
+
+// <img src={newScore.result.logo_url}></img>

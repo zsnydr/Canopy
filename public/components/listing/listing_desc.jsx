@@ -60,18 +60,17 @@ class ListingDesc extends Component {
     return (
       <div className="listingInfo">
         <h2>{this.props.activeListing.street}</h2>
-        <h3>{this.props.activeListing.city.name}, {this.props.activeListing.city.state} {this.props.activeListing.zip}</h3><br />
+        <h3>{this.props.activeListing.city.name}, {this.props.activeListing.city.state} {this.props.activeListing.zip}</h3><hr />
         <div>
           <div className="details">
-            <h4> Unit: {this.props.activeListing.unit} </h4>
-            <h4> Beds: {this.props.activeListing.beds}</h4>
-            <h4> Baths: {this.props.activeListing.baths}</h4>
-          </div>
-          <div className="details">
+            {this.props.activeListing.unitNumber !== 'null' && <h4> Unit {this.props.activeListing.unitNumber} </h4>}
+            <h4>{this.props.activeListing.beds}{this.props.activeListing.beds > 1 ? ' beds' : ' bed'}</h4>
+            <h4>{this.props.activeListing.baths}{this.props.activeListing.baths > 1 ? ' baths' : 'bath'}</h4>
             <h4>Rent: ${this.props.activeListing.rent}</h4>
-            <h4>SqFoot: {this.props.activeListing.sqFoot}</h4>
-            <h4>Available: {this.props.activeListing.availableDate.slice(0, 10)}</h4>
-          </div>
+            <h4>{this.props.activeListing.term} Mo. Lease</h4>
+            <h4>{this.props.activeListing.sqFoot} sqft</h4>
+            <h4>Available on {this.props.activeListing.availableDate.slice(0, 10)}</h4>
+          </div><hr />
           <div className="listingScores">
             <ListingScores activeListing={this.props.activeListing} />
           </div>
@@ -79,15 +78,13 @@ class ListingDesc extends Component {
             className="favorite"
             bsSize="small"
             bsStyle="info"
-            onClick={() => {
-              this.addToFavorites(this.props.activeListing.id);
-            }}
+            onClick={() => { this.addToFavorites(this.props.activeListing.id); }}
           >
             <Glyphicon glyph={this.state.heart} />
           </Button>
 
           {(this.props.activeUser && this.props.activeUser.userType !== 1) &&
-            <button onClick={this.applyToListing}> Apply </button>
+            <Button className="listing-page-apply-button" onClick={this.applyToListing}> Apply </Button>
           }
         </div>
         <Modal show={this.state.applySuccess} onHide={this.closeModal}>
