@@ -66,8 +66,11 @@ class ApplicationDisplay extends Component {
       return <div>Fetching application information</div>;
     }
     return (
-      <div className="form-container container-fluid">
-        <h1> Application Page </h1>
+      <div className="application_form">
+        <div className="application_intro">
+          <h1>Application to Rent </h1>
+          <h3>Individual application required for each adult occupant.</h3>
+        </div>
         <div className="row">
           <div className="col-sm-2">Address</div><div className="col-sm-2">:{this.state.street} </div>
           <div className="col-sm-3">{this.state.city}</div><div className="col-sm-2">, {this.state.state}{this.state.zip} </div>
