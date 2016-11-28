@@ -36,10 +36,21 @@ const cityData = [
     state: 'IL',
     lat: 41.8781136,
     lon: -87.6297982
+  }, {
+    name: 'NEW YORK',
+    state: 'NY',
+    lat: 40.730610,
+    lon: -73.935242
+  }, {
+    name: 'LOS ANGELES',
+    state: 'CA',
+    lat: 34.052235,
+    lon: -118.243683
   }];
 
 const hostData = [
   {
+    //renter
     name: 'Sean Enright',
     email: 'seanenright@property.com',
     phone: 5413856987,
@@ -47,18 +58,27 @@ const hostData = [
     homebase_id: 2,
     password: '$2a$12$aZpDFAPJh9Ql04O40fJoyODmcsn8qq06KFnhK3ZTBsYRkAvF2d9jW'
   }, {
+    //host
     name: 'Victor Choi',
-    email: 'victorchoi@nest.com',
+    email: 'vchoisk@gmail.com',
     phone: 5413762384,
     userType: 1,
     homebase_id: 1,
     password: '$2a$12$aZpDFAPJh9Ql04O40fJoyODmcsn8qq06KFnhK3ZTBsYRkAvF2d9jW'
   }, {
+    //both
     name: 'Zack Snyder',
     email: 'zacksnyder@mgmt.com',
     phone: 5035869374,
     userType: 2,
     homebase_id: 1,
+    password: '$2a$12$aZpDFAPJh9Ql04O40fJoyODmcsn8qq06KFnhK3ZTBsYRkAvF2d9jW'
+  }, {
+    name: 'demo',
+    email: 'demo@gmail.com',
+    phone: 123456789,
+    userType: 2,
+    homebase_id: 3,
     password: '$2a$12$aZpDFAPJh9Ql04O40fJoyODmcsn8qq06KFnhK3ZTBsYRkAvF2d9jW'
   }];
 
