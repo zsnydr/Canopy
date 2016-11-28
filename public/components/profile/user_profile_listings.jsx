@@ -47,7 +47,6 @@ class UserProfileListings extends Component {
   }
 
   editListing(hostListing) {
-    console.log('HOST LISTING ', hostListing)
     this.props.selectListing(hostListing);
     browserHistory.push(`/content/editListing/${hostListing.id}`);
   }
@@ -164,7 +163,6 @@ class UserProfileListings extends Component {
 
   renderAllHostListings() {
     return this.state.hostListings.map((hostListing) => {
-      console.log('XXX ', hostListing)
       const divStyle = { backgroundImage: 'url(' + hostListing.images[0].ref + ')' };
       return (
         <div className="listing" style={divStyle}>
