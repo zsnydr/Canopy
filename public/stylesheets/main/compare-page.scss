@@ -1,3 +1,6 @@
+.compare-map {
+  height: 200px;
+}
 .compareLeft, .compareRight {
   font-family: 'Muli', sans-serif;
   color: #3d3d3d;
@@ -16,5 +19,11 @@
     &:hover {
       background-color: #39499e;
     }
+  }
+}
+
+.compareLeft{
+  .listingInfo{
+    border-right: solid 3px;
   }
 }
