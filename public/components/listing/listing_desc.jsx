@@ -84,7 +84,7 @@ class ListingDesc extends Component {
             {(this.props.activeUser && this.props.activeUser.userType !== 1) &&
               <Button className="listing-page-apply-button" onClick={this.applyToListing}> Apply </Button>
             }
-          </div><hr />
+          </div>
         </div>
         <Modal show={this.state.applySuccess} onHide={this.closeModal}>
           <Modal.Header closeButton>
