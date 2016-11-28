@@ -66,7 +66,6 @@ class SignUpPage extends Component {
     request.post('/api/signup', this.state)
     .then((res) => {
       window.localStorage.setItem('canopy', res.data.token);
-      console.log('RES SIGNUP ', res.data.user);
       this.props.selectUser(res.data.user);
       if (!this.props.activeCity) {
         this.props.selectCity(res.data.user.city);
@@ -110,7 +109,7 @@ class SignUpPage extends Component {
               <p>
                 User Type:
                 <select name="userType" onChange={this.onUserTypeChange} >
-                  <option> </option>
+                  <option />
                   <option value="renter">Renter</option>
                   <option value="host">host</option>
                   <option value="other">Other</option>

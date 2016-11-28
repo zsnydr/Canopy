@@ -100,9 +100,9 @@ class ImageDrop extends Component {
             </div>
             <div className="col-md-6">
               <h1> Dropped Images:</h1>
-                {this.state.images.map((img) => {
-                  return <img className="droppedPics" key={img} src={img} alt="" />;
-                })}
+              {this.state.images.map((img) => {
+                return <img className="droppedPics" key={img} src={img} alt="" />;
+              })}
             </div>
           </div>
           <div className="row">
@@ -111,9 +111,9 @@ class ImageDrop extends Component {
                 Submit
               </Button>
             </div>
-              <div className="col-md-6">
-                 <ProgressBar bsStyle={this.state.active} now={this.state.count} />
-              </div>
+            <div className="col-md-6">
+              <ProgressBar bsStyle={this.state.active} now={this.state.count} />
+            </div>
           </div>
         </div>
       </div>

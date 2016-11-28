@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import request from 'axios';
-import { browserHistory } from 'react-router';
 import { Alert } from 'react-bootstrap';
 
 class ProfileEdit extends Component {
@@ -30,7 +28,6 @@ class ProfileEdit extends Component {
     } else {
       this.setState({ userType: 2 });
     }
-    console.log(this.state);
   }
 
   onHomeBaseChange(event) {
@@ -47,19 +44,19 @@ class ProfileEdit extends Component {
   render() {
     return (
       <div>
-        <form onSubmit={() => { this.props.submitChange(this.state) }} action="javascript:void(0)">
+        <form onSubmit={() => { this.props.submitChange(this.state); }} action="javascript:void(0)">
           <p>
             Name:
             <input type="text" onChange={this.onNameChange} value={this.state.name} required />
           </p>
           <p>
             User Type:
-             <select name="userType" onChange={this.onUserTypeChange} >
-                <option> </option>
-                <option value="renter">Renter</option>
-                <option value="host">Host</option>
-                <option value="other">Other</option>
-              </select>
+            <select name="userType" onChange={this.onUserTypeChange} >
+              <option />
+              <option value="renter">Renter</option>
+              <option value="host">Host</option>
+              <option value="other">Other</option>
+            </select>
           </p>
           <p>
             Home City:

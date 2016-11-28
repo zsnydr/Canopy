@@ -40,10 +40,7 @@ class ListingsList extends Component {
     }
 
     return this.props.listings.map((listing) => {
-      const divStyle = {
-        backgroundImage: 'url(' + listing.images[0].ref + ')'
-
-      };
+      const divStyle = { backgroundImage: 'url(' + listing.images[0].ref + ')' };
       return (
         <div className="listing" style={divStyle}>
           <div className="listingItemContainer">

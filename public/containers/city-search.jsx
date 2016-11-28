@@ -24,10 +24,8 @@ class CitySearch extends Component {
 
   onFormSubmit(event) {
     event.preventDefault();
-    console.log(this.state.term)
     request.get(`/api/cities/${this.state.term}`)
     .then((city) => {
-      // console.log('city got it');
       this.props.selectCity(city.data);
       return request.get(`/api/listings/${city.data.id}`);
     })

@@ -15,5 +15,3 @@ const ListingDetailEdit = ({ activeListing }) => {
 };
 
 export default ListingDetailEdit;
-
-// <ListingPicsEdit images={activeListing.images} />

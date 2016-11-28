@@ -5,9 +5,6 @@ import GoogleMaps from '../../google_maps';
 import ListingDetailEdit from './listing_detail_edit';
 
 class ListingPageEdit extends Component {
-  // componentDidUpdate() {
-  //   this.render();
-  // }
 
   render() {
     if (!this.props.activeListing) {
