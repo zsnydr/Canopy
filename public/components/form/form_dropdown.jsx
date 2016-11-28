@@ -12,7 +12,7 @@ const FormDropdown = (props) => {
         id="input-dropdown-addon"
         title={props.type || ''}
         value={props.value}
-        onSelect={props.handleSelect(props.type)}
+        onSelect={props.handleSelect(props.header)}
       >
         {menuItems}
       </DropdownButton>

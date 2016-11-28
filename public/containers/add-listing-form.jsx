@@ -86,6 +86,8 @@ class ListingForm extends Component {
 
   handleSelect(key) {
     return (e) => {
+      console.log('key ', key)
+      console.log('e ', e)
       const state = {};
       state[key] = e;
       this.setState(state);
@@ -113,8 +115,8 @@ class ListingForm extends Component {
               <FormText type="unit" handleChange={this.handleChange} placeholder=" eg.#1244" />
               <FormText type="zip" handleChange={this.handleChange} placeholder=" eg.88888" />
               <br />
-              <FormDropdown type={this.state.beds} items={[1, 2, 3, 4, 5]} handleSelect={this.handleSelect} />
-              <FormDropdown type={this.state.baths} items={[1, 2, 3, 4, 5]} handleSelect={this.handleSelect} />
+              <FormDropdown header="beds" type={this.state.beds} items={[1, 2, 3, 4, 5]} handleSelect={this.handleSelect} />
+              <FormDropdown header="baths" type={this.state.baths} items={[1, 2, 3, 4, 5]} handleSelect={this.handleSelect} />
               <br />
               <FormNumber type="sqFoot" handleChange={this.handleChange} placeholder="sq. foot" />
               <FormNumber type="rent" handleChange={this.handleChange} placeholder="2100" />
