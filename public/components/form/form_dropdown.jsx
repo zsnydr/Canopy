@@ -6,15 +6,17 @@ const FormDropdown = (props) => {
     return <MenuItem key={item} eventKey={item}>{item}</MenuItem>;
   });
   return (
-    <DropdownButton
-      componentClass={InputGroup.Button}
-      id="input-dropdown-addon"
-      title={props.type || ''}
-      value={props.value}
-      onSelect={props.handleSelect(props.type)}
-    >
-      {menuItems}
-    </DropdownButton>
+    <div className="dropdown-form">
+      <DropdownButton
+        componentClass={InputGroup.Button}
+        id="input-dropdown-addon"
+        title={props.type || ''}
+        value={props.value}
+        onSelect={props.handleSelect(props.type)}
+      >
+        {menuItems}
+      </DropdownButton>
+    </div>
   );
 };
 

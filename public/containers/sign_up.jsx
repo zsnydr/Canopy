@@ -66,7 +66,7 @@ class SignUpPage extends Component {
     request.post('/api/signup', this.state)
     .then((res) => {
       window.localStorage.setItem('canopy', res.data.token);
-      console.log('RES SIGNUP ', res.data.user)
+      console.log('RES SIGNUP ', res.data.user);
       this.props.selectUser(res.data.user);
       if (!this.props.activeCity) {
         this.props.selectCity(res.data.user.city);
@@ -86,41 +86,44 @@ class SignUpPage extends Component {
 
   render() {
     return (
-      <div className="signIn">
-        <h1>Sign Up</h1>
-        <div className="signInForm">
-          <form onSubmit={this.signUp} action="javascript:void(0)">
-            <p>
-              Name:
-              <input type="text" onChange={this.onNameChange} value={this.state.name} required />
-            </p>
-            <p>
-              Email:
-              <input type="text" onChange={this.onUsernameChange} value={this.state.email} required />
-            </p>
-            <p>
-             Password:
-              <input type="password" onChange={this.onPasswordChange} value={this.state.password} pattern=".{0}|.{6,}" placeholder="(6 char min)" required />
-            </p>
-            <p>
-             Phone number:
-              <input type="phoneNum" onChange={this.onPhoneNumChange} value={this.state.phone} required />
-            </p>
-            <p>
-              User Type:
-              <select name="userType" onChange={this.onUserTypeChange} >
-                <option> </option>
-                <option value="renter">Renter</option>
-                <option value="host">host</option>
-                <option value="other">Other</option>
-              </select>
-            </p>
-            <p>
-              Home City:
-              <input type="text" onChange={this.onHomeBaseChange} value={this.state.homeBase} required />
-            </p>
-            <input type="submit" />
-          </form>
+      <div className="sign-up">
+        <div className="sign-up-focus">
+          <h1>SIGN UP<hr /></h1>
+          <div className="sign-up-form">
+            <form onSubmit={this.signUp} action="javascript:void(0)">
+              <p>
+                Name:
+                <input type="text" onChange={this.onNameChange} value={this.state.name} required />
+              </p>
+              <p>
+                Email:
+                <input type="text" onChange={this.onUsernameChange} value={this.state.email} required />
+              </p>
+              <p>
+               Password:
+                <input type="password" onChange={this.onPasswordChange} value={this.state.password} pattern=".{0}|.{6,}" placeholder="(6 char min)" required />
+              </p>
+              <p>
+               Phone:
+                <input type="phoneNum" onChange={this.onPhoneNumChange} value={this.state.phone} required />
+              </p>
+              <p>
+                User Type:
+                <select name="userType" onChange={this.onUserTypeChange} >
+                  <option> </option>
+                  <option value="renter">Renter</option>
+                  <option value="host">host</option>
+                  <option value="other">Other</option>
+                </select>
+              </p>
+              <p>
+                Home City:
+                <input type="text" onChange={this.onHomeBaseChange} value={this.state.homeBase} required />
+              </p>
+              <input className="sign-up-input-submit" type="submit" />
+            </form>
+          </div>
+          <div className="opacBG" />
         </div>
         {this.state.showAlert &&
           <Alert bsStyle="warning">
