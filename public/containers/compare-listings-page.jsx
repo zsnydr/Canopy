@@ -24,6 +24,7 @@ class CompareListings extends Component {
             activeListing={this.props.compareListings[0]}
             activeCity={this.props.activeCity}
             images={this.props.compareListings[0].images}
+            activeUser={this.props.activeUser}
           />
         </div>
         <div className='compareRight'>
@@ -31,6 +32,7 @@ class CompareListings extends Component {
             activeListing={this.props.compareListings[1]}
             activeCity={this.props.activeCity}
             images={this.props.compareListings[1].images}
+            activeUser={this.props.activeUser}
           />
         </div>
       </div>
@@ -39,10 +41,11 @@ class CompareListings extends Component {
   }
 }
 
-function mapStateToProps({ compareListings, activeCity }) {
+function mapStateToProps({ compareListings, activeCity, activeUser }) {
   return {
     compareListings,
-    activeCity
+    activeCity,
+    activeUser
   };
 }
 
