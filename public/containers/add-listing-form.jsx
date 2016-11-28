@@ -103,33 +103,37 @@ class ListingForm extends Component {
   render() {
     if (!this.state.newListing.id) {
       return (
-        <div className="listingForm">
-          <Form inline>
-            <FormText type="city" handleChange={this.handleChange} placeholder=" eg.Chicago" />
-            <FormText type="state" handleChange={this.handleChange} placeholder=" eg.Illinois" />
-            <FormText type="street" handleChange={this.handleChange} placeholder=" eg.1060 W. Addison" />
-            <FormText type="unit" handleChange={this.handleChange} placeholder=" eg.#1244" />
-            <FormText type="zip" handleChange={this.handleChange} placeholder=" eg.88888" />
-            <br />
-            <FormDropdown type={this.state.beds} items={[1, 2, 3, 4, 5]} handleSelect={this.handleSelect} />
-            <FormDropdown type={this.state.baths} items={[1, 2, 3, 4, 5]} handleSelect={this.handleSelect} />
-            <br />
-            <FormNumber type="sqFoot" handleChange={this.handleChange} placeholder="sq. foot" />
-            <FormNumber type="rent" handleChange={this.handleChange} placeholder="2100" />
-            <FormNumber type="term" handleChange={this.handleChange} placeholder="12" />
-            <br />
-            <Checkbox key="dogs" onClick={this.handleClick('dogs')} inline>
-              dogs
-            </Checkbox>
-            <Checkbox key="cats" onClick={this.handleClick('cats')} inline>
-              cats
-            </Checkbox>
-            <br />
-            <FormDate label="availableDate" handleChange={this.handleChange} />
-            <Button onClick={this.onFormSubmit} type="submit">
-              Submit
-            </Button>
-          </Form>
+        <div className="listingForm form-page">
+          <div className="form-container">
+            <h1>Post Listing</h1>
+            <Form inline className="form-box">
+              <FormText type="city" handleChange={this.handleChange} placeholder=" eg.Chicago" />
+              <FormText type="state" handleChange={this.handleChange} placeholder=" eg.Illinois" />
+              <FormText type="street" handleChange={this.handleChange} placeholder=" eg.1060 W. Addison" />
+              <FormText type="unit" handleChange={this.handleChange} placeholder=" eg.#1244" />
+              <FormText type="zip" handleChange={this.handleChange} placeholder=" eg.88888" />
+              <br />
+              <FormDropdown type={this.state.beds} items={[1, 2, 3, 4, 5]} handleSelect={this.handleSelect} />
+              <FormDropdown type={this.state.baths} items={[1, 2, 3, 4, 5]} handleSelect={this.handleSelect} />
+              <br />
+              <FormNumber type="sqFoot" handleChange={this.handleChange} placeholder="sq. foot" />
+              <FormNumber type="rent" handleChange={this.handleChange} placeholder="2100" />
+              <FormNumber type="term" handleChange={this.handleChange} placeholder="12" />
+              <br />
+              <Checkbox key="dogs" onClick={this.handleClick('dogs')} inline>
+                dogs
+              </Checkbox>
+              <Checkbox key="cats" onClick={this.handleClick('cats')} inline>
+                cats
+              </Checkbox>
+              <br />
+              <FormDate label="availableDate" handleChange={this.handleChange} />
+              <Button onClick={this.onFormSubmit} type="submit" className="submit-botton">
+                Submit
+              </Button>
+            </Form>
+            <div className="opacBG" />
+          </div>
         </div>
       );
     }
