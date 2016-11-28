@@ -98,33 +98,33 @@ class ApplyForm extends Component {
 
               <h4> Current Address </h4>
               <FormText type="street" handleChange={this.handleChange} placeholder="e.g. 1060 W. Addison" />{ }
-              <FormText type="zip" handleChange={this.handleChange} placeholder="e.g. 88888" />
+              <FormText type="zip" handleChange={this.handleChange} placeholder="e.g. 94108" />
               <FormText type="city" handleChange={this.handleChange} value={this.state.city} />
             </div>
             <br />
             <br />
             <div className="employmentHistory">
               <h4> Current Occupcation </h4>
-              <FormText type="currentEmployer" handleChange={this.handleChange} placeholder=" eg.88888" />
-              <FormText type="currentPosition" handleChange={this.handleChange} placeholder=" eg.88888" />
+              <FormText type="currentEmployer" handleChange={this.handleChange} placeholder=" .MakerSquare" />
+              <FormText type="currentPosition" handleChange={this.handleChange} placeholder=" . BigBoss" />
               <FormNumber type="duration" handleChange={this.handleChange} placeholder="12" />
               <br />
-              <FormNumber type="annualIncome" handleChange={this.handleChange} placeholder=" eg.88888" />
-              <FormText type="supervisorName" handleChange={this.handleChange} placeholder=" eg.88888" />
-              <FormNumber type="supervisorPhone" handleChange={this.handleChange} placeholder="12" />
+              <FormNumber type="annualIncome" handleChange={this.handleChange} placeholder=" .75000" />
+              <FormText type="supervisorName" handleChange={this.handleChange} placeholder=" .Josh VanBlake" />
+              <FormNumber type="supervisorPhone" handleChange={this.handleChange} placeholder="408 867 5309" />
             </div>
             <br />
             <div className="EmergencyContact">
               <h4> Emergency Contact </h4>
-              <FormText type="emergencyContact" handleChange={this.handleChange} placeholder=" eg.88888" />
-              <FormText type="relationship" handleChange={this.handleChange} placeholder=" eg.88888" />
-              <FormNumber type="emergencyNumber" handleChange={this.handleChange} placeholder="12" />
+              <FormText type="emergencyContact" handleChange={this.handleChange} placeholder="  Allen Price" />
+              <FormText type="relationship" handleChange={this.handleChange} placeholder="Uncle" />
+              <FormNumber type="emergencyNumber" handleChange={this.handleChange} placeholder="4085555555" />
             </div>        
-            <FormNumber type="numAdultOccupants" handleChange={this.handleChange} placeholder="sq. foot" />
-            <FormNumber type="numChildOccupants" handleChange={this.handleChange} placeholder="2100" />
-            <FormText type="pets" handleChange={this.handleChange} placeholder=" eg.88888" />
+            <FormNumber type="numAdultOccupants" handleChange={this.handleChange} placeholder="1" />
+            <FormNumber type="numChildOccupants" handleChange={this.handleChange} placeholder="1" />
+            <FormText type="pets" handleChange={this.handleChange} placeholder=" 4" />
             <br />
-            <FormText type="eSign" handleChange={this.handleChange} placeholder=" eg.88888" />
+            <FormText type="eSign" handleChange={this.handleChange} placeholder="Signiture" />
             <br />
             <Button onClick={this.onFormSubmit} type="submit">
               Submit application
