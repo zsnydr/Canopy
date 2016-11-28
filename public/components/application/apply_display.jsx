@@ -66,29 +66,68 @@ class ApplicationDisplay extends Component {
       return <div>Fetching application information</div>;
     }
     return (
-      <div className="form-container container-fluid">
-        <h1> Application Page </h1>
-        <div className="row">
-          <div className="col-sm-2">Address</div><div className="col-sm-2">:{this.state.street} </div>
-          <div className="col-sm-3">{this.state.city}</div><div className="col-sm-2">, {this.state.state}{this.state.zip} </div>
+      <div className="application_form_view">
+        <div className="application_intro">
+          <h1>Application to Rent </h1>
+          <h3>Individual application required for each adult occupant.</h3>
         </div>
         <div className="row">
-          <div className="col-sm-2">Adults</div><div className="col-sm-2">: {this.state.numAdultOccupants}</div>
-          <div className="col-sm-2">Children</div><div className="col-sm-2">: {this.state.numChildOccupants}</div>
-          <div className="col-sm-2">pets</div><div className="col-sm-2">:{this.state.pets}</div>
+          <div className="col-sm-12">
+            <h4><strong> Name:</strong></h4>
+            <h5>{this.state.name} </h5>
+          </div>
+          <div className="col-sm-12">
+            <h4><strong>Address: </strong></h4>
+            <h5>{this.state.street}  {this.state.city}, {this.state.state}</h5>
+          </div>
         </div>
         <div className="row">
-          <div className="col-sm-2">Current Employer</div><div className="col-sm-2">: {this.state.currentEmployer}</div>
-          <div className="col-sm-2"> position</div><div className="col-sm-2">: {this.state.position}</div>
-          <div className="col-sm-2"> duration</div><div className="col-sm-2">: {this.state.duration}</div>
+          <div className="col-sm-4">
+            <h4> <strong>Adults: </strong> </h4>
+            <h5> {this.state.numAdultOccupants}</h5>
+          </div>
+          <div className="col-sm-4">
+            <h4> <strong>Children: </strong></h4>
+            <h5> {this.state.numChildOccupants}</h5>
+          </div>
+          <div className="col-sm-4">
+            <h4><strong>Pets: </strong></h4>
+            <h5>{this.state.pets}</h5>
+          </div>
         </div>
         <div className="row">
-          <div className="col-sm-2">Annual Income</div><div className="col-sm-2">: {this.state.annualIncome}</div>
-          <div className="col-sm-2">Supervisor Name</div><div className="col-sm-2">: {this.state.supervisorName}</div>
-          <div className="col-sm-2"> Supervisor Phone</div><div className="col-sm-2">: {this.state.supervisorPhone}</div>
+          <div className="col-sm-4">
+            <h4> <strong>Current Employer: </strong></h4>
+            <h5> {this.state.currentEmployer}</h5>
+          </div>
+          <div className="col-sm-4">
+            <h4><strong>Position: </strong></h4>
+            <h5> {this.state.position}</h5>
+          </div>
+          <div className="col-sm-4">
+            <h4><strong>Duration: </strong></h4>
+            <h5> {this.state.duration}</h5>
+          </div>
         </div>
         <div className="row">
-          <div className="col-sm-2">eSign</div><div className="col-sm-2">: {this.state.eSign}</div>
+          <div className="col-sm-12">
+            <h4>
+              <strong>Annual Income: </strong>${this.state.annualIncome}
+            </h4>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-sm-12">
+            <h5>
+              <strong>Supervisor Name: </strong> {this.state.supervisorName}
+              <strong> Supervisor Phone: </strong> {this.state.supervisorPhone}
+            </h5>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-sm-12">
+            <strong>eSign Signature: </strong> {this.state.eSign}
+          </div>
         </div>
       </div>
     );

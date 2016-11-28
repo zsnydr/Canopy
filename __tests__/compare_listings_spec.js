@@ -10,12 +10,11 @@ describe('compareListings', () => {
 
 describe('reducerCompareListings', () => {
   it('should be function', () => {
-    expect(reducerActiveCity).toEqual(jasmine).any(Function)
+    expect(reducerCompareListings).toEqual(jasmine).any(Function);
   });
 });
 
-
-describe('actions' , () => {
+xdescribe('actions' , () => {
   it('should create an action to change the city', () => {
     const listings = [
     {
@@ -67,11 +66,12 @@ describe('actions' , () => {
         walkScore: '',
         zip:94107
       }
-]
-    const extpectAction = {
+    ];
+    const expectedCompareAction = {
       type: 'LISTINGS_COMPARED',
       payload: listings
     };
-    expect(compareListings(listings)).toEqual(expectedAction);
-  })
-})
+    expect(compareListings(listings)).toEqual(expectedCompareAction);
+  });
+});
+
