@@ -1,0 +1,20 @@
+.compareLeft, .compareRight {
+  font-family: 'Muli', sans-serif;
+  color: #3d3d3d;
+  width: 50vw;
+  display: inline-block;
+  .details, h2, h3, p{
+    padding-left: 20px;
+  }
+  button {
+    margin-left: 20px;
+    color: white;
+    background-color: #73628A;
+    border: none;
+    border-radius: 3px;
+    font-family: 'Muli', sans-serif;
+    &:hover {
+      background-color: #39499e;
+    }
+  }
+}
