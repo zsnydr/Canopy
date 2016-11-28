@@ -30,14 +30,13 @@ class SignInPage extends Component {
   }
 
   onPasswordChange(event) {
-    this.setState({ password: event.target.value,passwordflag: false});
+    this.setState({ password: event.target.value, passwordflag: false });
   }
 
   signIn() {
     request.post('/api/signin', this.state)
     .then((res) => {
       window.localStorage.setItem('canopy', res.data.token);
-      console.log('USER ', res.data.user)
       this.props.selectUser(res.data.user);
       if (!this.props.activeCity) {
         this.props.selectCity(res.data.user.city);
@@ -61,7 +60,7 @@ class SignInPage extends Component {
         <div className="sign-in-focus">
           <h1>SIGN IN<hr /></h1>
           <div className="sign-in-form">
-            <form onSubmit={this.signIn}  action="javascript:void(0)">
+            <form onSubmit={this.signIn} action="javascript:void(0)">
               <input type="text" placeholder="email" onChange={this.onEmailChange} value={this.state.email} />
               <br />
               <input type="password" placeholder="password" onChange={this.onPasswordChange} value={this.state.password} />

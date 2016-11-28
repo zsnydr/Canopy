@@ -205,7 +205,7 @@ class UserProfileListings extends Component {
             <div className="listingPlaceholder" />
           </div>
           <button onClick={this.showApplication(newApp[1]['renter_id'])}>View application</button>
-          <button onClick={() => { this.showEmailBox(newApp[1]['renter_id'], newApp[0].street) }}>Send e-mail</button>
+          <button onClick={() => { this.showEmailBox(newApp[1]['renter_id'], newApp[0].street); }}>Send e-mail</button>
         </div>
       );
     });
@@ -253,32 +253,32 @@ class UserProfileListings extends Component {
           <div className="btn-group-vertical" data-toggle="buttons">
             { this.props.activeUser.userType === 2 &&
               <label className="btn btn-info active" onClick={() => { this.setState({ newAppsFlag: false, allHost: false, favs: true, applied: false }); }}>
-                <input type="radio" name="options" id="option1" autocomplete="off" checked> RENTER </input>
+                <input type="radio" name="options" id="option1" autoComplete="off" checked> RENTER </input>
               </label>
             }
             { this.props.activeUser.userType === 2 &&
               <label className="btn btn-info active" onClick={() => { this.setState({ newAppsFlag: false, allHost: true, applied: false, favs: false }); }}>
-                <input type="radio" name="options" id="option1" autocomplete="off" > HOST </input>
+                <input type="radio" name="options" id="option1" autoComplete="off" > HOST </input>
               </label>
             }
             { this.state.userType % 2 === 0 &&
               <label className="btn btn-info active" onClick={() => { this.setState({ newAppsFlag: false, allHost: false, favs: true, applied: false }); }}>
-                <input type="radio" name="options" id="option1" autocomplete="off" > FAVS </input>
+                <input type="radio" name="options" id="option1" autoComplete="off" > FAVS </input>
               </label>
             }
             { this.state.userType % 2 === 0 &&
               <label className="btn btn-info active" onClick={() => { this.setState({ newAppsFlag: false, allHost: false, applied: true, favs: false }); }}>
-                <input type="radio" name="options" id="option1" autocomplete="off" > APPLIED </input>
+                <input type="radio" name="options" id="option1" autoComplete="off" > APPLIED </input>
               </label>
             }
             { this.state.userType > 0 &&
               <label className="btn btn-info active" onClick={() => { this.setState({ newAppsFlag: false, allHost: true, applied: false, favs: false }); }}>
-                <input type="radio" name="options" id="option1" autocomplete="off" > MY LISTINGS </input>
+                <input type="radio" name="options" id="option1" autoComplete="off" > MY LISTINGS </input>
               </label>
             }
             { this.state.userType > 0 &&
               <label className="btn btn-info active" onClick={() => { this.setState({ newAppsFlag: true, allHost: false, applied: false, favs: false }); }}>
-                <input type="radio" name="options" id="option1" autocomplete="off" > NEW APPLICATIONS </input>
+                <input type="radio" name="options" id="option1" autoComplete="off" > NEW APPLICATIONS </input>
               </label>
             }
           </div>
@@ -297,7 +297,7 @@ class UserProfileListings extends Component {
             <form onSubmit={this.sendEmail} id="emailForm">
               <button type="submit" value="submit" > Submit </button>
             </form>
-            <textarea form="emailForm" rows="8" cols="50" name="emailcontent" value={this.state.emailText} onChange={this.updateEmailText}/>
+            <textarea form="emailForm" rows="8" cols="50" name="emailcontent" value={this.state.emailText} onChange={this.updateEmailText} />
           </div>}
         </div>
       </div>

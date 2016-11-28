@@ -112,16 +112,16 @@ class ListingDescEdit extends Component {
   }
 
   removeImage(ref) {
-    for (let i = 0; i < this.state.images.length; i++) {
+    for (let i = 0; i < this.state.images.length; i += 1) {
       if (this.state.images[i].ref === ref) {
         const newImageList = this.state.images.slice(0, i).concat(this.state.images.slice(i + 1));
-        this.setState({ images: newImageList })
+        this.setState({ images: newImageList });
       }
     }
   }
 
   removeListing() {
-    this.setState({ showRemoveModal: true })
+    this.setState({ showRemoveModal: true });
   }
 
   onDrop(acceptedFiles, rejectedFiles) {
@@ -189,14 +189,14 @@ class ListingDescEdit extends Component {
         </div>
         <div style={{ position: 'relative' }}>
           <h3> Dropped Images:</h3>
-            {this.state.images.map((img) => {
-              return (
-                <div style={{ display: 'inline-block' }}>
-                  <div onClick={() => { this.removeImage(img.ref); }}>X</div>
-                  <img className="droppedPics" key={img.ref} src={img.ref} alt="" />
-                </div>
-              )
-            })}
+          {this.state.images.map((img) => {
+            return (
+              <div style={{ display: 'inline-block' }}>
+                <div onClick={() => { this.removeImage(img.ref); }}>X</div>
+                <img className="droppedPics" key={img.ref} src={img.ref} alt="" />
+              </div>
+            );
+          })}
         </div>
         <div>
           <ProgressBar bsStyle={this.state.active} now={this.state.count} />

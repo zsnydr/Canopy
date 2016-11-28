@@ -32,16 +32,11 @@ class ListingPics extends Component {
         onSelect={this.handleSelect}
       >
        {this.props.images.map((image) => (
-        <Carousel.Item>
-          <img
-            alt="900x500"
-            key={image.id}
-            src={image.ref}
-          />
-           <Carousel.Caption>
-          </Carousel.Caption>
-        </Carousel.Item>
-        ))}
+         <Carousel.Item>
+           <img alt="900x500" key={image.id} src={image.ref} />
+           <Carousel.Caption />
+         </Carousel.Item>
+       ))}
       </Carousel>
     );
   }

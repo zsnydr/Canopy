@@ -86,8 +86,6 @@ class ListingForm extends Component {
 
   handleSelect(key) {
     return (e) => {
-      console.log('key ', key)
-      console.log('e ', e)
       const state = {};
       state[key] = e;
       this.setState(state);

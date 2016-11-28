@@ -90,11 +90,9 @@ class ListingsPage extends Component {
     } else if (index === -1) {
       this.listingsCompared.push(listing);
     }
-    console.log(this.listingsCompared);
   }
 
   focusListing(listing) {
-    console.log('GOT HERE ', listing)
     this.setState({ focusListing: listing });
   }
 

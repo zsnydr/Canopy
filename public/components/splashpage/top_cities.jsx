@@ -16,12 +16,11 @@ class topCities extends Component {
   onCityClick(event, city) {
     event.preventDefault();
     request.get(`/api/cities/${city}`)
-    .then((city) => {
-      this.props.selectCity(city.data);
-      return request.get(`/api/listings/${city.data.id}`);
+    .then((newCity) => {
+      this.props.selectCity(newCity.data);
+      return request.get(`/api/listings/${newCity.data.id}`);
     })
     .then((listings) => {
-      console.log(listings.data)
       this.props.updateListings(listings.data);
       browserHistory.push('/content/listings');
     })

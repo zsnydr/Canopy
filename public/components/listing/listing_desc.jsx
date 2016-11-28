@@ -4,7 +4,6 @@ import request from 'axios';
 
 import ListingScores from './listing_scores';
 
-// activeListing, activeUser
 class ListingDesc extends Component {
   constructor(props) {
     super(props);
@@ -21,7 +20,7 @@ class ListingDesc extends Component {
 
   applyToListing() {
     if (this.props.activeUser.length === 0) {
-      this.setState({ noUser : true });
+      this.setState({ noUser: true });
       return;
     }
     request.post('/api/applyToListing', {
@@ -38,7 +37,7 @@ class ListingDesc extends Component {
 
   addToFavorites(listing_id) {
     if (this.props.activeUser.length === 0) {
-      this.setState({ noUser : true });
+      this.setState({ noUser: true });
     }
     return request.post('/api/addfavorite', {
       listing_id,
@@ -114,6 +113,6 @@ class ListingDesc extends Component {
       </div>
     );
   }
-};
+}
 
 export default ListingDesc;

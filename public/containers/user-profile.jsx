@@ -24,7 +24,6 @@ class UserProfile extends Component {
   submitChange(user) {
     request.post('/api/updateUser', user)
     .then((userInfo) => {
-      console.log('Successfully updated user info', userInfo);
       this.props.selectUser(userInfo.data);
       this.setState({ profileType: 'info' });
     })
@@ -51,7 +50,8 @@ class UserProfile extends Component {
             <UserProfileInfo
               activeUser={this.props.activeUser}
               updateApplicationType={this.props.updateApplicationType}
-              editUserInfo={this.editUserInfo}/> :
+              editUserInfo={this.editUserInfo}
+            /> :
             <UserProfileEdit
               submitChange={this.submitChange}
               activeUser={this.props.activeUser}

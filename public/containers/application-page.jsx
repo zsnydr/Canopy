@@ -20,7 +20,7 @@ class ApplicationPage extends Component {
         <div className="application_page">
           <ApplicationForm activeUser={this.props.activeUser}/>
         </div>
-      ); 
+      );
     } else if (this.props.applicationType.type === 'view') {
       return (
         <div className="application_page">

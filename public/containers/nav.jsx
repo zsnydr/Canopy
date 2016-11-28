@@ -106,13 +106,3 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(NavBar);
-
-
-
-
-// <Navbar.Header className="Canopy">
-//   <Navbar.Brand>
-//     <a onClick={this.goHome}><strong>canopy</strong></a>
-//   </Navbar.Brand>
-//   <Navbar.Toggle />
-// </Navbar.Header>

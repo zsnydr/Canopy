@@ -35,12 +35,12 @@ class compareListingButton extends Component {
             onClick={() => {
               this.props.updateCompareListings(this.props.listing);
               if (this.props.listingsCompared.length < 2 || this.props.listingsCompared.indexOf(this.props.listing) >= 0) {
-                this.toggleButton(this.state.star);  
+                this.toggleButton(this.state.star);
               }
             }}
           >
             Compare {}
-            <Glyphicon glyph={this.state.star} />         
+            <Glyphicon glyph={this.state.star} />
           </Button>
         </div>
         <div className="favorite">
@@ -64,4 +64,3 @@ class compareListingButton extends Component {
 }
 
 export default compareListingButton;
-
