@@ -37,9 +37,9 @@
     .listings_map {
       position: absolute;
       display: inline-block;
-      width: 50%;
+      width: 53vw;
       height: 83vh;
-      right:0px;
+      right: 1vw;
       top: 0px;
     }
   }
@@ -117,10 +117,10 @@
   .listings_list {
     position: relative;
     display: inline-block;
-    width: 50vw;
+    width: 45vw;
     height: 83vh;
     right:0;
-    left:0;
+    left: 0;
     overflow: auto;
 
     .listing {
@@ -154,9 +154,16 @@
           margin-left: 4vh;
           display: inline-block;
           margin: 0;
+          h2 {
+            font-size: 3vh;
+          }
           h3 {
             margin: 0;
             margin-left: 4vh;
+            font-size: 3vh
+          }
+          h4 {
+            font-size: 2vh;
           }
         }
         .btn {
@@ -167,7 +174,7 @@
 
       .listingDetails {
         top: 0;
-        margin: 0 0 1vh 4vh;
+        margin: 0 0 0vh 4vh;
         display: inline-block;
       }
         .likeCompare {

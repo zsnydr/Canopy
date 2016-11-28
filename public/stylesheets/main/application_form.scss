@@ -1,0 +1,28 @@
+
+
+.application_form {
+  margin: 2vh 5vw 5vh 5vw;
+  border: solid 1px;
+  width: 90vw;
+  height: 98vh;
+  text-align: center;
+  font-family: 'Muli', sans-serif;
+
+  .application_intro {
+    border-bottom: solid 2px;
+    margin-bottom: 2vh;
+  }
+
+  div {
+    adding-bottom: 4vh;
+  }
+  .application_namedate {
+    padding-bottom: 4vh;
+  }
+
+  FormGroup {
+    margin: 50% 5% 5% 5%;
+  }
+
+
+}

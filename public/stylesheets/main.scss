@@ -6,11 +6,9 @@
 @import './main/top-cities';
 @import './main/splash_about';
 
-
 //page styles
 @import './main/listings-list';
 @import './main/listing-page';
-
 
 //nav bar component
 @import './main/nav';
@@ -26,11 +24,11 @@
 //profile page
 @import './main/profile-page';
 
-//form-pages
-@import './main/form-pages';
 
 //compare-page
 @import './main/compare-page';
 
 //forms
+@import './main/form-pages';
 @import './main/add-listing-form';
+@import './main/application_form';

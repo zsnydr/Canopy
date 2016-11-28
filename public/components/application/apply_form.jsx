@@ -48,7 +48,7 @@ class ApplyForm extends Component {
     .then((application) => {
       console.log('Successfullly stored this application data to DB: ', application);
       //Must have access to renterId
-      this.setState({ applicationSubmitted: true })
+      this.setState({ applicationSubmitted: true });
     });
   }
 
@@ -79,38 +79,42 @@ class ApplyForm extends Component {
   render() {
     if (!this.state.applicationSubmitted) {
       return (
-        <div className="listingForm">
-          <h1>Application to Rent </h1>
-          <h3>Individual application required for each adult occupant.</h3>
-
+        <div className="application_form">
+          <div className="application_intro">
+            <h1>Application to Rent </h1>
+            <h3>Individual application required for each adult occupant.</h3>
+          </div>
           <Form inline>
-            <FormText type="name" handleChange={this.handleChange} value={this.state.name} />
-            <strong>D.O.B.</strong>
-            <FormDate label="dob" handleChange={this.handleChange} placeholder='mm/dd/yyy' />
-            <br />
-             Home <FormNumber type="phone" handleChange={this.handleChange} value={this.state.phone} />
-              <FormText type="state" handleChange={this.handleChange} value={this.state.state} />
-            <br />
-            <br />
+            <div className="application_namedate">
+              <FormText className="col-md-6" type="name" handleChange={this.handleChange} value={this.state.name} />        
+              <strong>D.O.B.</strong>
+              <FormDate className="col-md-6" label="dob" handleChange={this.handleChange} placeholder='mm/dd/yyy' />
+            </div>
+            <div className="apply_phone_city_state">
+               Home <FormNumber type="phone" handleChange={this.handleChange} value={this.state.phone} />
+                <FormText type="state" handleChange={this.handleChange} value={this.state.state} />
+            </div>
             <div>
+
               <h4> Current Address </h4>
-              <FormText type="street" handleChange={this.handleChange} placeholder="e.g. 1060 W. Addison" />
+              <FormText type="street" handleChange={this.handleChange} placeholder="e.g. 1060 W. Addison" />{ }
               <FormText type="zip" handleChange={this.handleChange} placeholder="e.g. 88888" />
               <FormText type="city" handleChange={this.handleChange} value={this.state.city} />
             </div>
             <br />
             <br />
-            <div>
+            <div className="employmentHistory">
               <h4> Current Occupcation </h4>
               <FormText type="currentEmployer" handleChange={this.handleChange} placeholder=" eg.88888" />
               <FormText type="currentPosition" handleChange={this.handleChange} placeholder=" eg.88888" />
               <FormNumber type="duration" handleChange={this.handleChange} placeholder="12" />
+              <br />
               <FormNumber type="annualIncome" handleChange={this.handleChange} placeholder=" eg.88888" />
               <FormText type="supervisorName" handleChange={this.handleChange} placeholder=" eg.88888" />
               <FormNumber type="supervisorPhone" handleChange={this.handleChange} placeholder="12" />
             </div>
             <br />
-            <div>
+            <div className="EmergencyContact">
               <h4> Emergency Contact </h4>
               <FormText type="emergencyContact" handleChange={this.handleChange} placeholder=" eg.88888" />
               <FormText type="relationship" handleChange={this.handleChange} placeholder=" eg.88888" />
