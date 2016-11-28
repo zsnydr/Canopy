@@ -196,39 +196,39 @@ const imageData = [
     ref: 'http://res.cloudinary.com/canopydev/image/upload/v1479528466/ISlygatn1gpql61000000000_ang9qz.jpg'
   },{ listing_id: 1,
     ref: 'http://res.cloudinary.com/canopydev/image/upload/v1479528465/ISl6f63updtqa91000000000_feo9lg.jpg'
-  }, { listing_id: 1,
+  }, { listing_id: 2,
     ref: 'http://res.cloudinary.com/canopydev/image/upload/v1479528465/ISliswlgv36uvw0000000000_keko4q.jpg'
-  }, { listing_id: 1,
+  }, { listing_id: 2,
     ref: 'http://res.cloudinary.com/canopydev/image/upload/v1479528465/IS5qr0xs0x9cn81000000000_pqowg2.jpg'
-  }, { listing_id: 1,
+  }, { listing_id: 2,
     ref: 'http://res.cloudinary.com/canopydev/image/upload/v1479528465/ISh71hdo17kic91000000000_cnwwwa.jpg'
-  }, { listing_id: 1,
+  }, { listing_id: 2,
     ref: 'http://res.cloudinary.com/canopydev/image/upload/v1479528465/IS5yx6odisbyr01000000000_depje8.jpg'
-  }, { listing_id: 1,
+  }, { listing_id: 2,
     ref: 'http://res.cloudinary.com/canopydev/image/upload/v1479528465/ISdw9pjn5iqp331000000000_e0doeh.jpg'
-  }, { listing_id: 2,
+  }, { listing_id: 3,
     ref: 'http://res.cloudinary.com/canopydev/image/upload/v1479529166/IS-og0jhl5a1ba5_mcmdlr.jpg'
-  }, { listing_id: 2,
+  }, { listing_id: 3,
     ref: 'http://res.cloudinary.com/canopydev/image/upload/v1479529166/IS-og0jhh77t7bx_bpgake.jpg'
-  }, { listing_id: 2,
+  }, { listing_id: 3,
     ref: 'http://res.cloudinary.com/canopydev/image/upload/v1479529166/IS-og0jhl5a1ba5_mcmdlr.jpg'
-  }, { listing_id: 2,
+  }, { listing_id: 4,
     ref: 'http://res.cloudinary.com/canopydev/image/upload/v1479529166/IS-og0jht1ehj6l_hv8vcs.jpg'
-  }, { listing_id: 2,
+  }, { listing_id: 4,
     ref: 'http://res.cloudinary.com/canopydev/image/upload/v1479529166/IS-og0jcjmfo9jx_rrpd5w.jpg'
-  }, { listing_id: 2,
+  }, { listing_id: 4,
     ref: 'http://res.cloudinary.com/canopydev/image/upload/v1479529166/IS-og0jcfodg5lp_zihiym.jpg'
-  }, { listing_id: 2,
+  }, { listing_id: 4,
     ref: 'http://res.cloudinary.com/canopydev/image/upload/v1479529166/IS-og0jcbqb81nh_qnwrxg.jpg'
-  }, { listing_id: 2,
+  }, { listing_id: 5,
     ref: 'http://res.cloudinary.com/canopydev/image/upload/v1479529166/IS-og0jc7s8zxp9_cfctsc.jpg'
-  }, { listing_id: 2,
+  }, { listing_id: 5,
     ref: 'http://res.cloudinary.com/canopydev/image/upload/v1479529166/IS-19moh61ilc7dp_w265nl.jpg'
-  }, { listing_id: 3,
+  }, { listing_id: 5,
     ref: 'http://res.cloudinary.com/canopydev/image/upload/v1479529615/IS882415mkax7n_hx9qfu.jpg'
-  }, { listing_id: 3,
+  }, { listing_id: 5,
     ref: 'http://res.cloudinary.com/canopydev/image/upload/v1479529615/IS882411oi2t9f_mu6jgj.jpg'
-  }, { listing_id: 3,
+  }, { listing_id: 5,
     ref: 'http://res.cloudinary.com/canopydev/image/upload/v1479529615/IS88240xqfupb7_lrb9pm.jpg'
   }, { listing_id: 3,
     ref: 'http://res.cloudinary.com/canopydev/image/upload/v1479529615/IS1pumwhn8q5ehv_etdawo.jpg'
