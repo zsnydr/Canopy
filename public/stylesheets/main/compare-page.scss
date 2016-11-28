@@ -33,6 +33,14 @@
       background-color: #39499e;
     }
   }
+  .carousel-inner{
+    height: 300px;
+    width: 100%;
+    img {
+      max-height: 100%;
+      max-width: 100%;
+    }
+  }
 }
 
 .compareLeft{
