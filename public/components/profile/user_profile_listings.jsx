@@ -55,7 +55,7 @@ class UserProfileListings extends Component {
   goToListing(listing) {
     browserHistory.push(`/content/listing/${listing.id}`);
   }
-  
+
   updateEmailText(e) {
     this.setState({
       emailText: e.target.value
@@ -97,15 +97,20 @@ class UserProfileListings extends Component {
 
   renderAllRenterListings() {
     return this.state.renterListings.map(({ listing }) => {
+      const divStyle = { backgroundImage: 'url(' + listing.images[0].ref + ')' };
       return (
-        <div className="listing">
-          <ListingsListItem
-            listing={listing}
-            city={listing.city.name}
-            state={listing.city.state}
-            selectListing={this.props.selectListing}
-            goToListing={this.goToListing}
-          />
+        <div className="listing" style={divStyle}>
+          <div className="listingItemContainer">
+            <ListingsListItem
+              listing={listing}
+              city={listing.city.name}
+              state={listing.city.state}
+              selectListing={this.props.selectListing}
+              goToListing={this.goToListing}
+            />
+          </div>
+          <div className="listingOverlay" />
+          <div className="listingPlaceholder" />
         </div>
       );
     });
@@ -115,15 +120,20 @@ class UserProfileListings extends Component {
     return this.state.renterListings.filter((renterListing) => {
       return !renterListing.hasApplied;
     }).map(({ listing }) => {
+      const divStyle = { backgroundImage: 'url(' + listing.images[0].ref + ')' };
       return (
-        <div className="listing" style={{position:'relative'}}>
-          <ListingsListItem
-            listing={listing}
-            city={listing.city.name}
-            state={listing.city.state}
-            selectListing={this.props.selectListing}
-            goToListing={this.goToListing}
-          />
+        <div className="listing" style={divStyle}>
+          <div className="listingItemContainer">
+            <ListingsListItem
+              listing={listing}
+              city={listing.city.name}
+              state={listing.city.state}
+              selectListing={this.props.selectListing}
+              goToListing={this.goToListing}
+            />
+          </div>
+          <div className="listingOverlay" />
+          <div className="listingPlaceholder" />
         </div>
       );
     });
@@ -133,15 +143,20 @@ class UserProfileListings extends Component {
     return this.state.renterListings.filter((renterListing) => {
       return renterListing.hasApplied;
     }).map(({ listing }) => {
+      const divStyle = { backgroundImage: 'url(' + listing.images[0].ref + ')' };
       return (
-        <div className="listing" style={{position:'relative'}}>
-          <ListingsListItem
-            listing={listing}
-            city={listing.city.name}
-            state={listing.city.state}
-            selectListing={this.props.selectListing}
-            goToListing={this.goToListing}
-          />
+        <div className="listing" style={divStyle}>
+          <div className="listingItemContainer">
+            <ListingsListItem
+              listing={listing}
+              city={listing.city.name}
+              state={listing.city.state}
+              selectListing={this.props.selectListing}
+              goToListing={this.goToListing}
+            />
+          </div>
+          <div className="listingOverlay" />
+          <div className="listingPlaceholder" />
         </div>
       );
     });
@@ -149,15 +164,21 @@ class UserProfileListings extends Component {
 
   renderAllHostListings() {
     return this.state.hostListings.map((hostListing) => {
+      console.log('XXX ', hostListing)
+      const divStyle = { backgroundImage: 'url(' + hostListing.images[0].ref + ')' };
       return (
-        <div className="listing">
-          <ListingsListItem
-            listing={hostListing}
-            city={hostListing.city.name}
-            state={hostListing.city.state}
-            selectListing={this.props.selectListing}
-            goToListing={this.goToListing}
-          />
+        <div className="listing" style={divStyle}>
+          <div className="listingItemContainer">
+            <ListingsListItem
+              listing={hostListing}
+              city={hostListing.city.name}
+              state={hostListing.city.state}
+              selectListing={this.props.selectListing}
+              goToListing={this.goToListing}
+            />
+          </div>
+          <div className="listingOverlay" />
+          <div className="listingPlaceholder" />
           <Button bsStyle="primary" onClick={() => { this.editListing(hostListing); }}>EDIT</Button>
         </div>
       );
@@ -166,19 +187,24 @@ class UserProfileListings extends Component {
 
   renderNewApplications() {
     return this.state.newApps.map((newApp) => {
+      const divStyle = { backgroundImage: 'url(' + newApp[0].images[0].ref + ')' };
       return (
         <div>
           <div>Credit Checked: {newApp[1].creditChecked ? 'YES' : 'NO'}</div>
           <div>Background Checked: {newApp[1].backgroundChecked ? 'YES' : 'NO'}</div>
           <div>Rental History: {newApp[1].hasRentalHistory ? 'YES' : 'NO'}</div>
-          <div className="listing">
-            <ListingsListItem
-              listing={newApp[0]}
-              city={newApp[0].city.name}
-              state={newApp[0].city.state}
-              selectListing={this.props.selectListing}
-              goToListing={this.goToListing}
-            />
+          <div className="listing" style={divStyle}>
+            <div className="listingItemContainer">
+              <ListingsListItem
+                listing={newApp[0]}
+                city={newApp[0].city.name}
+                state={newApp[0].city.state}
+                selectListing={this.props.selectListing}
+                goToListing={this.goToListing}
+              />
+            </div>
+            <div className="listingOverlay" />
+            <div className="listingPlaceholder" />
           </div>
           <button onClick={this.showApplication(newApp[1]['renter_id'])}>View application</button>
           <button onClick={() => { this.showEmailBox(newApp[1]['renter_id'], newApp[0].street) }}>Send e-mail</button>
@@ -286,13 +312,3 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default connect(null, mapDispatchToProps)(UserProfileListings);
-
-
-
-
-
-
-
-
-
-
