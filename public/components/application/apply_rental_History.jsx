@@ -31,7 +31,7 @@ class RentalHistoryForm extends Component {
     event.preventDefault();
     request.post('/api/rentalHistory', this.state)
     .then((rentalHistory) => {
-      console.log('Successfullly stored this rental history data to DB: ', rentalHistory);
+      console.log('Successfully stored this rental history data to DB: ', rentalHistory);
       this.setState({ show: false, showModal: true });
     });
   }

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Form, Button } from 'react-bootstrap';
-import { browserHistory } from 'react-router';
 import request from 'axios';
 
 import RentalHistoryForm from './apply_rental_History';

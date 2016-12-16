@@ -6,7 +6,6 @@ import { Button } from 'react-bootstrap';
 import { browserHistory } from 'react-router';
 
 import ListingsListItem from '../listings_list/listings_list_item';
-import FormText from '../form/form_text';
 import selectListing from '../../actions/select_listing';
 import updateApplicationType from '../../actions/typeToAppView';
 
