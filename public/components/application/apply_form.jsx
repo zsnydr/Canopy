@@ -7,6 +7,7 @@ import FormText from '../form/form_text';
 import FormNumber from '../form/form_num';
 import FormDate from '../form/form_date';
 
+// TODO(victor):try to change the form to editable text for APPLICATION FORM
 class ApplyForm extends Component {
   constructor(props) {
     super(props);
