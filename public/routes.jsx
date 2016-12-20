@@ -1,5 +1,5 @@
 import React from 'react';
-import { Router, Route, Link, IndexRoute, hashHistory, browserHistory } from 'react-router'
+import { Route, IndexRoute } from 'react-router';
 
 import App from './components/app';
 import Nav from './containers/nav';
@@ -16,12 +16,10 @@ import CompareListings from './containers/compare-listings-page';
 import AboutUs from './components/about_us';
 import TechStack from './components/tech_stack';
 
-
 export default (
   <Route path="/" component={App}>
     <IndexRoute component={Splash} />
     <Route path="content" component={Nav}>
-      <Route path="signup" component={SignUp} />
       <Route path="signin" component={SignIn} />
       <Route path="profile/:id" component={UserProfile} />
       <Route path="listings" component={Listings} />

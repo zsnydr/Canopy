@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Form, Button } from 'react-bootstrap';
-import { browserHistory } from 'react-router';
 import request from 'axios';
 
 import RentalHistoryForm from './apply_rental_History';
@@ -8,6 +7,7 @@ import FormText from '../form/form_text';
 import FormNumber from '../form/form_num';
 import FormDate from '../form/form_date';
 
+// TODO(victor):try to change the form to editable text for APPLICATION FORM
 class ApplyForm extends Component {
   constructor(props) {
     super(props);

@@ -76,6 +76,10 @@ class ListingsPage extends Component {
   compareListings(event) {
     event.preventDefault();
     console.log("listings to compare", this.listingsCompared);
+    if (this.listingsCompared.length !== 2) {
+      console.log('Must select two listings to compare');
+      return;
+    }
     this.props.compareListings(this.listingsCompared);
     browserHistory.push('/content/compareListings');
   }

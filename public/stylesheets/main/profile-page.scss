@@ -9,12 +9,18 @@
 
   .user-profile-header {
 
-    .user-info {
+    .user-info, .user-info-edit {
       color: #3D3D3D;
       font-family: 'Muli', sans-serif;
       border-radius: 3px;
       margin: 3vh 0 2vh 4vw;
       background-color: white;
+      
+      table {
+        td {
+          padding-left: 15px;
+        }
+      }
 
       div {
         display: inline-block;

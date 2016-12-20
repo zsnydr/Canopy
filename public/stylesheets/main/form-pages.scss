@@ -20,41 +20,42 @@
     width: 80vw;
     margin-left: 9vw;
     text-align: center;
-    h1 {
-      margin-top: 1%;
-      margin-left: 37%;
+    .form-box-container {
+      position: absolute;
+      z-index: 10;
+      height: 70vh;
+      width: 80vw;
       top: 50px;
-      z-index: 10;
-      position: absolute;
-      color: white;
-      font-size: 30px;
-      font-family: 'Quicksand', sans-serif;
-      margin-bottom: 3vh;
-      width: 22vw;
-    }
 
-    .form-box {
-      font-family: 'Muli', sans-serif;
-      top: 100px;
-      z-index: 10;
-      padding-bottom: 10vh;
-      position: absolute;
-      text-align: center;
-      color: white;
-      .form-group, .input-group-btn {
-        text-align: center;
-        label, input{
-          display: block;
-        }
-        input, select, button {
-          width: 20vw;
-          border: none;
-          border-radius: 3px;
-          margin-left: 1vw;
-          margin-right: 1vw;
-          font-family: 'Muli', sans-serif;
-        }
+      h1 {
+        position: relative;
+        color: white;
+        font-size: 40px;
+        font-family: 'Quicksand', sans-serif;
+        margin-bottom: 3vh;
       }
+
+      .form-box {
+        font-family: 'Muli', sans-serif;
+        padding-bottom: 10vh;
+        position: relative;
+        text-align: center;
+        color: white;
+        .form-group, .input-group-btn {
+          text-align: center;
+          label, input{
+            display: block;
+          }
+          input, select, button {
+            width: 20vw;
+            border: none;
+            border-radius: 3px;
+            margin-left: 1vw;
+            margin-right: 1vw;
+            font-family: 'Muli', sans-serif;
+          }
+        }
+    }
       .dropdown-form {
         display: inline-block;
         margin-top: 11px;
