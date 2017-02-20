@@ -1,20 +1,38 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+import { Router, hashHistory, browserHistory } from 'react-router';
+import { createStore, applyMiddleware, combineReducers } from 'redux';
+import ReduxPromise from 'redux-promise';
+import { syncHistoryWithStore, routerReducer } from 'react-router-redux';
 
-const App = require('./components/app').default;
+import routes from './routes';
+import reducers from './reducers';
+
+const createStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore);
+
+//
+const store = createStoreWithMiddleware(reducers);
+const history = syncHistoryWithStore(browserHistory, store);
+//
 
 ReactDOM.render(
-  <App/>
-  , document.querySelector('.container')
+  <Provider store={store}>
+    <Router history={history} routes={routes} />
+  </Provider>
+  ,
+  document.querySelector('.canopyReactApp')
 );
 
-if(module.hot) {
-  // Whenever a new version of App.js is available
-  module.hot.accept('./components/app', () => {
-    // Require the new version and render it instead
-    const NextApp = require('./components/app').default;
-    ReactDOM.render(
-      <NextApp />
-    , document.querySelector('.container'));
-  });
-}
+
+// Hot Reloading.  Not currently working
+// if (module.hot) {
+//   module.hot.accept('./hotMiddleWare', () => {
+//     const newHot = require('./hotMiddleWare').default;
+
+//     ReactDOM.render(
+//       <newHot />,
+//      document.querySelector('.container')
+//     );
+//   });
+// }
