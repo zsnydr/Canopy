@@ -1,13 +1,13 @@
 # Canopy
 
-The Canopy app manages is a one-stop-shop for potential tenants and landlords to rent and list propeties.
+Canopy is a one-stop-shop for potential tenants and landlords to rent and list propeties.
 
 http://www.canopydev.com/
 
 ## Team
 
   - __Dev Ops, Engineer__: Zack Snyder
-  - __Other Team Members__: Sean Enright, Victor Choi
+  - __Engineers__: Sean Enright, Victor Choi
 
 ## Table of Contents
 
