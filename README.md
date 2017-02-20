@@ -1,6 +1,6 @@
 # Canopy
 
-Canopy is a one-stop-shop for potential tenants and landlords to rent and list propeties.
+Canopy is a one-stop-shop for potential tenants and landlords to rent and list properties.
 
 http://www.canopydev.com/
 
