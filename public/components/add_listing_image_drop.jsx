@@ -3,6 +3,7 @@ import request from 'superagent';
 import Dropzone from 'react-dropzone';
 import { Button, Modal, ProgressBar } from 'react-bootstrap';
 import { browserHistory } from 'react-router';
+import { List } from 'immutable';
 
 const CLOUDINARY_UPLOAD_PRESET = 'wdrjd71q';
 const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/canopydev/image/upload';
@@ -12,7 +13,8 @@ class ImageDrop extends Component {
     super(props);
 
     this.state = {
-      images: [],
+      images: List(),
+      // images: [],
       button: true,
       showModal: false,
       count: 0,
@@ -69,8 +71,10 @@ class ImageDrop extends Component {
     upload.end((err, res) => {
       if (err) { console.log('Cloudinary Error: ', err); }
       console.log('CLOUDINARY URL ', res.body.secure_url);
+      const update = List.of(...this.state.images, res.body.secure_url);
       this.setState({
-        images: [...this.state.images, res.body.secure_url],
+        images: update,
+        // image: [...this.state.images, res.body.secure_url],
         button: false,
         count: 100,
         active: 'success'
