@@ -4,6 +4,8 @@ Canopy is a one-stop-shop for potential tenants and landlords to rent and list p
 
 http://www.canopydev.com/
 
+DEMO: https://youtu.be/emWvvZEwkJU
+
 ## Team
 
   - __Dev Ops, Engineer__: Zack Snyder
